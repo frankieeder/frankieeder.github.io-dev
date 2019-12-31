@@ -1,0 +1,108 @@
+@charset "UTF-8";
+/* CSS Document */
+
+@font-face {
+font-family: 'Avenir-Heavy';
+src: url('../fonts/Avenir-Heavy.eot'); /* IE9 Compat Modes */
+src: url('../fonts/Avenir-Heavy.eot') format('embedded-opentype'), /* IE6-IE8 */
+url('../fonts/Avenir-Heavy.woff') format('woff'), /* Modern Browsers */
+url('../fonts/Avenir-Heavy.ttf') format('truetype'), /* Safari, Android, iOS */
+url('../fonts/Avenir-Heavy.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+@font-face {
+font-family: 'Avenir-Light';
+src: url('../fonts/Avenir-Light.eot'); /* IE9 Compat Modes */
+src: url('../fonts/Avenir-Light.eot') format('embedded-opentype'), /* IE6-IE8 */
+url('../fonts/Avenir-Light.woff') format('woff'), /* Modern Browsers */
+url('../fonts/Avenir-Light.ttf') format('truetype'), /* Safari, Android, iOS */
+url('../fonts/Avenir-Light.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+@font-face {
+font-family: 'Avenir-Medium';
+src: url('../fonts/Avenir-Medium.eot'); /* IE9 Compat Modes */
+src: url('../fonts/Avenir-Medium.eot') format('embedded-opentype'), /* IE6-IE8 */
+url('../fonts/Avenir-Medium.woff') format('woff'), /* Modern Browsers */
+url('../fonts/Avenir-Medium.ttf') format('truetype'), /* Safari, Android, iOS */
+url('../fonts/Avenir-Medium.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+
+.header {
+display: inline-block;
+width: 780px;
+white-space: normal;
+padding-top: 25px;
+padding-bottom: 25px;	
+}	
+
+
+.menu_row1 {
+display: inline-block;
+width: 780px;
+white-space: normal;
+}
+.menu_row1 a {
+font-size: 0.01pt
+}
+.menu_row1 img {
+display: inline-block;
+white-space: normal;
+background-color: #e8e8e8;
+padding-bottom: 0;
+padding-top: 0;
+}
+.menu_row1 img:hover {
+background-color: #0094B6
+}
+.menu_row1 img:active {
+background-color: slategrey
+}
+
+
+
+.menu_row2 {
+display: inline-block;
+width: 780px;
+white-space: normal;
+}
+.menu_row2 a {
+font-size: 0.01pt
+}
+.menu_row2 img {
+display: inline-block;
+white-space: normal;
+background-color: #e8e8e8;
+padding-bottom: 0;
+padding-top: 0;
+}
+.menu_row2 img:hover {
+background-color: #0094B6
+}
+.menu_row2 img:active {
+background-color: slategrey
+}
+
+
+.content {
+display: inline-block;
+width: 780px;
+white-space: normal;
+padding-top: 25px;
+padding-bottom: 25px;
+}
+.content a{
+	text-align: left
+}
+
+.subcontent {
+display: inline-block;
+width: 780px;
+white-space: normal;
+padding-top: 25px;
+padding-bottom: 25px;
+}
+.subcontent img {
+padding-left: 25px;
+padding-right: 25px;
+}
+		
