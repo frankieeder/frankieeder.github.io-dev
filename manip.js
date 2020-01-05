@@ -55,7 +55,9 @@ function enableNavigation() {
         adjacentTxtEl.onclick = function() {
             console.log(this);
             filterContent(this.textContent);
-            this.parentElement.querySelector("ul").classList.toggle("active");
+            var dropdown = this.parentElement.querySelector("ul");
+            dropdown.classList.toggle("active");
+            dropdown.classList.toggle("header_dropdown_ul");
         };
     }
 }

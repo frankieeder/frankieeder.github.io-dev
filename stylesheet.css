@@ -62,26 +62,26 @@ padding-left: 25px;
 padding-right: 25px;
 }
 
-
 ul {
     text-transform: uppercase;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #e8e8e8;
+    background-color: #333;
 }
 
 li {
-  float: left;
+    float: center;
 }
 
 li a {
-  /*display: block;*/
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -94,6 +94,7 @@ li a:active {
 
 .active {
     display: block;
+    background-color: slategrey;
 }
 .header_dropdown_ul {
     display: none;
