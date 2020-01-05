@@ -1,39 +1,67 @@
 @charset "UTF-8";
 /* CSS Document */
 
+
 @font-face {
 font-family: 'Avenir-Heavy';
-src: url('fonts/Avenir-Heavy.eot'); /* IE9 Compat Modes */
-src: url('fonts/Avenir-Heavy.eot') format('embedded-opentype'), /* IE6-IE8 */
-	 url('fonts/Avenir-Heavy.woff') format('woff'), /* Modern Browsers */
-	 url('fonts/Avenir-Heavy.ttf')  format('truetype'), /* Safari, Android, iOS */
-	 url('fonts/Avenir-Heavy.svg#svgFontName') format('svg'); /* Legacy iOS */
+src: url('../fonts/Avenir-Heavy.eot'); /* IE9 Compat Modes */
+src: url('../fonts/Avenir-Heavy.eot') format('embedded-opentype'), /* IE6-IE8 */
+url('../fonts/Avenir-Heavy.woff') format('woff'), /* Modern Browsers */
+url('../fonts/Avenir-Heavy.ttf') format('truetype'), /* Safari, Android, iOS */
+url('../fonts/Avenir-Heavy.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 @font-face {
 font-family: 'Avenir-Light';
-src: url('fonts/Avenir-Light.eot'); /* IE9 Compat Modes */
-src: url('fonts/Avenir-Light.eot') format('embedded-opentype'), /* IE6-IE8 */
-	 url('fonts/Avenir-Light.woff') format('woff'), /* Modern Browsers */
-	 url('fonts/Avenir-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
-	 url('fonts/Avenir-Light.svg#svgFontName') format('svg'); /* Legacy iOS */
+src: url('../fonts/Avenir-Light.eot'); /* IE9 Compat Modes */
+src: url('../fonts/Avenir-Light.eot') format('embedded-opentype'), /* IE6-IE8 */
+url('../fonts/Avenir-Light.woff') format('woff'), /* Modern Browsers */
+url('../fonts/Avenir-Light.ttf') format('truetype'), /* Safari, Android, iOS */
+url('../fonts/Avenir-Light.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 @font-face {
 font-family: 'Avenir-Medium';
-src: url('fonts/Avenir-Medium.eot'); /* IE9 Compat Modes */
-src: url('fonts/Avenir-Medium.eot') format('embedded-opentype'), /* IE6-IE8 */
-	 url('fonts/Avenir-Medium.woff') format('woff'), /* Modern Browsers */
-	 url('fonts/Avenir-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
-	 url('fonts/Avenir-Medium.svg#svgFontName') format('svg'); /* Legacy iOS */
+src: url('../fonts/Avenir-Medium.eot'); /* IE9 Compat Modes */
+src: url('../fonts/Avenir-Medium.eot') format('embedded-opentype'), /* IE6-IE8 */
+url('../fonts/Avenir-Medium.woff') format('woff'), /* Modern Browsers */
+url('../fonts/Avenir-Medium.ttf') format('truetype'), /* Safari, Android, iOS */
+url('../fonts/Avenir-Medium.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+body {
+    font-family: Avenir-Heavy, courier; 
 }
 
 
 .header {
 display: inline-block;
-width: 780px;
 white-space: normal;
 padding-top: 25px;
 padding-bottom: 25px;	
-}	
+}
+.menu_row {
+    /*line-height: 100px; /*vertically centers text, use JS to match line-height to height*/
+}
+
+.button {
+    white-space: normal;
+    display:inline-block;
+    font-size: 12pt; 
+    font-style: normal;
+    background-color: #e8e8e8;
+    height: 100%;
+    padding: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+    text-align: center;
+    transition: 0.2s;
+}
+.button:hover {
+    background-color: #0094B6;
+}
+.button:active {
+    background-color: slategrey;
+}
+
 
 
 .menu_row1 {
@@ -104,5 +132,42 @@ padding-bottom: 25px;
 .subcontent img {
 padding-left: 25px;
 padding-right: 25px;
+}
+
+
+ul {
+    text-transform: uppercase;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #e8e8e8;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  /*display: block;*/
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #0094B6;
+}
+li a:active {
+    background-color: slategrey;
+}
+
+.active {
+    display: block;
+}
+.header_dropdown_ul {
+    display: none;
 }
 		

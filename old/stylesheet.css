@@ -35,6 +35,21 @@ padding-top: 25px;
 padding-bottom: 25px;	
 }	
 
+.menu_row {
+	display:block;
+}
+
+.button {
+	background-color: #e8e8e8;
+}
+
+.button:hover {
+	background-color: #0094B6;
+}
+.button:active {
+	background-color: slategrey;
+}
+
 
 .menu_row1 {
 display: inline-block;
