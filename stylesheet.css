@@ -113,15 +113,18 @@ li a {
 }
 
 /* Change the link color to #111 (black) on hover */
-li a:hover {
+li:hover {
     background-color: #0094B6;
 }
-li a:active {
+li:active {
     background-color: slategrey;
 }
 
-#nav {
+
+header {
     padding-bottom: 15px;
+    user-select: none;
+    cursor: pointer;
 }
 .active {
     display: block;
