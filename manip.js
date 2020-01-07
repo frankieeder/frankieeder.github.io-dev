@@ -1,8 +1,9 @@
 // JavaScript Document
 var content = document.getElementsByClassName("content");
 var nav = document.getElementsByTagName('nav')[0];
+var DEFAULT_FILTER = 'home';
 
-/*
+
 function getUrlVars() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -12,17 +13,15 @@ function getUrlVars() {
 }
 var args = getUrlVars();
 
-function enableNav() {
-    
-}*/
 function filterContent(filter) {
     showContent(filter);
-    //updateNav(filter);
+    updateNav(filter);
 }
 
 function showContent(filter) {
-    if (filter == '') { // Set to default
-        filter = 'home';
+    if (!filter) { // Set to default
+        console.log('Setting Default Filter')
+        filter = DEFAULT_FILTER;
     }
 	for (var i = 0; i < content.length; i++) {
 		if (content[i].classList.contains(filter)) {
@@ -32,18 +31,34 @@ function showContent(filter) {
         }
 	}
 }
-filterContent('home'); //Set to home by default
 
 function updateNav(filter) {
     // Close all navigation
     // Inefficient, but should work fine with the limited number of nav items
     var navLis = nav.querySelectorAll('li')
+    console.log(navLis);
+    var targetLi;
     for (var i = 0; i < navLis.length; i++) {
-        navLis[i].classList.remove('nav_active');
+        console.log('hi', navLis[i], navLis[i].classList);
         navLis[i].classList.add('nav_inactive');
+        navLis[i].classList.remove('nav_active');
+        console.log('hi', navLis[i], navLis[i].classList);
+        if (navLis[i].querySelector('a').textContent == filter) {
+            targetLi = navLis[i];
+        }
     }
-    var anchor = nav.querySelector('#' + filter);
-    //while (anchor.tagName == 'li')
+    console.log(targetLi);
+    // Expand relevant nav dropdowns if the filter is found
+    if (targetLi) {
+        console.log(targetLi.tagName);
+        // Expand the target and parents
+        while (targetLi.tagName == 'LI') {
+            console.log(targetLi);
+            targetLi.classList.add('nav_active');
+            targetLi.classList.remove('nav_inactive');
+            targetLi = targetLi.parentNode.parentNode; // heirarchy parent is two DOM levels up
+        }
+    }
 }
 
 function enableNav() {
@@ -77,6 +92,8 @@ function enableNav() {
     console.log('nav anchors after', navItems);
 }
 enableNav();
+console.log(args['page']);
+filterContent(args['page']);
 
 /*
 function constructNavDict() {
