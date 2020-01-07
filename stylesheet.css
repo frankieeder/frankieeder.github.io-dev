@@ -1,4 +1,4 @@
-@charset "UTF-8";
+font-family: Avenir-Medium, courier;@charset "UTF-8";
 /* CSS Document */
 
 
@@ -35,21 +35,21 @@ body {
 h1 {
     font-size: 14pt;
 }
-
 h2 {
     font-size: 10pt;
 }
-
 h3 {
     font-size: 8pt;
 }
 
-
-.header {
-display: inline-block;
-white-space: normal;
-padding-top: 25px;
-padding-bottom: 25px;	
+.title {
+    display: inline-block;
+    white-space: normal;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-family: Avenir-Medium, courier;
+    font-size: 50pt;
+    font-style: normal;
 }
 
 .content {
@@ -87,7 +87,7 @@ padding-bottom: 25px;
    width: 100%;
 }
 
-.content a{
+.content a {
 	text-align: left;
 }
 
@@ -107,9 +107,11 @@ header {
     padding-bottom: 15px;
     user-select: none;
     cursor: pointer;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
 }
 nav ul {
-    text-transform: uppercase;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -121,8 +123,6 @@ nav li {
 nav li a {
     display: block;
     color: white;
-    text-align: center;
-    text-decoration: none;
     transition: 0.3s;
 }
 
@@ -149,17 +149,13 @@ nav li a:active {
     background-color: #007185;
 }
 
-.nav_active ul {
+li.nav_active ul {
     display: block;
 }
-.nav_active > a {
+li.nav_active > a {
     background-color: #007185;
 }
-.nav_inactive ul {
+li.nav_inactive ul {
     display: none;
-}
-
-.nav_active ~ .nav_inactive {
-    background-color: black;
 }
 		

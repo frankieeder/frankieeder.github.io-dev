@@ -1,7 +1,7 @@
 // JavaScript Document
 var content = document.getElementsByClassName("content");
 var nav = document.getElementsByTagName('nav')[0];
-var DEFAULT_FILTER = 'home';
+var DEFAULT_FILTER = 'frankie_eder';
 
 
 function getUrlVars() {
@@ -24,6 +24,7 @@ function showContent(filter) {
         console.log('Setting Default Filter')
         filter = DEFAULT_FILTER;
     }
+    filter = filter.replace(/ /g, "_");
     var found = false;
 	for (var i = 0; i < content.length; i++) {
 		if (content[i].classList.contains(filter)) {
@@ -79,7 +80,7 @@ function updateHistory(hierarchy) {
 
 function enableNav() {
     // Select all clickable navigation elements
-    var navItems = nav.querySelectorAll('nav li a');
+    var navItems = nav.querySelectorAll('nav a');
     for (var i = 0; i < navItems.length; i++) {
         var li = navItems[i].parentNode;
         // Make sure the parents of all clickable elements are inactive to hide
