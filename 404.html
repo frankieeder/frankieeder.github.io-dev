@@ -2,16 +2,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Untitled Document</title>
+<title>Redirecting (Hopefully)</title>
 </head>
 
 <body>
+    <p>If you are seeing this, try to navigate to the desired page from our <a href="http://frankieeder.com/">homepage</a></p>
     <script>
         var inUrl = location.href;
         var urlParts = inUrl.split('/')
         var page = urlParts[urlParts.length-1];
-        var newLength = "http://frankieeder.com/?page="+page;
-        location.href = newLength;
+        var newLink = "http://frankieeder.com/?page="+page;
+        location.href = newLink;
     </script>
 </body>
 </html>
