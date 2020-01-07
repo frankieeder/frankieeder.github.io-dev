@@ -7,7 +7,11 @@
 
 <body>
     <script>
-        console.log(location.href)
+        var inUrl = location.href;
+        var urlParts = inUrl.split('/')
+        var page = urlParts[urlParts.length-1];
+        var newLength = "http://frankieeder.com/?page="+page;
+        location.href = newLength;
     </script>
 </body>
 </html>
