@@ -166,4 +166,8 @@ padding-left: 25px;
 padding-right: 25px;
 }
 
+/* Sub-class styles */
+.mathematica img {
+    border:1px solid black;
+}
 		
