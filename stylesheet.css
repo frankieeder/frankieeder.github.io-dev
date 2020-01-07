@@ -29,6 +29,7 @@ url('../fonts/Avenir-Medium.svg#svgFontName') format('svg'); /* Legacy iOS */
 body {
     font-family: Avenir-Heavy, courier;
     font-style: normal;
+    text-decoration: none;
 }
 h1 {
     font-size: 14pt;
@@ -42,15 +43,21 @@ h3 {
 h4 {
     font-size: 8pt;
 }
+a {
+    text-decoration: none;
+    color: black;
+}
 .light {
-    font-family: Avenir-Light;
+    font-family: Avenir-Light, courier;
+}
+.medium {
+    font-family: Avenir-Medium, courier;
 }
 .heavy {
-    font-family: Avenir-Heavy;
+    font-family: Avenir-Heavy, courier;
 }
 
 /* Header/Nav Modifiers */
-
 .title {
     display: inline-block;
     white-space: normal;
@@ -61,43 +68,7 @@ h4 {
     font-style: normal;
 }
 
-.content {
-    display: inline-block;
-    border-width: 5px 0px 0px 0px;
-    border-style: solid;
-    width: 100%;
-    /*width: 780px;
-    */
-    white-space: normal;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    
-    float: center;
-    clear: both;
-    
-    /*overflow: hidden;
-  padding-top: 56.25%;
-  position: relative;
-    /*display: flex; height: 100%; flex-direction: column; background-color: blue; overflow: hidden;*/
-}
-
-.iframe-container {
-  overflow: hidden;
-  padding-top: 56.25%; /* Default is 16:9 -> 9/16 = 56.25*/
-  position: relative;
-}
- 
-.iframe-container iframe {
-   border: 0;
-   height: 100%;
-   left: 0;
-   position: absolute;
-   top: 0;
-   width: 100%;
-}
-
 header {
-    padding-bottom: 15px;
     user-select: none;
     cursor: pointer;
     text-transform: uppercase;
@@ -153,9 +124,36 @@ li.nav_inactive ul {
 }
 
 /* Content Modifiers */
+.content {
+    display: inline-block;
+    border-width: 0px 0px 5px 0px;
+    border-style: solid;
+    width: 100%;
+    white-space: normal;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    float: center;
+    clear: both;
+}
 .content a {
 	text-align: left;
 }
+
+.iframe-container {
+  overflow: hidden;
+  padding-top: 56.25%; /* Default is 16:9 -> 9/16 = 56.25*/
+  position: relative;
+}
+ 
+.iframe-container iframe {
+   border: 0;
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
+}
+
 
 .subcontent {
 display: inline-block;
