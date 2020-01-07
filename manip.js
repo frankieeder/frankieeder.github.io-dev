@@ -16,12 +16,14 @@ function enableNav() {
     
 }*/
 function filterContent(filter) {
-    var navElem
     showContent(filter);
-    updateNav(filter);
+    //updateNav(filter);
 }
 
 function showContent(filter) {
+    if (filter == '') { // Set to default
+        filter = 'home';
+    }
 	for (var i = 0; i < content.length; i++) {
 		if (content[i].classList.contains(filter)) {
 			content[i].style.display = "inline-block";
@@ -37,15 +39,28 @@ function updateNav(filter) {
 }
 
 function enableNav() {
-    var anchors = nav.querySelectorAll('li a');
-    for (var i = 0; i < anchors.length; i++) {
-        anchors[i].id = anchors[i].textContent;
-        anchors[i].onclick = function() {
+    var navItems = nav.querySelectorAll('nav li a');
+    for (var i = 0; i < navItems.length; i++) {
+        navItems[i].parentNode.classList.toggle('nav_inactive');
+        navItems[i].onclick = function() {
             console.log('filtering from click?');
-            filterContent(this.textContent);
+            
+            var li = this.parentNode;
+            li.classList.toggle('nav_active');
+            li.classList.toggle('nav_inactive');
+            
+            if (li.classList.contains('nav_active')) {
+                filterContent(this.textContent);
+                //this.style.backgroundColor = 'slategrey';
+            } else {
+                var levelUp = li.parentNode.parentNode;
+                var filter = levelUp.querySelector('a').textContent;
+                filterContent(filter);
+                //delete this.style['backgroundColor'];
+            }
         }
     }
-    console.log('nav anchors after', anchors);
+    console.log('nav anchors after', navItems);
 }
 enableNav();
 

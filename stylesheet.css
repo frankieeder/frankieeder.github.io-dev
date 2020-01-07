@@ -126,11 +126,13 @@ header {
     user-select: none;
     cursor: pointer;
 }
-.active {
+.nav_active ul {
     display: block;
+}
+.nav_active > a {
     background-color: slategrey;
 }
-.header_dropdown_ul {
+.nav_inactive ul {
     display: none;
 }
 		
