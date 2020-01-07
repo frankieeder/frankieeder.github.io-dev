@@ -96,7 +96,6 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
 }
 
 li {
@@ -110,16 +109,16 @@ li a {
     padding: 14px 16px;
     text-decoration: none;
     transition: 0.3s;
+    background-color: #333;
 }
 
 /* Change the link color to #111 (black) on hover */
-li:hover {
+li a:hover {
     background-color: #0094B6;
 }
-li:active {
+li a:active {
     background-color: slategrey;
 }
-
 
 header {
     padding-bottom: 15px;

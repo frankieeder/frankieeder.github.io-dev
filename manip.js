@@ -35,28 +35,42 @@ function showContent(filter) {
 filterContent('home'); //Set to home by default
 
 function updateNav(filter) {
+    // Close all navigation
+    // Inefficient, but should work fine with the limited number of nav items
+    var navLis = nav.querySelectorAll('li')
+    for (var i = 0; i < navLis.length; i++) {
+        navLis[i].classList.remove('nav_active');
+        navLis[i].classList.add('nav_inactive');
+    }
     var anchor = nav.querySelector('#' + filter);
+    //while (anchor.tagName == 'li')
 }
 
 function enableNav() {
+    // Select all clickable navigation elements
     var navItems = nav.querySelectorAll('nav li a');
     for (var i = 0; i < navItems.length; i++) {
-        navItems[i].parentNode.classList.toggle('nav_inactive');
+        var li = navItems[i].parentNode;
+        // Make sure the parents of all clickable elements are inactive to hide
+        li.classList.toggle('nav_inactive');
+        li.id = navItems[i].textContent;
+        // Add Click Functionality
         navItems[i].onclick = function() {
             console.log('filtering from click?');
-            
             var li = this.parentNode;
+            
+            // Toggle Visibility & Color by changing classes
             li.classList.toggle('nav_active');
             li.classList.toggle('nav_inactive');
             
+            // Filtering & structure updating
             if (li.classList.contains('nav_active')) {
+                // Update Content
                 filterContent(this.textContent);
-                //this.style.backgroundColor = 'slategrey';
             } else {
-                var levelUp = li.parentNode.parentNode;
-                var filter = levelUp.querySelector('a').textContent;
-                filterContent(filter);
-                //delete this.style['backgroundColor'];
+                var levelUpClickable = li.parentNode.parentNode.querySelector('a');
+                // Update Content
+                filterContent(levelUpClickable.textContent);
             }
         }
     }
