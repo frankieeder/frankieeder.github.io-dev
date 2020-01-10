@@ -171,7 +171,11 @@ li.nav_inactive ul {
    top: 0;
    width: 100%;
 }
-
+.iframe-container img {
+    display: inline-block;
+    font-size: 0;
+    float: left;
+}
 
 .subcontent {
 display: inline-block;
