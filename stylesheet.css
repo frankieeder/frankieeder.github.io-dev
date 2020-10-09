@@ -163,10 +163,20 @@ li.nav_inactive ul {
   position: relative;
 }
 
-.thumbnails {
+.scrollbox, .thumbnails {
     overflow: auto;
     white-space: nowrap;
     overflow-y: hidden;
+}
+
+.scrollbox {
+    height: 300px
+}
+.scrollbox a {
+    height: 100%
+}
+
+.thumbnails {
     height:200px
 }
 
