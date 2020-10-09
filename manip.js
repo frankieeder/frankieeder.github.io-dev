@@ -39,37 +39,37 @@ function showContent(filter) {
 
 function updateNav(filter) {
     // Returns a list representing the heirarchy of the input filter.
-    
+
     // Close all navigation
     // Inefficient, but should work fine with the limited number of nav items
     var navLis = nav.querySelectorAll('li')
-    console.log(navLis);
+    //console.log(navLis);
     var targetLi;
     for (var i = 0; i < navLis.length; i++) {
-        console.log('hi', navLis[i], navLis[i].classList);
+        //console.log('hi', navLis[i], navLis[i].classList);
         navLis[i].classList.add('nav_inactive');
         navLis[i].classList.remove('nav_active');
-        console.log('hi', navLis[i], navLis[i].classList);
+        //console.log('hi', navLis[i], navLis[i].classList);
         if (navLis[i].querySelector('a').textContent == filter) {
             targetLi = navLis[i];
         }
     }
-    console.log(targetLi);
+    //console.log(targetLi);
     // Expand relevant nav dropdowns if the filter is found
     var hierarchy = [];
     if (targetLi) {
-        console.log(targetLi.tagName);
+        //console.log(targetLi.tagName);
         // Expand the target and parents
         while (targetLi.tagName == 'LI') {
             var txt = targetLi.querySelector('a').textContent;
-            console.log(targetLi, txt);
+            //console.log(targetLi, txt);
             hierarchy.unshift(txt);
             targetLi.classList.add('nav_active');
             targetLi.classList.remove('nav_inactive');
             targetLi = targetLi.parentNode.parentNode; // heirarchy parent is two DOM levels up
         }
     }
-    console.log(hierarchy);
+    //console.log(hierarchy);
     return hierarchy;
 }
 
@@ -88,13 +88,13 @@ function enableNav() {
         li.id = navItems[i].textContent;
         // Add Click Functionality
         navItems[i].onclick = function() {
-            console.log('filtering from click?');
+            //console.log('filtering from click?');
             var li = this.parentNode;
-            
+
             // Toggle Visibility & Color by changing classes
             li.classList.toggle('nav_active');
             li.classList.toggle('nav_inactive');
-            
+
             // Filtering & structure updating
             if (li.classList.contains('nav_active')) {
                 // Update Content
@@ -106,15 +106,40 @@ function enableNav() {
             }
         }
     }
-    console.log('nav anchors after', navItems);
+    //console.log('nav anchors after', navItems);
 }
 
+function startVimeoLoops() {
+    //console.log("Iframes incoming...");
+    var vimeos = document.querySelectorAll('.thumbnails iframe');
+    //console.log("HELLO", vimeos.length)
+    for (var i = 0; i < vimeos.length; i++) {
+        var interv = 1000
+        console.log("Setting interval...", vimeos[i].getAttribute("playstart"), vimeos[i].getAttribute("playloop"));
+        var player = new Vimeo.Player(vimeos[i]);
+        player.setCurrentTime(vimeos[i].getAttribute("playstart"));
+        setInterval(
+            function(p, t) {
+                console.log("running player", p, t);
+                p.setCurrentTime(t);
+            },
+            vimeos[i].getAttribute("playloop"),
+            player,
+            vimeos[i].getAttribute("playstart")
+        );
+    }
+    //console.log("Iframes incoming...", iframes);
+
+}
 enableNav();
 console.log(args['page']);
+startVimeoLoops();
 filterContent(args['page']);
+console.log("TEST");
+
 
 /* https://gist.github.com/rosszurowski/67f04465c424a9bc0dae*/
-function lerpColor(a, b, amount) { 
+function lerpColor(a, b, amount) {
 
     var ah = parseInt(a.replace(/#/g, ''), 16),
         ar = ah >> 16, ag = ah >> 8 & 0xff, ab = ah & 0xff,

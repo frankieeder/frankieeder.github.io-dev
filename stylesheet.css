@@ -162,7 +162,23 @@ li.nav_inactive ul {
   padding-top: 56.25%; /* Default is 16:9 -> 9/16 = 56.25*/
   position: relative;
 }
- 
+
+.thumbnails {
+    overflow: auto;
+    white-space: nowrap;
+    overflow-y: hidden;
+    height:300px
+}
+
+.thumbnails iframe {
+    pointer-events: none;
+    height: 100%;
+}
+
+.noHover {
+    pointer-events: none;
+}
+
 .iframe-container iframe {
    border: 0;
    height: 100%;
@@ -197,4 +213,3 @@ li.nav_inactive ul {
 .mathematica img {
     border:1px solid black;
 }
-		
