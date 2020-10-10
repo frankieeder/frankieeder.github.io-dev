@@ -163,25 +163,23 @@ li.nav_inactive ul {
   position: relative;
 }
 
-.scrollbox, .thumbnails {
+.scrollbox {
     overflow: auto;
     white-space: nowrap;
     overflow-y: hidden;
-}
-
-.scrollbox {
-    height: 300px
+    height: 300px;
 }
 .scrollbox img {
     height: 100%
 }
 
 .thumbnails {
-    height:200px
+    height: 200px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 .thumbnails iframe {
-    pointer-events: none;
     height: 100%;
 }
 

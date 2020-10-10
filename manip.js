@@ -109,31 +109,47 @@ function enableNav() {
     //console.log('nav anchors after', navItems);
 }
 
-function startVimeoLoops() {
+function prepVimeoThumbnails() {
     //console.log("Iframes incoming...");
     var vimeos = document.querySelectorAll('.thumbnails iframe');
     //console.log("HELLO", vimeos.length)
     for (var i = 0; i < vimeos.length; i++) {
-        var interv = 1000
-        console.log("Setting interval...", vimeos[i].getAttribute("playstart"), vimeos[i].getAttribute("playloop"));
-        var player = new Vimeo.Player(vimeos[i]);
-        player.setCurrentTime(vimeos[i].getAttribute("playstart"));
-        setInterval(
-            function(p, t) {
-                console.log("running player", p, t);
-                p.setCurrentTime(t);
-            },
-            vimeos[i].getAttribute("playloop"),
-            player,
-            vimeos[i].getAttribute("playstart")
-        );
+        // Nest function to preserve references to distinct local variables
+        (function() {
+            var player = new Vimeo.Player(vimeos[i]);
+            var start = parseFloat(vimeos[i].getAttribute("loopstart"));
+            var init = parseFloat(vimeos[i].getAttribute("loopthumb") ?? start);
+            var interval = parseFloat(vimeos[i].getAttribute("loopend"));
+            var end = parseFloat(start) + parseFloat(interval / 1000);
+            player.setCurrentTime(init);
+            player.pause();
+
+            // Enable Looping
+            player.on('timeupdate', function(update) {
+                //console.log("time1", update['seconds'], end, interval, (interval / 1000), start, update['seconds'] > end, player);
+                if (update['seconds'] > end) {
+                    player.setCurrentTime(start);
+                }
+            });
+            // Start playing when start hover
+            vimeos[i].onmouseenter = function() {
+                //console.log("Attempting to play.", player);
+                player.play();
+            }
+            // Stop playing when stop hover
+            vimeos[i].onmouseout = function() {
+                //console.log("Attempting to pause.", player);
+                player.pause();
+                player.setCurrentTime(init);
+            }
+        })();
     }
     //console.log("Iframes incoming...", iframes);
 
 }
 enableNav();
 console.log(args['page']);
-startVimeoLoops();
+prepVimeoThumbnails();
 filterContent(args['page']);
 console.log("TEST");
 
