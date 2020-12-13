@@ -170,7 +170,8 @@ li.nav_inactive ul {
     height: 300px;
 }
 .scrollbox img {
-    height: 100%
+    height: 100%;
+    padding: 0px 10px;
 }
 
 .thumbnails {
