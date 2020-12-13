@@ -103,9 +103,3 @@ for i, f in enumerate(af):
     # Square Thumbnail
     im_thumbsq = resizeAndPad(im, (MAX_SIZE_THUMB, MAX_SIZE_THUMB))
     cv2.imwrite(addSuffix(f, SUFFIX_THUMBSQUARE), im_thumbsq, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUAL_THUMB])
-
-    # cv2.imwrite('img_CV2_90.jpg', a, [int(cv2.IMWRITE_JPEG_QUALITY), 90])
-    x = 2
-
-
-x = 2
