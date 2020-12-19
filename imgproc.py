@@ -25,6 +25,7 @@ SPECIAL_SUFFIXES = [
 MAX_SIZE_THUMB = 500
 JPEG_QUAL_THUMB = 80
 JPEG_QUAL_LQ = 40
+JPEG_QUAL_SQ = 65
 
 def getAllFiles(d, file_extensions=LEGAL_EXTENSIONS):
     files = [os.path.join(dp, f) for dp, dn, fn in os.walk(os.path.expanduser(d)) for f in fn]
@@ -98,7 +99,7 @@ for i, f in enumerate(af):
 
     # Square
     im_sq = resizeAndPad(im, (m, m))
-    cv2.imwrite(addSuffix(f, SUFFIX_SQUARE), im_sq, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUAL_LQ])
+    cv2.imwrite(addSuffix(f, SUFFIX_SQUARE), im_sq, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUAL_SQ])
 
     # Square Thumbnail
     im_thumbsq = resizeAndPad(im, (MAX_SIZE_THUMB, MAX_SIZE_THUMB))
