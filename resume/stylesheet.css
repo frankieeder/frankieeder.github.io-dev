@@ -37,6 +37,13 @@ tr, th, td, div, table {
 .resume {
     width: 850px;
     font-family: Avenir-Light, courier;
+    margin: auto;
+
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .header {
@@ -75,7 +82,7 @@ td:first-child {
 
 
 .bodyleft {
-    width: 175px;
+    width: 150px;
     background-color: grey;
     font-size: 10pt;
     color: white;
