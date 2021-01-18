@@ -25,7 +25,7 @@ url('../fonts/Avenir-Medium.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
 /* STYLE */
-tr, th, td, div, table {
+tr, th, td, div, table, p {
     margin: 0;
     padding: 0;
     border: 0;
@@ -47,7 +47,7 @@ a {
 }
 
 .header {
-    padding-top:20px;
+    padding-top:40px;
     padding-bottom:20px;
     background-color: black;
     color: white;
@@ -57,10 +57,12 @@ a {
 
 h1 {
     font-size: 20pt;
+    margin: 0px;
 }
 
 h2 {
     font-size: 9pt;
+    margin: 0px;
 }
 
 table.no-spacing {
@@ -69,8 +71,8 @@ table.no-spacing {
 }
 
 td {
-  padding-top:20px;
-  padding-bottom:20px;
+  padding-top:10px;
+  padding-bottom:10px;
 }
 
 /*
@@ -79,7 +81,17 @@ td:first-child {
   padding-right:0;
 } */
 
+.alignleft {
+	float: left;
+}
 
+.alignright {
+	float: right;
+}
+
+.bold {
+    font-family: Avenir-Heavy, courier;
+}
 
 .bodyleft {
     width: 150px;
@@ -88,12 +100,15 @@ td:first-child {
     color: white;
     padding-left: 38px;
     padding-right: 38px;
-    margin: 0px;
+}
+
+.bodyleft td {
+    padding-top: 0px;
 }
 
 .bodyright {
     font-size: 9pt;
-    padding-left: 38px;
+    padding-left: 25px;
     padding-right: 38px;
-    margin: 0px;
+    padding-top: 10px;
 }
