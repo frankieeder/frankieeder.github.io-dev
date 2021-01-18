@@ -93,6 +93,10 @@ td:first-child {
     font-family: Avenir-Heavy, courier;
 }
 
+.work-experience ul {
+
+}
+
 .bodyleft {
     width: 150px;
     background-color: grey;
@@ -100,11 +104,12 @@ td:first-child {
     color: white;
     padding-left: 38px;
     padding-right: 38px;
-    vertical-align: top;
+    vertical-align: top; /* Align text to top if extra space */
 }
 
 .bodyright {
     font-size: 9pt;
     padding-left: 25px;
     padding-right: 38px;
+    vertical-align: top; /* Align text to top if extra space */
 }
