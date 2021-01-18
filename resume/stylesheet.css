@@ -94,7 +94,12 @@ td:first-child {
 }
 
 .work-experience ul {
+    margin: 1px;
+}
 
+.work-title {
+    text-decoration: underline;
+    font-style: italic;
 }
 
 .bodyleft {
