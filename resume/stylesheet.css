@@ -1,0 +1,92 @@
+/* FONTS */
+@font-face {
+font-family: 'Avenir-Heavy';
+src: url('../fonts/Avenir-Heavy.eot'); /* IE9 Compat Modes */
+src: url('../fonts/Avenir-Heavy.eot') format('embedded-opentype'), /* IE6-IE8 */
+url('../fonts/Avenir-Heavy.woff') format('woff'), /* Modern Browsers */
+url('../fonts/Avenir-Heavy.ttf') format('truetype'), /* Safari, Android, iOS */
+url('../fonts/Avenir-Heavy.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+@font-face {
+font-family: 'Avenir-Light';
+src: url('../fonts/Avenir-Light.eot'); /* IE9 Compat Modes */
+src: url('../fonts/Avenir-Light.eot') format('embedded-opentype'), /* IE6-IE8 */
+url('../fonts/Avenir-Light.woff') format('woff'), /* Modern Browsers */
+url('../fonts/Avenir-Light.ttf') format('truetype'), /* Safari, Android, iOS */
+url('../fonts/Avenir-Light.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+@font-face {
+font-family: 'Avenir-Medium';
+src: url('../fonts/Avenir-Medium.eot'); /* IE9 Compat Modes */
+src: url('../fonts/Avenir-Medium.eot') format('embedded-opentype'), /* IE6-IE8 */
+url('../fonts/Avenir-Medium.woff') format('woff'), /* Modern Browsers */
+url('../fonts/Avenir-Medium.ttf') format('truetype'), /* Safari, Android, iOS */
+url('../fonts/Avenir-Medium.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+/* STYLE */
+tr, th, td, div, table {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.resume {
+    width: 850px;
+    font-family: Avenir-Light, courier;
+}
+
+.header {
+    padding-top:20px;
+    padding-bottom:20px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 9pt;
+}
+
+h1 {
+    font-size: 20pt;
+}
+
+h2 {
+    font-size: 9pt;
+}
+
+table.no-spacing {
+  border-spacing:0; /* Removes the cell spacing via CSS */
+  border-collapse: collapse;  /* Optional - if you don't want to have double border where cells touch */
+}
+
+td {
+  padding-top:20px;
+  padding-bottom:20px;
+}
+
+/*
+td:first-child {
+  padding-left:20px;
+  padding-right:0;
+} */
+
+
+
+.bodyleft {
+    width: 175px;
+    background-color: grey;
+    font-size: 10pt;
+    color: white;
+    padding-left: 38px;
+    padding-right: 38px;
+    margin: 0px;
+}
+
+.bodyright {
+    font-size: 9pt;
+    padding-left: 38px;
+    padding-right: 38px;
+    margin: 0px;
+}
