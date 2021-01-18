@@ -93,6 +93,15 @@ td:first-child {
     font-family: Avenir-Heavy, courier;
 }
 
+ul {
+    list-style-position: inside;
+    padding-left:0;
+}
+
+li {
+    padding-left: 0px;
+    margin: 0px;
+}
 .work-experience ul {
     margin: 1px;
 }
@@ -101,6 +110,7 @@ td:first-child {
     text-decoration: underline;
     font-style: italic;
 }
+
 
 .bodyleft {
     width: 150px;
