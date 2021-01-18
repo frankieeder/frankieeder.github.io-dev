@@ -31,7 +31,7 @@ tr, th, td, div, table, p {
     border: 0;
     font-size: 100%;
     font: inherit;
-    vertical-align: baseline;
+    /*vertical-align: baseline;*/
 }
 
 .resume {
@@ -100,15 +100,11 @@ td:first-child {
     color: white;
     padding-left: 38px;
     padding-right: 38px;
-}
-
-.bodyleft td {
-    padding-top: 0px;
+    vertical-align: top;
 }
 
 .bodyright {
     font-size: 9pt;
     padding-left: 25px;
     padding-right: 38px;
-    padding-top: 10px;
 }
