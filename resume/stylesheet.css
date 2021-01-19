@@ -113,7 +113,7 @@ li {
 
 .skillCategory {
     color: black;
-    padding-top: 15px;
+    padding-top: 10px;
 }
 
 .skillCategory h3 {
@@ -132,8 +132,8 @@ li {
     background-color: grey;
     font-size: 10pt;
     color: white;
-    padding-left: 38px;
-    padding-right: 38px;
+    padding-left: 30px;
+    padding-right: 30px;
     vertical-align: top; /* Align text to top if extra space */
 }
 
