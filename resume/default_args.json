@@ -1,23 +1,49 @@
 {
-  "filters": [],
-  "skills": {
-    "Languages": {
-      "Python": 10,
-      "SQL": 9,
-      "Snowflake": 9,
-      "Javascript": 8,
-      "C++": 7,
-      "JSON": 7,
-      "HTML": 6,
-      "CSS": 6,
-      "Matlab": 6,
-      "Java": 5,
-      "YAML": 5,
-      "Scheme (Lisp)": 5,
-      "C": 4,
-      "Jinja": 4,
-      "Lua": 3,
-      "RISC-V": 2,
-    }
-  }
+    "filters": [],
+    "skills": [
+        {
+            "skillCategory": "Languages",
+            "limit": 99,
+            "subSkills": {
+                "Python": 10,
+                "SQL": 9,
+                "Snowflake": 9,
+                "Javascript": 8,
+                "C++": 7,
+                "JSON": 7,
+                "HTML": 6,
+                "CSS": 6,
+                "Matlab": 6,
+                "Java": 5,
+                "YAML": 5,
+                "Scheme (Lisp)": 5,
+                "C": 4,
+                "Jinja": 4,
+                "Lua": 3,
+                "RISC-V": 2
+            }
+        },
+        {
+            "skillCategory": "Infrastructure",
+            "limit": 99,
+            "subSkills": {
+                "Python": 10,
+                "SQL": 9,
+                "Snowflake": 9,
+                "Javascript": 8,
+                "C++": 7,
+                "JSON": 7,
+                "HTML": 6,
+                "CSS": 6,
+                "Matlab": 6,
+                "Java": 5,
+                "YAML": 5,
+                "Scheme (Lisp)": 5,
+                "C": 4,
+                "Jinja": 4,
+                "Lua": 3,
+                "RISC-V": 2
+            }
+        }
+    ]
 }

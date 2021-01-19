@@ -20,7 +20,7 @@ var default_args = {
                 "C": 4,
                 "Jinja": 4,
                 "Lua": 3,
-                "RISC-V": 2,
+                "RISC-V": 2
             }
         },
         {
@@ -42,7 +42,7 @@ var default_args = {
                 "C": 4,
                 "Jinja": 4,
                 "Lua": 3,
-                "RISC-V": 2,
+                "RISC-V": 2
             }
         }
     ]
