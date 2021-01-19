@@ -22,6 +22,28 @@ var default_args = {
                 "Lua": 3,
                 "RISC-V": 2,
             }
+        },
+        {
+            "skillCategory": "Infrastructure",
+            "limit": 99,
+            "subSkills": {
+                "Python": 10,
+                "SQL": 9,
+                "Snowflake": 9,
+                "Javascript": 8,
+                "C++": 7,
+                "JSON": 7,
+                "HTML": 6,
+                "CSS": 6,
+                "Matlab": 6,
+                "Java": 5,
+                "YAML": 5,
+                "Scheme (Lisp)": 5,
+                "C": 4,
+                "Jinja": 4,
+                "Lua": 3,
+                "RISC-V": 2,
+            }
         }
     ]
 }
@@ -55,7 +77,8 @@ for (let i = 0; i < skills.length; i++) {
 
     // MAKE HTML ELEMS
     var skillDiv = document.createElement("div");
-    console.log(skillDiv);
+    //console.log(skillDiv);
+    skillDiv.className = " skillCategory"
     var title = document.createElement("h3");
     title.innerHTML = skill.skillCategory;
     var content = document.createElement("a");
