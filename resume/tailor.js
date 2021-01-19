@@ -67,50 +67,53 @@ function getUrlVars() {
 var args = getUrlVars();
 console.log("Input Args?", args);
 if (args.json) {
-    args = args.json;
+    updateSkills(JSON.parse(args.json));
 } else {
-    args = default_args;
+    updateSkills(default_args);
 }
 
-var skills = args.skills;
-for (let i = 0; i < skills.length; i++) {
-    var skill = skills[i];
-    console.log(skill);
 
-    // Sort Dictionary a la https://stackoverflow.com/questions/25500316/sort-a-dictionary-by-value-in-javascript
-    var items = Object.keys(skill.subSkills).map(function(key) {
-      return [key, skill.subSkills[key]];
-    });
-    // Sort the array based on the second element
-    items.sort(function(first, second) {
-      return second[1] - first[1];
-    });
+function updateSkills(dict) {
+    var skills = dict.skills;
+    for (let i = 0; i < skills.length; i++) {
+        var skill = skills[i];
+        //console.log(skill);
 
-    // Create a new array with only the first 5 items
-    items = items.slice(0, skill.limit);
-    items = items.map(function(item) {
-        return item[0]
-    });
-    console.log(items);
+        // Sort Dictionary a la https://stackoverflow.com/questions/25500316/sort-a-dictionary-by-value-in-javascript
+        var items = Object.keys(skill.subSkills).map(function(key) {
+          return [key, skill.subSkills[key]];
+        });
+        // Sort the array based on the second element
+        items.sort(function(first, second) {
+          return second[1] - first[1];
+        });
 
-
-    // MAKE HTML ELEMS
-    var skillDiv = document.createElement("div");
-    //console.log(skillDiv);
-    skillDiv.className = " skillCategory"
-    var title = document.createElement("h3");
-    title.innerHTML = skill.skillCategory;
-    var content = document.createElement("a");
-    content.innerHTML = items.join(", ");
-
-    skillDiv.appendChild(title);
-    skillDiv.appendChild(content);
+        // Create a new array with only the first 5 items
+        items = items.slice(0, skill.limit);
+        items = items.map(function(item) {
+            return item[0]
+        });
+        console.log(items);
 
 
+        // MAKE HTML ELEMS
+        var skillDiv = document.createElement("div");
+        //console.log(skillDiv);
+        skillDiv.className = " skillCategory"
+        var title = document.createElement("h3");
+        title.innerHTML = skill.skillCategory;
+        var content = document.createElement("a");
+        content.innerHTML = items.join(", ");
 
-    var skillsBox = document.getElementById("skillsbox");
-    console.log(skillsBox);
-    skillsBox.appendChild(skillDiv);
+        skillDiv.appendChild(title);
+        skillDiv.appendChild(content);
 
 
+
+        var skillsBox = document.getElementById("skillsbox");
+        console.log(skillsBox);
+        skillsBox.appendChild(skillDiv);
+
+
+    }
 }
