@@ -50,8 +50,27 @@ var default_args = {
 
 console.log(default_args);
 
-// UPDATE ARGS AS NEED BE
-var args = default_args;
+/*var inUrl = location.href;
+var urlParts = inUrl.split('/')
+var page = urlParts[urlParts.length-1];
+var newLink = "http://frankieeder.com/?page="+page;
+location.href = newLink;*/
+
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = decodeURI(value);
+    });
+    return vars;
+}
+var args = getUrlVars();
+console.log("Input Args?", args);
+if (args.json) {
+    args = args.json;
+} else {
+    args = default_args;
+}
 
 var skills = args.skills;
 for (let i = 0; i < skills.length; i++) {
