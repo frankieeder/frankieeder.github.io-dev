@@ -186,6 +186,9 @@ li.nav_inactive ul {
 .thumbnails iframe {
     height: 100%;
 }
+.thumbsmall iframe {
+    width: 250px;
+}
 
 .noHover {
     pointer-events: none;
