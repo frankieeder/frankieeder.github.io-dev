@@ -27,9 +27,13 @@ url('../fonts/Avenir-Medium.svg#svgFontName') format('svg'); /* Legacy iOS */
 
 /* Text/Font Modifiers */
 body {
+    width: 768px;
+    margin: auto;
     text-align: center;
     font-style: normal;
     text-decoration: none;
+}
+
 }
 h1, h2 {
     font-family: Avenir-Heavy, courier;
