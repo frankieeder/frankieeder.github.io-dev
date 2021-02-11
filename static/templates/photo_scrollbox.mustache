@@ -1,0 +1,12 @@
+<div class="content">
+    {{#title}}<h2>{{.}}</h2>{{/title}}
+    {{#subtitle}}<h4>{{.}}</h4>{{/subtitle}}
+    {{#subsubtitle}}<h6>{{.}}</h6>{{/subsubtitle}}
+    <div class="scrollbox">
+        {{#imgs}}
+        <a href="img/{{.}}.jpeg" target="_blank">
+            <img src="img/{{.}}_thumb.jpeg" alt="pic" border="0">
+        </a>
+        {{/imgs}}
+    </div>
+</div>

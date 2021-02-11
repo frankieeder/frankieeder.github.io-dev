@@ -1,3 +1,6 @@
+var PARTIALS = {
+}
+
 var CONTENT = {
     "contents": [
         {
@@ -8,6 +11,7 @@ var CONTENT = {
                 "67/DSC00384"
             ]
         }, {
+            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape'],
             title: "Crow's Landing II",
             subtitle: "2020-08-13",
             imgs: [
