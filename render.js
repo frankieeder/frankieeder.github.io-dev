@@ -1,4 +1,4 @@
-function renderHello() {
+function renderBody() {
   fetch('static/templates/photo_scrollbox.html')
     .then((response) => response.text())
     .then((template) => {
