@@ -1,10 +1,7 @@
-var PARTIALS = {
-}
-
 var CONTENT = {
     "contents": [
         {
-            title: "Crow's Landing II",
+            title: "Crow's Landing I",
             subtitle: "2020-08-13",
             imgs: [
                 "67/DSC00378",
@@ -18,6 +15,13 @@ var CONTENT = {
                 "67/DSC00378",
                 "67/DSC00384"
             ]
-        }
+        }, {
+            title: "Crow's Landing III",
+            subtitle: "2020-08-13",
+            imgs: [
+                "67/DSC00378",
+                "67/DSC00384"
+            ]
+        },
     ]
 }

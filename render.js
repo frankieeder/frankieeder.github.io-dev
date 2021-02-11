@@ -1,10 +1,11 @@
- function getTemplates() {
+function getTemplates() {
     var components = fetch('static/templates/contents.mustache');
     var photo_scrollbox = fetch('static/templates/photo_scrollbox.mustache');
     return [components, photo_scrollbox];
 }
 
-async function renderBody() {
+function renderBody() {
+    console.log(CONTENT)
     partials = {};
     Promise.all(getTemplates()).then(
       (result) => {
@@ -27,11 +28,4 @@ async function renderBody() {
          console.log(error);
       }
     );
-/*.then((templates) => {
-        console.log(partials, templates)
-        partials.photo_scrollbox = templates[1]
-        console.log(partials, templates)
-        var rendered = Mustache.render(templates[0], CONTENT, partials);
-        document.getElementById('target').innerHTML = rendered;
-    });*/
 }
