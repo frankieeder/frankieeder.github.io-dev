@@ -2,11 +2,16 @@
     {{#title}}<h2>{{.}}</h2>{{/title}}
     {{#subtitle}}<h4>{{.}}</h4>{{/subtitle}}
     {{#subsubtitle}}<h6>{{.}}</h6>{{/subsubtitle}}
-    <div class="scrollbox">
-        {{#imgs}}
-        <a href="img/{{.}}.jpeg" target="_blank">
-            <img src="img/{{.}}_thumb.jpeg" alt="pic" border="0">
+    {{#scrollcontent}}<div class="scrollbox">{{/scrollcontent}}
+        {{#scrollcontent}}
+        {{#img}}
+        <a href="img/{{img}}.{{ext}}" target="_blank">
+            <img src="img/{{img}}_thumb.{{ext}}" alt="pic" border="0">
         </a>
-        {{/imgs}}
-    </div>
+        {{/img}}
+        {{#vimeo}}
+        <iframe src="https://player.vimeo.com/video/{{vimeo}}{{#loopstart}}?background=1{{/loopstart}}" frameborder="0" {{#loopstart}}allow="autoplay; fullscreen"{{/loopstart}} allowfullscreen {{#loopstart}}loopstart="{{.}}"{{#loopstart}} {{#loopend}}loopend="{{.}}"{{/loopend}}></iframe>
+        {{/vimeo}}
+        {{/scrollcontent}}
+    {{#scrollcontent}}</div>{{/scrollcontent}}
 </div>
