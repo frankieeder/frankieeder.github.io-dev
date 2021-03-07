@@ -1,5 +1,9 @@
 /* CSS Document */
 
+
+/*
+Font Declarations
+*/
 @font-face {
 font-family: 'Avenir-Heavy';
 src: url('../fonts/Avenir-Heavy.eot'); /* IE9 Compat Modes */
@@ -25,12 +29,22 @@ url('../fonts/Avenir-Medium.ttf') format('truetype'), /* Safari, Android, iOS */
 url('../fonts/Avenir-Medium.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
-/* Text/Font Modifiers */
+
+/*
+Body Mods
+*/
 body {
     background: dimgrey;
     margin: 0px;
 }
 
+
+
+/*
+Top Bar / Header / Nav Modifications
+*/
+
+/* Top Bar */
 #topBar {
     font-family: Avenir-Light, courier;
     color: white;
@@ -51,34 +65,62 @@ body {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  /*padding: 14px 16px;*/
   text-decoration: none;
 }
 
-.header {
+/* Header */
+#header {
     float: left;
     padding: 20px;
 }
-.header a {
+#header a {
     font-family: Avenir-Heavy, courier;
     font-size: 24pt;
 }
 
-#nav {
+/* Nav & Social Block */
+#navSocial {
     float: right;
+    height: inherit;
+    display: flex;
+	flex-direction: column;
+}
+
+/* Nav */
+#nav {
+    margin-top: auto;
 }
 #nav li {
-    float: left;
+    float: right;
+}
+#nav li a {
+    transition: 0.3s;
 }
 #nav li a:hover:not(.active) {
-  background-color: #111;
+  background-color: #0094B6;;
 }
 
 #nav .active {
-  background-color: #4CAF50;
+  background-color: #007185;
+}
+
+#nav li {
+  text-align: center;
+}
+
+#nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
 
+/*
+Background Video
+*/
 .fullscreen-bg {
   position: fixed;
   top: 0;
@@ -113,7 +155,7 @@ body {
     left: -100%;
   }
 }
-
+/* TODO: fix this? */
 @media (max-width: 767px) {
   .fullscreen-bg {
     background: url('../img/videoframe.jpg') center center / cover no-repeat;
@@ -124,6 +166,10 @@ body {
   }
 }
 
+
+/*
+Contents / Posts
+*/
 #contents_wrapper {
     width: 80%;
     min-width: 768px;
@@ -142,6 +188,9 @@ body {
     color: white;
 }
 
+/*
+Text Defaults
+*/
 h1, h2 {
     font-family: Avenir-Heavy, courier;
 }
@@ -176,6 +225,8 @@ a {
     /*color: black;*/
     font-family: Avenir-Light, courier;
 }
+
+/* Font Class Modifiers */
 .light {
     font-family: Avenir-Light, courier;
 }
@@ -186,7 +237,11 @@ a {
     font-family: Avenir-Heavy, courier;
 }
 
-/* Header/Nav Modifiers */
+
+/*
+TODO: OLD Header/Nav Modifiers
+*/
+/*
 .title {
     display: inline-block;
     white-space: normal;
@@ -235,7 +290,9 @@ nav > ul > li > ul > li > ul > li > a {
     font-size: 8pt;
     padding: 6px;
 }
+*/
 /* Change the link color to #111 (black) on hover */
+/*
 nav li a:hover {
     background-color: #0094B6;
 }
@@ -252,7 +309,7 @@ li.nav_active > a {
 li.nav_inactive ul {
     display: none;
 }
-
+*/
 /* Content Modifiers */
 .content {
     display: inline-block;
