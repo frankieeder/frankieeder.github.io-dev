@@ -57,24 +57,24 @@ body {
 
 .header {
     float: left;
-    padding: 50px;
+    padding: 20px;
 }
 .header a {
     font-family: Avenir-Heavy, courier;
     font-size: 24pt;
 }
 
-.nav {
+#nav {
     float: right;
 }
-.nav li {
+#nav li {
     float: left;
 }
-#topBar li a:hover:not(.active) {
+#nav li a:hover:not(.active) {
   background-color: #111;
 }
 
-#topBar .active {
+#nav .active {
   background-color: #4CAF50;
 }
 
