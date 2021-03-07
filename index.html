@@ -6,11 +6,19 @@
     <base href="./">
 	<link href="stylesheet.css" id="user_stylesheet" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="img/head_icon.ico">
-</head>
-<body onload="renderBody()">
-    <div id="target">Loading...</div>
     <script src="mustache.min.js"></script>
     <script src="content.js"></script>
     <script src="render.js"></script>
+</head>
+<body onload="renderBody()">
+    <div id="header"><h1>FRANKIE EDER</h1></div>
+    <div class="fullscreen-bg">
+        <iframe
+                class="fullscreen-bg__video"
+                src="https://player.vimeo.com/video/501918925?background=1"
+                frameborder="0" allow="autoplay; fullscreen" allowfullscreen
+        ></iframe>
+    </div>
+    <div id="contents">Loading...</div>
 </body>
 </html>

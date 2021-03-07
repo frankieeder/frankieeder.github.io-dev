@@ -36,7 +36,7 @@ function renderBody() {
                 }
                 console.log("Partials:", partials)
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);
-                document.getElementById('target').innerHTML = rendered;
+                document.getElementById('contents').innerHTML = rendered;
             }
         )
         console.log(result, template_texts);
