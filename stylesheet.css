@@ -28,32 +28,51 @@ url('../fonts/Avenir-Medium.svg#svgFontName') format('svg'); /* Legacy iOS */
 /* Text/Font Modifiers */
 body {
     background: dimgrey;
+    margin: 0px;
 }
 
 #topBar {
-    font-family: Avenir-Heavy, courier;
+    font-family: Avenir-Light, courier;
     color: white;
     background: black;
     text-decoration: none;
     min-width: 768px;
 }
 
-#topBar h1 {
-    font-size: 25pt;
-    padding: 20px;
-}
 #topBar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+#topBar li {
   float: right;
 }
-#topBar li {
-  display: inline;
+
+#topBar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
-.nav {
-    width: 100%
+
+.header {
+    font-family: Avenir-Heavy, courier;
+    font-size: 24pt;
+    padding: 50px;
 }
+
+#topBar li a:hover:not(.active) {
+  background-color: #111;
+}
+
+#topBar .active {
+  background-color: #4CAF50;
+}
+
 
 .fullscreen-bg {
   position: fixed;
