@@ -47,10 +47,6 @@ body {
   background-color: #333;
 }
 
-#topBar li {
-  float: right;
-}
-
 #topBar li a {
   display: block;
   color: white;
@@ -60,11 +56,20 @@ body {
 }
 
 .header {
-    font-family: Avenir-Heavy, courier;
-    font-size: 24pt;
+    float: left;
     padding: 50px;
 }
+.header a {
+    font-family: Avenir-Heavy, courier;
+    font-size: 24pt;
+}
 
+.nav {
+    float: right;
+}
+.nav li {
+    float: left;
+}
 #topBar li a:hover:not(.active) {
   background-color: #111;
 }
