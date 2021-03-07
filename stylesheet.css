@@ -30,15 +30,29 @@ body {
     background: dimgrey;
 }
 
-#header {
+#topBar {
     font-family: Avenir-Heavy, courier;
     color: white;
     background: black;
+    text-decoration: none;
+    min-width: 768px;
 }
 
-#header h1 {
+#topBar h1 {
     font-size: 25pt;
     padding: 20px;
+}
+#topBar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+#topBar li {
+  display: inline;
+}
+.nav {
+    width: 100%
 }
 
 .fullscreen-bg {
@@ -94,7 +108,7 @@ body {
     font-style: normal;
     text-decoration: none;
     color: white;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 #contents {
@@ -134,7 +148,8 @@ h6 {
 }
 a {
     text-decoration: none;
-    color: black;
+    color: inherit;
+    /*color: black;*/
     font-family: Avenir-Light, courier;
 }
 .light {
@@ -311,12 +326,16 @@ li.nav_inactive ul {
     -ms-animation: fadeIn ease;
 }
 
-.fade-after-2s {
-    animation-delay: -7s;
+.fade-after-1s {
+    animation-delay: -8s;
 }
 
 .fade-after-2s {
     animation-delay: -7s;
+}
+
+.fade-after-5s {
+    animation-delay: -4s;
 
 }
 
