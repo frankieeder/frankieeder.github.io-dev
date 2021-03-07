@@ -18,6 +18,7 @@ function renderBody() {
                 var partials = {
                     photo_scrollbox: templates[1]
                 }
+                console.log("Partials:", partials)
                 var rendered = Mustache.render(templates[0], CONTENT, partials);
                 document.getElementById('target').innerHTML = rendered;
             }

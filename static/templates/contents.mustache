@@ -1,6 +1,18 @@
 {{#contents}}
-    {{#type_photo_scrollbox }}
-        {{> photo_scrollbox}}
-    {{/type_photo_scrollbox}}
-</div>
+    <div class="content">
+        {{#rows}}
+            {{#title}}
+                <h2>{{.}}</h2>
+            {{/title}}
+            {{#subtitle}}
+                <h4>{{.}}</h4>
+            {{/subtitle}}
+            {{#subsubtitle}}
+                <h6>{{.}}</h6>
+            {{/subsubtitle}}
+            {{#type_photo_scrollbox}}
+                {{> photo_scrollbox}}
+            {{/type_photo_scrollbox}}
+        {{/rows}}
+    </div>
 {{/contents}}
