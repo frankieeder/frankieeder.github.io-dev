@@ -6,3 +6,15 @@
 {{#vimeo}}
     <iframe src="https://player.vimeo.com/video/{{vimeo}}{{#loopstart}}?background=1{{/loopstart}}" frameborder="0" {{#loopstart}}allow="autoplay; fullscreen"{{/loopstart}} allowfullscreen {{#loopstart}}loopstart="{{.}}"{{#loopstart}} {{#loopend}}loopend="{{.}}"{{/loopend}}></iframe>
 {{/vimeo}}
+
+
+        {{#vimeo}}
+            <iframe
+                src="https://player.vimeo.com/video/{{vimeo}}{{#loopstart}}?background=1{{/loopstart}}"
+                frameborder="0"
+                {{#loopstart}}allow="autoplay; fullscreen"{{/loopstart}}
+                allowfullscreen
+                {{#loopstart}}loopstart="{{.}}"{{#loopstart}}
+                {{#loopend}}loopend="{{.}}"{{/loopend}}>
+            </iframe>
+        {{/vimeo}}
