@@ -26,32 +26,19 @@ url('../fonts/Avenir-Medium.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
 /* Text/Font Modifiers */
-body {}
+body {
+    background: dimgrey;
+}
 
 #header {
     font-family: Avenir-Heavy, courier;
     color: white;
     background: black;
 }
+
 #header h1 {
     font-size: 25pt;
     padding: 20px;
-}
-
-#bgvideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-
-    /* Full height */
-    height: 100%;
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .fullscreen-bg {
@@ -70,6 +57,9 @@ body {}
   left: 0;
   width: 100%;
   height: 100%;
+
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%) contrast(0.75) invert(1) brightness(0.3);
 }
 
 @media (min-aspect-ratio: 16/9) {
@@ -96,13 +86,22 @@ body {}
   }
 }
 
-#contents {
-    position: fixed;
-    width: 768px;
+#contents_wrapper {
+    width: 80%;
+    min-width: 768px;
     margin: auto;
     text-align: center;
     font-style: normal;
     text-decoration: none;
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+#contents {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    color: white;
 }
 
 h1, h2 {
@@ -297,4 +296,67 @@ li.nav_inactive ul {
 /* Sub-class styles */
 .mathematica img {
     border:1px solid black;
+}
+
+
+
+
+
+/* Fade-ins */
+.fade-in {
+    animation: 10s ease 0s normal forwards 1 fadein;
+    -webkit-animation: 10s ease 0s normal forwards 1 fadein;
+    -moz-animation: fadeIn ease;
+    -o-animation: fadeIn ease;
+    -ms-animation: fadeIn ease;
+}
+
+.fade-after-2s {
+    animation-delay: -7s;
+}
+
+.fade-after-2s {
+    animation-delay: -7s;
+
+}
+
+
+@keyframes fadein{
+    0% { opacity:0; }
+    90% { opacity:0; }
+    100% { opacity:1; }
+}
+
+@-webkit-keyframes fadein{
+    0% { opacity:0; }
+    90% { opacity:0; }
+    100% { opacity:1; }
+}
+
+/* TODO: finish these like above */
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
 }

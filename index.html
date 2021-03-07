@@ -12,13 +12,15 @@
 </head>
 <body onload="renderBody()">
     <div id="header"><h1>FRANKIE EDER</h1></div>
-    <div class="fullscreen-bg">
+    <div class="fullscreen-bg fade-in">
         <iframe
-                class="fullscreen-bg__video"
+                class="fullscreen-bg__video fade-in"
                 src="https://player.vimeo.com/video/501918925?background=1"
                 frameborder="0" allow="autoplay; fullscreen" allowfullscreen
         ></iframe>
     </div>
-    <div id="contents">Loading...</div>
+    <div id="contents_wrapper" class="fade-in fade-after-2s">
+        <div id="contents"></div>
+    </div>
 </body>
 </html>
