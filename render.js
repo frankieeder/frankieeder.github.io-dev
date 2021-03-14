@@ -3,6 +3,7 @@ var CURRENT_FILTER = DEFAULT_FILTER;
 var NAV = document.getElementsByTagName('nav')[0];
 var args = getUrlVars();
 
+// Trigger URL args as filter, if existent
 console.log("argsnav", args, NAV);
 if (args.page) {
     CURRENT_FILTER = args.page;
@@ -10,6 +11,11 @@ if (args.page) {
 console.log("ahh", CURRENT_FILTER, NAV);
 
 function getUrlVars() {
+    /*
+    Gets Variables from url input.
+
+    Most relevant is args.page, which we use as our filter
+    */
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
         vars[key] = decodeURI(value);
@@ -26,6 +32,7 @@ function filteredContent() {
         filter: CURRENT_FILTER
     };
     function contentFilter(post) {
+        console.log("Attempting to filter post:", post, this.filter);
         return post.tags.includes(this.filter);
     };
     var filtered = CONTENT.contents.filter(contentFilter, context);
@@ -35,7 +42,10 @@ function filteredContent() {
 console.log(CURRENT_FILTER, CONTENT, filteredContent())
 
 function updateNav() {
-    // Returns a list representing the heirarchy of the input filter.
+    /*
+    Updates navigation display according to the CURRENT_FILTER
+    Returns a list representing the heirarchy of the input filter.
+    */
 
     // Close all navigation
     // Inefficient, but should work fine with the limited number of NAV items
@@ -76,8 +86,12 @@ function updateHistory(hierarchy) {
 }
 
 function enableNav() {
+    /*
+    Enables responsiveness of navigation bar
+    */
     // Select all clickable navigation elements
     var navItems = NAV.querySelectorAll('nav a');
+    console.log("Navitemsenablenave", navItems)
     for (var i = 0; i < navItems.length; i++) {
         var li = navItems[i].parentNode;
         // Make sure the parents of all clickable elements are inactive to hide
@@ -95,11 +109,18 @@ function enableNav() {
             // Filtering & structure updating
             if (li.classList.contains('nav_active')) {
                 // Update Content
-                filterContent(this.textContent);
+                //filterContent(this.textContent);
+                CURRENT_FILTER = this.textContent;
+                console.log("Active", CURRENT_FILTER)
+                renderBody();
+
             } else {
                 var levelUpClickable = li.parentNode.parentNode.querySelector('a');
                 // Update Content
-                filterContent(levelUpClickable.textContent);
+                //filterContent(levelUpClickable.textContent);
+                CURRENT_FILTER = levelUpClickable.textContent;
+                console.log("Inactive?", CURRENT_FILTER)
+                renderBody();
             }
         }
     }
@@ -114,7 +135,7 @@ function getTemplates() {
 }
 
 function renderBody() {
-    console.log(CONTENT)
+    console.log("RENDERING CONTENT", CONTENT, filteredContent());
     partials = {};
     Promise.all(getTemplates()).then(
       (result) => {

@@ -1,7 +1,7 @@
 var CONTENT = {
     "contents": [
         {
-            tags: ['frankie_eder', 'b'],
+            tags: ['frankie_eder', 'art'],
             rows: [
                 {title: "Crow's Landing I"},
                 {subtitle: "2020-08-13"},
@@ -28,7 +28,7 @@ var CONTENT = {
                 },
             ],
         }, {
-            tags: ['frankie_eder', 'b'],
+            tags: ['frankie_eder', 'art', 'film'],
             rows: [
                 {title: "Crow's Landing I"},
                 {subtitle: "2020-08-13"},
