@@ -48,7 +48,6 @@ Top Bar / Header / Nav Modifications
 #topBar {
     font-family: Avenir-Light, courier;
     color: white;
-    background: black;
     text-decoration: none;
     min-width: 768px;
 }
@@ -58,7 +57,7 @@ Top Bar / Header / Nav Modifications
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 #topBar li a {
