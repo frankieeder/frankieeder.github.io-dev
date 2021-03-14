@@ -1,7 +1,7 @@
 var DEFAULT_FILTER = 'frankie_eder';
 var CURRENT_FILTER = DEFAULT_FILTER;
-var NAV = document.getElementsByTagName('nav')[0];
 var args = getUrlVars();
+var NAV;
 
 // Trigger URL args as filter, if existent
 console.log("argsnav", args, NAV);
@@ -53,10 +53,10 @@ function updateNav() {
     console.log("navlis", navLis);
     var targetLi;
     for (var i = 0; i < navLis.length; i++) {
-        onsole.log('hi before', navLis[i], navLis[i].classList);
+        console.log('hi before', navLis[i], navLis[i].classList);
         navLis[i].classList.add('nav_inactive');
         navLis[i].classList.remove('nav_active');
-        onsole.log('hi after', navLis[i], navLis[i].classList);
+        console.log('hi after', navLis[i], navLis[i].classList);
         if (navLis[i].querySelector('a').textContent == CURRENT_FILTER) {
             targetLi = navLis[i];
         }
@@ -127,7 +127,6 @@ function enableNav() {
     //console.log('nav anchors after', navItems);
 }
 
-
 function getTemplates() {
     var components = fetch('static/templates/contents.mustache');
     var photo_scrollbox = fetch('static/templates/photo_scrollbox.mustache');
@@ -161,9 +160,16 @@ function renderBody() {
     );
 }
 
-enableNav();
-var hierarchy = updateNav(CURRENT_FILTER);
-updateHistory(hierarchy);
+function initializeNav() {
+    console.log(document, NAV);
+    NAV = document.getElementsByTagName('nav')[0];
+    console.log(document, NAV);
+    enableNav();
+    var hierarchy = updateNav(CURRENT_FILTER);
+    updateHistory(hierarchy);
+}
 
-
-
+function initializePage() {
+    initializeNav();
+    renderBody();
+}
