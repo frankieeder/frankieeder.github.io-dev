@@ -8,7 +8,6 @@
 	<link rel="shortcut icon" href="img/head_icon.ico">
     <script src="mustache.min.js"></script>
     <script src="content.js"></script>
-    <script src="render.js"></script>
 </head>
 <body onload="renderBody()">
     <div id="topBar" class="fade-in fade-after-1s">
@@ -22,11 +21,49 @@
                 <ul>
                     <li id="social"></li>
                     <li id="nav">
-                        <ul>
-                            <li><a href="#home">ABOUT</a></li>
-                            <li><a href="#news">SCIENCE</a></li>
-                            <li><a href="#contact">ART</a></li>
-                        </ul>
+                        <nav>
+                            <ul>
+                                <li><a>art</a>
+                                    <ul>
+                                        <li><a>film</a>
+                                            <ul>
+                                                <li><a>narrative</a></li>
+                                                <li><a>experimental</a></li>
+                                                <li><a>music</a></li>
+                                                <li><a>skateboarding</a></li>
+                                                <li><a>animation</a></li>
+                                                <li><a>commercial</a></li>
+
+                                                <li><a>directed by</a></li>
+                                                <li><a>shot by</a></li>
+                                                <li><a>edited by</a></li>
+                                                <li><a>colored by</a></li>
+                                                <!-- Coming Soon <li><a>sound by</a></li> -->
+                                            </ul>
+                                        </li>
+                                        <li><a>still</a>
+                                            <ul>
+                                                <li><a>photography</a></li>
+                                                <li><a>manipulated</a></li>
+                                                <li><a>skate photography</a></li>
+                                                <li><a>mathematica</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a>installation</a></li>
+                                        <li><a>audio</a></li>
+                                        <!-- <li><a>sculpture</a></li> -->
+                                    </ul>
+                                </li>
+                                <li><a>science</a>
+                                    <ul>
+                                        <li><a>research</a></li>
+                                        <li><a>implementations</a></li>
+                                    </ul>
+                                </li>
+                                <li><a>press</a></li>
+                                <li><a href="mailto:frankaeder@gmail.com">contact</a></li>
+                            </ul>
+                        </nav>
                     </li>
                 </ul>
             </li>
@@ -42,5 +79,6 @@
     <div id="contents_wrapper" class="fade-in fade-after-2s">
         <div id="contents">Frankie Eder makes art and technology.</div>
     </div>
+    <script src="render.js"></script>
 </body>
 </html>
