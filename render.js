@@ -44,6 +44,7 @@ console.log(CURRENT_FILTER, CONTENT, filteredContent())
 function updateNav() {
     /*
     Updates navigation display according to the CURRENT_FILTER
+
     Returns a list representing the heirarchy of the input filter.
     */
 
@@ -81,6 +82,9 @@ function updateNav() {
 }
 
 function updateHistory(hierarchy) {
+    /*
+    Updates the url using the heirarchy input.
+    */
     var suffix = hierarchy.join("/");
     window.history.pushState('', hierarchy[hierarchy.length-1], suffix);
 }
@@ -106,34 +110,44 @@ function enableNav() {
             li.classList.toggle('nav_active');
             li.classList.toggle('nav_inactive');
 
+            var newFilter;
             // Filtering & structure updating
             if (li.classList.contains('nav_active')) {
                 // Update Content
                 //filterContent(this.textContent);
-                CURRENT_FILTER = this.textContent;
-                console.log("Active", CURRENT_FILTER)
-                renderBody();
-
+                newFilter = this.textContent;
             } else {
-                var levelUpClickable = li.parentNode.parentNode.querySelector('a');
+                //debugger;
+                var superParent = li.parentNode.parentNode;
+                if (superParent.tagName == "NAV") {
+                    newFilter = DEFAULT_FILTER;
+                } else {
+                    var levelUpClickable = superParent.querySelector('a');
+                    newFilter = levelUpClickable.textContent;
+                }
                 // Update Content
                 //filterContent(levelUpClickable.textContent);
-                CURRENT_FILTER = levelUpClickable.textContent;
-                console.log("Inactive?", CURRENT_FILTER)
-                renderBody();
+
             }
+            updateFilter(newFilter);
         }
     }
     //console.log('nav anchors after', navItems);
 }
 
 function getTemplates() {
-    var components = fetch('static/templates/contents.mustache');
+    /*
+    Gets our template files, returning as a list.
+    */
+    var contents = fetch('static/templates/contents.mustache');
     var photo_scrollbox = fetch('static/templates/photo_scrollbox.mustache');
-    return [components, photo_scrollbox];
+    return [contents, photo_scrollbox];
 }
 
 function renderBody() {
+    /*
+    Renders our filtered content using the active CURRENT_FILTER.
+    */
     console.log("RENDERING CONTENT", CONTENT, filteredContent());
     partials = {};
     Promise.all(getTemplates()).then(
@@ -161,12 +175,26 @@ function renderBody() {
 }
 
 function initializeNav() {
-    console.log(document, NAV);
+    /*
+
+    */
+    //console.log(document, NAV);
     NAV = document.getElementsByTagName('nav')[0];
-    console.log(document, NAV);
+    //console.log(document, NAV);
     enableNav();
+    refreshNav();
+
+}
+
+function refreshNav() {
     var hierarchy = updateNav(CURRENT_FILTER);
     updateHistory(hierarchy);
+}
+
+function updateFilter(tag) {
+    CURRENT_FILTER = tag;
+    refreshNav();
+    renderBody();
 }
 
 function initializePage() {
