@@ -3,6 +3,17 @@ var CONTENT = {
         {
             tags: ['frankie_eder', 'art'],
             rows: [
+                {title: "FILM REEL"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '209132295',
+                    aspect_ratio: '41.43%',
+                },
+            ],
+        }, {
+            tags: ['frankie_eder', 'art'],
+            rows: [
                 {title: "Crow's Landing I"},
                 {subtitle: "2020-08-13"},
                 {

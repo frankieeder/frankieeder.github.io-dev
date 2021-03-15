@@ -2,13 +2,15 @@ var DEFAULT_FILTER = 'frankie_eder';
 var CURRENT_FILTER = DEFAULT_FILTER;
 var args = getUrlVars();
 var NAV;
+//var Vimeo = require('vimeo').Vimeo;
 
+//console.log("Content:", CONTENT, filteredContent())
 // Trigger URL args as filter, if existent
-console.log("argsnav", args, NAV);
+//console.log("argsnav", args, NAV);
 if (args.page) {
     CURRENT_FILTER = args.page;
 }
-console.log("ahh", CURRENT_FILTER, NAV);
+//console.log("ahh", CURRENT_FILTER, NAV);
 
 function getUrlVars() {
     /*
@@ -32,14 +34,13 @@ function filteredContent() {
         filter: CURRENT_FILTER
     };
     function contentFilter(post) {
-        console.log("Attempting to filter post:", post, this.filter);
+        //console.log("Attempting to filter post:", post, this.filter);
         return post.tags.includes(this.filter);
     };
     var filtered = CONTENT.contents.filter(contentFilter, context);
-    console.log("infunf", CURRENT_FILTER, CONTENT, filtered)
+    //console.log("infunf", CURRENT_FILTER, CONTENT, filtered)
     return {contents: filtered};
 }
-console.log(CURRENT_FILTER, CONTENT, filteredContent())
 
 function updateNav() {
     /*
@@ -51,18 +52,18 @@ function updateNav() {
     // Close all navigation
     // Inefficient, but should work fine with the limited number of NAV items
     var navLis = NAV.querySelectorAll('li')
-    console.log("navlis", navLis);
+    //console.log("navlis", navLis);
     var targetLi;
     for (var i = 0; i < navLis.length; i++) {
-        console.log('hi before', navLis[i], navLis[i].classList);
+        //console.log('hi before', navLis[i], navLis[i].classList);
         navLis[i].classList.add('nav_inactive');
         navLis[i].classList.remove('nav_active');
-        console.log('hi after', navLis[i], navLis[i].classList);
+        //console.log('hi after', navLis[i], navLis[i].classList);
         if (navLis[i].querySelector('a').textContent == CURRENT_FILTER) {
             targetLi = navLis[i];
         }
     }
-    console.log("targetLi:", targetLi);
+    //console.log("targetLi:", targetLi);
     // Expand relevant nav dropdowns if the filter is found
     var hierarchy = [];
     if (targetLi) {
@@ -95,7 +96,7 @@ function enableNav() {
     */
     // Select all clickable navigation elements
     var navItems = NAV.querySelectorAll('nav a');
-    console.log("Navitemsenablenave", navItems)
+    //console.log("Navitemsenablenave", navItems)
     for (var i = 0; i < navItems.length; i++) {
         var li = navItems[i].parentNode;
         // Make sure the parents of all clickable elements are inactive to hide
@@ -118,6 +119,7 @@ function enableNav() {
                 newFilter = this.textContent;
             } else {
                 //debugger;
+                // TODO: this is potentially not the most elegant solution here.
                 var superParent = li.parentNode.parentNode;
                 if (superParent.tagName == "NAV") {
                     newFilter = DEFAULT_FILTER;
@@ -142,14 +144,15 @@ function getTemplates() {
     var contents = fetch('static/templates/contents.mustache');
     var photo_scrollbox = fetch('static/templates/photo_scrollbox.mustache');
     var image = fetch('static/templates/image.mustache');
-    return [contents, photo_scrollbox, image];
+    var vimeo_embed = fetch('static/templates/vimeo_embed.mustache');
+    return [contents, photo_scrollbox, image, vimeo_embed];
 }
 
 function renderBody() {
     /*
     Renders our filtered content using the active CURRENT_FILTER.
     */
-    console.log("RENDERING CONTENT", CONTENT, filteredContent());
+    //console.log("RENDERING CONTENT", CONTENT, filteredContent());
     partials = {};
     Promise.all(getTemplates()).then(
       (result) => {
@@ -161,24 +164,25 @@ function renderBody() {
             templates => {
                 var partials = {
                     photo_scrollbox: templates[1],
-                    image: templates[2]
+                    image: templates[2],
+                    vimeo_embed: templates[3],
                 }
-                console.log("Partials:", partials)
+                //console.log("Partials:", partials)
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);
                 document.getElementById('contents').innerHTML = rendered;
             }
         )
-        console.log(result, template_texts);
+        //console.log(result, template_texts);
       },
       (error) => {
-         console.log(error);
+         //console.log(error);
       }
     );
 }
 
 function initializeNav() {
     /*
-
+    Initializes navigation after page load // TODO: ALL OF THESE NEED BETTER DOCS
     */
     //console.log(document, NAV);
     NAV = document.getElementsByTagName('nav')[0];
@@ -202,4 +206,26 @@ function updateFilter(tag) {
 function initializePage() {
     initializeNav();
     renderBody();
+}
+
+function styleVimeoEmbeds(element) {
+    /*
+    Styles standalone Vimeo embeds to the correct aspect ratio
+    TODO: Why does this not work? Promises are never fulfilled
+    */
+    debugger;
+    var player = new Vimeo.Player(element);
+    Promise.all([player.getVideoWidth(), player.getVideoHeight()]).then(function(dimensions) {
+
+        console.log("Vimeo dims a", dimensions);
+        var width = dimensions[0];
+        var height = dimensions[1];
+        var ar = height / width;
+        console.log("Vimeo dims", width, height, ar);
+        element.style['padding-top'] = ar;
+    });
+    (function() {
+
+    })();
+
 }
