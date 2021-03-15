@@ -141,7 +141,8 @@ function getTemplates() {
     */
     var contents = fetch('static/templates/contents.mustache');
     var photo_scrollbox = fetch('static/templates/photo_scrollbox.mustache');
-    return [contents, photo_scrollbox];
+    var image = fetch('static/templates/image.mustache');
+    return [contents, photo_scrollbox, image];
 }
 
 function renderBody() {
@@ -159,7 +160,8 @@ function renderBody() {
         Promise.all(template_texts).then(
             templates => {
                 var partials = {
-                    photo_scrollbox: templates[1]
+                    photo_scrollbox: templates[1],
+                    image: templates[2]
                 }
                 console.log("Partials:", partials)
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);
