@@ -50,6 +50,7 @@ Top Bar / Header / Nav Modifications
     color: white;
     text-decoration: none;
     min-width: 768px;
+    /*background-color: rgba(0, 0, 0, 0.8);*/
 }
 
 #topBar ul {
@@ -57,7 +58,6 @@ Top Bar / Header / Nav Modifications
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.8);
 }
 
 #topBar li a {
@@ -221,7 +221,6 @@ h6 {
 a {
     text-decoration: none;
     color: inherit;
-    /*color: black;*/
     font-family: Avenir-Light, courier;
 }
 
@@ -276,22 +275,20 @@ nav li a {
 }
 
 nav > ul > li > a {
-    background-color: #333;
+    /*background-color: rgba(0, 0, 0, 0);*/
     font-size: 12pt;
     padding: 14px;
 }
 nav > ul > li > ul > li > a {
-    background-color: #444;
+    background-color: rgba(255, 255, 255, 0.2);
     font-size: 10pt;
     padding: 10px;
 }
 nav > ul > li > ul > li > ul > li > a {
-    background-color: #555;
+    background-color: rgba(255, 255, 255, 0.4);
     font-size: 8pt;
     padding: 6px;
 }
-
-/* Change the link color to #111 (black) on hover */
 
 nav li a:hover {
     background-color: #0094B6;
@@ -433,30 +430,20 @@ li.nav_inactive ul {
     100% { opacity:1; }
 }
 
-/* TODO: finish these like above */
 @-moz-keyframes fadeIn {
-  0% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
+    0% { opacity:0; }
+    90% { opacity:0; }
+    100% { opacity:1; }
 }
 
 @-o-keyframes fadeIn {
-  0% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
+    0% { opacity:0; }
+    90% { opacity:0; }
+    100% { opacity:1; }
 }
 
 @-ms-keyframes fadeIn {
-  0% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
+    0% { opacity:0; }
+    90% { opacity:0; }
+    100% { opacity:1; }
 }
