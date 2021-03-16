@@ -173,6 +173,8 @@ function renderBody() {
                 //console.log("Partials:", partials)
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);
                 document.getElementById('contents').innerHTML = rendered;
+
+                initializeVimeo(); // TODO: is this the best place?
             }
         )
         //console.log(result, template_texts);
@@ -209,6 +211,46 @@ function updateFilter(tag) {
 function initializePage() {
     initializeNav();
     renderBody();
+}
+
+function initializeVimeo() {
+    var vimeo_divs = document.querySelectorAll('.vimeo_embed');
+    debugger;
+    var i;
+    for (i in vimeo_divs) {
+        // Nest function to preserve references to distinct local variables
+        (function() {
+            var vimeo_div = vimeo_divs[i];
+            var player = Vimeo.Player(vimeo_div.id);
+            debugger;
+            var start = parseFloat(vimeos[i].getAttribute("loopstart"));
+            var init = parseFloat(vimeos[i].getAttribute("loopthumb") ?? start);
+            var interval = parseFloat(vimeos[i].getAttribute("loopend"));
+            var end = parseFloat(start) + parseFloat(interval / 1000);
+            player.setCurrentTime(init);
+            player.pause();
+
+            // Enable Looping
+            player.on('timeupdate', function(update) {
+                //console.log("time1", update['seconds'], end, interval, (interval / 1000), start, update['seconds'] > end, player);
+                if (update['seconds'] > end) {
+                    player.setCurrentTime(start);
+                }
+            });
+            // Start playing when start hover
+            vimeos[i].onmouseenter = function() {
+                //console.log("Attempting to play.", player);
+                player.play();
+            }
+            // Stop playing when stop hover
+            vimeos[i].onmouseout = function() {
+                //console.log("Attempting to pause.", player);
+                player.pause();
+                player.setCurrentTime(init);
+            }
+        })();
+
+    }
 }
 
 function styleVimeoEmbeds(element) {
