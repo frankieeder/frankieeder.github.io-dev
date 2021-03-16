@@ -11,7 +11,9 @@
                 <h6>{{.}}</h6>
             {{/subsubtitle}}
             {{#type_photo_scrollbox}}
+                <div class="scrollbox {{#thumbnail}}thumbnails thumbsmall{{/thumbnail}}" {{#thumbnail}}style="height: 250px"{{/thumbnail}}>
                 {{> photo_scrollbox}}
+                </div>
             {{/type_photo_scrollbox}}
             {{#type_image}}
                 {{> image}}

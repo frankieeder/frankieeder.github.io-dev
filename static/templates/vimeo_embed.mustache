@@ -1,4 +1,4 @@
-<div class="iframe-container vimeo_embed" {{#aspect_ratio}}style="padding-top: {{.}};"{{/aspect_ratio}}>
+<div class="vimeo_embed {{^thumbnail}}iframe-container{{/thumbnail}}" {{#aspect_ratio}}style="padding-top: {{.}};"{{/aspect_ratio}}>
     <iframe
         class="vimeo_iframe"
         onload="styleVimeoEmbeds(this)"

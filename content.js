@@ -14,6 +14,20 @@ var CONTENT = {
         }, {
             tags: ['frankie_eder', 'art'],
             rows: [
+                {title: "CAMERA OBSCURA"},
+                {subtitle: "narrative featurette film"},
+                {
+                    thumbnail: true,
+                    type_photo_scrollbox: true,
+                    scrollcontent: [
+                        {vimeo: "466791628", loopstart: 737, loopend: 5000},
+                        {vimeo: "466791628", loopstart: 707, loopend: 5000},
+                    ],
+                },
+            ],
+        }, {
+            tags: ['frankie_eder', 'art'],
+            rows: [
                 {title: "Crow's Landing I"},
                 {subtitle: "2020-08-13"},
                 {
