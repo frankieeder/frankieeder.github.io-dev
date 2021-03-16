@@ -1,5 +1,9 @@
+var VIMEO_COUNTER = 0;
 var CONTENT = {
-    "contents": [
+    vimeo_count: function () {
+        return VIMEO_COUNTER++;
+    },
+    contents: [
         {
             tags: ['frankie_eder', 'art'],
             rows: [

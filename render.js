@@ -37,9 +37,12 @@ function filteredContent() {
         //console.log("Attempting to filter post:", post, this.filter);
         return post.tags.includes(this.filter);
     };
-    var filtered = CONTENT.contents.filter(contentFilter, context);
+    var filtered_contents = CONTENT.contents.filter(contentFilter, context);
+    var new_content = {};
+    Object.assign(new_content, CONTENT);
+    new_content.contents = filtered_contents;
     //console.log("infunf", CURRENT_FILTER, CONTENT, filtered)
-    return {contents: filtered};
+    return new_content;
 }
 
 function updateNav() {
