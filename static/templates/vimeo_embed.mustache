@@ -1,7 +1,7 @@
 <div
     id="vimeo_{{vimeo_count}}"
-    class="iframe-container"
-    style="{{#aspect_ratio}}padding-top: {{.}};{{/aspect_ratio}}"
+    {{^thumbnail}}class="iframe-container"{{/thumbnail}}
+    {{#aspect_ratio}}style="padding-top: {{.}};"{{/aspect_ratio}}
 >
     <iframe
         src="https://player.vimeo.com/video/{{vimeo}}{{#thumbnail}}?background=1{{/thumbnail}}"

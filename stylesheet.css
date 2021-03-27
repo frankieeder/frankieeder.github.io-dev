@@ -345,7 +345,10 @@ li.nav_inactive ul {
     padding-top: 2px;
     padding-bottom: 2px;
 }
-
+.thumbnails div {
+    display: inline-block;
+    height: 100%;
+}
 .thumbnails iframe {
     height: 100%;
 }
