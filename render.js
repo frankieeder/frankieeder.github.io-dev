@@ -215,42 +215,49 @@ function initializePage() {
 
 function prepVimeoThumbnails() {
     //console.log("Iframes incoming...");
-    var vimeos = document.querySelectorAll('.thumbnails iframe');
+    //debugger;
+    var vimeos = document.querySelectorAll('.thumbnails div');
     //console.log("HELLO", vimeos.length)
     for (var i = 0; i < vimeos.length; i++) {
         // Nest function to preserve references to distinct local variables
         (function() {
-            var player = new Vimeo.Player(vimeos[i]);
-            console.log("Vimeo Player", i, player, vimeos[i]);
-            var start = parseFloat(vimeos[i].getAttribute("loopstart"));
-            var init = parseFloat(vimeos[i].getAttribute("loopthumb") ?? start);
-            var interval = parseFloat(vimeos[i].getAttribute("loopend"));
-            var end = parseFloat(start) + parseFloat(interval / 1000);
-
-            var setTimePromise = player.setCurrentTime(init);
-            var pausePromise = player.pause();
-
-            // Enable Looping
-            player.on('timeupdate', function(update) {
-                console.log("time1", update['seconds'], end, interval, (interval / 1000), start, update['seconds'] > end, player);
-                if (update['seconds'] > end) {
-                    player.setCurrentTime(start);
-                }
+            debugger;
+            var vimeo_div_id = vimeos[i].id;
+            var video01Player = new Vimeo.Player(vimeo_div_id);
+            video01Player.on('play', function() {
+                console.log('Played the first video');
             });
-            console.log("Promises:", setTimePromise, pausePromise);
-            // Start playing when start hover
-            vimeos[i].onmouseenter = function() {
-                console.log("Attempting to play.", player);
-                console.log("Promises:", setTimePromise, pausePromise);
-                player.play();
-            }
-            // Stop playing when stop hover
-            vimeos[i].onmouseout = function() {
-                console.log("Attempting to pause.", player);
-                console.log("Promises:", setTimePromise, pausePromise);
-                player.pause();
-                player.setCurrentTime(init);
-            }
+//            var player = new Vimeo.Player(vimeos[i]);
+//            console.log("Vimeo Player", i, player, vimeos[i]);
+//            var start = parseFloat(vimeos[i].getAttribute("loopstart"));
+//            var init = parseFloat(vimeos[i].getAttribute("loopthumb") ?? start);
+//            var interval = parseFloat(vimeos[i].getAttribute("loopend"));
+//            var end = parseFloat(start) + parseFloat(interval / 1000);
+//
+//            var setTimePromise = player.setCurrentTime(init);
+//            var pausePromise = player.pause();
+//
+//            // Enable Looping
+//            player.on('timeupdate', function(update) {
+//                console.log("time1", update['seconds'], end, interval, (interval / 1000), start, update['seconds'] > end, player);
+//                if (update['seconds'] > end) {
+//                    player.setCurrentTime(start);
+//                }
+//            });
+//            console.log("Promises:", setTimePromise, pausePromise);
+//            // Start playing when start hover
+//            vimeos[i].onmouseenter = function() {
+//                console.log("Attempting to play.", player);
+//                console.log("Promises:", setTimePromise, pausePromise);
+//                player.play();
+//            }
+//            // Stop playing when stop hover
+//            vimeos[i].onmouseout = function() {
+//                console.log("Attempting to pause.", player);
+//                console.log("Promises:", setTimePromise, pausePromise);
+//                player.pause();
+//                player.setCurrentTime(init);
+//            }
         })();
     }
     //console.log("Iframes incoming...", iframes);
