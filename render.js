@@ -224,9 +224,10 @@ function prepVimeoThumbnails() {
             debugger;
             var vimeo_div_id = vimeos[i].id;
             var player = new Vimeo.Player(vimeo_div_id);
-            player.on('play', function() {
-                console.log('Played the first video');
-            });
+            //console.log(player);
+            //var destroyed = player.destroy();
+            //console.log(player, destroyed);
+
             var start = parseFloat(vimeos[i].getAttribute("loopstart"));
             var init = parseFloat(vimeos[i].getAttribute("loopthumb") ?? start);
             var interval = parseFloat(vimeos[i].getAttribute("loopend"));
@@ -238,23 +239,27 @@ function prepVimeoThumbnails() {
                     player.setCurrentTime(start);
                 }
             });
+
+            var settingoutside = setVideoTime(player, init);
+            console.log(settingoutside);
+
             player.pause().then(function() {
                 console.log("Paused video.")
             }).catch(function(error) {
                 switch (error.name) {
                 case 'PasswordError':
                     // The video is password-protected
-                    console.log("PasswordError.", e)
+                    console.log("PasswordError.", error)
                     break;
 
                 case 'PrivacyError':
                     // The video is private
-                    console.log("PrivacyError.", e)
+                    console.log("PrivacyError.", error)
                     break;
 
                 default:
                     // Some other error occurred
-                    console.log("Other Error.", e)
+                    console.log("Other Error.", error)
                     break;
                 }
             });
@@ -299,8 +304,8 @@ function prepVimeoThumbnails() {
 }
 
 function setVideoTime(player, seconds) {
-	player.setCurrentTime(seconds).then(function() {
-		return player.pause();
+	return player.setCurrentTime(seconds).then(function() {
+		return player.play();
 	});
 }
 
