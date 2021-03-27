@@ -186,3 +186,51 @@ Dates Employed Jul 2015
 Employment Duration 1 mo
 Location Tehachapi, CA
 • Independently created five, three-minute montages, one of which generated over 146K views on YouTube.
+
+
+
+
+
+EDUCATION
+
+
+University of California, Berkeley
+Degree NameMaster of Science - MS Equivalent CourseworkField Of StudyElectrical Engineering and Computer ScienceGrade4.0 GPA
+19 units of graduate computer science coursework, almost twice the 10 units of coursework required for a Masters degree in Computer Science (MS) from UC Berkeley. Focus on Machine Learning, Computer Vision, and Computational Photography.
+
+Highlighted Coursework:
+• 3D Image Processing and Computer Vision (EE 290T)
+• 2D Image Processing (EE 225B)
+• Designing, Visualizing, and Understanding Deep Neural Networks (CS 282A)
+• Computational Color and Human Visual Perception (CS 294-164)
+• Computational Photography (CS 294-26)
+
+GPA reflects graduate coursework. No degree awarded.
+
+
+
+University of California, Berkeley
+Degree NameBachelor of Science - BSField Of StudyElectrical Engineering and Computer ScienceGrade3.87 GPA (w/ Honors)Activities and Societies: EECS Honors Program, Art Practice Minor, TBP Engineering Honors Society, Delta Kappa Alpha Professional Cinematic Arts Fraternity
+Completed EECS Bachelors of Science in EECS Honors program, one of 50 honors students out of class of 1300, with breadth focus combining art / film and computer science. Minor in Art Practice.
+
+Highlighted Undergraduate Computer Science Coursework:
+• Foundations of Computer Graphics (CS 184)
+• Principles & Techniques of Data Science (STAT C100)
+
+
+
+
+University of California, Berkeley
+Degree NameUndegraduate MinorField Of StudyArt Practice
+Minor in Art Practice, focusing on digital image manipulation, multi-channel video installation, sculpture, and sound.
+
+Highlighted Arts Coursework:
+• Advanced Digital Photography
+• Temporal Structures: Video and Performance Art
+• Electro-Crafting
+• Data Arts
+• Understanding Film Sound
+• Film Music Supervision & Pop Scoring
+• Analysis of Modern Science Fiction Film
+• History of Avante-Garde Film
+• The Language of Sculpture
