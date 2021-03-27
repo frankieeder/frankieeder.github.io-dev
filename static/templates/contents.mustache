@@ -7,10 +7,17 @@
             {{#subtitle}}
                 <h4>{{.}}</h4>
             {{/subtitle}}
+            {{#subheader}}
+                    <h4>{{.}}</h4>
+            {{/subheader}}
             {{#subsubtitle}}
                 <h6>{{.}}</h6>
             {{/subsubtitle}}
             {{#type_photo_scrollbox}}
+                {{!
+                TODO: Move this into photo_scrollbox.mustache?
+                TODO: Allow for height changes?
+                }}
                 <div
                         class="scrollbox {{#thumbnail}}thumbnails thumbsmall{{/thumbnail}}"
                         style="{{#thumbnail}}height: 250px;{{/thumbnail}} ">
@@ -23,6 +30,10 @@
             {{#type_vimeo}}
                 {{> vimeo_embed}}
             {{/type_vimeo}}
+            {{#credits}}
+                <h5>Credits: {{.}}</h5>
+            {{/credits}}
+            {{#html}}{{{.}}}{{/html}}
         {{/rows}}
     </div>
 {{/contents}}
