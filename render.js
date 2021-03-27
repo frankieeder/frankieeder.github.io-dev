@@ -223,10 +223,44 @@ function prepVimeoThumbnails() {
         (function() {
             debugger;
             var vimeo_div_id = vimeos[i].id;
-            var video01Player = new Vimeo.Player(vimeo_div_id);
-            video01Player.on('play', function() {
+            var player = new Vimeo.Player(vimeo_div_id);
+            player.on('play', function() {
                 console.log('Played the first video');
             });
+            var start = parseFloat(vimeos[i].getAttribute("loopstart"));
+            var init = parseFloat(vimeos[i].getAttribute("loopthumb") ?? start);
+            var interval = parseFloat(vimeos[i].getAttribute("loopend"));
+            var end = parseFloat(start) + parseFloat(interval / 1000);
+
+            player.on('timeupdate', function(update) {
+                console.log("time1", update['seconds'], end, interval, (interval / 1000), start, update['seconds'] > end, player);
+                if (update['seconds'] > end) {
+                    player.setCurrentTime(start);
+                }
+            });
+            player.pause().then(function() {
+                console.log("Paused video.")
+            }).catch(function(error) {
+                switch (error.name) {
+                case 'PasswordError':
+                    // The video is password-protected
+                    console.log("PasswordError.", e)
+                    break;
+
+                case 'PrivacyError':
+                    // The video is private
+                    console.log("PrivacyError.", e)
+                    break;
+
+                default:
+                    // Some other error occurred
+                    console.log("Other Error.", e)
+                    break;
+                }
+            });
+            var setTimePromise = player.setCurrentTime(init);
+            var pausePromise = player.pause();
+            console.log("Promises:", setTimePromise, pausePromise);
 //            var player = new Vimeo.Player(vimeos[i]);
 //            console.log("Vimeo Player", i, player, vimeos[i]);
 //            var start = parseFloat(vimeos[i].getAttribute("loopstart"));
@@ -264,6 +298,11 @@ function prepVimeoThumbnails() {
 
 }
 
+function setVideoTime(player, seconds) {
+	player.setCurrentTime(seconds).then(function() {
+		return player.pause();
+	});
+}
 
 
 function styleVimeoEmbeds(element) {
