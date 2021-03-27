@@ -1,0 +1,188 @@
+Data Science, Machine / Deep Learning, and Computer Vision Consultant
+Company Name Self-employed
+Dates Employed Jan 2020 – Present
+Employment Duration 1 yr 3 mos
+Location California, United States
+Past Clients include:
+Lionsgate Entertainment / Pantaya - Pipeline redesign for multi-million subscriber streaming service
+Artes Design Build - Sales and client acquisition pipeline redesign and implementation
+
+
+
+Cinematographer / Director / Filmmaker
+Company Name Freelance
+Dates Employed Sep 2010 – Present
+Employment Duration 10 yrs 7 mos
+Freelance filmmaker, focusing primarily on cinematography and audio in narrative, experimental, and skateboarding films. Cumulative 5000+ hours on set.
+
+Highlighted Projects:
+
+Camera Obscura (2020) [21 min]
+• Director of Photography, Score Composer, Sound Designer
+• Colored by Jason Hanel of Company 3
+
+Mutual Transgression (Series, 2016-Present) [40+ min]
+• Director, Director of Photography, Editor, Colorist, VFX
+
+AMPHOS (2018) [5 min]
+• Director, Director of Photography, Editor, Colorist, VFX
+• Best Editing, Grizzly Film Festival 2018
+
+Sheep and Goats (2017) [5 min]
+• Director of Photography
+• Best Cinematography, CineBears Film Festival 2018
+
+Shoulda Coulda Woulda (2016) [75 min]
+• Director, Director of Photography, Editor, Colorist, VFX
+
+
+
+Data Science, Data Engineering, and Machine Learning Consultant
+Company Name Lionsgate
+Dates Employed Jan 2020 – Dec 2020
+Employment Duration 12 mos
+Researched, modernized, consolidated, rebuilt, and fortified a comprehensive business insights and data science pipeline for Pantaya, a video streaming service with more than 1 million users. Projects Include:
+• Optimized scalable ALS Machine-Learning streaming content similarity/recommendation algorithm utilizing Apache Spark, Python, SQL, and Google cloud computing virtual machines, training on streaming data from billions of play events, millions of users, and a thousand pieces of content in less than 5 minutes
+• Constructed large-scale network visualization to highlight similarity and user watch patterns of 1000+ pieces of content to executives, leveraging SQL, Python, Tableau, and advanced graph layout algorithms
+• Prototyped ML clustering model on 1,200,000+ users to highlight distinct user personas and high-performing content in order to inform business decisions and investments of executive board
+• Engineered version control, continuous integration, front-end web visualizations, and development environments with DBT (Data Build Tool), Github, FiveTran, Flask, Javascript, and HTML enabling BI team to safely experiment and iterate on thousands of database objects and queries, compare experiments to production data, and enable 99%+ reduced computation time, resources, and billing costs
+• Designed 1000+ node database dependency visualization in Tableau to increase database stability and data science teams’ and executive board’s understanding of database hierarchy and dependencies
+• Automated data downloads utilizing vendor APIs, web scraping, and Object-Oriented Python, eliminating manual 1 hour per day downloads by team members.
+• Enabled automatic daily-level subscription data from 7 different streaming platforms, enabling the executive board to make real-time insights and business decisions
+
+
+
+Delta Kappa Alpha Professional Cinema Fraternity
+Total Duration 3 yrs 1 mo
+
+Development Chair
+Part-time
+Dates Employed Dec 2019 – Dec 2020
+Employment Duration 1 yr 1 mo
+Location Berkeley, California
+
+Title Webmaster
+Part-time
+Dates Employed Dec 2019 – Dec 2020
+Employment Duration1 yr 1 mo
+Location Berkeley, California
+• Redesigned, Migrated, and Reimplemented website using Wordpress, HTML, CSS, and JavaScript, increasing functional and aesthetic value, reducing update time, and saving 86% of operating and maintenance costs in a 10-year savings outlook.
+
+Title Cinematic Affairs Chair
+Dates Employed Dec 2018 – Dec 2019
+Employment Duration 1 yr 1 mo
+Location Berkeley, CA
+• Developed and oversaw the implementation of an end-to-end practical and theoretical filmmaking curriculum consisting of 12+ workshops, 3+ major productions, 30+ mentors, 70+ members, and 4 leaders. Accomplished through a collaborative, self-motivated, flexible, and scalable approach.
+• Enabled all members of the fraternity to learn any filmmaking skill at multiple expertise levels.
+see less
+
+Title House Manager
+Dates Employed May 2018 – Dec 2018
+Employment Duration 8 mos
+Location Berkeley, CA
+• Implemented an automated chore and room-reservation system by means of exploiting Google Suite and Scripts, eliminating hundreds of hours of work, dissuading micromanagement, enabling a 60 member organization and 14 person house to effectively share one space, and minimizing housing budget by over $1000 per month.
+
+• Maintained a co-ed living space that allows the chapter to develop spaces specifically tailored to have more effective chapter events, projects, resources, security, and to more effectively realize the fraternity’s purpose and more successfully approach the fraternity’s vision.
+• Communicated and negotiated with landlord to assure proper care and maintenance of the Chapter House and grounds, making minor repairs where repairs are needed and to make sure all major repairs are taken care of promptly.
+• Communicated to tenants all chapter events held at the house and supervise all major clean-ups as provided and planned by Programming Department Officers.
+• Provided and collected signed leases from all members living in the house.
+see less
+
+Title Equipment Manager
+Dates Employed Dec 2017 – Dec 2018
+Employment Duration 1 yr 1 mo
+Location Berkeley, CA
+• Automated the equipment reservation process using Google Suite and Scripts, allowing film productions to reserve equipment and check availability in real-time and enabling managerial workload to be distributed among a committee, reducing weekly, per-person time commitment by 95%.
+
+• Coordinated with directors, producers, and DPs regarding equipment needs for fraternity productions.
+• Continually researched and expanded production equipment inventory.
+• Maintained all Delta Kappa Alpha film production equipment.
+• Protected, maintained, insured, and managed check-ins and check-outs of chapter-owned production equipment.
+• Promoted resourceful equipment practices and Do-It-Yourself solutions and instructions.
+• Provided school resource information, emerging technology news, local rental/purchase options and rates, equipment training sessions equipment educational resources, local vendor visits, equipment insurance policies, etc.
+
+
+
+Technical Director, Global Technology
+Company Name Pixar Animation Studios
+Dates Employed May 2019 – Aug 2019
+Employment Duration 4 mos
+Location Emeryville, CA
+• Optimized depth rasterizer using back face culling and improved quad-splitting algorithm, resulting in 58% speed increase in 4 lines of code.
+• Researched and implemented scalable silhouette detection for use with 100+ characters per shot
+• Utilized Python and C++ (PyQT/QT) to redesign UI of a Katana Plugin used by Lighting department to interact with proprietary scene optimization algorithms, removing all manual text inputs
+
+
+
+Computer Vision Researcher
+Company Name UC Berkeley Video and Image Processing Lab
+Dates Employed Jan 2019 – May 2019
+Employment Duration 5 mos
+Location Berkeley, CA
+• Led and completed a thorough six-person team literature survey in less than a week
+• Spearheaded mobile 3D object detection project for use with indoor RGB-D images
+• Successfully reimplemented a Caffe (C++) implementation of an accurate RGB-D neural network, computer vision, object detection architecture in Tensorflow (Python) for use on mobile devices. ("Amodal Detection of 3D Objects: Inferring 3D Bounding Boxes from 2D Ones in RGB-Depth Images", Deng et al.).
+
+
+
+Research and Development Data Scientist / Software Engineer
+Company Name Blackwood Seven, North America
+Dates Employed May 2018 – Aug 2018
+Employment Duration 4 mos
+Location Greater Los Angeles Area
+• Aggregated, standardized, and analyzed entire statistical marketing model history of 5,000+ models by building a seamless, automatic, end-to-end pipeline, determining critical high-level statistics of marketing models to inform clients, executives, and team.
+• Eliminated thousands of hours of tedious future work by utilizing good design practices in all code, automatically including new models, clients, and analysis techniques.
+• Designed and implemented algorithms for object clustering, data population, and seamless pipeline flow between R modeling and SQL storage databases.
+• Extracted and visualized actionable insights in a presentation and research paper for the CEO.
+• Collaborated with marketing scientists to structure development to department needs and standards.
+• Prototyped a social media listening platform using carry-over analysis and graph-based social network analysis on Twitter API data.
+
+
+
+Design Assistant
+Company Name Bauer Design Group
+Dates Employed Jun 2016 – May 2018
+Employment Duration 2 yrs
+Location Tustin, CA
+• Offer a second and final eye in sourcing and selecting finish materials for interior design projects.
+• Photograph and film design details to accentuate client presentations and marketing materials for contract clients and real estate developments.
+
+
+
+Analyst
+Company Name Newport Coast Capital Management, LLC
+Dates Employed Mar 2015 – May 2018
+Employment Duration 3 yrs 3 mos
+Location Newport Beach, CA
+• Researched prospective investments, aggregated corresponding data, and performed due diligence, working with a team of other analysts to finalize a rent-to-sell strategy for 200 homes with a seven-year profit outlook of $20,000,000.
+
+
+
+1st Assistant Camera / Production Assistant
+Company Name Arrinootka Films / SOVRN Skateboards
+Dates Employed May 2017 – Sep 2017
+Employment Duration 5 mos
+LocationGreater Los Angeles Area
+• Identified and met on-set demand for work, supplies, and errands across multiple filmmaking departments.
+• Facilitated complex shots and maintained shooting efficiency by assisting the Director of Photography with lens and camera execution and troubleshooting.
+• Planned and executed operational logistics of mid-size (20-30 person) music video shoots to enable artists to focus on their craft.
+• Crafted secondary angles and “B-roll” shots to accentuate the work of the Director of Photography and further document and dramatize skateboard tricks and scenery.
+• Documented the behind-the-scenes events of music video and skateboard shoots to make a marketable BTS videos to accompany each shoot.
+
+
+
+Shop Videographer
+Company Name Pharmacy Boardshop
+Dates Employed Oct 2016 – May 2017
+Employment Duration 8 mos
+Location Anaheim Hills, CA
+• Independently created skateboarding videos and product videos for marketing applications.
+
+
+
+Digital Marketing Assistant
+Company Name Woodward West
+Dates Employed Jul 2015
+Employment Duration 1 mo
+Location Tehachapi, CA
+• Independently created five, three-minute montages, one of which generated over 146K views on YouTube.
