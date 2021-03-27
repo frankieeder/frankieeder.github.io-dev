@@ -165,6 +165,7 @@ function renderBody() {
         }
         Promise.all(template_texts).then(
             templates => {
+                debugger;
                 var partials = {
                     photo_scrollbox: templates[1],
                     image: templates[2],
