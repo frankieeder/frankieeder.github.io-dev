@@ -1,16 +1,10 @@
-<div
+<iframe
         id="vimeo_{{vimeo_count}}"
-        vimeo-data-id="{{vimeo}}"
-        class="vimeo_embed {{^thumbnail}}iframe-container{{/thumbnail}} {{#thumbnail}}thumbnails thumbsmall{{/thumbnail}}"
-        {{#aspect_ratio}}style="padding-top: {{.}};"{{/aspect_ratio}}
-        {{#thumbnail}}style="height: 250px"{{/thumbnail}}>
-    <iframe
-            src="https://player.vimeo.com/video/{{vimeo}}?background=1"
-            frameborder="0"
-            allow="autoplay; fullscreen"
-            allowfullscreen
-            {{#loopstart}}loopstart="{{.}}"{{/loopstart}}
-            {{#loopend}}loopend="{{.}}"{{/loopend}}
-    ></iframe>
-</div>
+        src="https://player.vimeo.com/video/{{vimeo}}?background=1"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        allowfullscreen
+        {{#loopstart}}loopstart="{{.}}"{{/loopstart}}
+        {{#loopend}}loopend="{{.}}"{{/loopend}}
+></iframe>
 
