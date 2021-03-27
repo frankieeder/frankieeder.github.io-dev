@@ -1,10 +1,15 @@
-<iframe
-        id="vimeo_{{vimeo_count}}"
-        src="https://player.vimeo.com/video/{{vimeo}}?background=1"
+<div
+    id="vimeo_{{vimeo_count}}"
+    class="iframe-container"
+    style="{{#aspect_ratio}}padding-top: {{.}};{{/aspect_ratio}}"
+>
+    <iframe
+        src="https://player.vimeo.com/video/{{vimeo}}{{#thumbnail}}?background=1{{/thumbnail}}"
         frameborder="0"
-        allow="autoplay; fullscreen"
+        {{#thumbnail}}allow="autoplay; fullscreen"{{/thumbnail}}
         webkitallowfullscreen mozallowfullscreen allowfullscreen
         {{#loopstart}}loopstart="{{.}}"{{/loopstart}}
         {{#loopend}}loopend="{{.}}"{{/loopend}}
-></iframe>
+    ></iframe>
+</div>
 
