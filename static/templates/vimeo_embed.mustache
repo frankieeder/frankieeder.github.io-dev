@@ -1,6 +1,6 @@
 <div
     id="vimeo_{{vimeo_count}}"
-    {{^thumbnail}}class="iframe-container"{{/thumbnail}}
+    class="vimeo_embed {{^thumbnail}}iframe-container{{/thumbnail}}"
     {{#aspect_ratio}}style="padding-top: {{.}};"{{/aspect_ratio}}
 >
     <iframe
