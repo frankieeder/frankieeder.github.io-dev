@@ -279,15 +279,310 @@ var CONTENT = {
                 {title: "Concatenations II"},
                 {
                     type_photo_scrollbox: true,
-                    dir_prefix: "img/concatenations2/",
+                    dir_prefix: "concatenations2/",
+                    ext: "jpg",
                     scrollcontent: [
-                        {img: "andy", ext: "jpg"},
+                        {img: "andy"},
+                        {img: "jake"},
+                        {img: "jonah"},
+                        {img: "kiva"},
+                        {img: "olive"},
+                        {img: "quinn"},
+                        {img: "sofia"},
+                        {img: "steve"},
                     ],
                 },
+                {subsubtitle: "Created by algorithmically combining, filtering, and disfiguring sequenced images of LGBTQ+ individuals, Concatenations II investigates and deconstructs ideas of queer visual representation, recognition, censorship, and identity in a modern-day technology-driven socioeconomic landscape."},
+            ],
+        },
+        {
+            tags: ['frankie_eder', 'science', 'research'],
+            rows: [
+                {title: "Decoding Consumer Grade Video for Film"},
+                {subsubtitle: "Flow-Informed Artifact Removal, Chroma Upsampling, and Bit Depth Interpolation"},
+                // TODO: Button Partial?
+                {html: '<a class="github-button" href="sci/dcgvf.pdf" target="_blank">PAPER</a>'},
+                {html: '<a class="github-button" href="sci/dcgvf-slides.pdf" target="_blank">SLIDES</a>'},
+                {html: '<a class="github-button" href="https://github.com/frankieeder/DCGVF" target="_blank">CODE</a>'},
+            ],
+        },
+        {
+            tags: ['frankie_eder', 'science', 'research'],
+            rows: [
+                {title: "Cinematic Colorization"},
+                {subsubtitle: "Analyzes the spatial and temporal characteristics of color in cinema using a newly collected dataset of 1800+ trailers. Utilizes knowledge gained to explore color-based genre classification and automatic color grading. Completed collaboratively with UC Berkeley Visual Computing Lab, Cecilia Zhang (PhD, UC Berkeley), and Vivien Nguyen (MS, UC Berkeley)"},
+                // TODO: Button Partial?
+                {html: `
+                    <div class="iframe-container">
+                        <iframe src="https://drive.google.com/file/d/1kZudI41b62Z7rBQ4CzV6x_PH54JC-y11/preview"></iframe>
+                    </div>
+                `},
+                {html: '<div style="height: 25px"></div>'},
+                {html: '<a class="github-button" href="sci/cinema-color.pdf" target="_blank">PAPER</a>'},
+                {html: '<a class="github-button" href="sci/cinema-color-slides.pdf" target="_blank">SLIDES</a>'},
+                {html: '<a class="github-button" href="https://github.com/viviehn/cinematic-color" target="_blank">CODE</a>'},
+            ],
+        },
+        {
+            tags: ['film', 'commercial'],
+            rows: [
+                {title: "HIDDEN UNDERWORLD SUMMER 2019"},
+                {subtitle: "(a promotional fashion video)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '338578508',
+                },
+            ],
+        },
+        {
+            tags: ['art', 'experimental', 'portfolio', 'animation'],
+            rows: [
+                {title: "PIEL"},
+                {subtitle: "(an expirimental animated short in progress)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '316463725',
+                },
+            ],
+        },
+        {
+            tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'skateboarding', 'portfolio'],
+            rows: [
+                {title: "MUTUAL TRANSGRESSION - RAY COREY & CARLOS MONTES"},
+                {subtitle: "(a skateboard film series focusing on quality over quantity)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '242977518',
+                },
+                {
+                    type_vimeo: true,
+                    vimeo: '242974620',
+                },
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
+        {
+            tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'skateboarding', 'portfolio'],
+            rows: [
+                {title: "MUTUAL TRANSGRESSION V"},
+                {subtitle: "(a skateboard film series focusing on quality over quantity)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '244111603',
+                    aspect_ratio: "41.43%",
+                },
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
+        {
+            tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'skateboarding', 'portfolio'],
+            rows: [
+                {title: "MUTUAL TRANSGRESSION IV"},
+                {subtitle: "(a skateboard film series focusing on quality over quantity)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '242981195',
+                    aspect_ratio: "41.43%",
+                },
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
+        {
+            tags: ['film', 'skateboarding'],
+            rows: [
+                {title: "MIKEY TAYLOR - UNSEEN VX FOOTAGE"},
+                {subsubtitle: "cw: flashing lights"},
+                {html: `
+                    <div class="iframe-container">
+                        <iframe src="https://www.youtube.com/embed/WOb1MiGv8zY?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                `},
+                {credits: "Editor"},
+            ],
+        },
+        {
+            tags: ['skateboarding'],
+            rows: [
+                {title: "MT MINI 1 - MATTHEW PARRA"},
+                {subtitle: "(an addendum to the Mutual Transgression skateboard film series)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '236264604',
+                    aspect_ratio: "41.43%",
+                },
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
+        {
+            tags: ['skateboarding'],
+            rows: [
+                {title: "MUTUAL TRANSGRESSION II & III"},
+                {subtitle: "(a skateboard film series focusing on quality over quantity)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '221785926',
+                    aspect_ratio: "41.43%",
+                },
+                {
+                    type_vimeo: true,
+                    vimeo: '224680558',
+                    aspect_ratio: "41.43%",
+                },
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
+        {
+            tags: ['film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'skateboarding', 'portfolio'],
+            rows: [
+                {title: "MUTUAL TRANSGRESSION I (ARCK)"},
+                {subtitle: "(a skateboard film series focusing on quality over quantity)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '221788978',
+                    aspect_ratio: "41.43%",
+                },
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
+        {
+            tags: ['skateboarding'],
+            rows: [
+                {title: "MUTUAL TRANSGRESSION PROMO"},
+                {subtitle: "(a skateboard film series focusing on quality over quantity)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '221787496',
+                    aspect_ratio: "41.43%",
+                },
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
+        {
+            tags: ['film', 'portfolio'],
+            rows: [
+                {html: `
+                    <h2><a href="https://vimeo.com/221785926">MUTUAL TRANSGRESSION II</a></h2>
+                    <h2><a href="https://vimeo.com/224680558">MUTUAL TRANSGRESSION III</a></h2>
+                    <h2><a href="https://vimeo.com/221787496">MUTUAL TRANSGRESSION PROMO</a></h2>
+                `},
+            ],
+        },
+        {
+            tags: ['music'],
+            rows: [
+                {title: "DYLAN MEDLOCK - ALMOST ALWAYS"},
+                {subtitle: "(a take-away style music performance)"},
+                {
+                    type_vimeo: true,
+                    vimeo: '357292232',
+                    aspect_ratio: "75%",
+                },
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
+        {
+            tags: ['music'],
+            rows: [
+                {title: "WILFRED BONES - START SOUND"},
+                {subsubtitle: "cw: flashing lights"},
+                {html: `
+                    <div class="iframe-container" style="padding-top: 41.43%;">
+                        <iframe src="https://www.youtube.com/embed/5JhgNs0j7hc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                `},
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
+        {
+            tags: ['music'],
+            rows: [
+                {title: "KIVA UHURU - SHADES OF BLUE"},
+                {subtitle: "(a take-away style music performance)"},
+                {html: `
+                    <div class="iframe-container" style="padding-top: 41.43%;">
+                        <iframe src="https://www.youtube.com/embed/5JhgNs0j7hc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                `},
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
+        {
+            tags: ['skateboarding'],
+            rows: [
+                {title: "SHOULDA COULDA WOULDA - CONCEPT EDIT"},
+                {subtitle: "(a full-length skate film)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '196241144',
+                },
+                {credits: "Director, Director of Photography, Editor"},
+            ],
+        },
+        {
+            tags: ['skateboarding'],
+            rows: [
+                {title: "PARKTAGE3"},
+                {
+                    type_vimeo: true,
+                    vimeo: '478344244',
+                },
+                {credits: "Director, Director of Photography, Editor"},
+            ],
+        },
+        {
+            tags: ['skateboarding'],
+            rows: [
+                {title: "BABYLON"},
+                {subtitle: "(a focused short skate film)"},
+                {
+                    type_vimeo: true,
+                    vimeo: '477411214',
+                },
+                {credits: "Director, Director of Photography, Editor"},
+                {html: "<h5>Awards: <i>Honorable Mention in Sports Category</i>, SoCal Student Film Festival, 2017</h5>"},
+            ],
+        },
+        {
+            tags: ['experimental', 'animation'],
+            rows: [
+                {title: "WEIGHT"},
+                {subtitle: "(an experimental stop-motion film)"},
+                {
+                    type_vimeo: true,
+                    vimeo: '182605434',
+                    aspect_ratio: '41.43%',
+                },
+                {credits: "Director, Director of Photography, Editor"},
+                {html: "<h5>Awards: <i>Honorable Mention in Sports Category</i>, SoCal Student Film Festival, 2017</h5>"},
+            ],
+        },
+        {
+            tags: ['narrative', 'shot_by'],
+            rows: [
+                {title: "SHEEP AND GOATS"},
+                {html: `
+                    <div class="iframe-container">
+                        <iframe src="https://www.youtube.com/embed/ZxNIRfgedfg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                `},
+                {credits: "Director of Photography"},
+                {html: "<h5>Awards: <i>Best Cinematography</i>, CineBears Film Festival 2017</h5>"},
             ],
         },
 
 
+
+// TODO: Vimeo Thumbnails
 //        {
 //            tags: ['frankie_eder', 'art'],
 //            rows: [
