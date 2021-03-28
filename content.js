@@ -17,7 +17,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['portfolio', 'frankie_eder'],
+            tags: ['portfolio'],
             rows: [
                 {title: "CAMERA OBSCURA"},
                 {subtitle: "(narrative featurette film)"},
@@ -499,7 +499,7 @@ var CONTENT = {
                         <iframe src="https://www.youtube.com/embed/5JhgNs0j7hc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 `},
-                {credits: "Director, Director of Photography, Editor, Colorist"},
+                {credits: "Director of Photography, Editor, Colorist"},
             ],
         },
         {
@@ -507,11 +507,11 @@ var CONTENT = {
             rows: [
                 {title: "KIVA UHURU - SHADES OF BLUE"},
                 {subtitle: "(a take-away style music performance)"},
-                {html: `
-                    <div class="iframe-container" style="padding-top: 41.43%;">
-                        <iframe src="https://www.youtube.com/embed/5JhgNs0j7hc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                `},
+                {
+                    type_vimeo: true,
+                    vimeo: '383403898',
+                    aspect_ratio: "75%",
+                },
                 {credits: "Director, Director of Photography, Editor, Colorist"},
             ],
         },
