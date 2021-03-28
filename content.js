@@ -104,15 +104,16 @@ var CONTENT = {
                 {subsubtitle: "2020-08-13"},
                 {
                     type_photo_scrollbox: true,
+                    dir_prefix: '67/',
                     scrollcontent: [
-                        {img: "67/DSC00378", ext: "jpeg"},
-                        {img: "67/DSC00384", ext: "jpeg"},
-                        {img: "67/DSC00398", ext: "jpeg"},
-                        {img: "67/DSC00476", ext: "jpeg"},
-                        {img: "67/DSC00369", ext: "jpeg"},
-                        {img: "67/DSC00417", ext: "jpeg"},
-                        {img: "67/DSC00459", ext: "jpeg"},
-                        {img: "67/DSC00469", ext: "jpeg"},
+                        {img: "DSC00378", ext: "jpeg"},
+                        {img: "DSC00384", ext: "jpeg"},
+                        {img: "DSC00398", ext: "jpeg"},
+                        {img: "DSC00476", ext: "jpeg"},
+                        {img: "DSC00369", ext: "jpeg"},
+                        {img: "DSC00417", ext: "jpeg"},
+                        {img: "DSC00459", ext: "jpeg"},
+                        {img: "DSC00469", ext: "jpeg"},
                     ],
                 },
             ],
@@ -124,11 +125,13 @@ var CONTENT = {
                 {subsubtitle: "2020-08-13"},
                 {
                     type_photo_scrollbox: true,
+                    dir_prefix: '66/',
+                    ext: "jpeg",
                     scrollcontent: [
-                        {img: "66/DSC00267", ext: "jpeg"},
-                        {img: "66/DSC00304", ext: "jpeg"},
-                        {img: "66/DSC00306", ext: "jpeg"},
-                        {img: "66/DSC00361", ext: "jpeg"},
+                        {img: "DSC00267"},
+                        {img: "DSC00304"},
+                        {img: "DSC00306"},
+                        {img: "DSC00361"},
                     ],
                 },
             ],
@@ -147,7 +150,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['art', 'still', 'photography', 'landscape'],
+            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape'],
             rows: [
                 {title: "Pacific Coast II"},
                 {subtitle: "Martinez, CA"},
@@ -155,14 +158,136 @@ var CONTENT = {
                 {
                     type_photo_scrollbox: true,
                     dir_prefix: "65/",
+                    ext: "jpeg",
                     scrollcontent: [
-                        {img: "DSC01738", ext: "jpeg"},
-                        {img: "DSC01667", ext: "jpeg"},
-                        {img: "DSC01677", ext: "jpeg"},
-                        {img: "DSC01694", ext: "jpeg"},
-                        {img: "DSC01709", ext: "jpeg"},
-                        {img: "DSC01716", ext: "jpeg"},
-                        {img: "DSC01731", ext: "jpeg"},
+                        {img: "DSC01738"},
+                        {img: "DSC01667"},
+                        {img: "DSC01677"},
+                        {img: "DSC01694"},
+                        {img: "DSC01709"},
+                        {img: "DSC01716"},
+                        {img: "DSC01731"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape'],
+            rows: [
+                {title: "Pacific Coast I"},
+                {subtitle: "Stinson Beach, CA"},
+                {subsubtitle: "2020-12-13"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "64/",
+                    ext: "jpeg",
+                    scrollcontent: [
+                        {img: "DSC00452"},
+                        {img: "DSC00457"},
+                        {img: "DSC00469"},
+                        {img: "DSC00478"},
+                        {img: "DSC00480"},
+                    ],
+                },
+            ],
+        },
+        {
+            // TODO: Add Architecture tag
+            // TODO: Add landscape tag
+            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape', 'architecture'],
+            rows: [
+                {title: "Movie Theater I"},
+                {subtitle: "Dublin, CA"},
+                {subsubtitle: "2020-11-22"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "63/",
+                    ext: "jpeg",
+                    scrollcontent: [
+                        {img: "DSC01619"},
+                        {img: "DSC01628"},
+                        {img: "DSC01613"},
+                        {img: "DSC01623"},
+                        {img: "DSC01616"},
+                        {img: "DSC01621"},
+                        {img: "DSC01625"},
+                        {img: "DSC01635"},
+                        {img: "DSC01630"},
+                        {img: "DSC01640"},
+                        {img: "DSC01646"},
+                        {img: "DSC01611"},
+                        {img: "DSC01643"},
+                        {img: "DSC01608"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['art', 'still', 'photography', 'landscape'],
+            rows: [
+                {title: "Patterson Pass"},
+                {subtitle: "Tracy, CA"},
+                {subsubtitle: "2020-11-22"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "62/",
+                    ext: "jpeg",
+                    scrollcontent: [
+                        {img: "DSC01469"},
+                        {img: "DSC01506"},
+                        {img: "DSC01537"},
+                        {img: "DSC01332"},
+                        {img: "DSC01336"},
+                        {img: "DSC01542"},
+                        {img: "DSC01574"},
+                        {img: "DSC01584"},
+                        {img: "DSC01566"},
+                        {img: "DSC01566"},
+                        {img: "DSC01375"},
+                        {img: "DSC01234"},
+                        {img: "DSC01391"},
+                        {img: "DSC01424"},
+                        {img: "DSC01451"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape'],
+            rows: [
+                {title: "Smoke over Silverlake"},
+                {subtitle: "Silverlake, CA"},
+                {subsubtitle: "2020-09-11"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "75/",
+                    ext: "jpeg",
+                    scrollcontent: [
+                        {img: "DSC00986"},
+                        {img: "DSC01102"},
+                        {img: "DSC01085"},
+                        {img: "DSC01112"},
+                        {img: "DSC00963"},
+                        {img: "DSC00958"},
+                        {img: "DSC01060"},
+                        {img: "DSC00974"},
+                        {img: "DSC01014"},
+                        {img: "DSC01003"},
+                        {img: "DSC01053"},
+                        {img: "DSC01044"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['frankie_eder', 'art', 'still', 'manipulated'],
+            rows: [
+                {title: "Concatenations II"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "img/concatenations2/",
+                    scrollcontent: [
+                        {img: "andy", ext: "jpg"},
                     ],
                 },
             ],
@@ -191,49 +316,6 @@ var CONTENT = {
 //                },
 //            ],
 //        },
-        {
-            tags: ['frankie_eder', 'art'],
-            rows: [
-                {title: "Crow's Landing I"},
-                {subtitle: "2020-08-13"},
-                {
-                    type_photo_scrollbox: true,
-                    scrollcontent: [
-                        {img: "67/DSC00378", ext: "jpeg"},
-                        {img: "67/DSC00384", ext: "jpeg"},
-                    ],
-                },
-            ],
-        }, {
-            tags: ['frankie_eder'],
-            rows: [
-                {title: "Crow's Landing I"},
-                {subtitle: "2020-08-13"},
-                {
-                    type_photo_scrollbox: true,
-                    scrollcontent: [
-                        {img: "67/DSC00378", ext: "jpeg"},
-                        {img: "67/DSC00384", ext: "jpeg"},
-                        {img: "67/DSC00378", ext: "jpeg"},
-                    ],
-                },
-            ],
-        }, {
-            tags: ['frankie_eder', 'art', 'film'],
-            rows: [
-                {title: "Crow's Landing I"},
-                {subtitle: "2020-08-13"},
-                {
-                    type_photo_scrollbox: true,
-                    scrollcontent: [
-                        {img: "67/DSC00378", ext: "jpeg"},
-                        {img: "67/DSC00384", ext: "jpeg"},
-                        {img: "67/DSC00378", ext: "jpeg"},
-                        {img: "67/DSC00384", ext: "jpeg"},
-                    ],
-                },
-            ],
-        },
     ]
 
 }
