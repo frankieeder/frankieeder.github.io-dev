@@ -55,6 +55,7 @@ function updateNav() {
 
     // Close all navigation
     // Inefficient, but should work fine with the limited number of NAV items
+    debugger;
     var navLis = NAV.querySelectorAll('li')
     //console.log("navlis", navLis);
     var targetLi;
@@ -63,7 +64,7 @@ function updateNav() {
         navLis[i].classList.add('nav_inactive');
         navLis[i].classList.remove('nav_active');
         //console.log('hi after', navLis[i], navLis[i].classList);
-        if (navLis[i].querySelector('a').textContent == CURRENT_FILTER) {
+        if (navLis[i].id == CURRENT_FILTER) {
             targetLi = navLis[i];
         }
     }
@@ -74,7 +75,7 @@ function updateNav() {
         //console.log(targetLi.tagName);
         // Expand the target and parents
         while (targetLi.tagName == 'LI') {
-            var txt = targetLi.querySelector('a').textContent;
+            var txt = targetLi.id;
             //console.log(targetLi, txt);
             hierarchy.unshift(txt);
             targetLi.classList.add('nav_active');
@@ -105,7 +106,7 @@ function enableNav() {
         var li = navItems[i].parentNode;
         // Make sure the parents of all clickable elements are inactive to hide
         li.classList.toggle('nav_inactive');
-        var filter_text = navItems[i].textContent.replace(" ", "_ ");
+        var filter_text = navItems[i].textContent.replace(" ", "_");
         console.log("Filter_text", filter_text);
         li.id = filter_text;
         // Add Click Functionality
@@ -113,7 +114,6 @@ function enableNav() {
             //console.log('filtering from click?');
             var li = this.parentNode;
 
-            debugger;
             // Toggle Visibility & Color by changing classes
             li.classList.toggle('nav_active');
             li.classList.toggle('nav_inactive');
@@ -226,7 +226,7 @@ function prepVimeoThumbnails() {
     for (var i = 0; i < vimeos.length; i++) {
         // Nest function to preserve references to distinct local variables
         (function() {
-            debugger;
+            //debugger;
             var vimeo_div_id = vimeos[i].id;
             var player = new Vimeo.Player(vimeo_div_id);
             //console.log(player);
