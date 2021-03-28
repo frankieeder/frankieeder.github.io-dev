@@ -151,7 +151,8 @@ function getTemplates() {
     var photo_scrollbox = fetch('static/templates/photo_scrollbox.mustache');
     var image = fetch('static/templates/image.mustache');
     var vimeo_embed = fetch('static/templates/vimeo_embed.mustache');
-    return [contents, photo_scrollbox, image, vimeo_embed];
+    var youtube_embed = fetch('static/templates/youtube_embed.mustache');
+    return [contents, photo_scrollbox, image, vimeo_embed, youtube_embed];
 }
 
 function renderBody() {
@@ -172,6 +173,7 @@ function renderBody() {
                     photo_scrollbox: templates[1],
                     image: templates[2],
                     vimeo_embed: templates[3],
+                    youtube_embed: templates[4],
                 }
                 //console.log("Partials:", partials)
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);

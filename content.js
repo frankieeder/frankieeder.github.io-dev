@@ -397,11 +397,10 @@ var CONTENT = {
             rows: [
                 {title: "MIKEY TAYLOR - UNSEEN VX FOOTAGE"},
                 {subsubtitle: "cw: flashing lights"},
-                {html: `
-                    <div class="iframe-container">
-                        <iframe src="https://www.youtube.com/embed/WOb1MiGv8zY?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                `},
+                {
+                    type_youtube: true,
+                    youtube: "WOb1MiGv8zY",
+                },
                 {credits: "Editor"},
             ],
         },
@@ -494,11 +493,11 @@ var CONTENT = {
             rows: [
                 {title: "WILFRED BONES - START SOUND"},
                 {subsubtitle: "cw: flashing lights"},
-                {html: `
-                    <div class="iframe-container" style="padding-top: 41.43%;">
-                        <iframe src="https://www.youtube.com/embed/5JhgNs0j7hc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                `},
+                {
+                    type_youtube: true,
+                    youtube: "5JhgNs0j7hc",
+                    aspect_ratio: "41.43%",
+                },
                 {credits: "Director of Photography, Editor, Colorist"},
             ],
         },
@@ -570,11 +569,11 @@ var CONTENT = {
             tags: ['narrative', 'shot_by'],
             rows: [
                 {title: "SHEEP AND GOATS"},
-                {html: `
-                    <div class="iframe-container">
-                        <iframe src="https://www.youtube.com/embed/ZxNIRfgedfg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                `},
+                {
+                    type_youtube: true,
+                    youtube: "ZxNIRfgedfg",
+                    aspect_ratio: '41.43%',
+                },
                 {credits: "Director of Photography"},
                 {html: "<h5>Awards: <i>Best Cinematography</i>, CineBears Film Festival 2017</h5>"},
             ],
