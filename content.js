@@ -106,14 +106,14 @@ var CONTENT = {
                     type_photo_scrollbox: true,
                     dir_prefix: '67/',
                     scrollcontent: [
-                        {img: "DSC00378", ext: "jpeg"},
-                        {img: "DSC00384", ext: "jpeg"},
-                        {img: "DSC00398", ext: "jpeg"},
-                        {img: "DSC00476", ext: "jpeg"},
-                        {img: "DSC00369", ext: "jpeg"},
-                        {img: "DSC00417", ext: "jpeg"},
-                        {img: "DSC00459", ext: "jpeg"},
-                        {img: "DSC00469", ext: "jpeg"},
+                        {img: "DSC00378"},
+                        {img: "DSC00384"},
+                        {img: "DSC00398"},
+                        {img: "DSC00476"},
+                        {img: "DSC00369"},
+                        {img: "DSC00417"},
+                        {img: "DSC00459"},
+                        {img: "DSC00469"},
                     ],
                 },
             ],
@@ -126,7 +126,6 @@ var CONTENT = {
                 {
                     type_photo_scrollbox: true,
                     dir_prefix: '66/',
-                    ext: "jpeg",
                     scrollcontent: [
                         {img: "DSC00267"},
                         {img: "DSC00304"},
@@ -144,7 +143,7 @@ var CONTENT = {
                 {
                     type_photo_scrollbox: true,
                     scrollcontent: [
-                        {img: "68/DSC00171", ext: "jpeg"},
+                        {img: "68/DSC00171"},
                     ],
                 },
             ],
@@ -158,7 +157,6 @@ var CONTENT = {
                 {
                     type_photo_scrollbox: true,
                     dir_prefix: "65/",
-                    ext: "jpeg",
                     scrollcontent: [
                         {img: "DSC01738"},
                         {img: "DSC01667"},
@@ -180,7 +178,6 @@ var CONTENT = {
                 {
                     type_photo_scrollbox: true,
                     dir_prefix: "64/",
-                    ext: "jpeg",
                     scrollcontent: [
                         {img: "DSC00452"},
                         {img: "DSC00457"},
@@ -202,7 +199,6 @@ var CONTENT = {
                 {
                     type_photo_scrollbox: true,
                     dir_prefix: "63/",
-                    ext: "jpeg",
                     scrollcontent: [
                         {img: "DSC01619"},
                         {img: "DSC01628"},
@@ -231,7 +227,6 @@ var CONTENT = {
                 {
                     type_photo_scrollbox: true,
                     dir_prefix: "62/",
-                    ext: "jpeg",
                     scrollcontent: [
                         {img: "DSC01469"},
                         {img: "DSC01506"},
@@ -261,7 +256,6 @@ var CONTENT = {
                 {
                     type_photo_scrollbox: true,
                     dir_prefix: "75/",
-                    ext: "jpeg",
                     scrollcontent: [
                         {img: "DSC00986"},
                         {img: "DSC01102"},

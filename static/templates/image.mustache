@@ -1,6 +1,6 @@
 {{!
 TODO: Add thumb or lq depending on if it's a scrollbox or not?
 }}
-<a href="img/{{dir_prefix}}{{img}}.{{ext}}" target="_blank">
-    <img src="img/{{dir_prefix}}{{img}}_thumb.{{ext}}" alt="pic" border="0">
+<a href="img/{{dir_prefix}}{{img}}.{{ext}}{{^ext}}jpeg{{/ext}}" target="_blank">
+    <img src="img/{{dir_prefix}}{{img}}_thumb.{{ext}}{{^ext}}jpeg{{/ext}}" alt="pic" border="0">
 </a>
