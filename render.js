@@ -155,6 +155,7 @@ function getTemplates() {
         fetch('static/templates/youtube_embed.mustache'),
         fetch('static/templates/soundcloud_embed.mustache'),
         fetch('static/templates/bandcamp_embed.mustache'),
+        fetch('static/templates/standard_button.mustache'),
     ];
 }
 
@@ -179,6 +180,7 @@ function renderBody() {
                     youtube_embed: templates[4],
                     soundcloud_embed: templates[5],
                     bandcamp_embed: templates[6],
+                    standard_button: templates[7],
                 }
                 //console.log("Partials:", partials)
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);
