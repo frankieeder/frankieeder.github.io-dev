@@ -2,15 +2,11 @@ var DEFAULT_FILTER = 'frankie_eder';
 var CURRENT_FILTER = DEFAULT_FILTER;
 var args = getUrlVars();
 var NAV;
-//var Vimeo = require('vimeo').Vimeo;
 
-//console.log("Content:", CONTENT, filteredContent())
 // Trigger URL args as filter, if existent
-//console.log("argsnav", args, NAV);
 if (args.page) {
     CURRENT_FILTER = args.page;
 }
-//console.log("ahh", CURRENT_FILTER, NAV);
 
 function getUrlVars() {
     /*
@@ -37,7 +33,6 @@ function filteredContent() {
     };
     console.log("Current Filter:", CURRENT_FILTER);
     function contentFilter(post) {
-        //console.log("Attempting to filter post:", post, this.filter);
         var released = true;
         if (post.release_date) {
             debugger;
@@ -51,7 +46,6 @@ function filteredContent() {
     var new_content = {};
     Object.assign(new_content, CONTENT);
     new_content.contents = filtered_contents;
-    //console.log("infunf", CURRENT_FILTER, CONTENT, filtered)
     return new_content;
 }
 
@@ -64,35 +58,27 @@ function updateNav() {
 
     // Close all navigation
     // Inefficient, but should work fine with the limited number of NAV items
-    //debugger;
     var navLis = NAV.querySelectorAll('li')
-    //console.log("navlis", navLis);
     var targetLi;
     for (var i = 0; i < navLis.length; i++) {
-        //console.log('hi before', navLis[i], navLis[i].classList);
         navLis[i].classList.add('nav_inactive');
         navLis[i].classList.remove('nav_active');
-        //console.log('hi after', navLis[i], navLis[i].classList);
         if (navLis[i].id == CURRENT_FILTER) {
             targetLi = navLis[i];
         }
     }
-    //console.log("targetLi:", targetLi);
     // Expand relevant nav dropdowns if the filter is found
     var hierarchy = [];
     if (targetLi) {
-        //console.log(targetLi.tagName);
         // Expand the target and parents
         while (targetLi.tagName == 'LI') {
             var txt = targetLi.id;
-            //console.log(targetLi, txt);
             hierarchy.unshift(txt);
             targetLi.classList.add('nav_active');
             targetLi.classList.remove('nav_inactive');
             targetLi = targetLi.parentNode.parentNode; // heirarchy parent is two DOM levels up
         }
     }
-    //console.log(hierarchy);
     return hierarchy;
 }
 
@@ -110,7 +96,6 @@ function enableNav() {
     */
     // Select all clickable navigation elements
     var navItems = NAV.querySelectorAll('nav a');
-    //console.log("Navitemsenablenave", navItems)
     for (var i = 0; i < navItems.length; i++) {
         var li = navItems[i].parentNode;
         // Make sure the parents of all clickable elements are inactive to hide
@@ -120,7 +105,6 @@ function enableNav() {
         li.id = filter_text;
         // Add Click Functionality
         navItems[i].onclick = function() {
-            //console.log('filtering from click?');
             var li = this.parentNode;
 
             // Toggle Visibility & Color by changing classes
@@ -149,7 +133,6 @@ function enableNav() {
             updateFilter(newFilter);
         }
     }
-    //console.log('nav anchors after', navItems);
 }
 
 function getTemplates() {
@@ -172,7 +155,6 @@ function renderBody() {
     /*
     Renders our filtered content using the active CURRENT_FILTER.
     */
-    //console.log("RENDERING CONTENT", CONTENT, filteredContent());
     partials = {};
     Promise.all(getTemplates()).then(
       (result) => {
@@ -191,17 +173,15 @@ function renderBody() {
                     bandcamp_embed: templates[6],
                     standard_button: templates[7],
                 }
-                //console.log("Partials:", partials)
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);
                 document.getElementById('contents').innerHTML = rendered;
 
                 prepVimeoThumbnails(); // TODO: is this the best place?
             }
         )
-        //console.log(result, template_texts);
       },
       (error) => {
-         //console.log(error);
+         console.log(error);
       }
     );
 }
@@ -210,9 +190,7 @@ function initializeNav() {
     /*
     Initializes navigation after page load // TODO: ALL OF THESE NEED BETTER DOCS
     */
-    //console.log(document, NAV);
     NAV = document.getElementsByTagName('nav')[0];
-    //console.log(document, NAV);
     enableNav();
     refreshNav();
 
@@ -235,19 +213,12 @@ function initializePage() {
 }
 
 function prepVimeoThumbnails() {
-    //console.log("Iframes incoming...");
-    //debugger;
     var vimeos = document.querySelectorAll('.thumbnails div');
-    //console.log("HELLO", vimeos.length)
     for (var i = 0; i < vimeos.length; i++) {
         // Nest function to preserve references to distinct local variables
         (function() {
-            //debugger;
             var vimeo_div_id = vimeos[i].id;
             var player = new Vimeo.Player(vimeo_div_id);
-            //console.log(player);
-            //var destroyed = player.destroy();
-            //console.log(player, destroyed);
 
             var start = parseFloat(vimeos[i].getAttribute("loopstart"));
             var init = parseFloat(vimeos[i].getAttribute("loopthumb"));
@@ -323,8 +294,6 @@ function prepVimeoThumbnails() {
 //            }
         })();
     }
-    //console.log("Iframes incoming...", iframes);
-
 }
 
 function setVideoTime(player, seconds) {
