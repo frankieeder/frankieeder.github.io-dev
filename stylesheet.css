@@ -178,6 +178,7 @@ Contents / Posts
     text-decoration: none;
     color: white;
     background: rgba(0, 0, 0, 0.7);
+    margin-bottom: 50px;
 }
 
 #contents {
@@ -185,6 +186,8 @@ Contents / Posts
     margin: auto;
     text-align: center;
     color: white;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 /*
@@ -319,6 +322,10 @@ li.nav_inactive ul {
     float: center;
     clear: both;
 }
+.content:last-child{
+    border-width: 0px;
+}
+
 .content a {
 	text-align: left;
 }
