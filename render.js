@@ -27,7 +27,9 @@ function getUrlVars() {
 
 function filteredContent() {
     /*
-    Returns our Content JSON, but filtered to relevant info using CURRENT_FILTER
+    Returns the relevant content from our content JSON, but filtered as follows:
+    - Only includes content containing CURRENT_FILTER in the tags
+    - Only includes content with no release_date, or release_date < current datetime
     set by getUrlVars();
     */
     var context = {
@@ -36,7 +38,14 @@ function filteredContent() {
     console.log("Current Filter:", CURRENT_FILTER);
     function contentFilter(post) {
         //console.log("Attempting to filter post:", post, this.filter);
-        return post.tags.includes(this.filter);
+        var released = true;
+        if (post.release_date) {
+            debugger;
+            var release_date = new Date(post.release_date);
+            var now = new Date();
+            released = release_date < now;
+        }
+        return post.tags.includes(this.filter) && released;
     };
     var filtered_contents = CONTENT.contents.filter(contentFilter, context);
     var new_content = {};
@@ -55,7 +64,7 @@ function updateNav() {
 
     // Close all navigation
     // Inefficient, but should work fine with the limited number of NAV items
-    debugger;
+    //debugger;
     var navLis = NAV.querySelectorAll('li')
     //console.log("navlis", navLis);
     var targetLi;
