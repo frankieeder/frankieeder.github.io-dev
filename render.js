@@ -35,7 +35,6 @@ function filteredContent() {
     function contentFilter(post) {
         var released = true;
         if (post.release_date) {
-            debugger;
             var release_date = new Date(post.release_date);
             var now = new Date();
             released = release_date < now;
