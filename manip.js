@@ -116,6 +116,7 @@ function prepVimeoThumbnails() {
     for (var i = 0; i < vimeos.length; i++) {
         // Nest function to preserve references to distinct local variables
         (function() {
+            debugger;
             var player = new Vimeo.Player(vimeos[i]);
             var start = parseFloat(vimeos[i].getAttribute("loopstart"));
             var init = parseFloat(vimeos[i].getAttribute("loopthumb") ?? start);
