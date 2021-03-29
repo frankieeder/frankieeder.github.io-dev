@@ -152,7 +152,9 @@ function getTemplates() {
     var image = fetch('static/templates/image.mustache');
     var vimeo_embed = fetch('static/templates/vimeo_embed.mustache');
     var youtube_embed = fetch('static/templates/youtube_embed.mustache');
-    return [contents, photo_scrollbox, image, vimeo_embed, youtube_embed];
+    var soundcloud_embed = fetch('static/templates/soundcloud_embed.mustache');
+    var bandcamp_embed = fetch('static/templates/bandcamp_embed.mustache');
+    return [contents, photo_scrollbox, image, vimeo_embed, youtube_embed, soundcloud_embed, bandcamp_embed];
 }
 
 function renderBody() {
@@ -174,6 +176,8 @@ function renderBody() {
                     image: templates[2],
                     vimeo_embed: templates[3],
                     youtube_embed: templates[4],
+                    soundcloud_embed: templates[5],
+                    bandcamp_embed: templates[6],
                 }
                 //console.log("Partials:", partials)
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);

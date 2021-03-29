@@ -817,6 +817,138 @@ var CONTENT = {
                 },
             ],
         },
+        {
+            tags: ['mathematica'],
+            rows: [
+                {title: "N - 4"},
+                {
+                    type_image: true,
+                    dir_prefix: 'visual/full/',
+                    img: 'N - 4',
+                    ext: 'png',
+                },
+            ],
+        },
+        // SOUND
+        {
+            tags: ['audio', 'portfolio'],
+            rows: [
+                {
+                    type_soundcloud: true,
+                    soundcloud: 124602909,
+                },
+            ],
+        },
+        {
+            tags: ['audio', 'portfolio'],
+            rows: [
+                {
+                    type_soundcloud: true,
+                    soundcloud: 96819631,
+                },
+            ],
+        },
+        {
+            tags: ['audio'],
+            rows: [
+                {
+                    type_soundcloud: true,
+                    soundcloud: 282640338,
+                },
+            ],
+        },
+        {
+            tags: ['audio'],
+            rows: [
+                {
+                    type_soundcloud: true,
+                    soundcloud: 201123325,
+                },
+            ],
+        },
+        {
+            tags: ['audio'],
+            rows: [
+                {
+                    type_bandcamp: true,
+                    album: 467462218,
+                    track: 1052612252
+                },
+            ],
+        },
+        {
+            tags: ['audio'],
+            rows: [
+                {
+                    type_bandcamp: true,
+                    album: 467462218,
+                    track: 3006023100
+                },
+            ],
+        },
+        {
+            tags: ['audio'],
+            rows: [
+                {
+                    type_soundcloud: true,
+                    soundcloud: 97761985,
+                },
+            ],
+        },
+        {
+            tags: ['audio'],
+            rows: [
+                {
+                    type_soundcloud: true,
+                    soundcloud: 66437050,
+                },
+            ],
+        },
+        {
+            tags: ['audio'],
+            rows: [
+                {
+                    type_soundcloud: true,
+                    soundcloud: 223452063,
+                },
+            ],
+        },
+        {
+            tags: ['audio'],
+            rows: [
+                {
+                    type_soundcloud: true,
+                    soundcloud: 76637142,
+                },
+            ],
+        },
+        {
+            tags: ['audio'],
+            rows: [
+                {
+                    type_soundcloud: true,
+                    soundcloud: 76636963,
+                },
+            ],
+        },
+        {
+            tags: ['audio'],
+            rows: [
+                {
+                    type_soundcloud: true,
+                    soundcloud: 56977981,
+                },
+            ],
+        },
+        {
+            tags: ['audio'],
+            rows: [
+                {
+                    type_soundcloud: true,
+                    soundcloud: 48650330,
+                },
+            ],
+        },
 
 
 
