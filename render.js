@@ -145,16 +145,17 @@ function enableNav() {
 
 function getTemplates() {
     /*
-    Gets our template files, returning as a list.
+    Gets our template files, returning as a list of Promises.
     */
-    var contents = fetch('static/templates/contents.mustache');
-    var photo_scrollbox = fetch('static/templates/photo_scrollbox.mustache');
-    var image = fetch('static/templates/image.mustache');
-    var vimeo_embed = fetch('static/templates/vimeo_embed.mustache');
-    var youtube_embed = fetch('static/templates/youtube_embed.mustache');
-    var soundcloud_embed = fetch('static/templates/soundcloud_embed.mustache');
-    var bandcamp_embed = fetch('static/templates/bandcamp_embed.mustache');
-    return [contents, photo_scrollbox, image, vimeo_embed, youtube_embed, soundcloud_embed, bandcamp_embed];
+    return [
+        fetch('static/templates/contents.mustache'),
+        fetch('static/templates/photo_scrollbox.mustache'),
+        fetch('static/templates/image.mustache'),
+        fetch('static/templates/vimeo_embed.mustache'),
+        fetch('static/templates/youtube_embed.mustache'),
+        fetch('static/templates/soundcloud_embed.mustache'),
+        fetch('static/templates/bandcamp_embed.mustache'),
+    ];
 }
 
 function renderBody() {
