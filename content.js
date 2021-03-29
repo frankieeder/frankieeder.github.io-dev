@@ -31,7 +31,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'experimental', 'portfolio', 'skateboarding'],
+            tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'experimental', 'portfolio', 'skateboarding'],
             rows: [
                 {title: "MUTUAL TRANSGRESSION VI - ATHAZAGORA"},
                 {subtitle: "(a skateboard film series focusing on quality over quantity)"},
@@ -612,7 +612,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'science', 'research'],
+            tags: ['science', 'research'],
             rows: [
                 {title: "Decoding Consumer Grade Video for Film"},
                 {subsubtitle: "Flow-Informed Artifact Removal, Chroma Upsampling, and Bit Depth Interpolation"},
@@ -634,7 +634,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'science', 'research'],
+            tags: ['science', 'research'],
             rows: [
                 {title: "Cinematic Colorization"},
                 {subsubtitle: "Analyzes the spatial and temporal characteristics of color in cinema using a newly collected dataset of 1800+ trailers. Utilizes knowledge gained to explore color-based genre classification and automatic color grading. Completed collaboratively with UC Berkeley Visual Computing Lab, Cecilia Zhang (PhD, UC Berkeley), and Vivien Nguyen (MS, UC Berkeley)"},
