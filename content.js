@@ -16,6 +16,18 @@ var CONTENT = {
                 },
             ],
         },
+        {
+            tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'portfolio', 'art', 'experimental'],
+            release_date: "2021-04-09 12:00 PM",
+            rows: [
+                {title: "Compendium I"},
+                {subtitle: "experimental film on cyclical entrapment"},
+                {
+                    type_vimeo: true,
+                    vimeo: '501918925',
+                },
+            ],
+        },
         // TODO: Camera Obscura Moving Stills
         {
             tags: ['portfolio'],
