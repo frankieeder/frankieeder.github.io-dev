@@ -241,7 +241,10 @@ function prepVimeoThumbnails() {
             //console.log(player, destroyed);
 
             var start = parseFloat(vimeos[i].getAttribute("loopstart"));
-            var init = parseFloat(vimeos[i].getAttribute("loopthumb") ?? start);
+            var init = parseFloat(vimeos[i].getAttribute("loopthumb"));
+            if (!init) {
+                init = start;
+            }
             var interval = parseFloat(vimeos[i].getAttribute("loopend"));
             var end = parseFloat(start) + parseFloat(interval / 1000);
 
@@ -322,59 +325,59 @@ function setVideoTime(player, seconds) {
 }
 
 
-function styleVimeoEmbeds(element) {
-    /*
-    Styles standalone Vimeo embeds to the correct aspect ratio
-    TODO: Why does this not work? Promises are never fulfilled
-    */
-    var vimeos = document.querySelectorAll('.vimeo_iframe');
-    //debugger;
-    //console.log("HELLO", vimeos.length)
-    for (var i = 0; i < vimeos.length; i++) {
-        (function() {
-            //debugger;
-            var element = vimeos[i];
-            var player = new Vimeo.Player(element);
-
-            // Attempt Styling
-            Promise.all([player.getVideoWidth(), player.getVideoHeight()]).then(function(dimensions) {
-
-                console.log("Vimeo dims a", dimensions);
-                var width = dimensions[0];
-                var height = dimensions[1];
-                var ar = height / width;
-                console.log("Vimeo dims", width, height, ar);
-                element.style['padding-top'] = ar;
-            });
-
-            // Enable looping
-            //var player = new Vimeo.Player(vimeos[i]);
-            var start = parseFloat(element.getAttribute("loopstart"));
-            var init = parseFloat(element.getAttribute("loopthumb") ?? start);
-            var interval = parseFloat(element.getAttribute("loopend"));
-            var end = parseFloat(start) + parseFloat(interval / 1000);
-            player.setCurrentTime(init);
-            player.pause();
-
-            // Enable Looping
-            player.on('timeupdate', function(update) {
-                //console.log("time1", update['seconds'], end, interval, (interval / 1000), start, update['seconds'] > end, player);
-                if (update['seconds'] > end) {
-                    player.setCurrentTime(start);
-                }
-            });
-            // Start playing when start hover
-            element.onmouseenter = function() {
-                //console.log("Attempting to play.", player);
-                player.play();
-            }
-            // Stop playing when stop hover
-            element.onmouseout = function() {
-                //console.log("Attempting to pause.", player);
-                player.pause();
-                player.setCurrentTime(init);
-            }
-        })();
-    }
-
-}
+//function styleVimeoEmbeds(element) {
+//    /*
+//    Styles standalone Vimeo embeds to the correct aspect ratio
+//    TODO: Why does this not work? Promises are never fulfilled
+//    */
+//    var vimeos = document.querySelectorAll('.vimeo_iframe');
+//    //debugger;
+//    //console.log("HELLO", vimeos.length)
+//    for (var i = 0; i < vimeos.length; i++) {
+//        (function() {
+//            //debugger;
+//            var element = vimeos[i];
+//            var player = new Vimeo.Player(element);
+//
+//            // Attempt Styling
+//            Promise.all([player.getVideoWidth(), player.getVideoHeight()]).then(function(dimensions) {
+//
+//                console.log("Vimeo dims a", dimensions);
+//                var width = dimensions[0];
+//                var height = dimensions[1];
+//                var ar = height / width;
+//                console.log("Vimeo dims", width, height, ar);
+//                element.style['padding-top'] = ar;
+//            });
+//
+//            // Enable looping
+//            //var player = new Vimeo.Player(vimeos[i]);
+//            var start = parseFloat(element.getAttribute("loopstart"));
+//            var init = parseFloat(element.getAttribute("loopthumb") ?? start);
+//            var interval = parseFloat(element.getAttribute("loopend"));
+//            var end = parseFloat(start) + parseFloat(interval / 1000);
+//            player.setCurrentTime(init);
+//            player.pause();
+//
+//            // Enable Looping
+//            player.on('timeupdate', function(update) {
+//                //console.log("time1", update['seconds'], end, interval, (interval / 1000), start, update['seconds'] > end, player);
+//                if (update['seconds'] > end) {
+//                    player.setCurrentTime(start);
+//                }
+//            });
+//            // Start playing when start hover
+//            element.onmouseenter = function() {
+//                //console.log("Attempting to play.", player);
+//                player.play();
+//            }
+//            // Stop playing when stop hover
+//            element.onmouseout = function() {
+//                //console.log("Attempting to pause.", player);
+//                player.pause();
+//                player.setCurrentTime(init);
+//            }
+//        })();
+//    }
+//
+//}
