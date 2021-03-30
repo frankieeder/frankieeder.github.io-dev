@@ -261,6 +261,9 @@ header {
     text-align: center;
     text-decoration: none;
 }*/
+nav {
+    display: none; /* Hide nav initially */
+}
 
 nav ul {
     list-style-type: none;
