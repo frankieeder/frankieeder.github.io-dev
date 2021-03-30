@@ -192,6 +192,7 @@ function initializeNav() {
     NAV = document.getElementsByTagName('nav')[0];
     enableNav();
     refreshNav();
+    NAV.style.display = "block"; // Make Nav visible after it's correctly loaded
 
 }
 
