@@ -346,7 +346,6 @@ li.nav_inactive ul {
 
 .about_table td:first-child {
     text-align: right;
-    font-weight: bold;
     border-right: solid 1px;
 }
 .about_table td:last-child {

@@ -12,32 +12,81 @@ var CONTENT = {
                     type_table: true,
                     table_header: 'Clients / Employers / Collaborators',
                     table_row: [
-                        {main: 'Company 3', sub: 'Post-Production Studio'},
-                        {main: 'Stereo D', sub: 'VFX Studio'},
-                        {main: 'Pixar', sub: 'Animation Studio'},
-                        {main: 'Lionsgate', sub: 'Film Studio'},
-                        {main: 'Pantaya', sub: 'Streaming Service'},
-                        {main: 'UC Berkeley', sub: 'Video & Image Processing Lab'},
-                        {main: 'UC Berkeley', sub: 'Visual Computing Lab'},
-                        {main: 'SOVRN Skateboards', sub: 'Skateboarding'},
+                        {
+                            main: 'Stereo D',
+                            link: 'http://www.stereodllc.com/',
+                            sub: {text: 'VFX Studio'}
+                        },
+                        {
+                            main: 'Company 3',
+                            link: 'https://www.company3.com/',
+                            sub: {text: 'Post-Production Studio'}
+                        },
+                        {
+                            main: 'Lionsgate',
+                            link: 'https://www.lionsgate.com/',
+                            sub: {text: 'Film Studio'}
+                        },
+                        {
+                            main: 'Pantaya',
+                            link: 'https://www.pantaya.com/en/',
+                            sub: {text: 'Streaming Service'}
+                        },
+                        {
+                            main: 'Pixar',
+                            link: 'https://www.pixar.com/',
+                            sub: {text: 'Animation Studio'},
+                        },
+                        {
+                            main: 'UC Berkeley',
+                            link: 'http://graphics.berkeley.edu/',
+                            sub: {text: 'Visual Computing Lab'},
+                        },
+                        {
+                            main: 'UC Berkeley',
+                            link: 'http://www-video.eecs.berkeley.edu/',
+                            sub: {text: 'Video & Image Processing Lab'},
+                        },
+                        {
+                            main: 'SOVRN Skateboards',
+                            link: 'https://www.sovrn.la/',
+                            sub: {text: 'Skateboard Company / Art Collective'},
+                        },
                     ],
                 },
                 {
                     type_table: true,
                     table_header: 'Press',
                     table_row: [
-                        {main: 'SIGGRAPH', sub: '2020'},
-                        {main: 'LA Weekly', sub: '2013'},
-                        {main: 'Dubspot', sub: '2013'},
+                        {
+                            main: 'ACM SIGGRAPH',
+                            year: 2020,
+                            link: 'https://www.siggraph.org/',
+                            sub: {
+                                text: 'Rasterizing Volumes and Surfaces for Crowds on Soul (Paper)',
+                                link: 'https://dl.acm.org/doi/10.1145/3388767.3407374',
+                            },
+                        },
+                        {
+                            main: 'ACM SIGGRAPH',
+                            year: 2020,
+                            link: 'https://www.siggraph.org/',
+                            sub: {
+                                text: 'Rasterizing Volumes and Surfaces for Crowds on Soul (Talk)',
+                                link: 'https://s2020.siggraph.org/presentation/?id=gensub_532&sess=sess325',
+                            },
+                        },
+                        {main: 'LA Weekly', year: 2013, sub: 'Top 50 Most Interesting People in Los Angeles'},
+                        {main: 'Dubspot', year: 2013, sub: 'Sound Design Workshop'},
                     ],
                 },
                 {
                     type_table: true,
                     table_header: 'Filmography',
                     table_row: [
-                        {main: 'Soul', sub: 'Technical Director'},
-                        {main: 'Space Jam 2', sub: 'Technical Director'},
-                        {main: 'Camera Obscura', sub: 'Director of Photography'},
+                        {main: 'Space Jam 2', year: 2021, sub: 'Technical Director'},
+                        {main: 'Soul', year: 2020, sub: 'Technical Director'},
+                        {main: 'Camera Obscura', year: 2021, sub: 'Director of Photography'},
                     ],
                 },
                 /*{

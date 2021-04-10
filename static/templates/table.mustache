@@ -6,8 +6,8 @@
         {{/table_header}}
         {{#table_row}}
             <tr>
-                <td><a {{#link}}href="{{.}}"{{/link}}>{{main}}</a></td>
-                {{#sub}}<td>{{.}}</td>{{/sub}}
+                <td><a {{#link}}href="{{.}}"{{/link}}><b>{{main}}</b>{{#year}} [{{.}}]{{/year}}</a></td>
+                {{#sub}}<td><a {{#link}}href="{{.}}"{{/link}}>{{text}}</a></td>{{/sub}}
             </tr>
         {{/table_row}}
     </table>
