@@ -321,6 +321,33 @@ li.nav_inactive ul {
 .container.space-around {
   justify-content: space-around;
 }
+.about_table {
+    font-size: 8pt;
+    border-collapse: collapse;
+}
+
+.about_table caption {
+    font-size: 10pt;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.about_table tr {
+    border: none;
+}
+
+.about_table td {
+    padding: 5px;
+}
+
+.about_table td:first-child {
+    text-align: right;
+    font-weight: bold;
+    border-right: solid 1px;
+}
+.about_table td:last-child {
+    text-align: left;
+}
 
 /* Content Modifiers */
 .content {

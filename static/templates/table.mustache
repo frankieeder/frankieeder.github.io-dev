@@ -1,13 +1,12 @@
-{{! TODO: Add column functionality if needed}}
-<table>
+{{! TODO: Add more column functionality if needed, but might make sense to have a different partial for that}}
+<table class="about_table">
     {{#table_header}}
-        <tr>
-            <th>{{.}}</th>
-        </tr>
+        <caption>{{.}}</caption>
     {{/table_header}}
     {{#table_row}}
         <tr>
-            <td>{{.}}</td>
+            <td><a {{#link}}href="{{.}}"{{/link}}>{{main}}</a></td>
+            {{#sub}}<td>{{.}}</td>{{/sub}}
         </tr>
     {{/table_row}}
 </table>
