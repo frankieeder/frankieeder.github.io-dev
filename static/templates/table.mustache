@@ -1,12 +1,15 @@
 {{! TODO: Add more column functionality if needed, but might make sense to have a different partial for that}}
-<table class="about_table">
-    {{#table_header}}
-        <caption>{{.}}</caption>
-    {{/table_header}}
-    {{#table_row}}
-        <tr>
-            <td><a {{#link}}href="{{.}}"{{/link}}>{{main}}</a></td>
-            {{#sub}}<td>{{.}}</td>{{/sub}}
-        </tr>
-    {{/table_row}}
-</table>
+<div>
+    <table class="about_table">
+        {{#table_header}}
+            <caption>{{.}}</caption>
+        {{/table_header}}
+        {{#table_row}}
+            <tr>
+                <td><a {{#link}}href="{{.}}"{{/link}}>{{main}}</a></td>
+                {{#sub}}<td>{{.}}</td>{{/sub}}
+            </tr>
+        {{/table_row}}
+    </table>
+</div>
+

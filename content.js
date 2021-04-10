@@ -9,6 +9,38 @@ var CONTENT = {
             rows: [
                 {title: "ABOUT"},
                 {
+                    type_table: true,
+                    table_header: 'Clients / Employers / Collaborators',
+                    table_row: [
+                        {main: 'Company 3', sub: 'Post-Production Studio'},
+                        {main: 'Stereo D', sub: 'VFX Studio'},
+                        {main: 'Pixar', sub: 'Animation Studio'},
+                        {main: 'Lionsgate', sub: 'Film Studio'},
+                        {main: 'Pantaya', sub: 'Streaming Service'},
+                        {main: 'UC Berkeley', sub: 'Video & Image Processing Lab'},
+                        {main: 'UC Berkeley', sub: 'Visual Computing Lab'},
+                        {main: 'SOVRN Skateboards', sub: 'Skateboarding'},
+                    ],
+                },
+                {
+                    type_table: true,
+                    table_header: 'Press',
+                    table_row: [
+                        {main: 'SIGGRAPH', sub: '2020'},
+                        {main: 'LA Weekly', sub: '2013'},
+                        {main: 'Dubspot', sub: '2013'},
+                    ],
+                },
+                {
+                    type_table: true,
+                    table_header: 'Filmography',
+                    table_row: [
+                        {main: 'Soul', sub: 'Technical Director'},
+                        {main: 'Space Jam 2', sub: 'Technical Director'},
+                        {main: 'Camera Obscura', sub: 'Director of Photography'},
+                    ],
+                },
+                /*{
                     type_columns: true,
                     columns: [
                         {
@@ -43,7 +75,7 @@ var CONTENT = {
                             ],
                         },
                     ],
-                },
+                }, */
             ],
         },
 
