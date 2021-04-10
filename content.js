@@ -5,6 +5,34 @@ var CONTENT = {
     },
     contents: [
         {
+            tags: ['frankie_eder', 'about'],
+            rows: [
+                {title: "ABOUT"},
+                {
+                    type_columns: true,
+                    columns: [
+                        {
+                            type_table: true,
+                            table_header: 'Clients / Employers',
+                            table_row: ['Pixar', 'Lionsgate', 'Company 3 / Stereo D', 'Artes Design/Build', 'Blackwood Seven / Two Nil']
+                        },
+                        {
+                            type_table: true,
+                            table_header: 'Press',
+                            table_row: ['a', 'b']
+                        },
+                        {
+                            type_table: true,
+                            table_header: 'Filmography',
+                            table_row: ['Space Jam 2 (2021)', 'Soul (2020)', 'Camera Obscura', '']
+                        },
+                    ],
+
+                },
+            ],
+        },
+
+        {
             tags: ['film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'portfolio'],
             rows: [
                 {title: "FILM REEL"},
@@ -1361,6 +1389,7 @@ var CONTENT = {
                 },
             ],
         },
+
 
 
 

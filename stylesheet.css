@@ -314,6 +314,14 @@ li.nav_inactive ul {
     display: none;
 }
 
+/* Table */
+.container {
+  display: flex;
+}
+.container.space-around {
+  justify-content: space-around;
+}
+
 /* Content Modifiers */
 .content {
     display: inline-block;

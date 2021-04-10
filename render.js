@@ -147,6 +147,8 @@ function getTemplates() {
         fetch('static/templates/soundcloud_embed.mustache'),
         fetch('static/templates/bandcamp_embed.mustache'),
         fetch('static/templates/standard_button.mustache'),
+        fetch('static/templates/table.mustache'),
+        fetch('static/templates/columns.mustache'),
     ];
 }
 
@@ -171,6 +173,8 @@ function renderBody() {
                     soundcloud_embed: templates[5],
                     bandcamp_embed: templates[6],
                     standard_button: templates[7],
+                    table: templates[8],
+                    columns: templates[9],
                 }
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);
                 document.getElementById('contents').innerHTML = rendered;
