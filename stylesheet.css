@@ -330,8 +330,9 @@ li.nav_inactive ul {
     text-align: left;
 }
 
-
-
+.about_table {
+    padding-top: 30px;
+}
 .about_table {
     width: 100%;
     table-layout: fixed ;
