@@ -9,6 +9,18 @@ var CONTENT = {
             rows: [
                 {title: "ABOUT"},
                 {
+                    html:
+                        `<div style="padding-bottom: 30px; height=100%">
+                            <a style="float: left;"><img src="img/headshot_thumb.jpeg" alt="pic" width="400px" border="0"></a>
+                            <p>My art focuses on .... I write a lot about fake text just to check my layout.</p>
+                        </div>`
+                },
+                {
+                    type_button: true,
+                    text: "CONTACT ME",
+                    link: "mailto:frankaeder@gmail.com",
+                },
+                {
                     type_table: true,
                     table_header: 'Clients / Employers / Collaborators',
                     table_row: [
