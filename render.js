@@ -31,7 +31,7 @@ function filteredContent() {
     var context = {
         filter: CURRENT_FILTER
     };
-    console.log("Current Filter:", CURRENT_FILTER);
+    //console.log("Current Filter:", CURRENT_FILTER);
     function contentFilter(post) {
         var released = true;
         if (post.release_date) {
@@ -100,8 +100,10 @@ function enableNav() {
         // Make sure the parents of all clickable elements are inactive to hide
         li.classList.toggle('nav_inactive');
         var filter_text = navItems[i].textContent.replace(" ", "_");
-        console.log("Filter_text", filter_text);
-        li.id = filter_text;
+        //console.log("Filter_text", filter_text);
+        if (li.id === "") {
+            li.id = filter_text;
+        }
         // Add Click Functionality
         navItems[i].onclick = function() {
             var li = this.parentNode;
@@ -147,6 +149,8 @@ function getTemplates() {
         fetch('static/templates/soundcloud_embed.mustache'),
         fetch('static/templates/bandcamp_embed.mustache'),
         fetch('static/templates/standard_button.mustache'),
+        fetch('static/templates/table.mustache'),
+        fetch('static/templates/columns.mustache'),
     ];
 }
 
@@ -171,6 +175,8 @@ function renderBody() {
                     soundcloud_embed: templates[5],
                     bandcamp_embed: templates[6],
                     standard_button: templates[7],
+                    table: templates[8],
+                    columns: templates[9],
                 }
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);
                 document.getElementById('contents').innerHTML = rendered;
@@ -229,38 +235,38 @@ function prepVimeoThumbnails() {
             var end = parseFloat(start) + parseFloat(interval / 1000);
 
             player.on('timeupdate', function(update) {
-                console.log("time1", update['seconds'], end, interval, (interval / 1000), start, update['seconds'] > end, player);
+                //console.log("time1", update['seconds'], end, interval, (interval / 1000), start, update['seconds'] > end, player);
                 if (update['seconds'] > end) {
                     player.setCurrentTime(start);
                 }
             });
 
             var settingoutside = setVideoTime(player, init);
-            console.log(settingoutside);
+            //console.log(settingoutside);
 
             player.pause().then(function() {
-                console.log("Paused video.")
+                //console.log("Paused video.")
             }).catch(function(error) {
                 switch (error.name) {
                 case 'PasswordError':
                     // The video is password-protected
-                    console.log("PasswordError.", error)
+                    //console.log("PasswordError.", error)
                     break;
 
                 case 'PrivacyError':
                     // The video is private
-                    console.log("PrivacyError.", error)
+                    //console.log("PrivacyError.", error)
                     break;
 
                 default:
                     // Some other error occurred
-                    console.log("Other Error.", error)
+                    //console.log("Other Error.", error)
                     break;
                 }
             });
             var setTimePromise = player.setCurrentTime(init);
             var pausePromise = player.pause();
-            console.log("Promises:", setTimePromise, pausePromise);
+            //console.log("Promises:", setTimePromise, pausePromise);
 //            var player = new Vimeo.Player(vimeos[i]);
 //            console.log("Vimeo Player", i, player, vimeos[i]);
 //            var start = parseFloat(vimeos[i].getAttribute("loopstart"));

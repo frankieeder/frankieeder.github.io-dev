@@ -8,7 +8,7 @@
                 <h4>{{.}}</h4>
             {{/subtitle}}
             {{#subheader}}
-                    <h4>{{.}}</h4>
+                <h4>{{.}}</h4>
             {{/subheader}}
             {{#subsubtitle}}
                 <h6>{{.}}</h6>
@@ -42,6 +42,12 @@
             {{#type_button}}
                 {{> standard_button}}
             {{/type_button}}
+            {{#type_columns}}
+                {{> columns}}
+            {{/type_columns}}
+            {{#type_table}}
+                {{> table}}
+            {{/type_table}}
             {{#credits}}
                 <h5>Credits: {{.}}</h5>
             {{/credits}}

@@ -5,6 +5,187 @@ var CONTENT = {
     },
     contents: [
         {
+            tags: ['about'],
+            rows: [
+                {title: "ABOUT"},
+                {
+                    html:
+                        `<div class="about_blurb" style="padding-bottom: 30px; height=100%">
+                            <a style="float: left;"><img src="img/headshot_thumb.jpeg" alt="pic" width="300px" border="0"></a>
+                            <p>I have been a multi-media artist for over a decade, inspired heavily by my passion for technology. My artistic practice is focused primarily on film, photography, sculpture, and audio - exporing themes of digitization as process, media representation, mental health, (wasted) space, and societal inequity.</p>
+                            <p>Inspired by my work as an artist, in my professional tech work as both a consultant and employee, I have primarily helped renowned film and entertainment companies optimize operational efficiency, alleviate technological debt, and expand artistic possibilities using machine learning, advanced graphics and vision theory, and forward-thinking engineering and architecture best practices.</p>
+                            <p>Please reach out to me if you are interested in working together in either an artistic or technological capacity. I'm currently' available on a consulting / freelance basis for both small and large projects, and occasionally available for pro-bono work on certain project types.</p>
+                            <p>I also love to connect with new folks interested in art, technology, or both, so don't hesitate to reach out for a simple coffee chat or call!</p>
+                        </div>`
+                },
+
+                {
+                    type_button: true,
+                    text: "CONTACT ME",
+                    link: "mailto:frankaeder@gmail.com",
+                },
+                {
+                    html:
+                        `<div style="height:30px"></div>`
+                },
+                {
+                    type_table: true,
+                    table_header: 'Clients / Employers / Collaborators',
+                    table_row: [
+                        {
+                            main: 'Pixar',
+                            link: 'https://www.pixar.com/',
+                            sub: {text: 'Animation Studio'},
+                        },
+                        {
+                            main: 'Lionsgate',
+                            link: 'https://www.lionsgate.com/',
+                            sub: {text: 'Film Studio'}
+                        },
+                        {
+                            main: 'Pantaya',
+                            link: 'https://www.pantaya.com/en/',
+                            sub: {text: 'Film & TV Streaming Service'}
+                        },
+                        {
+                            main: 'Company 3',
+                            link: 'https://www.company3.com/',
+                            sub: {text: 'Post-Production Studio'}
+                        },
+                        {
+                            main: 'Stereo D',
+                            link: 'http://www.stereodllc.com/',
+                            sub: {text: 'VFX Studio'}
+                        },
+                        {
+                            main: 'UC Berkeley',
+                            link: 'http://www-video.eecs.berkeley.edu/',
+                            sub: {text: 'Video & Image Processing Lab'},
+                        },
+                        {
+                            main: 'UC Berkeley',
+                            link: 'http://graphics.berkeley.edu/',
+                            sub: {text: 'Visual Computing Lab'},
+                        },
+                        {
+                            main: 'SOVRN Skateboards',
+                            link: 'https://www.sovrn.la/',
+                            sub: {text: 'Skateboard Company / Art Collective'},
+                        },
+                    ],
+                },
+                {
+                    type_table: true,
+                    table_header: 'Press',
+                    table_row: [
+                        {
+                            main: 'ACM SIGGRAPH',
+                            year: 2020,
+                            link: 'https://www.siggraph.org/',
+                            sub: {
+                                text: 'Rasterizing Volumes and Surfaces for Crowds on Soul (Paper)',
+                                link: 'https://dl.acm.org/doi/10.1145/3388767.3407374',
+                            },
+                        },
+                        {
+                            main: 'ACM SIGGRAPH',
+                            year: 2020,
+                            link: 'https://www.siggraph.org/',
+                            sub: {
+                                text: 'Rasterizing Volumes and Surfaces for Crowds on Soul (Talk)',
+                                link: 'https://s2020.siggraph.org/presentation/?id=gensub_532&sess=sess325',
+                            },
+                        },
+                        {
+                            main: 'LA Weekly',
+                            year: 2013,
+                            link: 'https://www.laweekly.com/',
+                            sub: {
+                                text: 'Top 50 Most Interesting People in Los Angeles',
+                                link: 'https://www.laweekly.com/frankie-eder-the-13-year-old-dj/',
+                            },
+                        },
+                        {
+                            main: 'Dubspot',
+                            year: 2013,
+                            link: 'http://www.dubspot.com/',
+                            sub: {
+                                text: 'Sound Design Workshop',
+                                link: 'http://blog.dubspot.com/professor-nalepa-subjection-workshop/',
+                            },
+                        },
+                    ],
+                },
+                {
+                    type_table: true,
+                    table_header: 'Filmography',
+                    table_row: [
+                        {
+                            main: 'Space Jam: A New Legacy',
+                            year: 2021,
+                            link: 'https://www.imdb.com/title/tt3554046/',
+                            sub: {text: 'Technical Director, Pipeline'},
+                        },
+                        {
+                            main: 'Soul',
+                            year: 2020,
+                            link: 'https://www.imdb.com/title/tt2948372/',
+                            sub: {text: 'Technical Director, Global Technology'},
+                        },
+                        {
+                            main: 'Camera Obscura',
+                            year: 2021,
+                            link: 'https://www.imdb.com/title/tt13432998/',
+                            sub: {text: 'Director of Photography, Composer'},
+                        },
+                        {
+                            main: 'Compendium I',
+                            year: 2021,
+                            link: 'https://vimeo.com/501918925/5e94ee6b5a',
+                            sub: {text: 'Director, etc.'},
+                        },
+                    ],
+                },
+                /*{
+                    type_columns: true,
+                    columns: [
+                        {
+                            type_table: true,
+                            table_header: 'Clients / Employers / Collaborators',
+                            table_row: [
+                                {main: 'Company 3', sub: 'Post-Production Studio'},
+                                {main: 'Stereo D', sub: 'VFX Studio'},
+                                {main: 'Pixar', sub: 'Animation Studio'},
+                                {main: 'Lionsgate', sub: 'Film Studio'},
+                                {main: 'Pantaya', sub: 'Streaming Service'},
+                                {main: 'UC Berkeley', sub: 'Video & Image Processing Lab'},
+                                {main: 'UC Berkeley', sub: 'Visual Computing Lab'},
+                            ],
+                        },
+                        {
+                            type_table: true,
+                            table_header: 'Press',
+                            table_row: [
+                                {main: 'SIGGRAPH', sub: '2020'},
+                                {main: 'LA Weekly', sub: '2013'},
+                                {main: 'Dubspot', sub: '2013'},
+                            ],
+                        },
+                        {
+                            type_table: true,
+                            table_header: 'Filmography',
+                            table_row: [
+                                {main: 'Soul', sub: 'Technical Director'},
+                                {main: 'Space Jam 2', sub: 'Technical Director'},
+                                {main: 'Camera Obscura', sub: 'Director of Photography'},
+                            ],
+                        },
+                    ],
+                }, */
+            ],
+        },
+
+        {
             tags: ['film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'portfolio'],
             rows: [
                 {title: "FILM REEL"},
