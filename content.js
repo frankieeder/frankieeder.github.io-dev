@@ -10,9 +10,12 @@ var CONTENT = {
                 {title: "ABOUT"},
                 {
                     html:
-                        `<div style="padding-bottom: 30px; height=100%">
-                            <a style="float: left;"><img src="img/headshot_thumb.jpeg" alt="pic" width="400px" border="0"></a>
-                            <p>My art focuses on .... I write a lot about fake text just to check my layout.</p>
+                        `<div class="about_blurb" style="padding-bottom: 30px; height=100%">
+                            <a style="float: left;"><img src="img/headshot_thumb.jpeg" alt="pic" width="300px" border="0"></a>
+                            <p>I have been a multi-media artist for over a decade, inspired heavily by my passion for technology. My artistic practice is focused primarily on film, photography, sculpture, and audio - exporing themes of digitization as process, media representation, mental health, and societal impact.</p>
+                            <p>Inspired by my work as an artist, in my professional tech work, I have primarily helped film and entertainment companies optimize operational efficiency, alleviate technological debt, and expand artistic possibilities using machine learning, advanced graphics and vision theory, and forward-thinking engineering and architecture best practices.</p>
+                            <p>Please reach out to me if you are interested in working together in either an artistic or technological capacity. I am available on a freelance, consulting, or pro-bono basis (depending on project scope and type) for both small and large projects.</p>
+                            <p>I also love to connect with new folks interested in art, technology, or both, so don't hesitate to reach out for a simple coffee chat or call!</p>
                         </div>`
                 },
                 {

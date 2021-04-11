@@ -321,10 +321,21 @@ li.nav_inactive ul {
 .container.space-around {
   justify-content: space-around;
 }
+
+.about_blurb {
+    text-align: left;
+}
+.about_blurb p {
+    padding-left: 320px;
+    text-align: left;
+}
+
+
+
 .about_table {
     width: 100%;
     table-layout: fixed ;
-    font-size: 8pt;
+    font-size: 10pt;
     border-collapse: collapse;
     margin: 12px;
 }
@@ -336,7 +347,7 @@ li.nav_inactive ul {
 
 .about_table caption {
     padding: 12px;
-    font-size: 10pt;
+    font-size: 12pt;
     font-weight: bold;
     text-decoration: underline;
 }
