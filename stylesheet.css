@@ -329,6 +329,11 @@ li.nav_inactive ul {
     margin: 12px;
 }
 
+.about_table a:hover{
+    color: #0094B6;
+    transition: 0.2s;
+}
+
 .about_table caption {
     padding: 12px;
     font-size: 10pt;
