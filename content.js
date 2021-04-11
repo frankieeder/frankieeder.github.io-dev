@@ -76,17 +76,54 @@ var CONTENT = {
                                 link: 'https://s2020.siggraph.org/presentation/?id=gensub_532&sess=sess325',
                             },
                         },
-                        {main: 'LA Weekly', year: 2013, sub: 'Top 50 Most Interesting People in Los Angeles'},
-                        {main: 'Dubspot', year: 2013, sub: 'Sound Design Workshop'},
+                        {
+                            main: 'LA Weekly',
+                            year: 2013,
+                            link: 'https://www.laweekly.com/',
+                            sub: {
+                                text: 'Top 50 Most Interesting People in Los Angeles',
+                                link: 'https://www.laweekly.com/frankie-eder-the-13-year-old-dj/',
+                            },
+                        },
+                        {
+                            main: 'Dubspot',
+                            year: 2013,
+                            link: 'http://www.dubspot.com/',
+                            sub: {
+                                text: 'Sound Design Workshop',
+                                link: 'http://blog.dubspot.com/professor-nalepa-subjection-workshop/',
+                            },
+                        },
                     ],
                 },
                 {
                     type_table: true,
                     table_header: 'Filmography',
                     table_row: [
-                        {main: 'Space Jam 2', year: 2021, sub: 'Technical Director'},
-                        {main: 'Soul', year: 2020, sub: 'Technical Director'},
-                        {main: 'Camera Obscura', year: 2021, sub: 'Director of Photography'},
+                        {
+                            main: 'Space Jam 2',
+                            year: 2021,
+                            link: 'https://www.imdb.com/title/tt3554046/',
+                            sub: {text: 'Technical Director, Pipeline'},
+                        },
+                        {
+                            main: 'Soul',
+                            year: 2020,
+                            link: 'https://www.imdb.com/title/tt2948372/',
+                            sub: {text: 'Technical Director, Global Technology'},
+                        },
+                        {
+                            main: 'Camera Obscura',
+                            year: 2021,
+                            link: 'https://www.imdb.com/title/tt13432998/',
+                            sub: {text: 'Director of Photography, Composer'},
+                        },
+                        {
+                            main: 'Compendium I',
+                            year: 2021,
+                            link: 'https://vimeo.com/501918925/5e94ee6b5a',
+                            sub: {text: 'Director, etc.'},
+                        },
                     ],
                 },
                 /*{
