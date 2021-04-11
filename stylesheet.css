@@ -314,7 +314,6 @@ li.nav_inactive ul {
     display: none;
 }
 
-
 /* Columns */
 .container {
   display: flex;
@@ -322,7 +321,6 @@ li.nav_inactive ul {
 .container.space-around {
   justify-content: space-around;
 }
-
 
 /* About Blurb & Table */
 .about_blurb {
