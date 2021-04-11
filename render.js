@@ -102,10 +102,7 @@ function enableNav() {
         var filter_text = navItems[i].textContent.replace(" ", "_");
         //console.log("Filter_text", filter_text);
         if (li.id === "") {
-            debugger;
             li.id = filter_text;
-        } else {
-            debugger;
         }
         // Add Click Functionality
         navItems[i].onclick = function() {
