@@ -33,14 +33,14 @@ var CONTENT = {
                     table_header: 'Clients / Employers / Collaborators',
                     table_row: [
                         {
-                            main: 'Pixar',
-                            link: 'https://www.pixar.com/',
-                            sub: {text: 'Animation Studio'},
-                        },
-                        {
                             main: 'Lionsgate',
                             link: 'https://www.lionsgate.com/',
                             sub: {text: 'Film Studio'}
+                        },
+                        {
+                            main: 'Pixar',
+                            link: 'https://www.pixar.com/',
+                            sub: {text: 'Animation Studio'},
                         },
                         {
                             main: 'Pantaya',
@@ -48,13 +48,18 @@ var CONTENT = {
                             sub: {text: 'Film & TV Streaming Service'}
                         },
                         {
+                            main: 'Stereo D',
+                            link: 'http://www.stereodllc.com/',
+                            sub: {text: 'VFX Studio'}
+                        },
+                        {
                             main: 'Company 3',
                             link: 'https://www.company3.com/',
                             sub: {text: 'Post-Production Studio'}
                         },
                         {
-                            main: 'Stereo D',
-                            link: 'http://www.stereodllc.com/',
+                            main: 'Method Studios',
+                            link: 'https://www.methodstudios.com/',
                             sub: {text: 'VFX Studio'}
                         },
                         {
