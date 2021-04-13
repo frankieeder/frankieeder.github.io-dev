@@ -204,7 +204,7 @@ var CONTENT = {
         },
         {
             tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'portfolio', 'art', 'experimental'],
-            release_date: "2021-04-09 12:00 PM",
+            release_date: "2021-04-09T12:00:00.000Z",
             rows: [
                 {title: "Compendium I"},
                 {subtitle: "experimental film on cyclical entrapment"},
