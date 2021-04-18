@@ -481,6 +481,20 @@ var CONTENT = {
         {
             tags: ['photography'],
             rows: [
+                {title: "99 (or Two Points of Interest on a Drive in the SF Bay) "},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "99/",
+                    scrollcontent: [
+                        {img: "DSC03200"},
+                        {img: "DSC03220"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
                 {title: "Emeryville I"},
                 {
                     type_photo_scrollbox: true,
@@ -789,6 +803,38 @@ var CONTENT = {
                     scrollcontent: [
                         {img: "DSC01847"},
                         {img: "DSC01850"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XXII"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "98/",
+                    scrollcontent: [
+                        {img: "DSC03239"},
+                        {img: "DSC03238"},
+                        {img: "DSC03249"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Yosemite, Burnt"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "100/",
+                    scrollcontent: [
+                        {img: "DSC03004"},
+                        {img: "DSC03141"},
+                        {img: "DSC03175"},
+                        {img: "DSC03097"},
+                        {img: "DSC03088"},
                     ],
                 },
             ],
