@@ -21,9 +21,9 @@ PROCESSING_SUFFIXES = [
     SUFFIX_THUMBSQUARE,
 ]
 
-SPECIAL_SUFFIXES = PROCESSING_SUFFIXES.extend([
+SPECIAL_SUFFIXES = PROCESSING_SUFFIXES + [
     '_sm',  # ignoring manual image optimizations
-])
+]
 
 PROCESS_NEW_ONLY = True
 
@@ -88,7 +88,7 @@ af = getAllFiles('./img')
 af = [f for f in af if not any(osp.splitext(f)[0].endswith(s) for s in SPECIAL_SUFFIXES)]
 
 for i, f in enumerate(af):
-    print(f'Processing file # {i}/{len(af)}: {f}')
+    print(f'Processing file # {i+1}/{len(af)}: {f}')
 
     if PROCESS_NEW_ONLY and all(osp.isfile(addSuffix(f, s)) for s in PROCESSING_SUFFIXES):
         continue
