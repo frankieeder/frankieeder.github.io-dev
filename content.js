@@ -492,6 +492,63 @@ var CONTENT = {
                 },
             ],
         },
+//        {
+//            tags: ['photography'],
+//            rows: [
+//                {title: "Emeryville"},
+//                {
+//                    type_photo_scrollbox: true,
+//                    dir_prefix: "76/",
+//                    scrollcontent: [
+//                        {img: "DSC01791"},
+//                        {img: "DSC01792"},
+//                    ],
+//                },
+//                {
+//                    type_photo_scrollbox: true,
+//                    dir_prefix: "77/",
+//                    scrollcontent: [
+//                        {img: "DSC01809"},
+//                        {img: "DSC01818"},
+//                    ],
+//                },
+//                {
+//                    type_photo_scrollbox: true,
+//                    dir_prefix: "78/",
+//                    scrollcontent: [
+//                        {img: "DSC01812"},
+//                        {img: "DSC01821"},
+//                        {img: "DSC01826"},
+//                    ],
+//                },
+//                {
+//                    type_photo_scrollbox: true,
+//                    dir_prefix: "79/",
+//                    scrollcontent: [
+//                        {img: "DSC01834"},
+//                        {img: "DSC01837"},
+//                        {img: "DSC01885"},
+//                        {img: "DSC01888"},
+//                    ],
+//                },
+//                {
+//                    type_photo_scrollbox: true,
+//                    dir_prefix: "80/",
+//                    scrollcontent: [
+//                        {img: "DSC01938"},
+//                        {img: "DSC01945"},
+//                    ],
+//                },
+//                {
+//                    type_photo_scrollbox: true,
+//                    dir_prefix: "81/",
+//                    scrollcontent: [
+//                        {img: "DSC01949"},
+//                        {img: "DSC01966"},
+//                    ],
+//                },
+//            ],
+//        },
         {
             tags: ['photography'],
             rows: [
@@ -835,6 +892,24 @@ var CONTENT = {
                         {img: "DSC03175"},
                         {img: "DSC03097"},
                         {img: "DSC03088"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Clairemont"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "101/",
+                    scrollcontent: [
+                        {img: "DSC02937"},
+                        {img: "DSC02938"},
+                        {img: "DSC02961"},
+                        {img: "DSC02965"},
+                        {img: "DSC02969"},
+                        {img: "DSC02932"},
                     ],
                 },
             ],
