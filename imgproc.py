@@ -14,13 +14,18 @@ SUFFIX_THUMB = '_thumb'
 SUFFIX_SQUARE = '_sq'
 SUFFIX_THUMBSQUARE = '_thumbsq'
 
-SPECIAL_SUFFIXES = [
-    '_sm', # ignoring manual image optimizations
+PROCESSING_SUFFIXES = [
     SUFFIX_LQ,
     SUFFIX_THUMB,
     SUFFIX_SQUARE,
-    SUFFIX_THUMBSQUARE
+    SUFFIX_THUMBSQUARE,
 ]
+
+SPECIAL_SUFFIXES = PROCESSING_SUFFIXES + [
+    '_sm',  # ignoring manual image optimizations
+]
+
+PROCESS_NEW_ONLY = True
 
 MAX_SIZE_THUMB = 500
 JPEG_QUAL_THUMB = 80
@@ -83,7 +88,11 @@ af = getAllFiles('./img')
 af = [f for f in af if not any(osp.splitext(f)[0].endswith(s) for s in SPECIAL_SUFFIXES)]
 
 for i, f in enumerate(af):
-    print(f'Processing file # {i}/{len(af)}: {f}')
+    print(f'Processing file # {i+1}/{len(af)}: {f}')
+
+    if PROCESS_NEW_ONLY and all(osp.isfile(addSuffix(f, s)) for s in PROCESSING_SUFFIXES):
+        continue
+
     im = cv2.imread(f)
     w, h, c = im.shape
     m = max(w, h)
@@ -91,16 +100,24 @@ for i, f in enumerate(af):
     w_t, h_t = int(s * w), int(s * h)
 
     # Low Quality
-    cv2.imwrite(addSuffix(f, SUFFIX_LQ), im, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUAL_LQ])
+    DIR_LQ = addSuffix(f, SUFFIX_LQ)
+    if not osp.isfile(DIR_LQ) or not PROCESS_NEW_ONLY:
+        cv2.imwrite(DIR_LQ, im, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUAL_LQ])
 
     # Thumbnail
-    im_thumb = cv2.resize(im, (h_t, w_t))
-    cv2.imwrite(addSuffix(f, SUFFIX_THUMB), im_thumb, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUAL_THUMB])
+    DIR_THUMB = addSuffix(f, SUFFIX_THUMB)
+    if not osp.isfile(DIR_THUMB) or not PROCESS_NEW_ONLY:
+        im_thumb = cv2.resize(im, (h_t, w_t))
+        cv2.imwrite(DIR_THUMB, im_thumb, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUAL_THUMB])
 
     # Square
-    im_sq = resizeAndPad(im, (m, m))
-    cv2.imwrite(addSuffix(f, SUFFIX_SQUARE), im_sq, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUAL_SQ])
+    DIR_SQ = addSuffix(f, SUFFIX_SQUARE)
+    if not osp.isfile(DIR_SQ) or not PROCESS_NEW_ONLY:
+        im_sq = resizeAndPad(im, (m, m))
+        cv2.imwrite(DIR_SQ, im_sq, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUAL_SQ])
 
     # Square Thumbnail
-    im_thumbsq = resizeAndPad(im, (MAX_SIZE_THUMB, MAX_SIZE_THUMB))
-    cv2.imwrite(addSuffix(f, SUFFIX_THUMBSQUARE), im_thumbsq, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUAL_THUMB])
+    DIR_THUMBSQ = addSuffix(f, SUFFIX_THUMBSQUARE)
+    if not osp.isfile(DIR_THUMBSQ) or not PROCESS_NEW_ONLY:
+        im_thumbsq = resizeAndPad(im, (MAX_SIZE_THUMB, MAX_SIZE_THUMB))
+        cv2.imwrite(DIR_THUMBSQ, im_thumbsq, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUAL_THUMB])
