@@ -14,13 +14,16 @@ SUFFIX_THUMB = '_thumb'
 SUFFIX_SQUARE = '_sq'
 SUFFIX_THUMBSQUARE = '_thumbsq'
 
-SPECIAL_SUFFIXES = [
-    '_sm', # ignoring manual image optimizations
+PROCESSING_SUFFIXES = [
     SUFFIX_LQ,
     SUFFIX_THUMB,
     SUFFIX_SQUARE,
-    SUFFIX_THUMBSQUARE
+    SUFFIX_THUMBSQUARE,
 ]
+
+SPECIAL_SUFFIXES = PROCESSING_SUFFIXES.extend([
+    '_sm',  # ignoring manual image optimizations
+])
 
 PROCESS_NEW_ONLY = True
 
@@ -86,6 +89,10 @@ af = [f for f in af if not any(osp.splitext(f)[0].endswith(s) for s in SPECIAL_S
 
 for i, f in enumerate(af):
     print(f'Processing file # {i}/{len(af)}: {f}')
+
+    if PROCESS_NEW_ONLY and all(osp.isfile(addSuffix(f, s)) for s in PROCESSING_SUFFIXES):
+        continue
+
     im = cv2.imread(f)
     w, h, c = im.shape
     m = max(w, h)
