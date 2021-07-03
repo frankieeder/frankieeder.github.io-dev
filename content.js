@@ -899,7 +899,7 @@ var CONTENT = {
         {
             tags: ['photography'],
             rows: [
-                {title: "Clairemont"},
+                {title: "Clairemont I, II, III"},
                 {
                     type_photo_scrollbox: true,
                     dir_prefix: "101/",
@@ -908,7 +908,6 @@ var CONTENT = {
                         {img: "DSC02938"},
                         {img: "DSC02961"},
                         {img: "DSC02965"},
-                        {img: "DSC02969"},
                         {img: "DSC02932"},
                     ],
                 },
