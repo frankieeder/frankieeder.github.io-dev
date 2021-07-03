@@ -342,19 +342,6 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['art', 'still', 'photography', 'landscape'],
-            rows: [
-                {title: "Clairemont Hills"},
-                {subsubtitle: "2020-08-11"},
-                {
-                    type_photo_scrollbox: true,
-                    scrollcontent: [
-                        {img: "68/DSC00171"},
-                    ],
-                },
-            ],
-        },
-        {
             tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape'],
             rows: [
                 {title: "Pacific Coast II"},
@@ -540,7 +527,7 @@ var CONTENT = {
         {
             tags: ['photography'],
             rows: [
-                {title: "Clairemont I, II, III"},
+                {title: "Clairemont II, III, IV"},
                 {
                     type_photo_scrollbox: true,
                     dir_prefix: "101/",
@@ -911,6 +898,19 @@ var CONTENT = {
                     scrollcontent: [
                         {img: "DSC01791"},
                         {img: "DSC01792"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['art', 'still', 'photography', 'landscape'],
+            rows: [
+                {title: "Clairemont I"},
+                {subsubtitle: "2020-08-11"},
+                {
+                    type_photo_scrollbox: true,
+                    scrollcontent: [
+                        {img: "68/DSC00171"},
                     ],
                 },
             ],
