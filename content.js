@@ -302,6 +302,7 @@ var CONTENT = {
                 {html: "<h5>Awards: <i>Best Editing</i>, Grizzly Film Festival 2018</h5>"}
             ],
         },
+        // PHOTOGRAPHY - HIGHLIGHTED
         {
             tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape'],
             rows: [
@@ -478,20 +479,6 @@ var CONTENT = {
                 },
             ],
         },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "99 (or Two Points of Interest on a Drive in the SF Bay) "},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "99/",
-                    scrollcontent: [
-                        {img: "DSC03200"},
-                        {img: "DSC03220"},
-                    ],
-                },
-            ],
-        },
 //        {
 //            tags: ['photography'],
 //            rows: [
@@ -549,332 +536,20 @@ var CONTENT = {
 //                },
 //            ],
 //        },
+        // PHOTOGRAPHY - REMAINING(reverse chronological-ish)
         {
             tags: ['photography'],
             rows: [
-                {title: "Emeryville I"},
+                {title: "Clairemont I, II, III"},
                 {
                     type_photo_scrollbox: true,
-                    dir_prefix: "76/",
+                    dir_prefix: "101/",
                     scrollcontent: [
-                        {img: "DSC01791"},
-                        {img: "DSC01792"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville II"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "77/",
-                    scrollcontent: [
-                        {img: "DSC01809"},
-                        {img: "DSC01818"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville III"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "78/",
-                    scrollcontent: [
-                        {img: "DSC01812"},
-                        {img: "DSC01821"},
-                        {img: "DSC01826"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['still', 'photography'],
-            rows: [
-                {title: "Emeryville IV"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "79/",
-                    scrollcontent: [
-                        {img: "DSC01834"},
-                        {img: "DSC01837"},
-                        {img: "DSC01885"},
-                        {img: "DSC01888"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville V"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "80/",
-                    scrollcontent: [
-                        {img: "DSC01938"},
-                        {img: "DSC01945"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville VI"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "81/",
-                    scrollcontent: [
-                        {img: "DSC01949"},
-                        {img: "DSC01966"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville VII"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "82/",
-                    scrollcontent: [
-                        {img: "DSC01995"},
-                        {img: "DSC02004"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['still', 'photography'],
-            rows: [
-                {title: "Emeryville VIII"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "83/",
-                    scrollcontent: [
-                        {img: "DSC02046"},
-                        {img: "DSC02036"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville IX"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "84/",
-                    scrollcontent: [
-                        {img: "DSC02088"},
-                        {img: "DSC02076"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville X"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "85/",
-                    scrollcontent: [
-                        {img: "DSC02129"},
-                        {img: "DSC02133"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XI"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "86/",
-                    scrollcontent: [
-                        {img: "DSC02139"},
-                        {img: "DSC02161"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XII"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "87/",
-                    scrollcontent: [
-                        {img: "DSC02179"},
-                        {img: "DSC02165"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XIII"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "88/",
-                    scrollcontent: [
-                        {img: "DSC02209"},
-                        {img: "DSC02211"},
-                        {img: "DSC02216"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XIV"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "89/",
-                    scrollcontent: [
-                        {img: "DSC02221"},
-                        {img: "DSC02222"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XV"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "90/",
-                    scrollcontent: [
-                        {img: "DSC02228"},
-                        {img: "DSC02236"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XVI"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "91/",
-                    scrollcontent: [
-                        {img: "DSC02250"},
-                        {img: "DSC02253"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XVII"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "92/",
-                    scrollcontent: [
-                        {img: "DSC01718"},
-                        {img: "DSC01721"},
-                        {img: "DSC01703"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XVIII"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "93/",
-                    scrollcontent: [
-                        {img: "DSC01760"},
-                        {img: "DSC01766"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XIX"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "94/",
-                    scrollcontent: [
-                        {img: "DSC01775"},
-                        {img: "DSC01811"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XX"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "95/",
-                    scrollcontent: [
-                        {img: "DSC01784"},
-                        {img: "DSC01799"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XXI"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "96/",
-                    scrollcontent: [
-                        {img: "DSC01817"},
-                        {img: "DSC01826"},
-                        {img: "DSC01835"},
-                        {img: "DSC01838"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XXII"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "97/",
-                    scrollcontent: [
-                        {img: "DSC01847"},
-                        {img: "DSC01850"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Emeryville XXII"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "98/",
-                    scrollcontent: [
-                        {img: "DSC03239"},
-                        {img: "DSC03238"},
-                        {img: "DSC03249"},
+                        {img: "DSC02937"},
+                        {img: "DSC02938"},
+                        {img: "DSC02961"},
+                        {img: "DSC02965"},
+                        {img: "DSC02932"},
                     ],
                 },
             ],
@@ -899,16 +574,343 @@ var CONTENT = {
         {
             tags: ['photography'],
             rows: [
-                {title: "Clairemont I, II, III"},
+                {title: "99 (or Two Points of Interest on a Drive in the SF Bay) "},
                 {
                     type_photo_scrollbox: true,
-                    dir_prefix: "101/",
+                    dir_prefix: "99/",
                     scrollcontent: [
-                        {img: "DSC02937"},
-                        {img: "DSC02938"},
-                        {img: "DSC02961"},
-                        {img: "DSC02965"},
-                        {img: "DSC02932"},
+                        {img: "DSC03200"},
+                        {img: "DSC03220"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XXII"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "98/",
+                    scrollcontent: [
+                        {img: "DSC03239"},
+                        {img: "DSC03238"},
+                        {img: "DSC03249"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XXII"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "97/",
+                    scrollcontent: [
+                        {img: "DSC01847"},
+                        {img: "DSC01850"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XXI"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "96/",
+                    scrollcontent: [
+                        {img: "DSC01817"},
+                        {img: "DSC01826"},
+                        {img: "DSC01835"},
+                        {img: "DSC01838"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XX"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "95/",
+                    scrollcontent: [
+                        {img: "DSC01784"},
+                        {img: "DSC01799"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XIX"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "94/",
+                    scrollcontent: [
+                        {img: "DSC01775"},
+                        {img: "DSC01811"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XVIII"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "93/",
+                    scrollcontent: [
+                        {img: "DSC01760"},
+                        {img: "DSC01766"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XVII"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "92/",
+                    scrollcontent: [
+                        {img: "DSC01718"},
+                        {img: "DSC01721"},
+                        {img: "DSC01703"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XVI"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "91/",
+                    scrollcontent: [
+                        {img: "DSC02250"},
+                        {img: "DSC02253"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XV"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "90/",
+                    scrollcontent: [
+                        {img: "DSC02228"},
+                        {img: "DSC02236"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XIV"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "89/",
+                    scrollcontent: [
+                        {img: "DSC02221"},
+                        {img: "DSC02222"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XIII"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "88/",
+                    scrollcontent: [
+                        {img: "DSC02209"},
+                        {img: "DSC02211"},
+                        {img: "DSC02216"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XII"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "87/",
+                    scrollcontent: [
+                        {img: "DSC02179"},
+                        {img: "DSC02165"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville XI"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "86/",
+                    scrollcontent: [
+                        {img: "DSC02139"},
+                        {img: "DSC02161"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville X"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "85/",
+                    scrollcontent: [
+                        {img: "DSC02129"},
+                        {img: "DSC02133"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville IX"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "84/",
+                    scrollcontent: [
+                        {img: "DSC02088"},
+                        {img: "DSC02076"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['still', 'photography'],
+            rows: [
+                {title: "Emeryville VIII"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "83/",
+                    scrollcontent: [
+                        {img: "DSC02046"},
+                        {img: "DSC02036"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville VII"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "82/",
+                    scrollcontent: [
+                        {img: "DSC01995"},
+                        {img: "DSC02004"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville VI"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "81/",
+                    scrollcontent: [
+                        {img: "DSC01949"},
+                        {img: "DSC01966"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville V"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "80/",
+                    scrollcontent: [
+                        {img: "DSC01938"},
+                        {img: "DSC01945"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['still', 'photography'],
+            rows: [
+                {title: "Emeryville IV"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "79/",
+                    scrollcontent: [
+                        {img: "DSC01834"},
+                        {img: "DSC01837"},
+                        {img: "DSC01885"},
+                        {img: "DSC01888"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville III"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "78/",
+                    scrollcontent: [
+                        {img: "DSC01812"},
+                        {img: "DSC01821"},
+                        {img: "DSC01826"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville II"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "77/",
+                    scrollcontent: [
+                        {img: "DSC01809"},
+                        {img: "DSC01818"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Emeryville I"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "76/",
+                    scrollcontent: [
+                        {img: "DSC01791"},
+                        {img: "DSC01792"},
                     ],
                 },
             ],
