@@ -527,6 +527,36 @@ var CONTENT = {
         {
             tags: ['photography'],
             rows: [
+                {title: "A Place I Lived Ia"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "102/",
+                    scrollcontent: [
+                        {img: "DSC02507"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
+                {title: "Movie Theater II"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "103/",
+                    scrollcontent: [
+                        {img: "DSC02896-1"},
+                        {img: "DSC02899-1"},
+                        {img: "DSC02904"},
+                        {img: "DSC02911-1"},
+                        {img: "DSC02917-1"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
                 {title: "Clairemont II, III, IV"},
                 {
                     type_photo_scrollbox: true,
