@@ -480,6 +480,20 @@ var CONTENT = {
                 },
             ],
         },
+        {
+            tags: ['art', 'still', 'photography'],
+            rows: [
+                {title: "San Francisco I - Twin Peaks"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "106/",
+                    scrollcontent: [
+                        {img: "DSC03354"},
+                        {img: "DSC03364"},
+                    ],
+                },
+            ],
+        },
 //        {
 //            tags: ['photography'],
 //            rows: [
@@ -948,7 +962,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['art', 'still', 'photography', 'landscape'],
+            tags: ['photography', 'landscape'],
             rows: [
                 {title: "Clairemont I"},
                 {subsubtitle: "2020-08-11"},
