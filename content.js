@@ -304,6 +304,20 @@ var CONTENT = {
         },
         // PHOTOGRAPHY - HIGHLIGHTED
         {
+            tags: ['art', 'still', 'photography'],
+            rows: [
+                {title: "Clairemont V"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "105/",
+                    scrollcontent: [
+                        {img: "DSC03293"},
+                        {img: "DSC03291"},
+                    ],
+                },
+            ],
+        },
+        {
             tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape'],
             rows: [
                 {title: "Crow's Landing II"},
