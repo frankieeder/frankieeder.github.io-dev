@@ -304,7 +304,7 @@ var CONTENT = {
         },
         // PHOTOGRAPHY - HIGHLIGHTED
         {
-            tags: ['art', 'still', 'photography'],
+            tags: ['frankie_eder', 'art', 'still', 'photography'],
             rows: [
                 {title: "Clairemont V"},
                 {
@@ -318,7 +318,24 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape'],
+            tags: ['frankie_eder', 'art', 'still', 'photography'],
+            rows: [
+                {title: "Clairemont II, III, IV"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "101/",
+                    scrollcontent: [
+                        {img: "DSC02937"},
+                        {img: "DSC02938"},
+                        {img: "DSC02961"},
+                        {img: "DSC02965"},
+                        {img: "DSC02932"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['art', 'still', 'photography', 'landscape'],
             rows: [
                 {title: "Crow's Landing II"},
                 {subsubtitle: "2020-08-13"},
@@ -339,7 +356,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['art', 'still', 'photography', 'landscape'],
+            tags: ['still', 'photography', 'landscape'],
             rows: [
                 {title: "Crow's Landing I"},
                 {subsubtitle: "2020-08-13"},
@@ -356,41 +373,46 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape'],
+            tags: ['frankie_eder', 'art', 'still', 'photography'],
             rows: [
-                {title: "Pacific Coast II"},
-                {subtitle: "Martinez, CA"},
-                {subsubtitle: "2020-12-19"},
+                {title: "Disintegration I"},
                 {
                     type_photo_scrollbox: true,
-                    dir_prefix: "65/",
+                    dir_prefix: "108/",
                     scrollcontent: [
-                        {img: "DSC01738"},
-                        {img: "DSC01667"},
-                        {img: "DSC01677"},
-                        {img: "DSC01694"},
-                        {img: "DSC01709"},
-                        {img: "DSC01716"},
-                        {img: "DSC01731"},
+                        {img: "DSC03412"},
+                        {img: "DSC03430"},
+                        {img: "DSC03600"},
+                        {img: "DSC03466"},
+                        {img: "DSC03574"},
                     ],
                 },
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape'],
+            tags: ['frankie_eder', 'art', 'still', 'photography'],
             rows: [
-                {title: "Pacific Coast I"},
-                {subtitle: "Stinson Beach, CA"},
-                {subsubtitle: "2020-12-13"},
+                {title: "Hollywood Hills I"},
                 {
                     type_photo_scrollbox: true,
-                    dir_prefix: "64/",
+                    dir_prefix: "107/",
                     scrollcontent: [
-                        {img: "DSC00452"},
-                        {img: "DSC00457"},
-                        {img: "DSC00469"},
-                        {img: "DSC00478"},
-                        {img: "DSC00480"},
+                        {img: "DSC03396"},
+                        {img: "DSC03385"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['frankie_eder', 'art', 'still', 'photography'],
+            rows: [
+                {title: "San Francisco I - Twin Peaks"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "106/",
+                    scrollcontent: [
+                        {img: "DSC03354"},
+                        {img: "DSC03364"},
                     ],
                 },
             ],
@@ -428,6 +450,46 @@ var CONTENT = {
         {
             tags: ['art', 'still', 'photography', 'landscape'],
             rows: [
+                {title: "Pacific Coast I"},
+                {subtitle: "Stinson Beach, CA"},
+                {subsubtitle: "2020-12-13"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "64/",
+                    scrollcontent: [
+                        {img: "DSC00452"},
+                        {img: "DSC00457"},
+                        {img: "DSC00469"},
+                        {img: "DSC00478"},
+                        {img: "DSC00480"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['still', 'photography', 'landscape'],
+            rows: [
+                {title: "Pacific Coast II"},
+                {subtitle: "Martinez, CA"},
+                {subsubtitle: "2020-12-19"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "65/",
+                    scrollcontent: [
+                        {img: "DSC01738"},
+                        {img: "DSC01667"},
+                        {img: "DSC01677"},
+                        {img: "DSC01694"},
+                        {img: "DSC01709"},
+                        {img: "DSC01716"},
+                        {img: "DSC01731"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['still', 'photography', 'landscape'],
+            rows: [
                 {title: "Patterson Pass"},
                 {subtitle: "Tracy, CA"},
                 {subsubtitle: "2020-11-22"},
@@ -455,7 +517,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape'],
+            tags: ['still', 'photography', 'landscape'],
             rows: [
                 {title: "Smoke over Silverlake"},
                 {subtitle: "Silverlake, CA"},
@@ -476,20 +538,6 @@ var CONTENT = {
                         {img: "DSC01003"},
                         {img: "DSC01053"},
                         {img: "DSC01044"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['art', 'still', 'photography'],
-            rows: [
-                {title: "San Francisco I - Twin Peaks"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "106/",
-                    scrollcontent: [
-                        {img: "DSC03354"},
-                        {img: "DSC03364"},
                     ],
                 },
             ],
@@ -555,37 +603,6 @@ var CONTENT = {
         {
             tags: ['photography'],
             rows: [
-                {title: "Disintegration I"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "108/",
-                    scrollcontent: [
-                        {img: "DSC03412"},
-                        {img: "DSC03430"},
-                        {img: "DSC03600"},
-                        {img: "DSC03466"},
-                        {img: "DSC03574"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Hollywood Hills I"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "107/",
-                    scrollcontent: [
-                        {img: "DSC03396"},
-                        {img: "DSC03385"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
                 {title: "A Place I Lived I, II"},
                 {
                     type_photo_scrollbox: true,
@@ -610,23 +627,6 @@ var CONTENT = {
                         {img: "DSC02904"},
                         {img: "DSC02911-1"},
                         {img: "DSC02917-1"},
-                    ],
-                },
-            ],
-        },
-        {
-            tags: ['photography'],
-            rows: [
-                {title: "Clairemont II, III, IV"},
-                {
-                    type_photo_scrollbox: true,
-                    dir_prefix: "101/",
-                    scrollcontent: [
-                        {img: "DSC02937"},
-                        {img: "DSC02938"},
-                        {img: "DSC02961"},
-                        {img: "DSC02965"},
-                        {img: "DSC02932"},
                     ],
                 },
             ],
