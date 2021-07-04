@@ -527,12 +527,13 @@ var CONTENT = {
         {
             tags: ['photography'],
             rows: [
-                {title: "A Place I Lived Ia"},
+                {title: "A Place I Lived I"},
                 {
                     type_photo_scrollbox: true,
-                    dir_prefix: "102/",
                     scrollcontent: [
-                        {img: "DSC02507"},
+                        {img: "104/DSC03271"},
+                        {img: "104/DSC03270"},
+                        {img: "102/DSC02507"},
                     ],
                 },
             ],
