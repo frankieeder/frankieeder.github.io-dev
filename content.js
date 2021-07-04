@@ -665,6 +665,20 @@ var CONTENT = {
         {
             tags: ['photography'],
             rows: [
+                {title: "Emeryville XXV"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "110/",
+                    scrollcontent: [
+                        {img: "DSC03890"},
+                        {img: "DSC03873"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography'],
+            rows: [
                 {title: "Emeryville XXIV"},
                 {
                     type_photo_scrollbox: true,
