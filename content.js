@@ -527,7 +527,7 @@ var CONTENT = {
         {
             tags: ['photography'],
             rows: [
-                {title: "A Place I Lived I"},
+                {title: "A Place I Lived I, II"},
                 {
                     type_photo_scrollbox: true,
                     scrollcontent: [
