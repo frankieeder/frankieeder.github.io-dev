@@ -665,7 +665,7 @@ var CONTENT = {
         {
             tags: ['photography'],
             rows: [
-                {title: "Emeryville XXII"},
+                {title: "Emeryville XXIII"},
                 {
                     type_photo_scrollbox: true,
                     dir_prefix: "98/",
