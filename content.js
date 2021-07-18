@@ -209,7 +209,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'portfolio', 'art', 'experimental'],
+            tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'portfolio', 'art', 'experimental', 'compendium1'],
             release_date: "2021-04-09T12:00:00.000Z",
             rows: [
                 {title: "Compendium I"},
@@ -260,7 +260,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['art', 'installation'],
+            tags: ['art', 'installation', 'why'],
             rows: [
                 {title: "why; are you paying for this?"},
                 {subtitle: "(three-channel video installation)"},
@@ -289,7 +289,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'narrative', 'experimental', 'music', 'portfolio'],
+            tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'narrative', 'experimental', 'music', 'portfolio', 'amphos'],
             rows: [
                 {title: "AMPHOS"},
                 {subtitle: "(an expirimental short film)"},
@@ -1049,7 +1049,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'still', 'manipulated'],
+            tags: ['frankie_eder', 'art', 'still', 'manipulated', 'concatenations2'],
             rows: [
                 {title: "Concatenations II"},
                 {
