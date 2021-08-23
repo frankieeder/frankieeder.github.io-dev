@@ -32,15 +32,66 @@ var CONTENT = {
                     type_table: true,
                     table_header: 'Clients / Employers / Collaborators',
                     table_row: [
+
+                        {
+                            main: 'The Walt Disney Company',
+                            link: 'https://thewaltdisneycompany.com/',
+                            sub: {text: 'Entertainment Company'},
+                        },
+                        {
+                            main: 'Hulu',
+                            link: 'https://www.hulu.com/',
+                            sub: {text: 'Film & TV Streaming Service'},
+                        },
+                        {
+                            main: 'Disney+',
+                            link: 'https://www.disneyplus.com/',
+                            sub: {text: 'Film & TV Streaming Service'},
+                        },
+                        {
+                            main: 'Marvel',
+                            link: 'https://www.marvel.com/',
+                            sub: {text: 'Film / Comics Studio'}
+                        },
+                        {
+                            main: 'Pixar',
+                            link: 'https://www.pixar.com/',
+                            sub: {text: 'Animation Studio'},
+                        },
+                        {
+                            main: 'Warner Bros.',
+                            link: 'https://www.warnerbros.com/',
+                            sub: {text: 'Film Studio'}
+                        },
+                        {
+                            main: 'ESPN / ESPN+',
+                            link: 'https://www.espn.com/espnplus/',
+                            sub: {text: 'Sports Streaming Service'},
+                        },
+                        {
+                            main: 'ABC Studios',
+                            link: 'https://abc.com/',
+                            sub: {text: 'Television Studio'},
+                        },
+                        {
+                            main: '20th Century',
+                            link: 'https://www.20thcenturystudios.com/',
+                            sub: {text: 'Film Studio'},
+                        },
                         {
                             main: 'Lionsgate',
                             link: 'https://www.lionsgate.com/',
                             sub: {text: 'Film Studio'}
                         },
                         {
-                            main: 'Pixar',
-                            link: 'https://www.pixar.com/',
-                            sub: {text: 'Animation Studio'},
+                            main: 'Company 3',
+                            link: 'https://www.company3.com/',
+                            sub: {text: 'Post-Production Studio'}
+                        },
+                        {
+                            main: 'HotStar / Star+',
+                            link: 'https://www.hotstar.com/in/channels/starplus',
+                            sub: {text: 'Film & TV Streaming Service'},
                         },
                         {
                             main: 'Pantaya',
@@ -53,24 +104,9 @@ var CONTENT = {
                             sub: {text: 'VFX Studio'}
                         },
                         {
-                            main: 'Company 3',
-                            link: 'https://www.company3.com/',
-                            sub: {text: 'Post-Production Studio'}
-                        },
-                        {
                             main: 'Method Studios',
                             link: 'https://www.methodstudios.com/',
                             sub: {text: 'VFX Studio'}
-                        },
-                        {
-                            main: 'Warner Bros.',
-                            link: 'https://www.warnerbros.com/',
-                            sub: {text: 'Film Studio'}
-                        },
-                        {
-                            main: 'Marvel',
-                            link: 'https://www.marvel.com/',
-                            sub: {text: 'Film / Comics Studio'}
                         },
                         {
                             main: 'UC Berkeley',
