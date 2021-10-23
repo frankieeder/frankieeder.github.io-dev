@@ -244,6 +244,21 @@ var CONTENT = {
             ],
         },
         {
+            tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'score_by', 'sound_by', 'colored_by', 'edited_by', 'effects_by', 'portfolio', 'art', 'experimental', 'compendium1'],
+            release_date: "2021-04-09T12:00:00.000Z",
+            rows: [
+                {title: "Compendium I"},
+                {subtitle: "experimental film on cyclical entrapment"},
+                {
+                    type_vimeo: true,
+                    vimeo: '501918925',
+                },
+                {credits: 'Director, Director of Photography, Score, Sound Design, Colorist, Effects Engineering, Editing'},
+                {html: "<h5><i>Official Selection</i> - Motus Imago 2021</h5>"}
+            ],
+
+        },
+        {
             tags: ['frankie_eder', 'film', 'shot_by', 'score_by', 'sound_by', 'portfolio'],
             rows: [
                 {title: "CAMERA OBSCURA"},
@@ -255,21 +270,6 @@ var CONTENT = {
                 },
                 {credits: 'Director of Photography, Score, Sound Design'},
             ],
-        },
-        {
-            tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'score_by', 'sound_by', 'colored_by', 'edited_by', 'effects_by', 'portfolio', 'art', 'experimental', 'compendium1'],
-            release_date: "2021-04-09T12:00:00.000Z",
-            rows: [
-                {title: "Compendium I"},
-                {subtitle: "experimental film on cyclical entrapment"},
-                {
-                    type_vimeo: true,
-                    vimeo: '501918925',
-                },
-                {credits: 'Director, Director of Photography, Score, Sound Design, Colorist, Effects Engineering, Editing'},
-                {html: "<h5><i>Official Selection</i> - Showcase of Shapes, Puppets and Moving Things 2021</h5>"}
-            ],
-
         },
         // TODO: Camera Obscura Moving Stills
 //        {
