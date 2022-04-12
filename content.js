@@ -278,6 +278,7 @@ var CONTENT = {
                     vimeo: '501918925',
                 },
                 {credits: 'Director, Director of Photography, Score, Sound Design, Colorist, Effects Engineering, Editing'},
+                {html: "<h5><i>Official Selection</i> - Motus Imago 2021</h5>"}
             ],
 
         },
