@@ -169,25 +169,25 @@ var CONTENT = {
                     table_row: [
                         {
                             main: 'Shang-Chi and the Legend of the Ten Rings',
-                            year: 2021,
+                            year: '2021, Marvel',
                             link: 'https://www.imdb.com/title/tt9376612/',
                             sub: {text: 'Technical Director, Pipeline'},
                         },
                         {
                             main: 'Soul',
-                            year: 2020,
+                            year: '2020, Pixar',
                             link: 'https://www.imdb.com/title/tt2948372/',
                             sub: {text: 'Technical Director, Global Technology'},
                         },
                         {
                             main: 'Eternals',
-                            year: 2021,
+                            year: '2021, Marvel',
                             link: 'https://www.imdb.com/title/tt9032400/',
                             sub: {text: 'Technical Director, Pipeline'},
                         },
                         {
                             main: 'What If...?',
-                            year: 2021,
+                            year: '2021, Marvel',
                             link: 'https://www.imdb.com/title/tt10168312/',
                             sub: {text: 'Technical Director, Pipeline'},
                         },
@@ -205,13 +205,13 @@ var CONTENT = {
                         },
                         {
                             main: 'Free Guy',
-                            year: 2021,
+                            year: '2021, 20th Century Fox',
                             link: 'https://www.imdb.com/title/tt6264654/',
                             sub: {text: 'Technical Director, Pipeline'},
                         },
                         {
                             main: 'Space Jam: A New Legacy',
-                            year: 2021,
+                            year: '2021, Warner',
                             link: 'https://www.imdb.com/title/tt3554046/',
                             sub: {text: 'Technical Director, Pipeline'},
                         },
