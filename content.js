@@ -259,7 +259,7 @@ var CONTENT = {
         },
         {
             tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'effects_by', 'portfolio', 'skateboarding'],
-            release_date: "2022-04-11T12:00:00.000Z",
+            release_date: "2022-04-22T12:00:00.000Z",
             rows: [
                 {title: "MUTUAL TRANSGRESSION VII"},
                 {subtitle: "(a skateboard film series focusing on quality over quantity)"},
