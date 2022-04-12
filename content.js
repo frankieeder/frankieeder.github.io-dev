@@ -168,16 +168,28 @@ var CONTENT = {
                     table_header: 'Filmography',
                     table_row: [
                         {
-                            main: 'Space Jam: A New Legacy',
-                            year: 2021,
-                            link: 'https://www.imdb.com/title/tt3554046/',
+                            main: 'Shang-Chi and the Legend of the Ten Rings',
+                            year: '2021, Marvel',
+                            link: 'https://www.imdb.com/title/tt9376612/',
                             sub: {text: 'Technical Director, Pipeline'},
                         },
                         {
                             main: 'Soul',
-                            year: 2020,
+                            year: '2020, Pixar',
                             link: 'https://www.imdb.com/title/tt2948372/',
                             sub: {text: 'Technical Director, Global Technology'},
+                        },
+                        {
+                            main: 'Eternals',
+                            year: '2021, Marvel',
+                            link: 'https://www.imdb.com/title/tt9032400/',
+                            sub: {text: 'Technical Director, Pipeline'},
+                        },
+                        {
+                            main: 'What If...?',
+                            year: '2021, Marvel',
+                            link: 'https://www.imdb.com/title/tt10168312/',
+                            sub: {text: 'Technical Director, Pipeline'},
                         },
                         {
                             main: 'Camera Obscura',
@@ -190,6 +202,18 @@ var CONTENT = {
                             year: 2021,
                             link: 'https://vimeo.com/501918925/5e94ee6b5a',
                             sub: {text: 'Director, etc.'},
+                        },
+                        {
+                            main: 'Free Guy',
+                            year: '2021, 20th Century Fox',
+                            link: 'https://www.imdb.com/title/tt6264654/',
+                            sub: {text: 'Technical Director, Pipeline'},
+                        },
+                        {
+                            main: 'Space Jam: A New Legacy',
+                            year: '2021, Warner',
+                            link: 'https://www.imdb.com/title/tt3554046/',
+                            sub: {text: 'Technical Director, Pipeline'},
                         },
                     ],
                 },
@@ -257,6 +281,20 @@ var CONTENT = {
                 {html: "<h5><i>Official Selection</i> - Motus Imago 2021</h5>"}
             ],
 
+        },
+        {
+            tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'effects_by', 'portfolio', 'skateboarding'],
+            release_date: "2022-04-22T12:00:00.000Z",
+            rows: [
+                {title: "MUTUAL TRANSGRESSION VII"},
+                {subtitle: "(a skateboard film series focusing on quality over quantity)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '697623576?h=5f2a56ddcd',
+                },
+                {credits: 'Director, Director of Photography, Editor, Colorist'},
+            ],
         },
         {
             tags: ['frankie_eder', 'film', 'shot_by', 'score_by', 'sound_by', 'portfolio'],
