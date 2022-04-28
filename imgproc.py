@@ -48,11 +48,7 @@ def resizeAndPad(img, size, padColor=255):
     h, w = img.shape[:2]
     sh, sw = size
 
-    # interpolation method
-    if h > sh or w > sw: # shrinking image
-        interp = cv2.INTER_AREA
-    else: # stretching image
-        interp = cv2.INTER_CUBIC
+    interp = cv2.INTER_CUBIC
 
     # aspect ratio of image
     aspect = w/h  # if on Python 2, you might need to cast as a float: float(w)/h

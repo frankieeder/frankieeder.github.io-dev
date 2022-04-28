@@ -1658,7 +1658,7 @@ var CONTENT = {
                     type_image: true,
                     dir_prefix: 'visual/full/',
                     img: 'MatthewParraBackside180',
-                    ext: 'jpg',
+                    ext: 'png',
                 },
             ],
         },
