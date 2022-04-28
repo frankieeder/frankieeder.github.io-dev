@@ -34,6 +34,9 @@ function filteredContent() {
     //console.log("Current Filter:", CURRENT_FILTER);
     function contentFilter(post) {
         var released = true;
+        if (this.filter === '_all') {
+            return true;
+        }
         if (post.release_date) {
             var release_date = new Date(post.release_date);
             var now = new Date();
