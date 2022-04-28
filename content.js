@@ -393,6 +393,61 @@ var CONTENT = {
         },
         // PHOTOGRAPHY - HIGHLIGHTED
         {
+            tags: ['frankie_eder', 'art', 'still', 'photography', 'architecture'],
+            rows: [
+                {title: "Rampart Village II"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "118/",
+                    scrollcontent: [
+                        {img: "DSC04098"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['art', 'still', 'photography', 'architecture'],
+            rows: [
+                {title: "Rampart Village III"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "119/",
+                    scrollcontent: [
+                        {img: "DSC04439"},
+                        {img: "DSC04455"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['still', 'photography', 'architecture'],
+            rows: [
+                {title: "Glendale I"},
+                {subtitle: "Central & San Fernando"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "120/",
+                    scrollcontent: [
+                        {img: "DSC05820"},
+                    ],
+                },
+            ],
+        },
+        {
+            tags: ['photography', 'architecture', 'wildlife'],
+            rows: [
+                {title: "Rampart Village I"},
+                {
+                    type_photo_scrollbox: true,
+                    dir_prefix: "117/",
+                    scrollcontent: [
+                        {img: "DSC04084"},
+                        {img: "DSC04071"},
+                    ],
+                },
+            ],
+        },
+        {
             tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape', 'architecture'],
             rows: [
                 {title: "Clairemont V"},
