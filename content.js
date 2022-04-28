@@ -537,7 +537,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['art', 'still', 'photography', 'landscape'],
+            tags: ['art', 'still', 'photography', 'landscape', 'wildlife'],
             rows: [
                 {title: "Pacific Coast I"},
                 {subtitle: "Stinson Beach, CA"},
@@ -577,7 +577,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['still', 'photography', 'landscape'],
+            tags: ['still', 'photography', 'landscape', 'wildlife'],
             rows: [
                 {title: "Patterson Pass"},
                 {subtitle: "Tracy, CA"},
@@ -1025,7 +1025,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography', 'architecture'],
+            tags: ['photography', 'architecture', 'wildlife'],
             rows: [
                 {title: "Emeryville XI"},
                 {
@@ -1067,7 +1067,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['still', 'photography', 'architecture'],
+            tags: ['still', 'photography', 'architecture', 'wildlife'],
             rows: [
                 {title: "Emeryville VIII"},
                 {
@@ -1081,7 +1081,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography', 'architecture'],
+            tags: ['photography', 'architecture', 'wildlife'],
             rows: [
                 {title: "Emeryville VII"},
                 {
@@ -1627,7 +1627,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography', 'landscape'],
+            tags: ['photography', 'landscape', 'wildlife'],
             rows: [
                 {title: "2-D_137"},
                 {
