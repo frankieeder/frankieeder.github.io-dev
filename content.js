@@ -393,7 +393,7 @@ var CONTENT = {
         },
         // PHOTOGRAPHY - HIGHLIGHTED
         {
-            tags: ['frankie_eder', 'art', 'still', 'photography'],
+            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape', 'architecture'],
             rows: [
                 {title: "Clairemont V"},
                 {
@@ -407,7 +407,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'still', 'photography'],
+            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape', 'architecture'],
             rows: [
                 {title: "Clairemont II, III, IV"},
                 {
@@ -462,7 +462,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'still', 'photography'],
+            tags: ['frankie_eder', 'art', 'still', 'photography', 'architecture'],
             rows: [
                 {title: "Disintegration I"},
                 {
@@ -479,7 +479,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'still', 'photography'],
+            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape', 'architecture'],
             rows: [
                 {title: "Hollywood Hills I"},
                 {
@@ -493,7 +493,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'still', 'photography'],
+            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape'],
             rows: [
                 {title: "San Francisco I - Twin Peaks"},
                 {
@@ -509,7 +509,7 @@ var CONTENT = {
         {
             // TODO: Add Architecture tag
             // TODO: Add landscape tag
-            tags: ['frankie_eder', 'art', 'still', 'photography', 'landscape', 'architecture'],
+            tags: ['frankie_eder', 'art', 'still', 'photography', 'architecture'],
             rows: [
                 {title: "Movie Theater I"},
                 {subtitle: "Dublin, CA"},
@@ -606,7 +606,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['still', 'photography', 'landscape'],
+            tags: ['still', 'photography', 'landscape', 'architecture'],
             rows: [
                 {title: "Smoke over Silverlake"},
                 {subtitle: "Silverlake, CA"},
@@ -690,7 +690,7 @@ var CONTENT = {
 //        },
         // PHOTOGRAPHY - REMAINING(reverse chronological-ish)
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "A Place I Lived I, II"},
                 {
@@ -704,7 +704,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'landscape', 'architecture'],
             rows: [
                 {title: "SF to LA"},
                 {subtitle: "2021-05-30"},
@@ -718,7 +718,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Getty I"},
                 {
@@ -733,7 +733,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'landscape'],
             rows: [
                 {title: "Hollywood Hills II"},
                 {
@@ -747,7 +747,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'landscape', 'architecture'],
             rows: [
                 {title: "Hollywood Hills III"},
                 {
@@ -761,7 +761,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Movie Theater II"},
                 {
@@ -778,7 +778,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'landscape'],
             rows: [
                 {title: "Yosemite, Burnt"},
                 {
@@ -795,7 +795,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'landscape', 'architecture'],
             rows: [
                 {title: "99 (or Two Points of Interest on a Drive in the SF Bay) "},
                 {
@@ -809,7 +809,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XXVI"},
                 {
@@ -823,7 +823,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XXV"},
                 {
@@ -837,7 +837,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XXIV"},
                 {
@@ -852,7 +852,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XXIII"},
                 {
@@ -867,7 +867,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XXII"},
                 {
@@ -881,7 +881,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XXI"},
                 {
@@ -897,7 +897,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XX"},
                 {
@@ -911,7 +911,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XIX"},
                 {
@@ -925,7 +925,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XVIII"},
                 {
@@ -939,7 +939,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XVII"},
                 {
@@ -954,7 +954,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XVI"},
                 {
@@ -968,7 +968,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XV"},
                 {
@@ -982,7 +982,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XIV"},
                 {
@@ -996,7 +996,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XIII"},
                 {
@@ -1011,7 +1011,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XII"},
                 {
@@ -1025,7 +1025,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville XI"},
                 {
@@ -1039,7 +1039,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville X"},
                 {
@@ -1053,7 +1053,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville IX"},
                 {
@@ -1067,7 +1067,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['still', 'photography'],
+            tags: ['still', 'photography', 'architecture'],
             rows: [
                 {title: "Emeryville VIII"},
                 {
@@ -1081,7 +1081,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville VII"},
                 {
@@ -1095,7 +1095,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville VI"},
                 {
@@ -1109,7 +1109,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville V"},
                 {
@@ -1123,7 +1123,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['still', 'photography'],
+            tags: ['still', 'photography', 'architecture'],
             rows: [
                 {title: "Emeryville IV"},
                 {
@@ -1139,7 +1139,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville III"},
                 {
@@ -1154,7 +1154,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville II"},
                 {
@@ -1168,7 +1168,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'architecture'],
             rows: [
                 {title: "Emeryville I"},
                 {
@@ -1522,7 +1522,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['still', 'manipulated'],
+            tags: ['still', 'manipulated', 'landscape'],
             rows: [
                 {title: "2-D_15"},
                 {
@@ -1534,7 +1534,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'landscape'],
             rows: [
                 {title: "2-D_41"},
                 {
@@ -1546,7 +1546,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['still', 'manipulated'],
+            tags: ['still', 'manipulated', 'landscape'],
             rows: [
                 {title: "2-D_00001"},
                 {
@@ -1559,7 +1559,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['still', 'photography'],
+            tags: ['still', 'photography', 'architecture'],
             rows: [
                 {title: "2-D_00034"},
                 {
@@ -1572,7 +1572,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['still', 'photography', 'manipulated'],
+            tags: ['still', 'photography', 'manipulated', 'architecture'],
             rows: [
                 {title: "(      )"},
                 {
@@ -1591,7 +1591,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['still', 'photography', 'skate_photography'],
+            tags: ['still', 'photography', 'skate_photography', 'architecture'],
             rows: [
                 {title: "2-D_143"},
                 {
@@ -1603,7 +1603,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['manipulated'],
+            tags: ['manipulated', 'landscape'],
             rows: [
                 {title: "2-D_37c"},
                 {
@@ -1627,7 +1627,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['photography'],
+            tags: ['photography', 'landscape'],
             rows: [
                 {title: "2-D_137"},
                 {
@@ -1639,7 +1639,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['skate_photography'],
+            tags: ['skate_photography', 'architecture'],
             rows: [
                 {title: "Ray Corey - Front Board Backside Flip"},
                 {
@@ -1651,7 +1651,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['skate_photography'],
+            tags: ['skate_photography', 'architecture'],
             rows: [
                 {title: "Matthew Parra - Backside 180"},
                 {
