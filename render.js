@@ -34,7 +34,7 @@ function filteredContent() {
     //console.log("Current Filter:", CURRENT_FILTER);
     function contentFilter(post) {
         var released = true;
-        if (this.filter === '_all') {
+        if (this.filter === '_all') { // For debugging, will show all content.
             return true;
         }
         if (post.release_date) {
