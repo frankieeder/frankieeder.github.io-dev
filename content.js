@@ -291,7 +291,7 @@ var CONTENT = {
                 {subsubtitle: "cw: flashing lights"},
                 {
                     type_vimeo: true,
-                    vimeo: '697623576?h=5f2a56ddcd',
+                    vimeo: '697623576',
                 },
                 {credits: 'Director, Director of Photography, Editor, Colorist'},
             ],
