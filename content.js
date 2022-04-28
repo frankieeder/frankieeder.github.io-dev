@@ -395,19 +395,18 @@ var CONTENT = {
         {
             tags: ['frankie_eder', 'art', 'still', 'photography', 'architecture'],
             rows: [
-                {title: "Glendale I"},
-                {subtitle: "Central & San Fernando"},
+                {title: "Rampart Village II"},
                 {
                     type_photo_scrollbox: true,
-                    dir_prefix: "120/",
+                    dir_prefix: "118/",
                     scrollcontent: [
-                        {img: "DSC05820"},
+                        {img: "DSC04098"},
                     ],
                 },
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'still', 'photography', 'architecture'],
+            tags: ['art', 'still', 'photography', 'architecture'],
             rows: [
                 {title: "Rampart Village III"},
                 {
@@ -421,28 +420,29 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'still', 'photography', 'architecture'],
+            tags: ['still', 'photography', 'architecture'],
             rows: [
-                {title: "Rampart Village II"},
+                {title: "Glendale I"},
+                {subtitle: "Central & San Fernando"},
                 {
                     type_photo_scrollbox: true,
-                    dir_prefix: "118/",
+                    dir_prefix: "120/",
                     scrollcontent: [
-                        {img: "DSC04098"},
+                        {img: "DSC05820"},
                     ],
                 },
             ],
         },
         {
-            tags: ['frankie_eder', 'art', 'still', 'photography', 'architecture', 'wildlife'],
+            tags: ['photography', 'architecture', 'wildlife'],
             rows: [
                 {title: "Rampart Village I"},
                 {
                     type_photo_scrollbox: true,
                     dir_prefix: "117/",
                     scrollcontent: [
-                        {img: "DSC04071"},
                         {img: "DSC04084"},
+                        {img: "DSC04071"},
                     ],
                 },
             ],
