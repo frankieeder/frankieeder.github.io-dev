@@ -278,7 +278,7 @@ var CONTENT = {
                     vimeo: '501918925',
                 },
                 {credits: 'Director, Director of Photography, Score, Sound Design, Colorist, Effects Engineering, Editing'},
-                {html: "<h5><i>Official Selection</i> - Motus Imago 2021</h5>"}
+                {html: "<h5><i>Official Selection</i> - Showcase of Shapes, Puppets, and Moving Things 2021</h5>"}
             ],
 
         },
@@ -307,6 +307,8 @@ var CONTENT = {
                     aspect_ratio: '100%',
                 },
                 {credits: 'Director of Photography, Score, Sound Design'},
+                {html: "<h5>Awards: <i>Official Selection & Finalist</i> - Los Angeles Cinematography Awards 2022</h5>"},
+                {html: "<h5>Awards: <i>Best Sound & Music</i> - Grizzly Film Festival 2021</h5>"}
             ],
         },
         // TODO: Camera Obscura Moving Stills
@@ -388,7 +390,8 @@ var CONTENT = {
                     vimeo: '307996559',
                 },
                 {credits: 'Director, Director of Photography, Editor, Colorist'},
-                {html: "<h5>Awards: <i>Best Editing</i> - Grizzly Film Festival 2018</h5>"}
+                {html: "<h5>Awards: <i>Best Editing</i> - Grizzly Film Festival 2018</h5>"},
+                {html: "<h5>Awards: <i>Official Selection</i> - Frequency Film Festival 2021</h5>"}
             ],
         },
         // PHOTOGRAPHY - HIGHLIGHTED
