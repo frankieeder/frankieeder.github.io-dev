@@ -495,7 +495,6 @@ li.nav_inactive ul {
   display: block;
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
@@ -512,6 +511,8 @@ li.nav_inactive ul {
   padding: 0;
   width: 90%;
   max-width: 1200px;
+  min-width: 600px;
+  min-height: 600px;
   height: 90%;
 }
 
@@ -529,6 +530,7 @@ li.nav_inactive ul {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 5%;
 }
 
 /* The Close Button */
