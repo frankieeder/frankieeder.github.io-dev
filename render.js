@@ -248,6 +248,12 @@ function openLightBox(img_elem, caption) {
     var im_path = img_elem.firstElementChild.src.replace('_thumb', '');
     document.getElementById("lightbox-im").src = im_path;
 
+    var image_id = im_path.split('frankieeder.github.io')[1]
+    var prefix = 'mailto:frankaeder@gmail.com?subject='
+    var body = "&body=Hello there, I'd like a copy of image id " + image_id
+    document.getElementById("lighbox-request-print").href = prefix + 'frankieeder.com Print Request' + body;
+    document.getElementById("lighbox-request-nft").href = prefix + 'frankieeder.com NFT Request' + body;
+
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.add('visible');
     lightbox.classList.remove('hidden');
