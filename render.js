@@ -224,8 +224,8 @@ function initializePage() {
 
 // LIGHTBOX
 function openLightBox(im_path) {
-    document.getElementById("lightbox").style.display = "block";
     document.getElementById("lightbox-im").src = im_path;
+    document.getElementById("lightbox").style.display = "block";
 }
 
 function closeLightBox() {
