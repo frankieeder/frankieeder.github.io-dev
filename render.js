@@ -233,12 +233,17 @@ function initializePage() {
 //---------
 // Lightbox
 //---------
-function openLightBox(img_elem) {
+function openLightBox(img_elem, caption) {
     pauseBackgroundVideo();
-    var im_title = img_elem.parentElement.parentElement.firstElementChild.textContent;
+
+    if (caption === '') {
+        caption = img_elem.parentElement.parentElement.firstElementChild.textContent;
+    }
+    document.getElementById("lightbox-caption").textContent = caption;
+
     var im_path = img_elem.firstElementChild.src.replace('_thumb', '');
-    document.getElementById("lightbox-caption").textContent = im_title;
     document.getElementById("lightbox-im").src = im_path;
+
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.add('visible');
     lightbox.classList.remove('hidden');
@@ -246,6 +251,7 @@ function openLightBox(img_elem) {
 
 function closeLightBox() {
     playBackgroundVideo();
+
     lightbox.classList.remove('visible');
     lightbox.classList.add('hidden');
 }
