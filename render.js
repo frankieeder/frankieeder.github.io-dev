@@ -233,9 +233,11 @@ function initializePage() {
 //---------
 // Lightbox
 //---------
-function openLightBox(im_path, caption) {
+function openLightBox(img_elem) {
     pauseBackgroundVideo();
-    document.getElementById("lightbox-caption").textContent = caption;
+    var im_title = img_elem.parentElement.parentElement.firstElementChild.textContent;
+    var im_path = img_elem.firstElementChild.src.replace('_thumb', '');
+    document.getElementById("lightbox-caption").textContent = im_title;
     document.getElementById("lightbox-im").src = im_path;
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.add('visible');
