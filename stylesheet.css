@@ -537,15 +537,13 @@ li.nav_inactive ul {
 }
 
 
-
-
-/* Fade-ins */
-.fade-in {
-    animation: 10s ease 0s normal forwards 1 fadein;
-    -webkit-animation: 10s ease 0s normal forwards 1 fadein;
-    -moz-animation: fadeIn ease;
-    -o-animation: fadeIn ease;
-    -ms-animation: fadeIn ease;
+/* fade-in-delayeds */
+.fade-in-delayed {
+    animation: 10s ease 0s normal forwards 1 fadein-delayed;
+    -webkit-animation: 10s ease 0s normal forwards 1 fadein-delayed;
+    -moz-animation: fadein-delayed ease;
+    -o-animation: fadein-delayed ease;
+    -ms-animation: fadein-delayed ease;
 }
 
 .fade-after-1s {
@@ -561,34 +559,58 @@ li.nav_inactive ul {
 
 }
 
+@keyframes fadein-delayed{
+    0% { opacity:0; }
+    90% { opacity:0; }
+    100% { opacity:1; }
+}
+
+@-webkit-keyframes fadein-delayed{
+    0% { opacity:0; }
+    90% { opacity:0; }
+    100% { opacity:1; }
+}
+
+@-moz-keyframes fadein-delayed {
+    0% { opacity:0; }
+    90% { opacity:0; }
+    100% { opacity:1; }
+}
+
+@-o-keyframes fadein-delayed {
+    0% { opacity:0; }
+    90% { opacity:0; }
+    100% { opacity:1; }
+}
+
+@-ms-keyframes fadein-delayed {
+    0% { opacity:0; }
+    90% { opacity:0; }
+    100% { opacity:1; }
+}
+
 
 @keyframes fadein{
     0% { opacity:0; }
-    90% { opacity:0; }
     100% { opacity:1; }
 }
 
 @-webkit-keyframes fadein{
     0% { opacity:0; }
-    90% { opacity:0; }
     100% { opacity:1; }
 }
 
-@-moz-keyframes fadeIn {
+@-moz-keyframes fadein {
     0% { opacity:0; }
-    90% { opacity:0; }
     100% { opacity:1; }
 }
 
-@-o-keyframes fadeIn {
+@-o-keyframes fadein {
     0% { opacity:0; }
-    90% { opacity:0; }
     100% { opacity:1; }
 }
 
-@-ms-keyframes fadeIn {
+@-ms-keyframes fadein {
     0% { opacity:0; }
-    90% { opacity:0; }
     100% { opacity:1; }
 }
-

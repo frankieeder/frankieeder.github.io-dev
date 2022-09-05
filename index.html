@@ -12,7 +12,7 @@
     <script src="render.js"></script>
 </head>
 <body onload="initializePage()">
-    <div id="topBar" class="fade-in fade-after-1s">
+    <div id="topBar" class="fade-in-delayed fade-after-1s">
         <ul>
             <li id="header">
                 <div>
@@ -78,14 +78,14 @@
             </li>
         </ul>
     </div>
-    <div class="fullscreen-bg fade-in fade-after-5s">
+    <div class="fullscreen-bg fade-in-delayed fade-after-5s">
         <iframe
                 class="fullscreen-bg__video"
                 src="https://player.vimeo.com/video/501918925?background=1"
                 frameborder="0" allow="autoplay; fullscreen" allowfullscreen
         ></iframe>
     </div>
-    <div id="lightbox" class="lightbox">
+    <div id="lightbox" class="lightbox" >
         <span class="close cursor" onclick="closeLightBox()">&times;</span>
         <div class="lightbox-content">
             <img id="lightbox-im" src="img_nature_wide.jpg">
@@ -94,7 +94,7 @@
             </div>
         </div>
     </div>
-    <div id="contents_wrapper" class="fade-in fade-after-2s">
+    <div id="contents_wrapper" class="fade-in-delayed fade-after-2s">
         <div id="contents">Frankie Eder makes art and technology.</div>
     </div>
 </body>
