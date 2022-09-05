@@ -217,6 +217,14 @@ function updateFilter(tag) {
 }
 
 function initializePage() {
+    $("img").mousedown(function(e){
+         e.preventDefault()
+    });
+
+    $("img").on("contextmenu",function(e){
+         return false;
+    });
+
     initializeNav();
     renderBody();
 }
