@@ -227,13 +227,13 @@ function openLightBox(im_path, caption) {
     document.getElementById("lightbox-caption").textContent = caption;
     document.getElementById("lightbox-im").src = im_path;
     var lightbox = document.getElementById("lightbox");
-    lightbox.classList.toggle('visible');
-    lightbox.classList.toggle('hidden');
+    lightbox.classList.add('visible');
+    lightbox.classList.remove('hidden');
 }
 
 function closeLightBox() {
-    lightbox.classList.toggle('visible');
-    lightbox.classList.toggle('hidden');
+    lightbox.classList.remove('visible');
+    lightbox.classList.add('hidden');
 }
 
 
