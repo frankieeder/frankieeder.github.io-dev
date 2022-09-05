@@ -221,6 +221,21 @@ function initializePage() {
     renderBody();
 }
 
+
+// LIGHTBOX
+function openLightBox(im_path) {
+    document.getElementById("lightbox").style.display = "block";
+    document.getElementById("lightbox-im").src = im_path;
+}
+
+function closeLightBox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+
+
+
+
+
 function prepVimeoThumbnails() {
     var vimeos = document.querySelectorAll('.thumbnails div');
     for (var i = 0; i < vimeos.length; i++) {
