@@ -256,6 +256,8 @@ function openLightBox(img_elem, caption) {
 function closeLightBox() {
     playBackgroundVideo();
 
+    document.getElementById("lightbox-im").removeAttribute('src')
+
     lightbox.classList.remove('visible');
     lightbox.classList.add('hidden');
 }
