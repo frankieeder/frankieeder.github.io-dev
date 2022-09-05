@@ -216,9 +216,64 @@ function updateFilter(tag) {
     renderBody();
 }
 
+function disableRightClickAndDrag() {
+    /* https://www.infradox.com/disable-right-clicking-dragging-images/ */
+    $("img").mousedown(function(e){
+         e.preventDefault()
+    });
+
+    $("img").on("contextmenu",function(e){
+         return false;
+    });
+}
+
 function initializePage() {
+    disableRightClickAndDrag();
     initializeNav();
     renderBody();
+}
+
+
+//---------
+// Lightbox
+//---------
+function openLightBox(img_elem, caption) {
+    pauseBackgroundVideo();
+
+    if (caption === '') {
+        caption = img_elem.parentElement.parentElement.firstElementChild.textContent;
+    }
+    document.getElementById("lightbox-caption").textContent = caption;
+
+    var im_path = img_elem.firstElementChild.src.replace('_thumb', '');
+    document.getElementById("lightbox-im").src = im_path;
+
+    var lightbox = document.getElementById("lightbox");
+    lightbox.classList.add('visible');
+    lightbox.classList.remove('hidden');
+}
+
+function closeLightBox() {
+    playBackgroundVideo();
+
+    lightbox.classList.remove('visible');
+    lightbox.classList.add('hidden');
+}
+
+
+//------------
+// Vimeo Stuff (to revisit)
+//------------
+function pauseBackgroundVideo() {
+    var iframe = document.getElementById('fullscreen-bg__video');
+    var player = new Vimeo.Player(iframe);
+    player.pause();
+}
+
+function playBackgroundVideo() {
+    var iframe = document.getElementById('fullscreen-bg__video');
+    var player = new Vimeo.Player(iframe);
+    player.play();
 }
 
 function prepVimeoThumbnails() {

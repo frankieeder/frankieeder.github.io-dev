@@ -6,13 +6,14 @@
     <base href="./">
 	<link href="stylesheet.css" id="user_stylesheet" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="img/head_icon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="mustache.min.js"></script>
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script src="content.js"></script>
     <script src="render.js"></script>
 </head>
 <body onload="initializePage()">
-    <div id="topBar" class="fade-in fade-after-1s">
+    <div id="topBar" class="fade-in-delayed fade-after-1s">
         <ul>
             <li id="header">
                 <div>
@@ -78,14 +79,24 @@
             </li>
         </ul>
     </div>
-    <div class="fullscreen-bg fade-in fade-after-5s">
+    <div class="fullscreen-bg fade-in-delayed fade-after-5s">
         <iframe
                 class="fullscreen-bg__video"
+                id="fullscreen-bg__video"
                 src="https://player.vimeo.com/video/501918925?background=1"
                 frameborder="0" allow="autoplay; fullscreen" allowfullscreen
         ></iframe>
     </div>
-    <div id="contents_wrapper" class="fade-in fade-after-2s">
+    <div id="lightbox" class="lightbox hidden">
+        <span class="close cursor" onclick="closeLightBox()">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-im" src="img_nature_wide.jpg">
+            <div class="lightbox-caption-container">
+                <h2 id="lightbox-caption"></h2>
+            </div>
+        </div>
+    </div>
+    <div id="contents_wrapper" class="fade-in-delayed fade-after-2s">
         <div id="contents">Frankie Eder makes art and technology.</div>
     </div>
 </body>
