@@ -216,7 +216,8 @@ function updateFilter(tag) {
     renderBody();
 }
 
-function initializePage() {
+function disableRightClickAndDrag() {
+    /* https://www.infradox.com/disable-right-clicking-dragging-images/ */
     $("img").mousedown(function(e){
          e.preventDefault()
     });
@@ -224,7 +225,10 @@ function initializePage() {
     $("img").on("contextmenu",function(e){
          return false;
     });
+}
 
+function initializePage() {
+    disableRightClickAndDrag();
     initializeNav();
     renderBody();
 }
