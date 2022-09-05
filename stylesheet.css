@@ -488,15 +488,6 @@ li.nav_inactive ul {
 }
 
 .lightbox-content > img {
-/*
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-height: 100%;
-  min-width: 100%;
-  transform: translate(-50%, -50%);
-*/
   /* https://stackoverflow.com/a/21176438 */
   width: auto;  /* set to anything and aspect ratio is maintained - also corrects glitch in Internet Explorer */
   height: 90%;  /* set to anything and aspect ratio is maintained */
