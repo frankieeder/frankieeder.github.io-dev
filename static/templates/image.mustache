@@ -1,7 +1,7 @@
 {{!
 TODO: Add thumb or lq depending on if it's a scrollbox or not?
 }}
-<a onclick="openLightBox('img/{{dir_prefix}}{{img}}.{{ext}}{{^ext}}jpeg{{/ext}}');">
+<a onclick="openLightBox('img/{{dir_prefix}}{{img}}.{{ext}}{{^ext}}jpeg{{/ext}}', '{{img}}');">
     {{! If is a thumbnal in a scrollbox}}
     {{#type_photo_scrollbox}}<img src="img/{{dir_prefix}}{{img}}_thumb.{{ext}}{{^ext}}jpeg{{/ext}}" alt="pic" border="0">{{/type_photo_scrollbox}}
     {{! If standalone image (width parameter included)}}

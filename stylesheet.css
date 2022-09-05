@@ -474,7 +474,7 @@ li.nav_inactive ul {
   height: 100%;
   overflow: auto;
   /* https://stackoverflow.com/questions/11184117/transparent-css-background-color#11184126 */
-  background: rgba(0,0,0,0.7);
+  background: rgba(50,50,50,0.95);
 }
 
 /* Modal Content */
@@ -530,9 +530,8 @@ li.nav_inactive ul {
   cursor: pointer;
 }
 
-.caption-container {
+.lightbox-caption-container {
   text-align: center;
-  background-color: black;
   padding: 2px 16px;
   color: white;
 }

@@ -223,7 +223,8 @@ function initializePage() {
 
 
 // LIGHTBOX
-function openLightBox(im_path) {
+function openLightBox(im_path, caption) {
+    document.getElementById("lightbox-caption").textContent = caption;
     document.getElementById("lightbox-im").src = im_path;
     document.getElementById("lightbox").style.display = "block";
 }
