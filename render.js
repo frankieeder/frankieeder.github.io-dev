@@ -226,11 +226,14 @@ function initializePage() {
 function openLightBox(im_path, caption) {
     document.getElementById("lightbox-caption").textContent = caption;
     document.getElementById("lightbox-im").src = im_path;
-    document.getElementById("lightbox").style.display = "block";
+    var lightbox = document.getElementById("lightbox");
+    lightbox.classList.toggle('visible');
+    lightbox.classList.toggle('hidden');
 }
 
 function closeLightBox() {
-    document.getElementById("lightbox").style.display = "none";
+    lightbox.classList.toggle('visible');
+    lightbox.classList.toggle('hidden');
 }
 
 

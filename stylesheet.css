@@ -464,7 +464,7 @@ li.nav_inactive ul {
 
 /* The Lightbox (background) */
 .lightbox {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 1;
   padding-top: 100px;
@@ -537,13 +537,28 @@ li.nav_inactive ul {
 }
 
 
-/* fade-in-delayeds */
+/* Fade-In Effect */
+.visible {
+    /* display: block; */
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s linear;
+}
+/* Fade-Out Effect */
+.hidden {
+    /* display: none; */
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.3s, opacity 0.3s linear;
+}
+
+/* Delayed Fade-ins for Content */
 .fade-in-delayed {
-    animation: 10s ease 0s normal forwards 1 fadein-delayed;
-    -webkit-animation: 10s ease 0s normal forwards 1 fadein-delayed;
-    -moz-animation: fadein-delayed ease;
-    -o-animation: fadein-delayed ease;
-    -ms-animation: fadein-delayed ease;
+    animation: 10s ease 0s normal forwards 1 elbowUp;
+    -webkit-animation: 10s ease 0s normal forwards 1 elbowUp;
+    -moz-animation: elbowUp ease;
+    -o-animation: elbowUp ease;
+    -ms-animation: elbowUp ease;
 }
 
 .fade-after-1s {
@@ -559,58 +574,32 @@ li.nav_inactive ul {
 
 }
 
-@keyframes fadein-delayed{
+@keyframes elbowUp{
     0% { opacity:0; }
     90% { opacity:0; }
     100% { opacity:1; }
 }
 
-@-webkit-keyframes fadein-delayed{
+@-webkit-keyframes elbowUp{
     0% { opacity:0; }
     90% { opacity:0; }
     100% { opacity:1; }
 }
 
-@-moz-keyframes fadein-delayed {
+@-moz-keyframes elbowUp {
     0% { opacity:0; }
     90% { opacity:0; }
     100% { opacity:1; }
 }
 
-@-o-keyframes fadein-delayed {
+@-o-keyframes elbowUp {
     0% { opacity:0; }
     90% { opacity:0; }
     100% { opacity:1; }
 }
 
-@-ms-keyframes fadein-delayed {
+@-ms-keyframes elbowUp {
     0% { opacity:0; }
     90% { opacity:0; }
-    100% { opacity:1; }
-}
-
-
-@keyframes fadein{
-    0% { opacity:0; }
-    100% { opacity:1; }
-}
-
-@-webkit-keyframes fadein{
-    0% { opacity:0; }
-    100% { opacity:1; }
-}
-
-@-moz-keyframes fadein {
-    0% { opacity:0; }
-    100% { opacity:1; }
-}
-
-@-o-keyframes fadein {
-    0% { opacity:0; }
-    100% { opacity:1; }
-}
-
-@-ms-keyframes fadein {
-    0% { opacity:0; }
     100% { opacity:1; }
 }
