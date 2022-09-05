@@ -222,8 +222,11 @@ function initializePage() {
 }
 
 
-// LIGHTBOX
+//---------
+// Lightbox
+//---------
 function openLightBox(im_path, caption) {
+    pauseBackgroundVideo();
     document.getElementById("lightbox-caption").textContent = caption;
     document.getElementById("lightbox-im").src = im_path;
     var lightbox = document.getElementById("lightbox");
@@ -232,13 +235,26 @@ function openLightBox(im_path, caption) {
 }
 
 function closeLightBox() {
+    playBackgroundVideo();
     lightbox.classList.remove('visible');
     lightbox.classList.add('hidden');
 }
 
 
+//------------
+// Vimeo Stuff (to revisit)
+//------------
+function pauseBackgroundVideo() {
+    var iframe = document.getElementById('fullscreen-bg__video');
+    var player = new Vimeo.Player(iframe);
+    player.pause();
+}
 
-
+function playBackgroundVideo() {
+    var iframe = document.getElementById('fullscreen-bg__video');
+    var player = new Vimeo.Player(iframe);
+    player.play();
+}
 
 function prepVimeoThumbnails() {
     var vimeos = document.querySelectorAll('.thumbnails div');
