@@ -328,6 +328,22 @@ var CONTENT = {
             ],
         },
         {
+            tags: ['frankie_eder', 'film', 'shot_by', 'score_by', 'sound_by', 'portfolio'],
+            rows: [
+                {title: "CAMERA OBSCURA"},
+                {subtitle: "(narrative featurette film)"},
+                {
+                    type_vimeo: true,
+                    vimeo: '486248111',
+                    aspect_ratio: '100%',
+                },
+                {credits: 'Director of Photography, Score, Sound Design'},
+                {html: "<h5><u>Awards</u></h5>"},
+                {html: "<h5><i>Official Selection & Finalist</i> - Los Angeles Cinematography Awards 2022</h5>"},
+                {html: "<h5><i>Best Sound & Music</i> - Grizzly Film Festival 2021</h5>"}
+            ],
+        },
+        {
             tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'score_by', 'sound_by', 'colored_by', 'edited_by', 'effects_by', 'portfolio', 'art', 'experimental', 'compendium1'],
             release_date: "2021-04-09T12:00:00.000Z",
             rows: [
@@ -355,22 +371,6 @@ var CONTENT = {
                     vimeo: '697623576',
                 },
                 {credits: 'Director, Director of Photography, Editor, Colorist'},
-            ],
-        },
-        {
-            tags: ['frankie_eder', 'film', 'shot_by', 'score_by', 'sound_by', 'portfolio'],
-            rows: [
-                {title: "CAMERA OBSCURA"},
-                {subtitle: "(narrative featurette film)"},
-                {
-                    type_vimeo: true,
-                    vimeo: '486248111',
-                    aspect_ratio: '100%',
-                },
-                {credits: 'Director of Photography, Score, Sound Design'},
-                {html: "<h5><u>Awards</u></h5>"},
-                {html: "<h5><i>Official Selection & Finalist</i> - Los Angeles Cinematography Awards 2022</h5>"},
-                {html: "<h5><i>Best Sound & Music</i> - Grizzly Film Festival 2021</h5>"}
             ],
         },
         // TODO: Camera Obscura Moving Stills
