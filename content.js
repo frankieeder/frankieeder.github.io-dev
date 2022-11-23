@@ -5,7 +5,7 @@ var CONTENT = {
     },
     contents: [
         {
-            tags: ['mailing_list'],
+            tags: ['newsletter'],
             rows: {
                 html:
                 `
