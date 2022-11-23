@@ -9,7 +9,7 @@ var CONTENT = {
             rows: [
                 {html: "<p>My name is <a href='/about'><u>Frankie Eder and I make things</u></a>.</p>"},
                 {html: "<p>Please sign up for my <a href='/newsletter'><u>newsletter</u></a> to stay up to date on my work.</p>"},
-                {html: "<p>Highlighted works are below, and archives in <a href='/art'><u>art</u></a>, <a href='/science'><u>science</u></a>, and associated subcategories such as <a href='/film'><u>film</u></a> and <a href='/still'><u>photography</u></a> are available via sidebar navigation.</p>"},
+                {html: "<p>Highlighted works are below, and portfolios in <a href='/art'><u>art</u></a>, <a href='/science'><u>science</u></a>, and associated subcategories such as <a href='/film'><u>film</u></a> and <a href='/still'><u>photography</u></a> are available via sidebar navigation.</p>"},
                 {html: "<p>All photos are available for purchase via clicking on any photo.</p>"}
             ],
         },
