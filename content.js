@@ -401,6 +401,7 @@ var CONTENT = {
                     img: 'visual/DSC01344_HaarD13', // TODO: Should all of these be moved?
                     ext: 'jpg',
                 },
+                {html: "<h5><i>Official Selection</i> - Pixar On-Campus Employee Art Gallery 2019-2021, Brooklyn Building</h5>"},
             ],
         },
         {
