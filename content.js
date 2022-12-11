@@ -339,7 +339,7 @@ var CONTENT = {
                 },
                 {credits: 'Director of Photography, Score, Sound Design'},
                 {html: "<h5><u>Awards</u></h5>"},
-                {html: "<h5><i>Official Selection & Finalist</i> - Los Angeles Cinematography Awards 2022</h5>"},
+                {html: "<h5><i>Finalist</i> - Los Angeles Cinematography Awards 2022</h5>"},
                 {html: "<h5><i>Best Sound & Music</i> - Grizzly Film Festival 2021</h5>"}
             ],
         },
@@ -410,7 +410,7 @@ var CONTENT = {
                     img: 'visual/DSC01344_HaarD13', // TODO: Should all of these be moved?
                     ext: 'jpg',
                 },
-                {html: "<h5><i>Official Selection</i> - Pixar On-Campus Employee Art Gallery 2019-2021, Brooklyn Building</h5>"},
+                {html: "<h5><i>Official Selection</i> - Pixar On-Campus Art Gallery 2019-2021, Brooklyn Building</h5>"},
             ],
         },
         {
@@ -1695,7 +1695,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['still', 'photography', 'manipulated', 'architecture'],
+            tags: [],
             rows: [
                 {title: "(      )"},
                 {
