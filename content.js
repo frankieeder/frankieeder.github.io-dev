@@ -1339,56 +1339,6 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['science', 'research'],
-            rows: [
-                {title: "Decoding Consumer Grade Video for Film"},
-                {subsubtitle: "Flow-Informed Artifact Removal, Chroma Upsampling, and Bit Depth Interpolation"},
-                {
-                    type_button: true,
-                    text: "PAPER",
-                    link: "sci/dcgvf.pdf",
-                },
-                {
-                    type_button: true,
-                    text: "SLIDES",
-                    link: "sci/dcgvf-slides.pdf",
-                },
-                {
-                    type_button: true,
-                    text: "CODE",
-                    link: "https://github.com/frankieeder/DCGVF",
-                },
-            ],
-        },
-        {
-            tags: ['science', 'research'],
-            rows: [
-                {title: "Cinematic Colorization"},
-                {subsubtitle: "Analyzes the spatial and temporal characteristics of color in cinema using a newly collected dataset of 1800+ trailers. Utilizes knowledge gained to explore color-based genre classification and automatic color grading. Completed collaboratively with UC Berkeley Visual Computing Lab, Cecilia Zhang (PhD, UC Berkeley), and Vivien Nguyen (MS, UC Berkeley)"},
-                {html: `
-                    <div class="iframe-container">
-                        <iframe src="https://drive.google.com/file/d/1kZudI41b62Z7rBQ4CzV6x_PH54JC-y11/preview"></iframe>
-                    </div>
-                `},
-                {html: '<div style="height: 25px"></div>'},
-                {
-                    type_button: true,
-                    text: "PAPER",
-                    link: "sci/cinema-color.pdf",
-                },
-                {
-                    type_button: true,
-                    text: "SLIDES",
-                    link: "sci/cinema-color-slides.pdf",
-                },
-                {
-                    type_button: true,
-                    text: "CODE",
-                    link: "https://github.com/viviehn/cinematic-color",
-                },
-            ],
-        },
-        {
             tags: ['film', 'commercial'],
             rows: [
                 {title: "HIDDEN UNDERWORLD SUMMER 2019"},
@@ -2018,43 +1968,29 @@ var CONTENT = {
 
         // CODE
         {
-            tags: ['science', 'implementations'],
-            rows: [
-                {title: "IMAGETOOLS"},
-                {subsubtitle: "Python image manipulation package for experimental artmaking"},
-                {
-                    type_button: true,
-                    text: "CODE",
-                    link: "https://github.com/frankieeder/imagetools",
-                },
-            ],
-        },
-        {
-            tags: ['science', 'implementations'],
-            rows: [
-                {title: "fantasy_movie_league"},
-                {subsubtitle: "Predicts box-office earnings using machine learning, and subsequently predicts the best Fantasy Movie League using an object-oriented approah to the knapsack problem."},
-                {
-                    type_button: true,
-                    text: "CODE",
-                    link: "https://github.com/frankieeder/fantasy_movie_league",
-                },
-            ],
-        },
-        {
-            tags: ['implementations'],
-            rows: [
-                {title: "Movie Data Scraper"},
-                {subsubtitle: "Python Package for collectiong data from major movie data websites."},
-                {
-                    type_button: true,
-                    text: "CODE",
-                    link: "https://github.com/frankieeder/movie_data_scraper",
-                },
-            ],
-        },
-        {
             tags: ['science', 'research'],
+            rows: [
+                {title: "Decoding Consumer Grade Video for Film"},
+                {subsubtitle: "Flow-Informed Artifact Removal, Chroma Upsampling, and Bit Depth Interpolation"},
+                {
+                    type_button: true,
+                    text: "PAPER",
+                    link: "sci/dcgvf.pdf",
+                },
+                {
+                    type_button: true,
+                    text: "SLIDES",
+                    link: "sci/dcgvf-slides.pdf",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/DCGVF",
+                },
+            ],
+        },
+        {
+            tags: ['science'],
             rows: [
                 {title: "Amodal3DetTF"},
                 {subsubtitle: "A TensorFlow re-implementation of object detection algorithms presented in 'Amodal Detection of 3D Objects: Inferring 3D Bounding Boxes from 2D Ones in RGB-Depth Images' (Deng et al.) for use on mobile devices. Completed as a computer vision researcher in UC Berkeley's Video and Image Processing Lab"},
@@ -2066,7 +2002,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['research'],
+            tags: ['science'],
             rows: [
                 {title: "Orthogonal Structure Detection"},
                 {subsubtitle: "Extends use cases of a CVPR 2016 paper, proving comparable results on original dataset and invariance to wall shape with an IOU decrease of less than 5% on non-planar wall cases. No learning required."},
@@ -2074,6 +2010,70 @@ var CONTENT = {
                     type_button: true,
                     text: "CODE",
                     link: "https://github.com/frankieeder/orthogonal_structure_detection",
+                },
+            ],
+        },
+        {
+            tags: ['science'],
+            rows: [
+                {title: "IMAGETOOLS"},
+                {subsubtitle: "Python image manipulation package for experimental artmaking"},
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/imagetools",
+                },
+            ],
+        },
+        {
+            tags: ['science'],
+            rows: [
+                {title: "fantasy_movie_league"},
+                {subsubtitle: "Predicts box-office earnings using machine learning, and subsequently predicts the best Fantasy Movie League using an object-oriented approah to the knapsack problem."},
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/fantasy_movie_league",
+                },
+            ],
+        },
+        {
+            tags: ['science'],
+            rows: [
+                {title: "Movie Data Scraper"},
+                {subsubtitle: "Python Package for collectiong data from major movie data websites."},
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/movie_data_scraper",
+                },
+            ],
+        },
+        {
+            tags: [],
+            rows: [
+                {title: "Cinematic Colorization"},
+                {subsubtitle: "Analyzes the spatial and temporal characteristics of color in cinema using a newly collected dataset of 1800+ trailers. Utilizes knowledge gained to explore color-based genre classification and automatic color grading. Completed collaboratively with UC Berkeley Visual Computing Lab, Cecilia Zhang (PhD, UC Berkeley), and Vivien Nguyen (MS, UC Berkeley)"},
+                {html: `
+                    <div class="iframe-container">
+                        <iframe src="https://drive.google.com/file/d/1kZudI41b62Z7rBQ4CzV6x_PH54JC-y11/preview"></iframe>
+                    </div>
+                `},
+                {html: '<div style="height: 25px"></div>'},
+                {
+                    type_button: true,
+                    text: "PAPER",
+                    link: "sci/cinema-color.pdf",
+                },
+                {
+                    type_button: true,
+                    text: "SLIDES",
+                    link: "sci/cinema-color-slides.pdf",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/viviehn/cinematic-color",
                 },
             ],
         },
