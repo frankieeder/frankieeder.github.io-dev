@@ -717,7 +717,6 @@ var CONTENT = {
                         {img: "DSC01574"},
                         {img: "DSC01584"},
                         {img: "DSC01566"},
-                        {img: "DSC01566"},
                         {img: "DSC01375"},
                         {img: "DSC01234"},
                         {img: "DSC01391"},
