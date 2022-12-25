@@ -1967,28 +1967,6 @@ var CONTENT = {
 
         // CODE
         {
-            tags: ['science', 'research', 'computer_vision', 'film_science'],
-            rows: [
-                {title: "Decoding Consumer Grade Video for Film"},
-                {subsubtitle: "Flow-Informed Artifact Removal, Chroma Upsampling, and Bit Depth Interpolation"},
-                {
-                    type_button: true,
-                    text: "PAPER",
-                    link: "sci/dcgvf.pdf",
-                },
-                {
-                    type_button: true,
-                    text: "SLIDES",
-                    link: "sci/dcgvf-slides.pdf",
-                },
-                {
-                    type_button: true,
-                    text: "CODE",
-                    link: "https://github.com/frankieeder/DCGVF",
-                },
-            ],
-        },
-        {
             tags: ['science', 'implementations', 'computer_vision'],
             rows: [
                 {title: "Barcode Reader"},
@@ -2019,6 +1997,28 @@ var CONTENT = {
                     type_button: true,
                     text: "CODE",
                     link: "https://github.com/frankieeder/rent_vs_buy",
+                },
+            ],
+        },
+        {
+            tags: ['science', 'research', 'computer_vision', 'film_science'],
+            rows: [
+                {title: "Decoding Consumer Grade Video for Film"},
+                {subsubtitle: "Flow-Informed Artifact Removal, Chroma Upsampling, and Bit Depth Interpolation"},
+                {
+                    type_button: true,
+                    text: "PAPER",
+                    link: "sci/dcgvf.pdf",
+                },
+                {
+                    type_button: true,
+                    text: "SLIDES",
+                    link: "sci/dcgvf-slides.pdf",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/DCGVF",
                 },
             ],
         },
