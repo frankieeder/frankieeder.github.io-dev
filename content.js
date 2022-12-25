@@ -1970,7 +1970,7 @@ var CONTENT = {
             tags: ['science', 'implementations', 'computer_vision'],
             rows: [
                 {title: "Barcode Reader"},
-                {subsubtitle: "Easily scan barcodes using a mobile device or desktop computer, revealing the encoded barcode content and generating handy one-click links to search common platforms to buy/sell media."},
+                {subsubtitle: "Easily scan barcodes using a mobile device or desktop computer, revealing the encoded barcode content and generating handy one-click links to search common platforms to buy/sell products."},
                 {
                     type_button: true,
                     text: "WEB APP",
