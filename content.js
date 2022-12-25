@@ -1973,7 +1973,7 @@ var CONTENT = {
                 {subsubtitle: "Easily scan barcodes using a mobile device or desktop computer, revealing the encoded barcode content and generating handy one-click links to search common platforms to buy/sell media."},
                 {
                     type_button: true,
-                    text: "APP",
+                    text: "WEB APP",
                     link: "https://barcode-reader.streamlit.app/",
                 },
                 {
@@ -1990,7 +1990,7 @@ var CONTENT = {
                 {subsubtitle: "Visualize key housing market metrics over time and between regions."},
                 {
                     type_button: true,
-                    text: "APP",
+                    text: "WEB APP",
                     link: "https://rent-vs-buy.streamlit.app/",
                 },
                 {
