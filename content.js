@@ -1988,28 +1988,23 @@ var CONTENT = {
                 },
             ],
         },
-//        {
-//            tags: ['science', 'research', 'computer_vision'],
-//            rows: [
-//                {title: "Decoding Consumer Grade Video for Film"},
-//                {subsubtitle: "Flow-Informed Artifact Removal, Chroma Upsampling, and Bit Depth Interpolation"},
-//                {
-//                    type_button: true,
-//                    text: "PAPER",
-//                    link: "sci/dcgvf.pdf",
-//                },
-//                {
-//                    type_button: true,
-//                    text: "SLIDES",
-//                    link: "sci/dcgvf-slides.pdf",
-//                },
-//                {
-//                    type_button: true,
-//                    text: "CODE",
-//                    link: "https://github.com/frankieeder/DCGVF",
-//                },
-//            ],
-//        },
+        {
+            tags: ['science', 'implementations', 'computer_vision'],
+            rows: [
+                {title: "Barcode Reader"},
+                {subsubtitle: "Easily scan barcodes using a mobile device or desktop computer, revealing the encoded barcode content and generating handy one-click links to search common platforms to buy/sell media."},
+                {
+                    type_button: true,
+                    text: "APP",
+                    link: "https://barcode-reader.streamlit.app/",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/barcode_reader",
+                },
+            ],
+        },
         {
             tags: ['science', 'computer_vision'],
             rows: [
