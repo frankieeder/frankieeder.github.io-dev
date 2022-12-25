@@ -2006,6 +2006,23 @@ var CONTENT = {
             ],
         },
         {
+            tags: ['science', 'implementations', 'data'],
+            rows: [
+                {title: "Rent vs. Buy"},
+                {subsubtitle: "Visualize key housing market metrics over time and between regions."},
+                {
+                    type_button: true,
+                    text: "APP",
+                    link: "https://rent-vs-buy.streamlit.app/",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/rent_vs_buy",
+                },
+            ],
+        },
+        {
             tags: ['science', 'computer_vision', 'film_science', 'artmaking'],
             rows: [
                 {title: "IMAGETOOLS"},
