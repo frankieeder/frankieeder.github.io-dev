@@ -2099,7 +2099,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['implementations', 'film_science', 'data'],
+            tags: ['implementations', 'film_science'],
             rows: [
                 {title: "fantasy_movie_league"},
                 {subsubtitle: "Predicts box-office earnings using machine learning, and subsequently predicts the best Fantasy Movie League using an object-oriented approah to the knapsack problem."},
