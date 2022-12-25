@@ -1967,7 +1967,58 @@ var CONTENT = {
 
         // CODE
         {
-            tags: ['science', 'research'],
+            tags: ['science', 'implementations', 'computer_vision'],
+            rows: [
+                {title: "Barcode Reader"},
+                {subsubtitle: "Easily scan barcodes using a mobile device or desktop computer, revealing the encoded barcode content and generating handy one-click links to search common platforms to buy/sell products."},
+                {
+                    type_button: true,
+                    text: "WEB APP",
+                    link: "https://barcode-reader.streamlit.app/",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/barcode_reader",
+                },
+            ],
+        },
+        {
+            tags: ['science', 'implementations', 'data'],
+            rows: [
+                {title: "Rent vs. Buy"},
+                {subsubtitle: "Visualize key housing market metrics over time and between regions."},
+                {
+                    type_button: true,
+                    text: "WEB APP",
+                    link: "https://rent-vs-buy.streamlit.app/",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/rent_vs_buy",
+                },
+            ],
+        },
+        {
+            tags: ['science', 'implementations', 'film_science', 'artmaking'],
+            rows: [
+                {title: "Adobe Premiere Droste Plugin"},
+                {subsubtitle: "Adobe Premiere plugin to create a Droste (infinite picture-in-picture) effect for video."},
+                {
+                    type_button: true,
+                    text: "EXAMPLE",
+                    link: "https://vimeo.com/501918925",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/adobe_droste_echo",
+                },
+            ],
+        },
+        {
+            tags: ['science', 'research', 'computer_vision', 'film_science'],
             rows: [
                 {title: "Decoding Consumer Grade Video for Film"},
                 {subsubtitle: "Flow-Informed Artifact Removal, Chroma Upsampling, and Bit Depth Interpolation"},
@@ -1989,34 +2040,15 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['science'],
-            rows: [
-                {title: "Amodal3DetTF"},
-                {subsubtitle: "A TensorFlow re-implementation of object detection algorithms presented in 'Amodal Detection of 3D Objects: Inferring 3D Bounding Boxes from 2D Ones in RGB-Depth Images' (Deng et al.) for use on mobile devices. Completed as a computer vision researcher in UC Berkeley's Video and Image Processing Lab"},
-                {
-                    type_button: true,
-                    text: "CODE",
-                    link: "https://github.com/frankieeder/Amodal3Det_TF",
-                },
-            ],
-        },
-        {
-            tags: ['science'],
-            rows: [
-                {title: "Orthogonal Structure Detection"},
-                {subsubtitle: "Extends use cases of a CVPR 2016 paper, proving comparable results on original dataset and invariance to wall shape with an IOU decrease of less than 5% on non-planar wall cases. No learning required."},
-                {
-                    type_button: true,
-                    text: "CODE",
-                    link: "https://github.com/frankieeder/orthogonal_structure_detection",
-                },
-            ],
-        },
-        {
-            tags: ['science'],
+            tags: ['science', 'computer_vision', 'film_science', 'artmaking'],
             rows: [
                 {title: "IMAGETOOLS"},
                 {subsubtitle: "Python image manipulation package for experimental artmaking"},
+                {
+                    type_button: true,
+                    text: "EXAMPLE",
+                    link: "https://vimeo.com/384236279",
+                },
                 {
                     type_button: true,
                     text: "CODE",
@@ -2025,19 +2057,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['science'],
-            rows: [
-                {title: "fantasy_movie_league"},
-                {subsubtitle: "Predicts box-office earnings using machine learning, and subsequently predicts the best Fantasy Movie League using an object-oriented approah to the knapsack problem."},
-                {
-                    type_button: true,
-                    text: "CODE",
-                    link: "https://github.com/frankieeder/fantasy_movie_league",
-                },
-            ],
-        },
-        {
-            tags: ['science'],
+            tags: ['science', 'implementations', 'film_science', 'data'],
             rows: [
                 {title: "Movie Data Scraper"},
                 {subsubtitle: "Python Package for collectiong data from major movie data websites."},
@@ -2049,7 +2069,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: [],
+            tags: ['computer_vision', 'research', 'film_science'],
             rows: [
                 {title: "Cinematic Colorization"},
                 {subsubtitle: "Analyzes the spatial and temporal characteristics of color in cinema using a newly collected dataset of 1800+ trailers. Utilizes knowledge gained to explore color-based genre classification and automatic color grading. Completed collaboratively with UC Berkeley Visual Computing Lab, Cecilia Zhang (PhD, UC Berkeley), and Vivien Nguyen (MS, UC Berkeley)"},
@@ -2073,6 +2093,42 @@ var CONTENT = {
                     type_button: true,
                     text: "CODE",
                     link: "https://github.com/viviehn/cinematic-color",
+                },
+            ],
+        },
+        {
+            tags: ['computer_vision', 'research'],
+            rows: [
+                {title: "Amodal3DetTF"},
+                {subsubtitle: "A TensorFlow re-implementation of object detection algorithms presented in 'Amodal Detection of 3D Objects: Inferring 3D Bounding Boxes from 2D Ones in RGB-Depth Images' (Deng et al.) for use on mobile devices. Completed as a computer vision researcher in UC Berkeley's Video and Image Processing Lab"},
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/Amodal3Det_TF",
+                },
+            ],
+        },
+        {
+            tags: ['computer_vision', 'research'],
+            rows: [
+                {title: "Orthogonal Structure Detection"},
+                {subsubtitle: "Extends use cases of a CVPR 2016 paper, proving comparable results on original dataset and invariance to wall shape with an IOU decrease of less than 5% on non-planar wall cases. No learning required."},
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/orthogonal_structure_detection",
+                },
+            ],
+        },
+        {
+            tags: ['implementations', 'film_science'],
+            rows: [
+                {title: "fantasy_movie_league"},
+                {subsubtitle: "Predicts box-office earnings using machine learning, and subsequently predicts the best Fantasy Movie League using an object-oriented approah to the knapsack problem."},
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/fantasy_movie_league",
                 },
             ],
         },
