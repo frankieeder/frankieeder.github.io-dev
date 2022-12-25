@@ -2001,6 +2001,23 @@ var CONTENT = {
             ],
         },
         {
+            tags: ['science', 'implementations', 'film_science', 'artmaking'],
+            rows: [
+                {title: "Adobe Premiere Droste Plugin"},
+                {subsubtitle: "Adobe Premiere plugin to create a Droste (infinite picture-in-picture) effect for video."},
+                {
+                    type_button: true,
+                    text: "EXAMPLE",
+                    link: "https://vimeo.com/501918925",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/adobe_droste_echo",
+                },
+            ],
+        },
+        {
             tags: ['science', 'research', 'computer_vision', 'film_science'],
             rows: [
                 {title: "Decoding Consumer Grade Video for Film"},
