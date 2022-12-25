@@ -2046,6 +2046,11 @@ var CONTENT = {
                 {subsubtitle: "Python image manipulation package for experimental artmaking"},
                 {
                     type_button: true,
+                    text: "EXAMPLE",
+                    link: "https://vimeo.com/384236279",
+                },
+                {
+                    type_button: true,
                     text: "CODE",
                     link: "https://github.com/frankieeder/imagetools",
                 },
