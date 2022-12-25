@@ -1967,7 +1967,7 @@ var CONTENT = {
 
         // CODE
         {
-            tags: ['science', 'research', 'computer_vision'],
+            tags: ['science', 'research', 'computer_vision', 'film_science'],
             rows: [
                 {title: "Decoding Consumer Grade Video for Film"},
                 {subsubtitle: "Flow-Informed Artifact Removal, Chroma Upsampling, and Bit Depth Interpolation"},
@@ -2006,7 +2006,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['science', 'computer_vision'],
+            tags: ['science', 'computer_vision', 'film_science', 'artmaking'],
             rows: [
                 {title: "IMAGETOOLS"},
                 {subsubtitle: "Python image manipulation package for experimental artmaking"},
@@ -2018,7 +2018,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['science', 'implementations'],
+            tags: ['science', 'implementations', 'film_science', 'data'],
             rows: [
                 {title: "Movie Data Scraper"},
                 {subsubtitle: "Python Package for collectiong data from major movie data websites."},
@@ -2030,7 +2030,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['computer_vision', 'research'],
+            tags: ['computer_vision', 'research', 'film_science'],
             rows: [
                 {title: "Cinematic Colorization"},
                 {subsubtitle: "Analyzes the spatial and temporal characteristics of color in cinema using a newly collected dataset of 1800+ trailers. Utilizes knowledge gained to explore color-based genre classification and automatic color grading. Completed collaboratively with UC Berkeley Visual Computing Lab, Cecilia Zhang (PhD, UC Berkeley), and Vivien Nguyen (MS, UC Berkeley)"},
@@ -2082,7 +2082,7 @@ var CONTENT = {
             ],
         },
         {
-            tags: ['implementations'],
+            tags: ['implementations', 'film_science', 'data'],
             rows: [
                 {title: "fantasy_movie_league"},
                 {subsubtitle: "Predicts box-office earnings using machine learning, and subsequently predicts the best Fantasy Movie League using an object-oriented approah to the knapsack problem."},
