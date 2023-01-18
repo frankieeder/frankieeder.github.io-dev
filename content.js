@@ -7,10 +7,9 @@ var CONTENT = {
         {
             tags: ['frankie_eder'],
             rows: [
-                {html: "<p>My name is <a href='/about'><u>Frankie Eder and I make things</u></a>.</p>"},
+                {html: "<p>My name is <a href='/about'><u>Frankie Eder and I make things</u></a>, usually at the intersection of <a href='/film'><u>film</u></a>, <a href='/art'><u>art</u></a>, and <a href='/science'><u>science</u></a>.</p>"},
                 {html: "<p>Please sign up for my <a href='/newsletter'><u>newsletter</u></a> to stay up to date on my work.</p>"},
-                {html: "<p>Highlighted works are below, and portfolios in <a href='/art'><u>art</u></a>, <a href='/science'><u>science</u></a>, and associated subcategories such as <a href='/film'><u>film</u></a> and <a href='/still'><u>photography</u></a> are available via sidebar navigation.</p>"},
-                {html: "<p>All photos are available for purchase via clicking on any photo.</p>"}
+                {html: "<p>Photos available for purchase by clicking on any thumbnail.</p>"}
             ],
         },
         {
@@ -328,6 +327,38 @@ var CONTENT = {
             ],
         },
         {
+            tags: ['frankie_eder', 'film', 'shot_by', 'portfolio', 'experimental', 'one-more-try'],
+            release_date: "2021-04-09T12:00:00.000Z",
+            rows: [
+                {title: "One More Try"},
+                {html: "<h4>contributions to experimental film by <a href='https://vimeo.com/najeebtarazi'><u>Najeeb Tarazi</u></a>, edited using <a href='https://runwayml.com/'><u>Runway Machine Learning</u></a></h4>"},
+                {
+                    type_vimeo: true,
+                    vimeo: '783453158',
+                },
+                {credits: 'Co-Director of Photography'},
+                {html: "<h5><u>Awards</u></h5>"},
+                {html: "<h5><i>Vimeo</i> - Staff Pick Best of the Year 2022</h5>"}
+            ],
+
+        },
+        {
+            tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'score_by', 'sound_by', 'colored_by', 'edited_by', 'effects_by', 'portfolio', 'art', 'experimental', 'compendium1', 'compendium-i'],
+            release_date: "2021-04-09T12:00:00.000Z",
+            rows: [
+                {title: "Compendium I"},
+                {subtitle: "experimental film on cyclical entrapment"},
+                {
+                    type_vimeo: true,
+                    vimeo: '501918925',
+                },
+                {credits: 'Director, Director of Photography, Score, Sound Design, Colorist, Effects Engineering, Editing'},
+                {html: "<h5><u>Awards</u></h5>"},
+                {html: "<h5><i>Official Selection</i> - Showcase of Shapes, Puppets, and Moving Things 2021</h5>"}
+            ],
+
+        },
+        {
             tags: ['frankie_eder', 'film', 'shot_by', 'score_by', 'sound_by', 'portfolio'],
             rows: [
                 {title: "CAMERA OBSCURA"},
@@ -342,22 +373,6 @@ var CONTENT = {
                 {html: "<h5><i>Finalist</i> - Los Angeles Cinematography Awards 2022</h5>"},
                 {html: "<h5><i>Best Sound & Music</i> - Grizzly Film Festival 2021</h5>"}
             ],
-        },
-        {
-            tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'score_by', 'sound_by', 'colored_by', 'edited_by', 'effects_by', 'portfolio', 'art', 'experimental', 'compendium1'],
-            release_date: "2021-04-09T12:00:00.000Z",
-            rows: [
-                {title: "Compendium I"},
-                {subtitle: "experimental film on cyclical entrapment"},
-                {
-                    type_vimeo: true,
-                    vimeo: '501918925',
-                },
-                {credits: 'Director, Director of Photography, Score, Sound Design, Colorist, Effects Engineering, Editing'},
-                {html: "<h5><u>Awards</u></h5>"},
-                {html: "<h5><i>Official Selection</i> - Showcase of Shapes, Puppets, and Moving Things 2021</h5>"}
-            ],
-
         },
         {
             tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'effects_by', 'portfolio', 'skateboarding'],
