@@ -2147,6 +2147,24 @@ var CONTENT = {
                 },
             ],
         },
+        {
+            tags: ['science', 'implementations', 'data'],
+            rows: [
+                {title: "Income Inequality"},
+                {subtitle: "Visualizations of income distributions across geographies and demographics."},
+                {subsubtitle: "Project ongoing."},
+                {
+                    type_button: true,
+                    text: "WEB APP",
+                    link: "https://income-inequality.streamlit.app/",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/income_inequality",
+                },
+            ],
+        },
 
 
 
