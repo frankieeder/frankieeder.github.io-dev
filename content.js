@@ -2001,6 +2001,23 @@ var CONTENT = {
         {
             tags: ['science', 'implementations', 'data'],
             rows: [
+                {title: "Compound Interest by Contribution"},
+                {subtitle: "Shows impact of individual compounding contributions over time, through the lens of retirement."},
+                {
+                    type_button: true,
+                    text: "WEB APP",
+                    link: "https://compound-interest.streamlit.app/",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/compound_interest/",
+                },
+            ],
+        },
+        {
+            tags: ['science', 'implementations', 'data'],
+            rows: [
                 {title: "Rent vs. Buy"},
                 {subtitle: "Visualize key housing market metrics over time and between regions."},
                 {
@@ -2012,24 +2029,6 @@ var CONTENT = {
                     type_button: true,
                     text: "CODE",
                     link: "https://github.com/frankieeder/rent_vs_buy",
-                },
-            ],
-        },
-        {
-            tags: ['science', 'implementations', 'data'],
-            rows: [
-                {title: "Compound Interest"},
-                {subtitle: "(by contribution)"},
-                {subtitle: "Shows impact of individual compounding contributions over time, through the lens of retirement."},
-                {
-                    type_button: true,
-                    text: "WEB APP",
-                    link: "https://compound-interest.streamlit.app/",
-                },
-                {
-                    type_button: true,
-                    text: "CODE",
-                    link: "https://github.com/frankieeder/compound_interest/",
                 },
             ],
         },
