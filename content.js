@@ -2016,6 +2016,24 @@ var CONTENT = {
             ],
         },
         {
+            tags: ['science', 'implementations', 'data'],
+            rows: [
+                {title: "Compound Interest"},
+                {subtitle: "(by contribution)"},
+                {subtitle: "Shows impact of individual compounding contributions over time, through the lens of retirement."},
+                {
+                    type_button: true,
+                    text: "WEB APP",
+                    link: "https://compound-interest.streamlit.app/",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/compound_interest/",
+                },
+            ],
+        },
+        {
             tags: ['science', 'implementations', 'film_science', 'artmaking'],
             rows: [
                 {title: "Adobe Premiere Droste Plugin"},
