@@ -2072,6 +2072,24 @@ var CONTENT = {
             ],
         },
         {
+            tags: ['science', 'implementations', 'data'],
+            rows: [
+                {title: "Income Inequality"},
+                {subtitle: "Visualizations of income distributions across geographies and demographics."},
+                {subsubtitle: "Project ongoing."},
+                {
+                    type_button: true,
+                    text: "WEB APP",
+                    link: "https://income-inequality.streamlit.app/",
+                },
+                {
+                    type_button: true,
+                    text: "CODE",
+                    link: "https://github.com/frankieeder/income_inequality",
+                },
+            ],
+        },
+        {
             tags: ['science', 'computer_vision', 'film_science', 'artmaking'],
             rows: [
                 {title: "IMAGETOOLS"},
@@ -2161,24 +2179,6 @@ var CONTENT = {
                     type_button: true,
                     text: "CODE",
                     link: "https://github.com/frankieeder/fantasy_movie_league",
-                },
-            ],
-        },
-        {
-            tags: ['science', 'implementations', 'data'],
-            rows: [
-                {title: "Income Inequality"},
-                {subtitle: "Visualizations of income distributions across geographies and demographics."},
-                {subsubtitle: "Project ongoing."},
-                {
-                    type_button: true,
-                    text: "WEB APP",
-                    link: "https://income-inequality.streamlit.app/",
-                },
-                {
-                    type_button: true,
-                    text: "CODE",
-                    link: "https://github.com/frankieeder/income_inequality",
                 },
             ],
         },
