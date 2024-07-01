@@ -253,7 +253,6 @@ function openLightBox(img_elem, caption) {
     var prefix = 'mailto:frankaeder@gmail.com?subject=';
     var body = "&body=Hello there, I'd like a copy of image id " + image_id;
     document.getElementById("lighbox-request-print").href = prefix + 'frankieeder.com Print Request' + body;
-    document.getElementById("lighbox-request-nft").href = prefix + 'frankieeder.com NFT Request' + body;
 
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.add('visible');
