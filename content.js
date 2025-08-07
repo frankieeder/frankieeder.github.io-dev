@@ -2125,7 +2125,7 @@ var CONTENT = {
                 {subtitle: "Analyzes the spatial and temporal characteristics of color in cinema using a newly collected dataset of 1800+ trailers. Utilizes knowledge gained to explore color-based genre classification and automatic color grading. Completed collaboratively with UC Berkeley Visual Computing Lab, Cecilia Zhang (PhD, UC Berkeley), and Vivien Nguyen (MS, UC Berkeley)"},
                 {html: `
                     <div class="iframe-container">
-                        <iframe src="https://drive.google.com/file/d/1kZudI41b62Z7rBQ4CzV6x_PH54JC-y11/preview"></iframe>
+                        <iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" src="https://drive.google.com/file/d/1kZudI41b62Z7rBQ4CzV6x_PH54JC-y11/preview"></iframe>
                     </div>
                 `},
                 {html: '<div style="height: 25px"></div>'},
