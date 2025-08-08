@@ -143,17 +143,18 @@ function getTemplates() {
     /*
     Gets our template files, returning as a list of Promises.
     */
+    var timestamp = Date.now();
     return [
-        fetch('static/templates/contents.mustache'),
-        fetch('static/templates/photo_scrollbox.mustache'),
-        fetch('static/templates/image.mustache'),
-        fetch('static/templates/vimeo_embed.mustache'),
-        fetch('static/templates/youtube_embed.mustache'),
-        fetch('static/templates/soundcloud_embed.mustache'),
-        fetch('static/templates/bandcamp_embed.mustache'),
-        fetch('static/templates/standard_button.mustache'),
-        fetch('static/templates/table.mustache'),
-        fetch('static/templates/columns.mustache'),
+        fetch('static/templates/contents.mustache?v=' + timestamp),
+        fetch('static/templates/photo_scrollbox.mustache?v=' + timestamp),
+        fetch('static/templates/image.mustache?v=' + timestamp),
+        fetch('static/templates/vimeo_embed.mustache?v=' + timestamp),
+        fetch('static/templates/youtube_embed.mustache?v=' + timestamp),
+        fetch('static/templates/soundcloud_embed.mustache?v=' + timestamp),
+        fetch('static/templates/bandcamp_embed.mustache?v=' + timestamp),
+        fetch('static/templates/standard_button.mustache?v=' + timestamp),
+        fetch('static/templates/table.mustache?v=' + timestamp),
+        fetch('static/templates/columns.mustache?v=' + timestamp),
     ];
 }
 

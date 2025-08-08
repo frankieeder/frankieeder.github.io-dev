@@ -8,9 +8,10 @@
 >
     {{^thumbnail}}
     <iframe
-        src="https://player.vimeo.com/video/{{vimeo}}{{#thumbnail}}?background=1{{/thumbnail}}"
+        src="https://player.vimeo.com/video/{{vimeo}}?{{#thumbnail}}background=1&amp;{{/thumbnail}}badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
         frameborder="0"
-        {{#thumbnail}}allow="autoplay; fullscreen"{{/thumbnail}}
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
         webkitallowfullscreen mozallowfullscreen allowfullscreen
         {{#loopstart}}loopstart="{{.}}"{{/loopstart}}
         {{#loopend}}loopend="{{.}}"{{/loopend}}
