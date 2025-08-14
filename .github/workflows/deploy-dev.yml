@@ -1,0 +1,38 @@
+name: Deploy Dev Branch to Dev Subdomain
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Add CNAME for dev
+        run: echo "dev.frankieeder.com" > ./CNAME
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages-dev
+      url: https://dev.frankieeder.com
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages (Dev)
+        id: deployment
+        uses: actions/deploy-pages@v4
