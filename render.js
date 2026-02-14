@@ -21,12 +21,59 @@ function getUrlVars() {
     return vars;
 }
 
+function flattenMultiPhotoCards(contents) {
+    var flattened = [];
+    for (var i = 0; i < contents.length; i++) {
+        var content = contents[i];
+        var hasMultiPhotoScrollbox = false;
+        var scrollboxRowIndex = -1;
+        var scrollboxRow = null;
+        
+        for (var j = 0; j < content.rows.length; j++) {
+            if (content.rows[j].type_photo_scrollbox && 
+                content.rows[j].scrollcontent && 
+                content.rows[j].scrollcontent.length > 1) {
+                hasMultiPhotoScrollbox = true;
+                scrollboxRowIndex = j;
+                scrollboxRow = content.rows[j];
+                break;
+            }
+        }
+        
+        if (hasMultiPhotoScrollbox) {
+            for (var k = 0; k < scrollboxRow.scrollcontent.length; k++) {
+                var newContent = {
+                    tags: content.tags.slice(),
+                    release_date: content.release_date,
+                    rows: []
+                };
+                
+                for (var m = 0; m < content.rows.length; m++) {
+                    if (m === scrollboxRowIndex) {
+                        var newScrollboxRow = JSON.parse(JSON.stringify(scrollboxRow));
+                        newScrollboxRow.scrollcontent = [scrollboxRow.scrollcontent[k]];
+                        newContent.rows.push(newScrollboxRow);
+                    } else {
+                        newContent.rows.push(content.rows[m]);
+                    }
+                }
+                
+                flattened.push(newContent);
+            }
+        } else {
+            flattened.push(content);
+        }
+    }
+    return flattened;
+}
+
 function filteredContent() {
     /*
     Returns the relevant content from our content JSON, but filtered as follows:
     - Only includes content containing CURRENT_FILTER in the tags
     - Only includes content with no release_date, or release_date < current datetime
     set by getUrlVars();
+    - Flattens multi-photo cards into individual cards
     */
     var context = {
         filter: CURRENT_FILTER
@@ -45,9 +92,10 @@ function filteredContent() {
         return post.tags.includes(this.filter) && released;
     };
     var filtered_contents = CONTENT.contents.filter(contentFilter, context);
+    var flattened_contents = flattenMultiPhotoCards(filtered_contents);
     var new_content = {};
     Object.assign(new_content, CONTENT);
-    new_content.contents = filtered_contents;
+    new_content.contents = flattened_contents;
     return new_content;
 }
 
