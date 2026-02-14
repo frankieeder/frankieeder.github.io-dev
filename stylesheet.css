@@ -388,34 +388,95 @@ li.nav_inactive ul {
 .content {
     display: flex !important;
     flex-direction: column;
-    background: rgba(0, 0, 0, 0.5);
+    background: transparent;
     white-space: normal;
-    padding: 20px;
+    padding: 0;
+    margin: 0;
     break-inside: avoid;
     width: fit-content;
     max-width: 100%;
     box-sizing: border-box;
+    position: relative;
+    border: none;
 }
 
 .content a {
 	text-align: left;
 }
 
-.content h2 {
+.content-text-element {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.content-hover-info {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 15px 20px;
+    border-radius: 4px;
+    min-width: 200px;
+    max-width: 400px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.content:hover .content-hover-info {
+    opacity: 1;
+    visibility: visible;
+}
+
+.content-hover-info::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.95);
+}
+
+.content-hover-info h2 {
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 16pt;
 }
 
-.content h4 {
+.content-hover-info h4 {
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.content h5, .content h6 {
+.content-hover-info h5, .content-hover-info h6 {
     margin-top: 5px;
     margin-bottom: 5px;
     font-size: 9pt;
+}
+
+.content-hover-info .hover-html-content {
+    margin-top: 5px;
+}
+
+.content-hover-info .hover-html-content p {
+    margin: 5px 0;
+}
+
+.content-html-content p {
+    margin: 5px 0;
 }
 
 .content img {
