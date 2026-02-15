@@ -1,4 +1,4 @@
-<div class="iframe-container video-clickable" {{#aspect_ratio}}style="padding-top: {{.}}"{{/aspect_ratio}}>
+<div class="iframe-container video-clickable" style="padding-top: {{#aspect_ratio}}{{.}}%{{/aspect_ratio}}{{^aspect_ratio}}56.25%{{/aspect_ratio}};" data-aspect-ratio="{{#aspect_ratio}}{{.}}{{/aspect_ratio}}{{^aspect_ratio}}56.25{{/aspect_ratio}}">
     <iframe 
         src="https://www.youtube.com/embed/{{youtube}}?controls=0"
         frameborder="0"

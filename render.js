@@ -512,6 +512,16 @@ function openVideoLightBox(embedUrl, sourceType, caption, event) {
     lightboxVideo.src = autoplayUrl;
     videoContainer.style.display = 'block';
 
+    var aspectRatio = '56.25%';
+    if (event && event.target) {
+        var sourceContainer = event.target.closest('.iframe-container') || event.target.closest('.vimeo_embed');
+        if (sourceContainer && sourceContainer.dataset.aspectRatio) {
+            var value = sourceContainer.dataset.aspectRatio;
+            aspectRatio = value.indexOf('%') >= 0 ? value : value + '%';
+        }
+    }
+    videoContainer.style.paddingTop = aspectRatio;
+
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.add('visible');
     lightbox.classList.remove('hidden');
