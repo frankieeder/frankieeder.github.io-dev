@@ -353,10 +353,6 @@ function openLightBox(img_elem, caption) {
         buy_print_elem.style.display = 'block';
         if (PAYMENT_LINKS && Object.keys(PAYMENT_LINKS).length > 0) {
             buy_print_elem.href = '#';
-            buy_print_elem.onclick = function(e) { 
-                e.preventDefault(); 
-                return false;
-            };
         } else if (typeof STRIPE_PAYMENT_LINK_BASE_URL !== 'undefined' && STRIPE_PAYMENT_LINK_BASE_URL) {
             var buy_link = STRIPE_PAYMENT_LINK_BASE_URL + '?client_reference_id=' + encodeURIComponent(artwork_id);
             buy_print_elem.href = buy_link;
@@ -390,32 +386,67 @@ function openLightBox(img_elem, caption) {
             
             var buy_print_container = buy_print_dropdown.parentElement;
             if (buy_print_container && buy_print_container.classList.contains('buy-print-container')) {
+                var dropdownVisible = false;
+                
                 buy_print_container.onmouseenter = function() {
-                    buy_print_dropdown.style.display = 'block';
-                    buy_print_dropdown.style.opacity = '0';
-                    setTimeout(function() {
-                        buy_print_dropdown.style.transition = 'opacity 0.2s ease';
-                        buy_print_dropdown.style.opacity = '1';
-                    }, 10);
+                    if (!dropdownVisible) {
+                        buy_print_dropdown.style.display = 'block';
+                        buy_print_dropdown.style.opacity = '0';
+                        setTimeout(function() {
+                            buy_print_dropdown.style.transition = 'opacity 0.2s ease';
+                            buy_print_dropdown.style.opacity = '1';
+                        }, 10);
+                    }
                 };
                 buy_print_container.onmouseleave = function(e) {
-                    if (!buy_print_container.contains(e.relatedTarget)) {
+                    if (!dropdownVisible && !buy_print_container.contains(e.relatedTarget)) {
                         buy_print_dropdown.style.transition = 'opacity 0.15s ease';
                         buy_print_dropdown.style.opacity = '0';
                         setTimeout(function() {
-                            buy_print_dropdown.style.display = 'none';
+                            if (!dropdownVisible) {
+                                buy_print_dropdown.style.display = 'none';
+                            }
                         }, 150);
+                    }
+                };
+                buy_print_dropdown.onmouseenter = function() {
+                    if (dropdownVisible) {
+                        buy_print_dropdown.style.display = 'block';
+                        buy_print_dropdown.style.opacity = '1';
                     }
                 };
                 buy_print_dropdown.onmouseleave = function(e) {
-                    if (!buy_print_container.contains(e.relatedTarget)) {
+                    if (!dropdownVisible && !buy_print_container.contains(e.relatedTarget)) {
                         buy_print_dropdown.style.transition = 'opacity 0.15s ease';
                         buy_print_dropdown.style.opacity = '0';
                         setTimeout(function() {
-                            buy_print_dropdown.style.display = 'none';
+                            if (!dropdownVisible) {
+                                buy_print_dropdown.style.display = 'none';
+                            }
                         }, 150);
                     }
                 };
+                
+                var toggleDropdown = function(e) {
+                    if (e) {
+                        e.preventDefault();
+                    }
+                    dropdownVisible = !dropdownVisible;
+                    buy_print_dropdown.style.display = dropdownVisible ? 'block' : 'none';
+                    if (dropdownVisible) {
+                        buy_print_dropdown.style.opacity = '0';
+                        setTimeout(function() {
+                            buy_print_dropdown.style.transition = 'opacity 0.2s ease';
+                            buy_print_dropdown.style.opacity = '1';
+                        }, 10);
+                    } else {
+                        buy_print_dropdown.style.transition = 'opacity 0.15s ease';
+                        buy_print_dropdown.style.opacity = '0';
+                    }
+                    return false;
+                };
+                
+                buy_print_elem.onclick = toggleDropdown;
             }
         }
     }

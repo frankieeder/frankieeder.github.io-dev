@@ -591,10 +591,11 @@ li.nav_inactive ul {
     background-color: dimgrey;
     z-index: 10000;
     box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.4);
-    margin-bottom: 4px;
+    margin-bottom: 0;
     border-radius: 4px;
     overflow: hidden;
     flex-direction: column;
+    padding-top: 4px;
 }
 
 #lightbox-buy-print-dropdown .buy-print-dropdown-item {
