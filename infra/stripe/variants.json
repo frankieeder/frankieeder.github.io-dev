@@ -2,43 +2,43 @@
   "variants": [
     {
       "key": "4_6",
-      "name": "4x6 Print",
+      "name": "Fine Art Print - 4x6",
       "unit_amount": 4000,
       "currency": "usd"
     },
     {
       "key": "6_9",
-      "name": "6x9 Print",
+      "name": "Fine Art Print - 6x9",
       "unit_amount": 5600,
       "currency": "usd"
     },
     {
       "key": "8_12",
-      "name": "8x12 Print",
+      "name": "Fine Art Print - 8x12",
       "unit_amount": 7200,
       "currency": "usd"
     },
     {
       "key": "12_18",
-      "name": "12x18 Print",
+      "name": "Fine Art Print - 12x18",
       "unit_amount": 8400,
       "currency": "usd"
     },
     {
       "key": "16_24",
-      "name": "16x24 Print",
+      "name": "Fine Art Print - 16x24",
       "unit_amount": 14000,
       "currency": "usd"
     },
     {
       "key": "24_36",
-      "name": "24x36 Print",
+      "name": "Fine Art Print - 24x36",
       "unit_amount": 25000,
       "currency": "usd"
     },
     {
       "key": "32_48",
-      "name": "32x48 Print",
+      "name": "Fine Art Print - 32x48",
       "unit_amount": 36000,
       "currency": "usd"
     }

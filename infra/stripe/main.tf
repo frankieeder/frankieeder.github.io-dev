@@ -8,6 +8,10 @@ terraform {
       source  = "andrewbaxter/stripe"
       version = "~> 0.0"
     }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.0"
+    }
   }
 }
 
@@ -19,12 +23,6 @@ provider "stripealt" {
   token = var.stripe_api_key
 }
 
-
-resource "stripe_product" "example_product" {
-  name        = "Fine Art Print"
-  description = "Fine Art Print, hand calibrated and printed on archival paper in collaboration with local San Francisco printer. Print only."
-  active      = true
-}
 
 locals {
   variants = jsondecode(file("${path.module}/variants.json")).variants
@@ -42,25 +40,35 @@ locals {
   }
 
   payment_link_configs = {
-    for variant in local.variants : "${variant.key}_only" => {
+    for variant in local.variants : "${variant.key}" => {
       price_id = stripe_price.variants[variant.key].id
       shipping_rate_key = local.width_to_shipping_rate[variant.key]
     }
   }
 }
 
+resource "stripe_product" "variants" {
+  for_each = local.variants_map
+
+  name        = each.value.name
+  description = "Fine Art Print, hand calibrated and printed on archival paper in collaboration with local San Francisco printer. Print only."
+  active      = true
+}
+
 resource "stripe_price" "variants" {
   for_each = local.variants_map
 
-  product     = stripe_product.example_product.id
+  product     = stripe_product.variants[each.key].id
   currency    = each.value.currency
   unit_amount = each.value.unit_amount
   active      = true
 }
 
-output "product_id" {
-  value       = stripe_product.example_product.id
-  description = "Stripe product ID"
+output "product_ids" {
+  value = {
+    for key, product in stripe_product.variants : key => product.id
+  }
+  description = "Stripe product IDs for each variant"
 }
 
 output "price_ids" {
@@ -143,18 +151,22 @@ data "external" "payment_link_urls" {
   ]
 }
 
-output "payment_link_ids" {
+output "payment_link_info" {
   value = {
-    for key, link in stripe_payment_link.payment_links : key => link.id
+    for key, link in stripe_payment_link.payment_links : key => {
+      url = data.external.payment_link_urls[key].result.url
+    }
   }
-  description = "Payment link IDs for the product and variants"
+  description = "Payment link information for the product and variants"
 }
 
-output "payment_link_urls" {
-  value = {
-    for key, data in data.external.payment_link_urls : key => data.result.url
-  }
-  description = "Payment link URLs for the product and variants"
+resource "local_file" "payment_link_info_json" {
+  content  = jsonencode({
+    for key, link in stripe_payment_link.payment_links : key => {
+      url = data.external.payment_link_urls[key].result.url
+    }
+  })
+  filename = "${path.module}/payment_links.json"
 }
 
 variable "stripe_api_key" {
