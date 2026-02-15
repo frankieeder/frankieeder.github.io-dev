@@ -301,12 +301,67 @@ function openLightBox(img_elem, caption) {
 
     var im_path = img_elem.firstElementChild.src.replace('_thumb', '');
     document.getElementById("lightbox-im").src = im_path;
+    document.getElementById("lightbox-im").style.display = 'block';
+    document.getElementById("lightbox-video-container").style.display = 'none';
+    document.getElementById("lightbox-video-container").innerHTML = '';
 
     var url_parts = im_path.split('/');
     var image_id = url_parts[url_parts.length - 1];
     var prefix = 'mailto:frankaeder@gmail.com?subject=';
     var body = "&body=Hello there, I'd like a copy of image id " + image_id;
     document.getElementById("lighbox-request-print").href = prefix + 'frankieeder.com Print Request' + body;
+    document.getElementById("lighbox-request-print").style.display = 'block';
+
+    var lightbox = document.getElementById("lightbox");
+    lightbox.classList.add('visible');
+    lightbox.classList.remove('hidden');
+}
+
+function openVideoLightBox(videoUrl, videoType, caption, event) {
+    pauseBackgroundVideo();
+
+    if (caption === '') {
+        var contentCard = null;
+        if (event && event.target) {
+            var element = event.target;
+            while (element && !contentCard) {
+                if (element.classList && element.classList.contains('content')) {
+                    contentCard = element;
+                } else {
+                    element = element.parentElement;
+                }
+            }
+        }
+        if (!contentCard) {
+            contentCard = document.querySelector('.content');
+        }
+        if (contentCard) {
+            var titleElement = contentCard.querySelector('h2');
+            if (titleElement) {
+                caption = titleElement.textContent;
+            }
+        }
+    }
+    document.getElementById("lightbox-caption").textContent = caption;
+
+    document.getElementById("lightbox-im").style.display = 'none';
+    document.getElementById("lighbox-request-print").style.display = 'none';
+    
+    var videoContainer = document.getElementById("lightbox-video-container");
+    videoContainer.style.display = 'block';
+    videoContainer.innerHTML = '';
+    
+    var iframe = document.createElement('iframe');
+    iframe.src = videoUrl;
+    iframe.frameborder = '0';
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share';
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    if (videoType === 'youtube') {
+        iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+    }
+    
+    videoContainer.appendChild(iframe);
 
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.add('visible');
@@ -316,8 +371,10 @@ function openLightBox(img_elem, caption) {
 function closeLightBox() {
     playBackgroundVideo();
 
-    document.getElementById("lightbox-im").removeAttribute('src')
+    document.getElementById("lightbox-im").removeAttribute('src');
+    document.getElementById("lightbox-video-container").innerHTML = '';
 
+    var lightbox = document.getElementById("lightbox");
     lightbox.classList.remove('visible');
     lightbox.classList.add('hidden');
 }
