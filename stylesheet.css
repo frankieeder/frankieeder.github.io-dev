@@ -437,63 +437,15 @@ li.nav_inactive ul {
     border: 0;
 }
 
-.content-hover-info {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 10px;
-    background: rgba(0, 0, 0, 0.95);
-    padding: 15px 20px;
-    border-radius: 4px;
-    min-width: 200px;
-    max-width: 400px;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    pointer-events: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+.content a:hover img,
+.content .iframe-container:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
-.content:hover .content-hover-info {
-    opacity: 1;
-    visibility: visible;
-}
-
-.content-hover-info::before {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 6px solid transparent;
-    border-bottom-color: rgba(0, 0, 0, 0.95);
-}
-
-.content-hover-info h2 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 16pt;
-}
-
-.content-hover-info h4 {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.content-hover-info h5, .content-hover-info h6 {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: 9pt;
-}
-
-.content-hover-info .hover-html-content {
-    margin-top: 5px;
-}
-
-.content-hover-info .hover-html-content p {
-    margin: 5px 0;
+.content .scrollbox img:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
 .content-html-content p {

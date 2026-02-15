@@ -236,7 +236,6 @@ function renderBody() {
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);
                 document.getElementById('contents').innerHTML = rendered;
 
-                populateHoverInfo();
                 constrainVideoHeights();
                 prepVimeoThumbnails();
             }
@@ -514,32 +513,6 @@ function constrainVideoHeights() {
     }
 }
 
-function populateHoverInfo() {
-    var contentCards = document.querySelectorAll('.content');
-    for (var i = 0; i < contentCards.length; i++) {
-        var card = contentCards[i];
-        var hoverInfo = card.querySelector('.content-hover-info');
-        if (!hoverInfo) {
-            hoverInfo = document.createElement('div');
-            hoverInfo.className = 'content-hover-info';
-            card.insertBefore(hoverInfo, card.firstChild);
-        }
-        
-        var textElements = card.querySelectorAll('.content-text-element');
-        if (textElements.length > 0) {
-            hoverInfo.innerHTML = '';
-            for (var j = 0; j < textElements.length; j++) {
-                var clone = textElements[j].cloneNode(true);
-                clone.classList.remove('content-text-element');
-                if (clone.classList.contains('content-html-element')) {
-                    clone.classList.remove('content-html-element');
-                    clone.classList.add('hover-html-content');
-                }
-                hoverInfo.appendChild(clone);
-            }
-        }
-    }
-}
 
 function prepVimeoThumbnails() {
     var vimeos = document.querySelectorAll('.thumbnails div');
