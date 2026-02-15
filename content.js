@@ -343,80 +343,84 @@ var CONTENT = {
 
         },
         // Vimeo Deleted?
-//         {
-//             tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'score_by', 'sound_by', 'colored_by', 'edited_by', 'effects_by', 'portfolio', 'art', 'experimental', 'compendium1', 'compendium-i'],
-//             release_date: "2021-04-09T12:00:00.000Z",
-//             rows: [
-//                 {title: "Compendium I"},
-//                 {subtitle: "experimental film on cyclical entrapment"},
-//                 {
-//                     type_vimeo: true,
-//                     vimeo: '501918925',
-//                 },
-//                 {credits: 'Director, Director of Photography, Score, Sound Design, Colorist, Effects Engineering, Editing'},
-//                 {html: "<h5><u>Awards</u></h5>"},
-//                 {html: "<h5><i>Official Selection</i> - Showcase of Shapes, Puppets, and Moving Things 2021</h5>"}
-//             ],
-
-//         },
-//         {
-//             tags: ['frankie_eder', 'film', 'shot_by', 'score_by', 'sound_by', 'portfolio'],
-//             rows: [
-//                 {title: "CAMERA OBSCURA"},
-//                 {subtitle: "(narrative featurette film)"},
-//                 {
-//                     type_vimeo: true,
-//                     vimeo: '486248111',
-//                     aspect_ratio: '100%',
-//                 },
-//                 {credits: 'Director of Photography, Score, Sound Design'},
-//                 {html: "<h5><u>Awards</u></h5>"},
-//                 {html: "<h5><i>Finalist</i> - Los Angeles Cinematography Awards 2022</h5>"},
-//                 {html: "<h5><i>Best Sound & Music</i> - Grizzly Film Festival 2021</h5>"}
-//             ],
-//         },
-//         {
-//             tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'effects_by', 'portfolio', 'skateboarding'],
-//             release_date: "2022-04-22T12:00:00.000Z",
-//             rows: [
-//                 {title: "MUTUAL TRANSGRESSION VII"},
-//                 {subtitle: "(a skateboard film series focusing on quality over quantity)"},
-//                 {subsubtitle: "cw: flashing lights"},
-//                 {
-//                     type_vimeo: true,
-//                     vimeo: '697623576',
-//                 },
-//                 {credits: 'Director, Director of Photography, Editor, Colorist'},
-//             ],
-//         },
-//         // TODO: Camera Obscura Moving Stills
-// //        {
-// //            tags: ['portfolio'],
-// //            rows: [
-// //                {title: "CAMERA OBSCURA"},
-// //                {subtitle: "(narrative featurette film)"},
-// //                {
-// //                    type_vimeo: true,
-// //                    vimeo: '486248111',
-// //                    aspect_ratio: '100%',
-// //                },
-// //                {credits: 'Director of Photography, Score, Sound Design'},
-// //            ],
-// //        },
-//         {
-//             tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'effects_by', 'experimental', 'portfolio', 'skateboarding'],
-//             rows: [
-//                 {title: "MUTUAL TRANSGRESSION VI - ATHAZAGORA"},
-//                 {subtitle: "(a skateboard film series focusing on quality over quantity)"},
-//                 {subsubtitle: "cw: flashing lights"},
-//                 {
-//                     type_vimeo: true,
-//                     vimeo: '408120845',
-//                     aspect_ratio: '82.85%',
-//                 },
-//                 {credits: 'Director, Director of Photography, Editor, Colorist'},
-//             ],
-//         },
+        // {
+        //     tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'score_by', 'sound_by', 'colored_by', 'edited_by', 'effects_by', 'portfolio', 'art', 'experimental', 'compendium1', 'compendium-i'],
+        //     release_date: "2021-04-09T12:00:00.000Z",
+        //     rows: [
+        //         {title: "Compendium I"},
+        //         {subtitle: "experimental film on cyclical entrapment"},
+        //         {
+        //             type_vimeo: true,
+        //             vimeo: '501918925',
+        //         },
+        //         {credits: 'Director, Director of Photography, Score, Sound Design, Colorist, Effects Engineering, Editing'},
+        //         {html: "<h5><u>Awards</u></h5>"},
+        //         {html: "<h5><i>Official Selection</i> - Showcase of Shapes, Puppets, and Moving Things 2021</h5>"}
+        //     ],
+        // },
+        // {
+        //     tags: ['frankie_eder', 'film', 'shot_by', 'score_by', 'sound_by', 'portfolio'],
+        //     rows: [
+        //         {title: "CAMERA OBSCURA"},
+        //         {subtitle: "(narrative featurette film)"},
+        //         {
+        //             type_vimeo: true,
+        //             vimeo: '486248111',
+        //             aspect_ratio: '100%',
+        //         },
+        //         {credits: 'Director of Photography, Score, Sound Design'},
+        //         {html: "<h5><u>Awards</u></h5>"},
+        //         {html: "<h5><i>Finalist</i> - Los Angeles Cinematography Awards 2022</h5>"},
+        //         {html: "<h5><i>Best Sound & Music</i> - Grizzly Film Festival 2021</h5>"}
+        //     ],
+        // },
+        {
+            tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'effects_by', 'portfolio', 'skateboarding'],
+            release_date: "2022-04-22T12:00:00.000Z",
+            rows: [
+                {title: "MUTUAL TRANSGRESSION VII"},
+                {subtitle: "(a skateboard film series focusing on quality over quantity)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    // type_vimeo: true,
+                    // vimeo: '697623576',
+                    type_youtube: true,
+                    youtube: 'HXIhiIXBJX0',
+                    aspect_ratio: '56.25%',
+                },
+                {credits: 'Director, Director of Photography, Editor, Colorist'},
+            ],
+        },
+        // TODO: Camera Obscura Moving Stills
+//        {
+//            tags: ['portfolio'],
+//            rows: [
+//                {title: "CAMERA OBSCURA"},
+//                {subtitle: "(narrative featurette film)"},
+//                {
+//                    type_vimeo: true,
+//                    vimeo: '486248111',
+//                    aspect_ratio: '100%',
+//                },
+//                {credits: 'Director of Photography, Score, Sound Design'},
+//            ],
+//        },
+        {
+            tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'effects_by', 'experimental', 'portfolio', 'skateboarding'],
+            rows: [
+                {title: "MUTUAL TRANSGRESSION VI - ATHAZAGORA"},
+                {subtitle: "(a skateboard film series focusing on quality over quantity)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    // type_vimeo: true,
+                    // vimeo: '408120845',
+                    type_youtube: true,
+                    youtube: 'ZCMdLIp-ohU',
+                    aspect_ratio: '82.85%',
+                },
+                {credits: 'Director, Director of Photography, Editor, Colorist'},
+            ],
+        },
         {
             tags: ['still', 'manipulated'],
             rows: [
@@ -1377,23 +1381,29 @@ var CONTENT = {
                 },
             ],
         },
-        // {
-        //     tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'skateboarding', 'portfolio'],
-        //     rows: [
-        //         {title: "MUTUAL TRANSGRESSION - RAY COREY & CARLOS MONTES"},
-        //         {subtitle: "(a skateboard film series focusing on quality over quantity)"},
-        //         {subsubtitle: "cw: flashing lights"},
-        //         {
-        //             type_vimeo: true,
-        //             vimeo: '242977518',
-        //         },
-        //         {
-        //             type_vimeo: true,
-        //             vimeo: '242974620',
-        //         },
-        //         {credits: "Director, Director of Photography, Editor, Colorist"},
-        //     ],
-        // },
+        {
+            tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'skateboarding', 'portfolio'],
+            rows: [
+                {title: "MUTUAL TRANSGRESSION - RAY COREY & CARLOS MONTES"},
+                {subtitle: "(a skateboard film series focusing on quality over quantity)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    // type_vimeo: true,
+                    // vimeo: '242977518',
+                    type_youtube: true,
+                    youtube: 'XBftF74kTdY',
+                    aspect_ratio: '56.25%',
+                },
+                {
+                    // type_vimeo: true,
+                    // vimeo: '242974620',
+                    type_youtube: true,
+                    youtube: '6spF19hhLpc',
+                    aspect_ratio: '56.25%',
+                },
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
         // {
         //     tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'skateboarding', 'portfolio'],
         //     rows: [
