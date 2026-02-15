@@ -281,10 +281,20 @@ function disableRightClickAndDrag() {
 }
 
 var STRIPE_PAYMENT_LINK_BASE_URL = 'https://buy.stripe.com/dRm4gz9BrfqS58N5KrdMI1b';
+var PAYMENT_LINKS = null;
+
+function loadPaymentLinks() {
+    fetch('infra/stripe/payment_links.json')
+        .then(response => response.json())
+        .then(data => {
+            PAYMENT_LINKS = data;
+        });
+}
 
 function initializePage() {
     disableRightClickAndDrag();
     initializeNav();
+    loadPaymentLinks();
     renderBody();
 }
 
@@ -337,13 +347,61 @@ function openLightBox(img_elem, caption) {
     
     var artwork_id = image_id.replace(/\.[^/.]+$/, '');
     var buy_print_elem = document.getElementById("lightbox-buy-print");
+    var buy_print_dropdown = document.getElementById("lightbox-buy-print-dropdown");
+    
     if (buy_print_elem) {
-        if (typeof STRIPE_PAYMENT_LINK_BASE_URL !== 'undefined' && STRIPE_PAYMENT_LINK_BASE_URL) {
+        buy_print_elem.style.display = 'block';
+        if (PAYMENT_LINKS && Object.keys(PAYMENT_LINKS).length > 0) {
+            buy_print_elem.href = '#';
+            buy_print_elem.onclick = function(e) { 
+                e.preventDefault(); 
+                return false;
+            };
+        } else if (typeof STRIPE_PAYMENT_LINK_BASE_URL !== 'undefined' && STRIPE_PAYMENT_LINK_BASE_URL) {
             var buy_link = STRIPE_PAYMENT_LINK_BASE_URL + '?client_reference_id=' + encodeURIComponent(artwork_id);
             buy_print_elem.href = buy_link;
-            buy_print_elem.style.display = 'block';
+            buy_print_elem.onclick = null;
         } else {
             buy_print_elem.style.display = 'none';
+        }
+    }
+    
+    if (buy_print_dropdown) {
+        buy_print_dropdown.innerHTML = '';
+        buy_print_dropdown.style.display = 'none';
+        if (PAYMENT_LINKS && Object.keys(PAYMENT_LINKS).length > 0) {
+            var sizeOrder = ['4_6', '6_9', '8_12', '12_18', '16_24', '24_36', '32_48'];
+            for (var i = 0; i < sizeOrder.length; i++) {
+                var sizeKey = sizeOrder[i];
+                if (PAYMENT_LINKS[sizeKey]) {
+                    var linkData = PAYMENT_LINKS[sizeKey];
+                    var priceDollars = (linkData.price_amount / 100).toFixed(2);
+                    var sizeLabel = sizeKey.replace('_', '×');
+                    var dropdownItem = document.createElement('a');
+                    dropdownItem.href = linkData.url + '?client_reference_id=' + encodeURIComponent(artwork_id);
+                    dropdownItem.target = '_blank';
+                    dropdownItem.className = 'buy-print-dropdown-item';
+                    dropdownItem.textContent = sizeLabel + ' - $' + priceDollars;
+                    buy_print_dropdown.appendChild(dropdownItem);
+                }
+            }
+            
+            var buy_print_container = buy_print_dropdown.parentElement;
+            if (buy_print_container && buy_print_container.classList.contains('buy-print-container')) {
+                buy_print_container.onmouseenter = function() {
+                    buy_print_dropdown.style.display = 'block';
+                };
+                buy_print_container.onmouseleave = function(e) {
+                    if (!buy_print_container.contains(e.relatedTarget)) {
+                        buy_print_dropdown.style.display = 'none';
+                    }
+                };
+                buy_print_dropdown.onmouseleave = function(e) {
+                    if (!buy_print_container.contains(e.relatedTarget)) {
+                        buy_print_dropdown.style.display = 'none';
+                    }
+                };
+            }
         }
     }
 
@@ -466,6 +524,11 @@ function closeLightBox() {
     document.getElementById("lightbox-subsubtitle").textContent = '';
     document.getElementById("lightbox-credits").textContent = '';
     document.getElementById("lightbox-html").innerHTML = '';
+    
+    var buy_print_dropdown = document.getElementById("lightbox-buy-print-dropdown");
+    if (buy_print_dropdown) {
+        buy_print_dropdown.innerHTML = '';
+    }
 
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.remove('visible');

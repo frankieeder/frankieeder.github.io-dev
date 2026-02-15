@@ -566,8 +566,52 @@ li.nav_inactive ul {
     font-family: Avenir-Medium, courier;
     text-align: center;
     transition: 0.3s;
+    display: block;
 }
 .github-button:hover {
+    background-color: lightgrey;
+    cursor: pointer;
+}
+
+.buy-print-container {
+    position: relative;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+}
+
+#lightbox-buy-print-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: dimgrey;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 2px;
+}
+
+#lightbox-buy-print-dropdown .buy-print-dropdown-item {
+    display: block !important;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    font-family: Avenir-Medium, courier;
+    text-align: center;
+    transition: 0.3s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#lightbox-buy-print-dropdown .buy-print-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+#lightbox-buy-print-dropdown .buy-print-dropdown-item:hover {
     background-color: lightgrey;
     cursor: pointer;
 }
@@ -692,6 +736,7 @@ li.nav_inactive ul {
   text-align: center;
   padding: 15px 20px;
   color: white;
+  position: relative;
 }
 
 .lightbox-caption-container h2 {
