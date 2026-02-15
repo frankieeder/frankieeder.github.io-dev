@@ -305,6 +305,15 @@ function initializePage() {
 function openLightBox(img_elem, caption) {
     pauseBackgroundVideo();
 
+    var videoContainer = document.getElementById("lightbox-video-container");
+    var lightboxVideo = document.getElementById("lightbox-video");
+    if (videoContainer) {
+        videoContainer.style.display = 'none';
+    }
+    if (lightboxVideo) {
+        lightboxVideo.removeAttribute('src');
+    }
+
     var contentCard = null;
     var element = img_elem;
     while (element && !contentCard) {
@@ -454,6 +463,59 @@ function openLightBox(img_elem, caption) {
     lightbox.classList.remove('hidden');
 }
 
+function openVideoLightBox(embedUrl, sourceType, caption, event) {
+    if (event) {
+        event.stopPropagation();
+    }
+    pauseBackgroundVideo();
+
+    document.getElementById("lightbox-im").style.display = 'none';
+    var requestPrintElem = document.getElementById("lighbox-request-print");
+    if (requestPrintElem) {
+        requestPrintElem.style.display = 'none';
+    }
+    var buyPrintElem = document.getElementById("lightbox-buy-print");
+    if (buyPrintElem) {
+        buyPrintElem.style.display = 'none';
+    }
+    var buyPrintDropdown = document.getElementById("lightbox-buy-print-dropdown");
+    if (buyPrintDropdown) {
+        buyPrintDropdown.innerHTML = '';
+        buyPrintDropdown.style.display = 'none';
+    }
+
+    var contentCard = null;
+    var element = event ? event.target : null;
+    while (element && !contentCard) {
+        if (element.classList && element.classList.contains('content')) {
+            contentCard = element;
+        } else {
+            element = element.parentElement;
+        }
+    }
+
+    populateLightboxText(contentCard);
+
+    if (caption === '' && contentCard) {
+        var titleElement = contentCard.querySelector('h2.content-text-element');
+        if (titleElement) {
+            caption = titleElement.textContent;
+        }
+    }
+    if (caption) {
+        document.getElementById("lightbox-title").textContent = caption;
+    }
+
+    var autoplayUrl = embedUrl.indexOf('?') >= 0 ? embedUrl + '&autoplay=1' : embedUrl + '?autoplay=1';
+    var videoContainer = document.getElementById("lightbox-video-container");
+    var lightboxVideo = document.getElementById("lightbox-video");
+    lightboxVideo.src = autoplayUrl;
+    videoContainer.style.display = 'block';
+
+    var lightbox = document.getElementById("lightbox");
+    lightbox.classList.add('visible');
+    lightbox.classList.remove('hidden');
+}
 
 function populateLightboxText(contentCard) {
     if (!contentCard) {
@@ -505,6 +567,15 @@ function closeLightBox() {
     playBackgroundVideo();
 
     document.getElementById("lightbox-im").removeAttribute('src');
+    document.getElementById("lightbox-im").style.display = 'block';
+    var videoContainer = document.getElementById("lightbox-video-container");
+    var lightboxVideo = document.getElementById("lightbox-video");
+    if (videoContainer) {
+        videoContainer.style.display = 'none';
+    }
+    if (lightboxVideo) {
+        lightboxVideo.removeAttribute('src');
+    }
     document.getElementById("lightbox-title").textContent = '';
     document.getElementById("lightbox-subtitle").textContent = '';
     document.getElementById("lightbox-subheader").textContent = '';
