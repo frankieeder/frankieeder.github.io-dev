@@ -382,6 +382,8 @@ function openLightBox(img_elem, caption) {
                     dropdownItem.target = '_blank';
                     dropdownItem.className = 'buy-print-dropdown-item';
                     dropdownItem.textContent = sizeLabel + ' - $' + priceDollars;
+                    dropdownItem.style.display = 'block';
+                    dropdownItem.style.width = '100%';
                     buy_print_dropdown.appendChild(dropdownItem);
                 }
             }
@@ -390,15 +392,28 @@ function openLightBox(img_elem, caption) {
             if (buy_print_container && buy_print_container.classList.contains('buy-print-container')) {
                 buy_print_container.onmouseenter = function() {
                     buy_print_dropdown.style.display = 'block';
+                    buy_print_dropdown.style.opacity = '0';
+                    setTimeout(function() {
+                        buy_print_dropdown.style.transition = 'opacity 0.2s ease';
+                        buy_print_dropdown.style.opacity = '1';
+                    }, 10);
                 };
                 buy_print_container.onmouseleave = function(e) {
                     if (!buy_print_container.contains(e.relatedTarget)) {
-                        buy_print_dropdown.style.display = 'none';
+                        buy_print_dropdown.style.transition = 'opacity 0.15s ease';
+                        buy_print_dropdown.style.opacity = '0';
+                        setTimeout(function() {
+                            buy_print_dropdown.style.display = 'none';
+                        }, 150);
                     }
                 };
                 buy_print_dropdown.onmouseleave = function(e) {
                     if (!buy_print_container.contains(e.relatedTarget)) {
-                        buy_print_dropdown.style.display = 'none';
+                        buy_print_dropdown.style.transition = 'opacity 0.15s ease';
+                        buy_print_dropdown.style.opacity = '0';
+                        setTimeout(function() {
+                            buy_print_dropdown.style.display = 'none';
+                        }, 150);
                     }
                 };
             }
