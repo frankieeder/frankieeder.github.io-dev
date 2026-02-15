@@ -109,7 +109,9 @@ data "external" "payment_links" {
     response=$(curl -s -X POST https://api.stripe.com/v1/payment_links \
       -u ${var.stripe_api_key}: \
       -d "line_items[0][price]=${each.value.price_id}" \
-      -d "line_items[0][quantity]=1"$params)
+      -d "line_items[0][quantity]=1" \
+      -d "shipping_address_collection[allowed_countries][0]=US" \
+      -d "shipping_address_collection[allowed_countries][1]=CA"$params)
     
     if ! echo "$response" | jq -e '.id' > /dev/null 2>&1; then
       echo "Error: Invalid response from Stripe API" >&2
