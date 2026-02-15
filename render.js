@@ -343,33 +343,38 @@ function constrainVideoHeights() {
         var container = iframeContainers[i];
         var iframe = container.querySelector('iframe');
         if (!iframe) {
-            console.log('No iframe found in container', i);
             continue;
         }
         
-        var styleAttr = container.getAttribute('style') || '';
+        var parent = container.parentElement;
+        var styleAttr = (container.getAttribute('style') || parent.getAttribute('style') || '');
         var paddingTopMatch = styleAttr.match(/padding-top:\s*([\d.]+)%/);
         var paddingTop = paddingTopMatch ? parseFloat(paddingTopMatch[1]) : null;
         
         if (!paddingTop || isNaN(paddingTop)) {
             var computedStyle = window.getComputedStyle(container);
             var computedPadding = computedStyle.paddingTop;
-            paddingTop = parseFloat(computedPadding);
+            var computedPaddingPx = parseFloat(computedPadding);
+            if (computedPaddingPx && !isNaN(computedPaddingPx)) {
+                var containerWidth = parseFloat(computedStyle.width);
+                if (containerWidth && !isNaN(containerWidth) && containerWidth > 0) {
+                    paddingTop = (computedPaddingPx / containerWidth) * 100;
+                }
+            }
         }
         
-        var aspectRatio;
+        var calculatedWidth;
         if (paddingTop && !isNaN(paddingTop) && paddingTop > 0) {
-            aspectRatio = 100 / paddingTop;
+            calculatedWidth = maxHeight / (paddingTop / 100);
         } else {
-            aspectRatio = 16 / 9;
+            calculatedWidth = maxHeight * (16 / 9);
         }
         
-        container.style.setProperty('--video-aspect-ratio', aspectRatio);
+        container.style.paddingTop = '0';
+        container.style.width = calculatedWidth + 'px';
         container.style.height = maxHeight + 'px';
         container.style.maxHeight = maxHeight + 'px';
-        container.style.paddingTop = '0';
-        
-        console.log('Video', i, 'aspect ratio:', aspectRatio, 'height:', maxHeight);
+        container.style.removeProperty('--video-aspect-ratio');
     }
 }
 

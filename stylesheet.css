@@ -505,11 +505,7 @@ li.nav_inactive ul {
     margin: 0;
     position: relative;
     overflow: hidden;
-    width: auto;
-    max-height: 300px;
-    height: 300px;
     padding-top: 0 !important;
-    aspect-ratio: var(--video-aspect-ratio, 16 / 9);
 }
 
 .content .iframe-container iframe {
