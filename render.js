@@ -294,10 +294,29 @@ function initializePage() {
 function openLightBox(img_elem, caption) {
     pauseBackgroundVideo();
 
-    if (caption === '') {
-        caption = img_elem.parentElement.parentElement.firstElementChild.textContent;
+    var contentCard = null;
+    var element = img_elem;
+    while (element && !contentCard) {
+        if (element.classList && element.classList.contains('content')) {
+            contentCard = element;
+        } else {
+            element = element.parentElement;
+        }
     }
-    document.getElementById("lightbox-caption").textContent = caption;
+
+    populateLightboxText(contentCard);
+
+    if (caption === '') {
+        if (contentCard) {
+            var titleElement = contentCard.querySelector('h2.content-text-element');
+            if (titleElement) {
+                caption = titleElement.textContent;
+            }
+        }
+    }
+    if (caption) {
+        document.getElementById("lightbox-title").textContent = caption;
+    }
 
     var im_path = img_elem.firstElementChild.src.replace('_thumb', '');
     document.getElementById("lightbox-im").src = im_path;
@@ -320,29 +339,34 @@ function openLightBox(img_elem, caption) {
 function openVideoLightBox(videoUrl, videoType, caption, event) {
     pauseBackgroundVideo();
 
-    if (caption === '') {
-        var contentCard = null;
-        if (event && event.target) {
-            var element = event.target;
-            while (element && !contentCard) {
-                if (element.classList && element.classList.contains('content')) {
-                    contentCard = element;
-                } else {
-                    element = element.parentElement;
-                }
+    var contentCard = null;
+    if (event && event.target) {
+        var element = event.target;
+        while (element && !contentCard) {
+            if (element.classList && element.classList.contains('content')) {
+                contentCard = element;
+            } else {
+                element = element.parentElement;
             }
         }
-        if (!contentCard) {
-            contentCard = document.querySelector('.content');
-        }
+    }
+    if (!contentCard) {
+        contentCard = document.querySelector('.content');
+    }
+
+    populateLightboxText(contentCard);
+
+    if (caption === '') {
         if (contentCard) {
-            var titleElement = contentCard.querySelector('h2');
+            var titleElement = contentCard.querySelector('h2.content-text-element');
             if (titleElement) {
                 caption = titleElement.textContent;
             }
         }
     }
-    document.getElementById("lightbox-caption").textContent = caption;
+    if (caption) {
+        document.getElementById("lightbox-title").textContent = caption;
+    }
 
     document.getElementById("lightbox-im").style.display = 'none';
     document.getElementById("lighbox-request-print").style.display = 'none';
@@ -368,11 +392,63 @@ function openVideoLightBox(videoUrl, videoType, caption, event) {
     lightbox.classList.remove('hidden');
 }
 
+function populateLightboxText(contentCard) {
+    if (!contentCard) {
+        return;
+    }
+
+    var allElements = contentCard.querySelectorAll('.content-text-element, .content-html-element');
+    var titleElement = null;
+    var subtitleElement = null;
+    var subheaderElement = null;
+    var subsubtitleElement = null;
+    var creditsElement = null;
+    var htmlElements = [];
+
+    for (var i = 0; i < allElements.length; i++) {
+        var elem = allElements[i];
+        if (elem.tagName === 'H2' && elem.classList.contains('content-text-element') && !titleElement) {
+            titleElement = elem;
+        } else if (elem.tagName === 'H4' && elem.classList.contains('content-text-element') && !subtitleElement) {
+            subtitleElement = elem;
+        } else if (elem.tagName === 'H4' && elem.classList.contains('content-text-element') && subtitleElement && !subheaderElement) {
+            subheaderElement = elem;
+        } else if (elem.tagName === 'H6' && elem.classList.contains('content-text-element') && !subsubtitleElement) {
+            subsubtitleElement = elem;
+        } else if (elem.tagName === 'H5' && elem.classList.contains('content-text-element') && !creditsElement) {
+            creditsElement = elem;
+        } else if (elem.classList.contains('content-html-element')) {
+            htmlElements.push(elem);
+        }
+    }
+
+    document.getElementById("lightbox-title").textContent = titleElement ? titleElement.textContent : '';
+    document.getElementById("lightbox-subtitle").textContent = subtitleElement ? subtitleElement.textContent : '';
+    document.getElementById("lightbox-subheader").textContent = subheaderElement ? subheaderElement.textContent : '';
+    document.getElementById("lightbox-subsubtitle").textContent = subsubtitleElement ? subsubtitleElement.textContent : '';
+    document.getElementById("lightbox-credits").textContent = creditsElement ? creditsElement.textContent : '';
+    
+    var htmlContainer = document.getElementById("lightbox-html");
+    htmlContainer.innerHTML = '';
+    for (var j = 0; j < htmlElements.length; j++) {
+        var htmlContent = htmlElements[j].cloneNode(true);
+        htmlContent.classList.remove('content-text-element', 'content-html-element');
+        htmlContent.classList.add('lightbox-html-content');
+        htmlContainer.appendChild(htmlContent);
+    }
+}
+
 function closeLightBox() {
     playBackgroundVideo();
 
     document.getElementById("lightbox-im").removeAttribute('src');
     document.getElementById("lightbox-video-container").innerHTML = '';
+    document.getElementById("lightbox-title").textContent = '';
+    document.getElementById("lightbox-subtitle").textContent = '';
+    document.getElementById("lightbox-subheader").textContent = '';
+    document.getElementById("lightbox-subsubtitle").textContent = '';
+    document.getElementById("lightbox-credits").textContent = '';
+    document.getElementById("lightbox-html").innerHTML = '';
 
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.remove('visible');
