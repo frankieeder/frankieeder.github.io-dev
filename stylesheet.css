@@ -201,7 +201,8 @@ Contents / Posts
     padding: 25px 0;
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 25px !important;
+    row-gap: 25px !important;
+    column-gap: 12.5px !important;
     align-items: start;
     justify-content: center;
     box-sizing: border-box;
@@ -758,7 +759,8 @@ li.nav_inactive ul {
 @media (max-width: 768px) {
     #contents_wrapper #contents {
         flex-direction: column !important;
-        gap: 15px !important;
+        row-gap: 15px !important;
+        column-gap: 7.5px !important;
         width: 100% !important;
         padding: 15px 0;
     }
