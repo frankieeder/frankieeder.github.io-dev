@@ -202,7 +202,7 @@ Contents / Posts
     display: flex !important;
     flex-wrap: wrap !important;
     row-gap: 25px !important;
-    column-gap: 12.5px !important;
+    column-gap: 0 !important;
     align-items: start;
     justify-content: center;
     box-sizing: border-box;
@@ -399,6 +399,21 @@ li.nav_inactive ul {
     box-sizing: border-box;
     position: relative;
     border: none;
+    margin-right: 10px;
+    padding-right: 10px;
+    border-right: 15px solid rgba(255, 255, 255, 0.4);
+}
+
+.content.multi-photo-group-item:not(.multi-photo-group-last) {
+    border-right: none;
+    padding-right: 0;
+    margin-right: 0;
+}
+
+#contents_wrapper #contents .content:last-child {
+    border-right: none;
+    padding-right: 0;
+    margin-right: 0;
 }
 
 .content .vimeo_embed,

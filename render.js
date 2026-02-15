@@ -41,11 +41,14 @@ function flattenMultiPhotoCards(contents) {
         }
         
         if (hasMultiPhotoScrollbox) {
+            var groupSize = scrollboxRow.scrollcontent.length;
             for (var k = 0; k < scrollboxRow.scrollcontent.length; k++) {
                 var newContent = {
                     tags: content.tags.slice(),
                     release_date: content.release_date,
-                    rows: []
+                    rows: [],
+                    is_multi_photo_group_item: true,
+                    is_last_in_multi_photo_group: (k === scrollboxRow.scrollcontent.length - 1)
                 };
                 
                 for (var m = 0; m < content.rows.length; m++) {
