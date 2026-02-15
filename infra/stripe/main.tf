@@ -163,7 +163,8 @@ output "payment_link_info" {
 resource "local_file" "payment_link_info_json" {
   content  = jsonencode({
     for key, link in stripe_payment_link.payment_links : key => {
-      url = data.external.payment_link_urls[key].result.url
+      url = data.external.payment_link_urls[key].result.url,
+      price_amount = stripe_price.variants[key].unit_amount
     }
   })
   filename = "${path.module}/payment_links.json"
