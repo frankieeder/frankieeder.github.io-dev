@@ -234,6 +234,7 @@ function renderBody() {
                 document.getElementById('contents').innerHTML = rendered;
 
                 populateHoverInfo();
+                constrainVideoHeights();
                 prepVimeoThumbnails();
             }
         )
@@ -332,6 +333,44 @@ function playBackgroundVideo() {
     var iframe = document.getElementById('fullscreen-bg__video');
     var player = new Vimeo.Player(iframe);
     player.play();
+}
+
+function constrainVideoHeights() {
+    var iframeContainers = document.querySelectorAll('.content .iframe-container');
+    var maxHeight = 300;
+    
+    for (var i = 0; i < iframeContainers.length; i++) {
+        var container = iframeContainers[i];
+        var iframe = container.querySelector('iframe');
+        if (!iframe) {
+            console.log('No iframe found in container', i);
+            continue;
+        }
+        
+        var styleAttr = container.getAttribute('style') || '';
+        var paddingTopMatch = styleAttr.match(/padding-top:\s*([\d.]+)%/);
+        var paddingTop = paddingTopMatch ? parseFloat(paddingTopMatch[1]) : null;
+        
+        if (!paddingTop || isNaN(paddingTop)) {
+            var computedStyle = window.getComputedStyle(container);
+            var computedPadding = computedStyle.paddingTop;
+            paddingTop = parseFloat(computedPadding);
+        }
+        
+        var aspectRatio;
+        if (paddingTop && !isNaN(paddingTop) && paddingTop > 0) {
+            aspectRatio = 100 / paddingTop;
+        } else {
+            aspectRatio = 16 / 9;
+        }
+        
+        container.style.setProperty('--video-aspect-ratio', aspectRatio);
+        container.style.height = maxHeight + 'px';
+        container.style.maxHeight = maxHeight + 'px';
+        container.style.paddingTop = '0';
+        
+        console.log('Video', i, 'aspect ratio:', aspectRatio, 'height:', maxHeight);
+    }
 }
 
 function populateHoverInfo() {
