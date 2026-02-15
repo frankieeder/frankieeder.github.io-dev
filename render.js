@@ -332,8 +332,6 @@ function openLightBox(img_elem, caption) {
     var im_path = img_elem.firstElementChild.src.replace('_thumb', '');
     document.getElementById("lightbox-im").src = im_path;
     document.getElementById("lightbox-im").style.display = 'block';
-    document.getElementById("lightbox-video-container").style.display = 'none';
-    document.getElementById("lightbox-video-container").innerHTML = '';
 
     var url_parts = im_path.split('/');
     var image_id = url_parts[url_parts.length - 1];
@@ -456,62 +454,6 @@ function openLightBox(img_elem, caption) {
     lightbox.classList.remove('hidden');
 }
 
-function openVideoLightBox(videoUrl, videoType, caption, event) {
-    pauseBackgroundVideo();
-
-    var contentCard = null;
-    if (event && event.target) {
-        var element = event.target;
-        while (element && !contentCard) {
-            if (element.classList && element.classList.contains('content')) {
-                contentCard = element;
-            } else {
-                element = element.parentElement;
-            }
-        }
-    }
-    if (!contentCard) {
-        contentCard = document.querySelector('.content');
-    }
-
-    populateLightboxText(contentCard);
-
-    if (caption === '') {
-        if (contentCard) {
-            var titleElement = contentCard.querySelector('h2.content-text-element');
-            if (titleElement) {
-                caption = titleElement.textContent;
-            }
-        }
-    }
-    if (caption) {
-        document.getElementById("lightbox-title").textContent = caption;
-    }
-
-    document.getElementById("lightbox-im").style.display = 'none';
-    document.getElementById("lighbox-request-print").style.display = 'none';
-    document.getElementById("lightbox-buy-print").style.display = 'none';
-    
-    var videoContainer = document.getElementById("lightbox-video-container");
-    videoContainer.style.display = 'block';
-    videoContainer.innerHTML = '';
-    
-    var iframe = document.createElement('iframe');
-    iframe.src = videoUrl;
-    iframe.frameborder = '0';
-    iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share';
-    iframe.allowFullscreen = true;
-    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-    if (videoType === 'youtube') {
-        iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
-    }
-    
-    videoContainer.appendChild(iframe);
-
-    var lightbox = document.getElementById("lightbox");
-    lightbox.classList.add('visible');
-    lightbox.classList.remove('hidden');
-}
 
 function populateLightboxText(contentCard) {
     if (!contentCard) {
@@ -563,7 +505,6 @@ function closeLightBox() {
     playBackgroundVideo();
 
     document.getElementById("lightbox-im").removeAttribute('src');
-    document.getElementById("lightbox-video-container").innerHTML = '';
     document.getElementById("lightbox-title").textContent = '';
     document.getElementById("lightbox-subtitle").textContent = '';
     document.getElementById("lightbox-subheader").textContent = '';
@@ -730,7 +671,6 @@ function setVideoTime(player, seconds) {
 		return player.play();
 	});
 }
-
 
 //function styleVimeoEmbeds(element) {
 //    /*
