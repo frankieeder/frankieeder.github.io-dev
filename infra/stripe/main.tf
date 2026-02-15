@@ -4,10 +4,10 @@ terraform {
       source  = "stripe/stripe"
       version = "~> 0.0"
     }
-    # stripealt = {
-    #   source  = "andrewbaxter/stripe"
-    #   version = "~> 0.0"
-    # }
+    stripealt = {
+      source  = "andrewbaxter/stripe"
+      version = "~> 0.0"
+    }
   }
 }
 
@@ -15,68 +15,47 @@ provider "stripe" {
   api_key = var.stripe_api_key
 }
 
-# provider "stripealt" {
-#   token = var.stripe_api_key
-# }
+provider "stripealt" {
+  token = var.stripe_api_key
+}
+
 
 resource "stripe_product" "example_product" {
   name        = "Fine Art Print"
-  description = "Parent object for fine art print variants"
-  active      = true
-}
-
-resource "stripe_price" "variant_small" {
-  product     = stripe_product.example_product.id
-  currency    = "usd"
-  unit_amount = 1000
-  active      = true
-}
-
-resource "stripe_price" "variant_medium" {
-  product     = stripe_product.example_product.id
-  currency    = "usd"
-  unit_amount = 2000
-  active      = true
-}
-
-resource "stripe_price" "variant_large" {
-  product     = stripe_product.example_product.id
-  currency    = "usd"
-  unit_amount = 3000
+  description = "Fine Art Print, hand calibrated and printed on archival paper in collaboration with local San Francisco printer. Print only."
   active      = true
 }
 
 locals {
-  payment_link_configs = {
-    small_only = {
-      price_id = stripe_price.variant_small.id
-    }
-    medium_only = {
-      price_id = stripe_price.variant_medium.id
-    }
-    large_only = {
-      price_id = stripe_price.variant_large.id
-    }
+  variants = jsondecode(file("${path.module}/variants.json")).variants
+
+  variants_map = {
+    for variant in local.variants : variant.key => variant
   }
 
-  custom_fields = [
-    {
-      key         = "piece"
-      type        = "text"
-      name        = "Piece Name"
-      placeholder = null
-      optional    = false
-    },
-  ]
+  width_to_shipping_rate = {
+    for variant in local.variants : variant.key => (
+      tonumber(split("_", variant.key)[0]) < 22 ? "us_standard_<22" : (
+        tonumber(split("_", variant.key)[0]) <= 30 ? "us_standard_22-30" : "us_standard_>30"
+      )
+    )
+  }
 
-  custom_field_params_list = flatten([for idx, field in local.custom_fields : concat([
-    "-d \"custom_fields[${idx}][key]=${field.key}\"",
-    "-d \"custom_fields[${idx}][type]=${field.type}\"",
-    "-d \"custom_fields[${idx}][label]=${field.name}\"",
-    "-d \"custom_fields[${idx}][optional]=${tostring(field.optional)}\""
-  ], field.placeholder != null ? ["-d \"custom_fields[${idx}][placeholder]=${field.placeholder}\""] : [])])
-  
-  custom_field_params_json = jsonencode(local.custom_field_params_list)
+  payment_link_configs = {
+    for variant in local.variants : "${variant.key}_only" => {
+      price_id = stripe_price.variants[variant.key].id
+      shipping_rate_key = local.width_to_shipping_rate[variant.key]
+    }
+  }
+}
+
+resource "stripe_price" "variants" {
+  for_each = local.variants_map
+
+  product     = stripe_product.example_product.id
+  currency    = each.value.currency
+  unit_amount = each.value.unit_amount
+  active      = true
 }
 
 output "product_id" {
@@ -86,55 +65,94 @@ output "product_id" {
 
 output "price_ids" {
   value = {
-    small  = stripe_price.variant_small.id
-    medium = stripe_price.variant_medium.id
-    large  = stripe_price.variant_large.id
+    for key, price in stripe_price.variants : key => price.id
   }
   description = "Stripe price IDs for each variant"
 }
 
-data "external" "payment_links" {
+resource "stripe_shipping_rate" "shipping_rates" {
+  for_each = {
+    "us_standard_<22" = {
+      display_name = "US Standard - <22"
+      fixed_amount_amount = 1000
+    }
+    "us_standard_22-30" = {
+      display_name = "US Standard - 22-30"
+      fixed_amount_amount = 1500
+    }
+    "us_standard_>30" = {
+      display_name = "US Standard - >30"
+      fixed_amount_amount = 2000
+    }
+  }
+
+  display_name = each.value.display_name
+  type = "fixed_amount"
+  fixed_amount {
+    amount = each.value.fixed_amount_amount
+    currency = "usd"
+  }
+  tax_behavior = "inclusive"
+  tax_code = "txcd_92010001"
+  delivery_estimate {
+    maximum {
+      unit = "business_day"
+      value = 12
+    }
+    minimum {
+      unit = "business_day"
+      value = 7
+    }
+  }
+}
+
+resource "stripe_payment_link" "payment_links" {
   for_each = local.payment_link_configs
+  provider = stripealt
+
+  automatic_tax_enabled = true
+  shipping_address_collection_allowed_countries = ["US"]
+  consent_collection_promotions = "auto"
+  shipping_options {
+    shipping_rate = stripe_shipping_rate.shipping_rates[each.value.shipping_rate_key].id
+  }
+
+
+  line_items {
+    price    = each.value.price_id
+    quantity = 1
+  }
+}
+
+data "external" "payment_link_urls" {
+  for_each = stripe_payment_link.payment_links
 
   program = ["sh", "-c", <<-EOT
-    params_json='${local.custom_field_params_json}'
-    params=""
-    if [ "$params_json" != "[]" ] && [ "$params_json" != "" ]; then
-      for param in $(echo "$params_json" | jq -r '.[]'); do
-        params="$params \\\n      $param"
-      done
-      # Remove leading space and backslash
-      params=$(echo "$params" | sed 's/^ *\\\\n *//')
-    fi
-    response=$(curl -s -X POST https://api.stripe.com/v1/payment_links \
-      -u ${var.stripe_api_key}: \
-      -d "line_items[0][price]=${each.value.price_id}" \
-      -d "line_items[0][quantity]=1" \
-      -d "shipping_address_collection[allowed_countries][0]=US" \
-      -d "shipping_address_collection[allowed_countries][1]=CA"$params)
+    response=$(curl -s -X GET "https://api.stripe.com/v1/payment_links/${each.value.id}" \
+      -u ${var.stripe_api_key}:)
     
-    if ! echo "$response" | jq -e '.id' > /dev/null 2>&1; then
+    if ! echo "$response" | jq -e '.url' > /dev/null 2>&1; then
       echo "Error: Invalid response from Stripe API" >&2
       echo "$response" >&2
-      echo '{"id":"","url":""}'
+      echo '{"url":""}'
       exit 1
     fi
     
-    echo "$response" | jq -c '{id: .id, url: .url}'
+    echo "$response" | jq -c '{url: .url}'
   EOT
   ]
 }
 
 output "payment_link_ids" {
   value = {
-    for key, data in data.external.payment_links : key => data.result.id
+    for key, link in stripe_payment_link.payment_links : key => link.id
   }
   description = "Payment link IDs for the product and variants"
 }
 
 output "payment_link_urls" {
   value = {
-    for key, data in data.external.payment_links : key => data.result.url
+    for key, data in data.external.payment_link_urls : key => data.result.url
   }
   description = "Payment link URLs for the product and variants"
 }
