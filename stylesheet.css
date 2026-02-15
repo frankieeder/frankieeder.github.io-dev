@@ -522,6 +522,8 @@ li.nav_inactive ul {
     position: relative;
     overflow: hidden;
     padding-top: 0 !important;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .content .iframe-container iframe {
