@@ -280,6 +280,8 @@ function disableRightClickAndDrag() {
     });
 }
 
+var STRIPE_PAYMENT_LINK_BASE_URL = 'https://buy.stripe.com/dRm4gz9BrfqS58N5KrdMI1b';
+
 function initializePage() {
     disableRightClickAndDrag();
     initializeNav();
@@ -325,10 +327,25 @@ function openLightBox(img_elem, caption) {
 
     var url_parts = im_path.split('/');
     var image_id = url_parts[url_parts.length - 1];
-    var prefix = 'mailto:frankaeder@gmail.com?subject=';
-    var body = "&body=Hello there, I'd like a copy of image id " + image_id;
-    document.getElementById("lighbox-request-print").href = prefix + 'frankieeder.com Print Request' + body;
-    document.getElementById("lighbox-request-print").style.display = 'block';
+    var request_print_elem = document.getElementById("lighbox-request-print");
+    if (request_print_elem) {
+        var prefix = 'mailto:frankaeder@gmail.com?subject=';
+        var body = "&body=Hello there, I'd like a copy of image id " + image_id;
+        request_print_elem.href = prefix + 'frankieeder.com Print Request' + body;
+        request_print_elem.style.display = 'block';
+    }
+    
+    var artwork_id = image_id.replace(/\.[^/.]+$/, '');
+    var buy_print_elem = document.getElementById("lightbox-buy-print");
+    if (buy_print_elem) {
+        if (typeof STRIPE_PAYMENT_LINK_BASE_URL !== 'undefined' && STRIPE_PAYMENT_LINK_BASE_URL) {
+            var buy_link = STRIPE_PAYMENT_LINK_BASE_URL + '?client_reference_id=' + encodeURIComponent(artwork_id);
+            buy_print_elem.href = buy_link;
+            buy_print_elem.style.display = 'block';
+        } else {
+            buy_print_elem.style.display = 'none';
+        }
+    }
 
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.add('visible');
@@ -369,6 +386,7 @@ function openVideoLightBox(videoUrl, videoType, caption, event) {
 
     document.getElementById("lightbox-im").style.display = 'none';
     document.getElementById("lighbox-request-print").style.display = 'none';
+    document.getElementById("lightbox-buy-print").style.display = 'none';
     
     var videoContainer = document.getElementById("lightbox-video-container");
     videoContainer.style.display = 'block';
