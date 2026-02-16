@@ -382,10 +382,8 @@ var CONTENT = {
                 {subtitle: "(a skateboard film series focusing on quality over quantity)"},
                 {subsubtitle: "cw: flashing lights"},
                 {
-                    // type_vimeo: true,
-                    // vimeo: '697623576',
-                    type_youtube: true,
-                    youtube: 'HXIhiIXBJX0',
+                    type_vimeo: true,
+                    vimeo: '697623576',
                     aspect_ratio: '56.25%',
                 },
                 {credits: 'Director, Director of Photography, Editor, Colorist'},
@@ -412,10 +410,8 @@ var CONTENT = {
                 {subtitle: "(a skateboard film series focusing on quality over quantity)"},
                 {subsubtitle: "cw: flashing lights"},
                 {
-                    // type_vimeo: true,
-                    // vimeo: '408120845',
-                    type_youtube: true,
-                    youtube: 'ZCMdLIp-ohU',
+                    type_vimeo: true,
+                    vimeo: '408120845',
                     aspect_ratio: '82.85%',
                 },
                 {credits: 'Director, Director of Photography, Editor, Colorist'},
@@ -1388,16 +1384,12 @@ var CONTENT = {
                 {subtitle: "(a skateboard film series focusing on quality over quantity)"},
                 {subsubtitle: "cw: flashing lights"},
                 {
-                    // type_vimeo: true,
-                    // vimeo: '242977518',
-                    type_youtube: true,
-                    youtube: 'XBftF74kTdY',
+                    type_vimeo: true,
+                    vimeo: '242977518',
                 },
                 {
-                    // type_vimeo: true,
-                    // vimeo: '242974620',
-                    type_youtube: true,
-                    youtube: '6spF19hhLpc',
+                    type_vimeo: true,
+                    vimeo: '242974620',
                 },
                 {credits: "Director, Director of Photography, Editor, Colorist"},
             ],
@@ -1430,18 +1422,18 @@ var CONTENT = {
         //         {credits: "Director, Director of Photography, Editor, Colorist"},
         //     ],
         // },
-        {
-            tags: ['film', 'skateboarding'],
-            rows: [
-                {title: "MIKEY TAYLOR - UNSEEN VX FOOTAGE"},
-                {subsubtitle: "cw: flashing lights"},
-                {
-                    type_youtube: true,
-                    youtube: "WOb1MiGv8zY",
-                },
-                {credits: "Editor"},
-            ],
-        },
+        // {
+        //     tags: ['film', 'skateboarding'],
+        //     rows: [
+        //         {title: "MIKEY TAYLOR - UNSEEN VX FOOTAGE"},
+        //         {subsubtitle: "cw: flashing lights"},
+        //         {
+        //             type_youtube: true,
+        //             youtube: "WOb1MiGv8zY",
+        //         },
+        //         {credits: "Editor"},
+        //     ],
+        // },
         // {
         //     tags: ['skateboarding'],
         //     rows: [
