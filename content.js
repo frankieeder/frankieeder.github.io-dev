@@ -342,38 +342,37 @@ var CONTENT = {
             ],
 
         },
-        // Vimeo Deleted?
-        // {
-        //     tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'score_by', 'sound_by', 'colored_by', 'edited_by', 'effects_by', 'portfolio', 'art', 'experimental', 'compendium1', 'compendium-i'],
-        //     release_date: "2021-04-09T12:00:00.000Z",
-        //     rows: [
-        //         {title: "Compendium I"},
-        //         {subtitle: "experimental film on cyclical entrapment"},
-        //         {
-        //             type_vimeo: true,
-        //             vimeo: '501918925',
-        //         },
-        //         {credits: 'Director, Director of Photography, Score, Sound Design, Colorist, Effects Engineering, Editing'},
-        //         {html: "<h5><u>Awards</u></h5>"},
-        //         {html: "<h5><i>Official Selection</i> - Showcase of Shapes, Puppets, and Moving Things 2021</h5>"}
-        //     ],
-        // },
-        // {
-        //     tags: ['frankie_eder', 'film', 'shot_by', 'score_by', 'sound_by', 'portfolio'],
-        //     rows: [
-        //         {title: "CAMERA OBSCURA"},
-        //         {subtitle: "(narrative featurette film)"},
-        //         {
-        //             type_vimeo: true,
-        //             vimeo: '486248111',
-        //             aspect_ratio: '100%',
-        //         },
-        //         {credits: 'Director of Photography, Score, Sound Design'},
-        //         {html: "<h5><u>Awards</u></h5>"},
-        //         {html: "<h5><i>Finalist</i> - Los Angeles Cinematography Awards 2022</h5>"},
-        //         {html: "<h5><i>Best Sound & Music</i> - Grizzly Film Festival 2021</h5>"}
-        //     ],
-        // },
+        {
+            tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'score_by', 'sound_by', 'colored_by', 'edited_by', 'effects_by', 'portfolio', 'art', 'experimental', 'compendium1', 'compendium-i'],
+            release_date: "2021-04-09T12:00:00.000Z",
+            rows: [
+                {title: "Compendium I"},
+                {subtitle: "experimental film on cyclical entrapment"},
+                {
+                    type_vimeo: true,
+                    vimeo: '501918925',
+                },
+                {credits: 'Director, Director of Photography, Score, Sound Design, Colorist, Effects Engineering, Editing'},
+                {html: "<h5><u>Awards</u></h5>"},
+                {html: "<h5><i>Official Selection</i> - Showcase of Shapes, Puppets, and Moving Things 2021</h5>"}
+            ],
+        },
+        {
+            tags: ['frankie_eder', 'film', 'shot_by', 'score_by', 'sound_by', 'portfolio'],
+            rows: [
+                {title: "CAMERA OBSCURA"},
+                {subtitle: "(narrative featurette film)"},
+                {
+                    type_vimeo: true,
+                    vimeo: '486248111',
+                    aspect_ratio: '100%',
+                },
+                {credits: 'Director of Photography, Score, Sound Design'},
+                {html: "<h5><u>Awards</u></h5>"},
+                {html: "<h5><i>Finalist</i> - Los Angeles Cinematography Awards 2022</h5>"},
+                {html: "<h5><i>Best Sound & Music</i> - Grizzly Film Festival 2021</h5>"}
+            ],
+        },
         {
             tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'effects_by', 'portfolio', 'skateboarding'],
             release_date: "2022-04-22T12:00:00.000Z",
@@ -1394,34 +1393,34 @@ var CONTENT = {
                 {credits: "Director, Director of Photography, Editor, Colorist"},
             ],
         },
-        // {
-        //     tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'skateboarding', 'portfolio'],
-        //     rows: [
-        //         {title: "MUTUAL TRANSGRESSION V"},
-        //         {subtitle: "(a skateboard film series focusing on quality over quantity)"},
-        //         {subsubtitle: "cw: flashing lights"},
-        //         {
-        //             type_vimeo: true,
-        //             vimeo: '244111603',
-        //             aspect_ratio: "41.43%",
-        //         },
-        //         {credits: "Director, Director of Photography, Editor, Colorist"},
-        //     ],
-        // },
-        // {
-        //     tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'skateboarding', 'portfolio'],
-        //     rows: [
-        //         {title: "MUTUAL TRANSGRESSION IV"},
-        //         {subtitle: "(a skateboard film series focusing on quality over quantity)"},
-        //         {subsubtitle: "cw: flashing lights"},
-        //         {
-        //             type_vimeo: true,
-        //             vimeo: '242981195',
-        //             aspect_ratio: "41.43%",
-        //         },
-        //         {credits: "Director, Director of Photography, Editor, Colorist"},
-        //     ],
-        // },
+        {
+            tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'skateboarding', 'portfolio'],
+            rows: [
+                {title: "MUTUAL TRANSGRESSION V"},
+                {subtitle: "(a skateboard film series focusing on quality over quantity)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '244111603',
+                    aspect_ratio: "41.43%",
+                },
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
+        {
+            tags: ['frankie_eder', 'film', 'directed_by', 'shot_by', 'edited_by', 'colored_by', 'skateboarding', 'portfolio'],
+            rows: [
+                {title: "MUTUAL TRANSGRESSION IV"},
+                {subtitle: "(a skateboard film series focusing on quality over quantity)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '242981195',
+                    aspect_ratio: "41.43%",
+                },
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
         // {
         //     tags: ['film', 'skateboarding'],
         //     rows: [
@@ -1434,20 +1433,20 @@ var CONTENT = {
         //         {credits: "Editor"},
         //     ],
         // },
-        // {
-        //     tags: ['skateboarding'],
-        //     rows: [
-        //         {title: "MT MINI 1 - MATTHEW PARRA"},
-        //         {subtitle: "(an addendum to the Mutual Transgression skateboard film series)"},
-        //         {subsubtitle: "cw: flashing lights"},
-        //         {
-        //             type_vimeo: true,
-        //             vimeo: '236264604',
-        //             aspect_ratio: "41.43%",
-        //         },
-        //         {credits: "Director, Director of Photography, Editor, Colorist"},
-        //     ],
-        // },
+        {
+            tags: ['skateboarding'],
+            rows: [
+                {title: "MT MINI 1 - MATTHEW PARRA"},
+                {subtitle: "(an addendum to the Mutual Transgression skateboard film series)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '236264604',
+                    aspect_ratio: "41.43%",
+                },
+                {credits: "Director, Director of Photography, Editor, Colorist"},
+            ],
+        },
         {
             tags: ['skateboarding'],
             rows: [
