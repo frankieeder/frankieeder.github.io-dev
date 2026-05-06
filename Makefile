@@ -4,3 +4,6 @@ PORT = 8005
 
 run:
 	python3 -m http.server $(PORT)
+
+open:
+	open http://localhost:$(PORT)
