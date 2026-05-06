@@ -2,15 +2,19 @@ terraform {
   required_providers {
     stripe = {
       source  = "stripe/stripe"
-      version = "~> 0.0"
+      version = "~> 0.1"
     }
     stripealt = {
       source  = "andrewbaxter/stripe"
-      version = "~> 0.0"
+      version = "~> 0.0.24"
     }
     local = {
       source  = "hashicorp/local"
-      version = "~> 2.0"
+      version = "~> 2.6"
+    }
+    external = {
+      source  = "hashicorp/external"
+      version = "~> 2.3"
     }
   }
 }
@@ -100,6 +104,9 @@ resource "stripe_shipping_rate" "shipping_rates" {
     amount = each.value.fixed_amount_amount
     currency = "usd"
   }
+  # tax_behavior = "inclusive": the shipping price already includes tax in the
+  # displayed amount. If you intended to charge shipping + tax-on-top, set this
+  # to "exclusive". TODO: confirm desired behavior with Frankie before going live.
   tax_behavior = "inclusive"
   tax_code = "txcd_92010001"
   delivery_estimate {
