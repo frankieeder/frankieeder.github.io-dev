@@ -241,6 +241,17 @@ function initializePage() {
 function openLightBox(img_elem, caption) {
     pauseBackgroundVideo();
 
+    var videoContainer = document.getElementById("lightbox-video-container");
+    var lightboxVideo = document.getElementById("lightbox-video");
+    if (videoContainer) {
+        videoContainer.style.display = 'none';
+    }
+    if (lightboxVideo) {
+        lightboxVideo.removeAttribute('src');
+    }
+
+    document.getElementById("lightbox-im").style.display = 'block';
+
     if (caption === '') {
         caption = img_elem.parentElement.parentElement.firstElementChild.textContent;
     }
@@ -260,11 +271,47 @@ function openLightBox(img_elem, caption) {
     lightbox.classList.remove('hidden');
 }
 
+function openVideoLightBox(embedUrl, sourceType, caption, event) {
+    if (event) {
+        event.stopPropagation();
+    }
+    pauseBackgroundVideo();
+
+    document.getElementById("lightbox-im").style.display = 'none';
+    document.getElementById("lighbox-request-print").style.display = 'none';
+
+    if (caption) {
+        document.getElementById("lightbox-caption").textContent = caption;
+    }
+
+    var autoplayUrl = embedUrl.indexOf('?') >= 0 ? embedUrl + '&autoplay=1' : embedUrl + '?autoplay=1';
+    var videoContainer = document.getElementById("lightbox-video-container");
+    var lightboxVideo = document.getElementById("lightbox-video");
+    lightboxVideo.src = autoplayUrl;
+    videoContainer.style.display = 'block';
+
+    var lightbox = document.getElementById("lightbox");
+    lightbox.classList.add('visible');
+    lightbox.classList.remove('hidden');
+}
+
 function closeLightBox() {
     playBackgroundVideo();
 
-    document.getElementById("lightbox-im").removeAttribute('src')
+    var videoContainer = document.getElementById("lightbox-video-container");
+    var lightboxVideo = document.getElementById("lightbox-video");
+    if (videoContainer) {
+        videoContainer.style.display = 'none';
+    }
+    if (lightboxVideo) {
+        lightboxVideo.removeAttribute('src');
+    }
 
+    document.getElementById("lightbox-im").removeAttribute('src');
+    document.getElementById("lightbox-im").style.display = 'block';
+    document.getElementById("lighbox-request-print").style.display = '';
+
+    var lightbox = document.getElementById("lightbox");
     lightbox.classList.remove('visible');
     lightbox.classList.add('hidden');
 }
