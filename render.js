@@ -273,9 +273,6 @@ function openLightBox(img_elem, caption) {
 
     var url_parts = im_path.split('/');
     var image_id = url_parts[url_parts.length - 1];
-    var prefix = 'mailto:frankaeder@gmail.com?subject=';
-    var body = "&body=Hello there, I'd like a copy of image id " + image_id;
-    document.getElementById("lighbox-request-print").href = prefix + 'frankieeder.com Print Request' + body;
 
     var artwork_id = image_id.replace(/\.[^/.]+$/, '');
     var buy_print_elem = document.getElementById("lightbox-buy-print");
@@ -395,7 +392,6 @@ function openVideoLightBox(embedUrl, sourceType, caption, event) {
     pauseBackgroundVideo();
 
     document.getElementById("lightbox-im").style.display = 'none';
-    document.getElementById("lighbox-request-print").style.display = 'none';
 
     if (caption) {
         document.getElementById("lightbox-caption").textContent = caption;
@@ -426,7 +422,6 @@ function closeLightBox() {
 
     document.getElementById("lightbox-im").removeAttribute('src');
     document.getElementById("lightbox-im").style.display = 'block';
-    document.getElementById("lighbox-request-print").style.display = '';
 
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.remove('visible');
