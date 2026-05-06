@@ -436,6 +436,26 @@ li.nav_inactive ul {
     pointer-events: none;
 }
 
+.video-clickable {
+    cursor: pointer;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s;
+}
+
+.video-clickable:hover .video-overlay {
+    background: rgba(0, 0, 0, 0.1);
+}
+
 .iframe-container iframe {
    border: 0;
    height: 100%;
@@ -542,6 +562,24 @@ li.nav_inactive ul {
   margin-left: auto;
   margin-right: auto;
   padding-top: 5%;
+}
+
+.lightbox-video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: calc(100vh - 48px - 150px);
+  overflow: hidden;
+  display: none;
+}
+
+.lightbox-video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 /* The Close Button */
