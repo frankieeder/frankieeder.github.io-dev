@@ -691,8 +691,10 @@ li.nav_inactive ul {
 
 .lightbox-video-container {
   display: none;
-  width: min(90vw, 1280px);
-  max-height: 80vh;
+  /* Fill available space while reserving ~180px for the caption + close
+     button below. Width = min(95vw, vertical-budget * 16/9), so on tall
+     viewports it caps at width and on wide ones it caps at height. */
+  width: min(95vw, calc((100vh - 180px) * 16 / 9));
   aspect-ratio: 16 / 9;
   margin: auto;
 }
