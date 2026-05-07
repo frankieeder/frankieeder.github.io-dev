@@ -1,17 +1,17 @@
 {{#contents}}
-    <div class="content">
+    <div class="content{{#is_multi_photo_group_item}} multi-photo-group-item{{/is_multi_photo_group_item}}{{#is_last_in_multi_photo_group}} multi-photo-group-last{{/is_last_in_multi_photo_group}}">
         {{#rows}}
             {{#title}}
-                <h2>{{.}}</h2>
+                <h2 class="content-text-element">{{.}}</h2>
             {{/title}}
             {{#subtitle}}
-                <h4>{{.}}</h4>
+                <h4 class="content-text-element">{{.}}</h4>
             {{/subtitle}}
             {{#subheader}}
-                <h4>{{.}}</h4>
+                <h4 class="content-text-element">{{.}}</h4>
             {{/subheader}}
             {{#subsubtitle}}
-                <h6>{{.}}</h6>
+                <h6 class="content-text-element">{{.}}</h6>
             {{/subsubtitle}}
             {{#type_photo_scrollbox}}
                 {{!
@@ -49,9 +49,11 @@
                 {{> table}}
             {{/type_table}}
             {{#credits}}
-                <h5>Credits: {{.}}</h5>
+                <h5 class="content-text-element">Credits: {{.}}</h5>
             {{/credits}}
-            {{#html}}{{{.}}}{{/html}}
+            {{#html}}
+                <div class="content-text-element content-html-element">{{{.}}}</div>
+            {{/html}}
         {{/rows}}
     </div>
 {{/contents}}
