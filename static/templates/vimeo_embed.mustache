@@ -1,6 +1,6 @@
 <div
     id="vimeo_{{vimeo_count}}"
-    class="vimeo_embed {{^thumbnail}}iframe-container{{/thumbnail}}"
+    class="vimeo_embed {{^thumbnail}}iframe-container video-clickable{{/thumbnail}}"
     {{#aspect_ratio}}style="padding-top: {{.}};"{{/aspect_ratio}}
     {{#loopstart}}loopstart="{{.}}"{{/loopstart}}
     {{#loopend}}loopend="{{.}}"{{/loopend}}
@@ -16,6 +16,6 @@
         {{#loopstart}}loopstart="{{.}}"{{/loopstart}}
         {{#loopend}}loopend="{{.}}"{{/loopend}}
     ></iframe>
+    <div class="video-overlay" onclick="openVideoLightBox('https://player.vimeo.com/video/{{vimeo}}?badge=0&autopause=0&player_id=0&app_id=58479', 'vimeo', '', event);"></div>
     {{/thumbnail}}
 </div>
-

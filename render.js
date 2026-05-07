@@ -313,6 +313,11 @@ function openLightBox(img_elem, caption) {
         lightboxVideo.removeAttribute('src');
     }
 
+    var buyPrintContainer = document.querySelector(".buy-print-container");
+    if (buyPrintContainer) {
+        buyPrintContainer.style.display = '';
+    }
+
     var contentCard = null;
     var element = img_elem;
     while (element && !contentCard) {
@@ -536,6 +541,35 @@ function closeLightBox() {
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.remove('visible');
     lightbox.classList.add('hidden');
+}
+
+function openVideoLightBox(embedUrl, sourceType, caption, event) {
+    if (event) {
+        event.stopPropagation();
+    }
+    pauseBackgroundVideo();
+
+    document.getElementById("lightbox-im").style.display = 'none';
+
+    var buyPrintContainer = document.querySelector(".buy-print-container");
+    if (buyPrintContainer) {
+        buyPrintContainer.style.display = 'none';
+    }
+
+    var videoContainer = document.getElementById("lightbox-video-container");
+    var lightboxVideo = document.getElementById("lightbox-video");
+
+    var autoplayUrl = embedUrl.indexOf('?') >= 0 ? embedUrl + '&autoplay=1' : embedUrl + '?autoplay=1';
+    lightboxVideo.src = autoplayUrl;
+    videoContainer.style.display = 'flex';
+
+    if (caption) {
+        document.getElementById("lightbox-title").textContent = caption;
+    }
+
+    var lightbox = document.getElementById("lightbox");
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('visible');
 }
 
 
