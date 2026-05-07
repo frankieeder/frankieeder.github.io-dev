@@ -145,10 +145,19 @@ resource "stripe_payment_link" "payment_links" {
   automatic_tax_enabled                         = true
   shipping_address_collection_allowed_countries = ["US"]
   consent_collection_promotions                 = "auto"
+
+  # Attributes below are explicit defaults the andrewbaxter/stripe provider
+  # populates in state from Stripe's API. Without them in config, terraform
+  # plan reads "state -> null" as drift, and the three marked here force
+  # replacement of every payment link (= new buy.stripe.com URLs, breaks
+  # any committed/customer-bookmarked links). Pin them to current values.
+  consent_collection_terms_of_service = "none" # forces replacement
+  currency                            = "usd"  # forces replacement
+  submit_type                         = "auto" # forces replacement
+
   shipping_options {
     shipping_rate = stripe_shipping_rate.shipping_rates[each.value.shipping_rate_key].id
   }
-
 
   line_items {
     price    = each.value.price_id
