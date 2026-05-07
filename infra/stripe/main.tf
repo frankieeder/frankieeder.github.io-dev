@@ -142,9 +142,17 @@ resource "stripe_payment_link" "payment_links" {
 data "external" "payment_link_urls" {
   for_each = stripe_payment_link.payment_links
 
+  # API key is passed via query (read from stdin as JSON) rather than
+  # interpolated into the shell program string. Keeps the literal key out of
+  # terraform plan output, debug logs, and the rendered "program" attribute.
+  query = {
+    api_key = var.stripe_api_key
+  }
+
   program = ["sh", "-c", <<-EOT
+    api_key=$(jq -r '.api_key')
     response=$(curl -s -X GET "https://api.stripe.com/v1/payment_links/${each.value.id}" \
-      -u "$STRIPE_API_KEY":)
+      -u "$api_key:")
 
     if ! echo "$response" | jq -e '.url' > /dev/null 2>&1; then
       echo "Error: Invalid response from Stripe API" >&2
@@ -156,9 +164,6 @@ data "external" "payment_link_urls" {
     echo "$response" | jq -c '{url: .url}'
   EOT
   ]
-  environment = {
-    STRIPE_API_KEY = var.stripe_api_key
-  }
 }
 
 output "payment_link_info" {
