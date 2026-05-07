@@ -29,11 +29,16 @@ jobs:
 
       - run: terraform validate
 
-      - run: terraform plan -no-color | tee plan.txt
+      - shell: bash
+        run: |
+          set -o pipefail
+          terraform plan -no-color | tee plan.txt
         env:
           TF_VAR_stripe_api_key: ${{ secrets.STRIPE_API_KEY }}
 
-      - uses: actions/github-script@v7
+      # always post the comment so users can see partial output on plan failure
+      - if: always() && hashFiles('infra/stripe/plan.txt') != ''
+        uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
