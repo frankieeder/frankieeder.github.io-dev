@@ -82,7 +82,7 @@ jobs:
               '',
               '</details>',
               '',
-              '> ⚠️ Without a remote state backend, this plan computes against an empty state on each run, so it always shows "create everything" rather than an incremental diff. Real plan-vs-state diffing requires the state-backend follow-up.',
+              '> Backed by Cloudflare R2 state at `s3://frankieeder-com/stripe/terraform.tfstate`. If this plan looks like "create everything," it means state migration has not happened yet — see infra/stripe/README.md.',
             ].join('\n');
             await github.rest.issues.createComment({
               issue_number: context.issue.number,

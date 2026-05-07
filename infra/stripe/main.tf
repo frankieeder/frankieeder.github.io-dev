@@ -17,6 +17,23 @@ terraform {
       version = "~> 2.3"
     }
   }
+
+  # State stored in Cloudflare R2 (S3-compatible). Credentials come from
+  # AWS_ACCESS_KEY_ID + AWS_SECRET_ACCESS_KEY env vars; locally export the
+  # R2 token values, in CI set them as repo secrets.
+  backend "s3" {
+    bucket    = "frankieeder-com"
+    key       = "stripe/terraform.tfstate"
+    endpoints = { s3 = "https://6e99a6526cc21c3f213ba478f6911d92.r2.cloudflarestorage.com" }
+    region    = "auto"
+
+    skip_credentials_validation = true
+    skip_region_validation      = true
+    skip_requesting_account_id  = true
+    skip_metadata_api_check     = true
+    skip_s3_checksum            = true
+    use_path_style              = true
+  }
 }
 
 provider "stripe" {
@@ -128,10 +145,24 @@ resource "stripe_payment_link" "payment_links" {
   automatic_tax_enabled                         = true
   shipping_address_collection_allowed_countries = ["US"]
   consent_collection_promotions                 = "auto"
+
+  # Attributes below are explicit defaults the andrewbaxter/stripe provider
+  # populates in state from Stripe's API. Without them in config, terraform
+  # plan reads "state -> null" as drift. The first three force replacement
+  # (= new buy.stripe.com URLs); the rest are in-place updates but still
+  # show as plan noise on every run. Pin all to current values for a
+  # truly clean plan.
+  consent_collection_terms_of_service = "none" # forces replacement
+  currency                            = "usd"  # forces replacement
+  submit_type                         = "auto" # forces replacement
+  after_completion_type               = "hosted_confirmation"
+  billing_address_collection          = "auto"
+  customer_creation                   = "if_required"
+  payment_method_collection           = "if_required"
+
   shipping_options {
     shipping_rate = stripe_shipping_rate.shipping_rates[each.value.shipping_rate_key].id
   }
-
 
   line_items {
     price    = each.value.price_id
