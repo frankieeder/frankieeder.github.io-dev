@@ -45,7 +45,7 @@ locals {
 
   payment_link_configs = {
     for variant in local.variants : "${variant.key}" => {
-      price_id = stripe_price.variants[variant.key].id
+      price_id          = stripe_price.variants[variant.key].id
       shipping_rate_key = local.width_to_shipping_rate[variant.key]
     }
   }
@@ -85,37 +85,37 @@ output "price_ids" {
 resource "stripe_shipping_rate" "shipping_rates" {
   for_each = {
     "us_standard_<22" = {
-      display_name = "US Standard - <22"
+      display_name        = "US Standard - <22"
       fixed_amount_amount = 1000
     }
     "us_standard_22-30" = {
-      display_name = "US Standard - 22-30"
+      display_name        = "US Standard - 22-30"
       fixed_amount_amount = 1500
     }
     "us_standard_>30" = {
-      display_name = "US Standard - >30"
+      display_name        = "US Standard - >30"
       fixed_amount_amount = 2000
     }
   }
 
   display_name = each.value.display_name
-  type = "fixed_amount"
+  type         = "fixed_amount"
   fixed_amount {
-    amount = each.value.fixed_amount_amount
+    amount   = each.value.fixed_amount_amount
     currency = "usd"
   }
   # tax_behavior = "inclusive": the shipping price already includes tax in the
   # displayed amount. If you intended to charge shipping + tax-on-top, set this
   # to "exclusive". TODO: confirm desired behavior with Frankie before going live.
   tax_behavior = "inclusive"
-  tax_code = "txcd_92010001"
+  tax_code     = "txcd_92010001"
   delivery_estimate {
     maximum {
-      unit = "business_day"
+      unit  = "business_day"
       value = 12
     }
     minimum {
-      unit = "business_day"
+      unit  = "business_day"
       value = 7
     }
   }
@@ -125,9 +125,9 @@ resource "stripe_payment_link" "payment_links" {
   for_each = local.payment_link_configs
   provider = stripealt
 
-  automatic_tax_enabled = true
+  automatic_tax_enabled                         = true
   shipping_address_collection_allowed_countries = ["US"]
-  consent_collection_promotions = "auto"
+  consent_collection_promotions                 = "auto"
   shipping_options {
     shipping_rate = stripe_shipping_rate.shipping_rates[each.value.shipping_rate_key].id
   }
@@ -171,9 +171,9 @@ output "payment_link_info" {
 }
 
 resource "local_file" "payment_link_info_json" {
-  content  = jsonencode({
+  content = jsonencode({
     for key, link in stripe_payment_link.payment_links : key => {
-      url = data.external.payment_link_urls[key].result.url,
+      url          = data.external.payment_link_urls[key].result.url,
       price_amount = stripe_price.variants[key].unit_amount
     }
   })
