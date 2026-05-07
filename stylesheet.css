@@ -496,6 +496,14 @@ li.nav_inactive ul {
     width: 300px;
 }
 
+/* width 300px on .github-button + padding 6px 75px without border-box
+   would render at 450px and overflow .buy-print-container. Constrain
+   to the container width here without affecting other .github-button
+   uses (e.g. CONTACT ME on /about) that aren't in a fixed-width parent. */
+#lightbox-buy-print {
+    box-sizing: border-box;
+}
+
 #lightbox-buy-print-dropdown {
     display: none;
     position: absolute;
