@@ -17,6 +17,23 @@ terraform {
       version = "~> 2.3"
     }
   }
+
+  # State stored in Cloudflare R2 (S3-compatible). Credentials come from
+  # AWS_ACCESS_KEY_ID + AWS_SECRET_ACCESS_KEY env vars; locally export the
+  # R2 token values, in CI set them as repo secrets.
+  backend "s3" {
+    bucket    = "frankieeder-com"
+    key       = "stripe/terraform.tfstate"
+    endpoints = { s3 = "https://6e99a6526cc21c3f213ba478f6911d92.r2.cloudflarestorage.com" }
+    region    = "auto"
+
+    skip_credentials_validation = true
+    skip_region_validation      = true
+    skip_requesting_account_id  = true
+    skip_metadata_api_check     = true
+    skip_s3_checksum            = true
+    use_path_style              = true
+  }
 }
 
 provider "stripe" {
