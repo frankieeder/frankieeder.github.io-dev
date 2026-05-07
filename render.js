@@ -556,6 +556,19 @@ function openVideoLightBox(embedUrl, sourceType, caption, event) {
         buyPrintContainer.style.display = 'none';
     }
 
+    // Walk from the click target up to the .content tile so the lightbox
+    // pulls title/subtitle/credits from the same source as the image path.
+    var contentCard = null;
+    var element = event ? event.target : null;
+    while (element && !contentCard) {
+        if (element.classList && element.classList.contains('content')) {
+            contentCard = element;
+        } else {
+            element = element.parentElement;
+        }
+    }
+    populateLightboxText(contentCard);
+
     var videoContainer = document.getElementById("lightbox-video-container");
     var lightboxVideo = document.getElementById("lightbox-video");
 
@@ -563,7 +576,7 @@ function openVideoLightBox(embedUrl, sourceType, caption, event) {
     lightboxVideo.src = autoplayUrl;
     videoContainer.style.display = 'flex';
 
-    if (caption) {
+    if (caption && !contentCard) {
         document.getElementById("lightbox-title").textContent = caption;
     }
 
