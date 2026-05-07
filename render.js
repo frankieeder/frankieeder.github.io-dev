@@ -282,7 +282,7 @@ function openLightBox(img_elem, caption) {
 
     if (buy_print_dropdown) {
         buy_print_dropdown.innerHTML = '';
-        buy_print_dropdown.style.display = 'none';
+        buy_print_dropdown.classList.remove('visible');
         if (PAYMENT_LINKS && Object.keys(PAYMENT_LINKS).length > 0) {
             var sizeOrder = ['4_6', '6_9', '8_12', '12_18', '16_24', '24_36', '32_48'];
             for (var i = 0; i < sizeOrder.length; i++) {
@@ -296,75 +296,27 @@ function openLightBox(img_elem, caption) {
                     dropdownItem.target = '_blank';
                     dropdownItem.className = 'buy-print-dropdown-item';
                     dropdownItem.textContent = sizeLabel + ' - $' + priceDollars;
-                    dropdownItem.style.display = 'block';
-                    dropdownItem.style.width = '100%';
                     buy_print_dropdown.appendChild(dropdownItem);
                 }
             }
 
+            // Hover shows dropdown; click pins it open until clicked again.
+            // mouseleave on .buy-print-container fires only when leaving the
+            // whole subtree, so the dropdown (a DOM child) stays hovered.
             var buy_print_container = buy_print_dropdown.parentElement;
             if (buy_print_container && buy_print_container.classList.contains('buy-print-container')) {
-                var dropdownVisible = false;
-
+                var dropdownPinned = false;
                 buy_print_container.onmouseenter = function() {
-                    if (!dropdownVisible) {
-                        buy_print_dropdown.style.display = 'block';
-                        buy_print_dropdown.style.opacity = '0';
-                        setTimeout(function() {
-                            buy_print_dropdown.style.transition = 'opacity 0.2s ease';
-                            buy_print_dropdown.style.opacity = '1';
-                        }, 10);
-                    }
+                    buy_print_dropdown.classList.add('visible');
                 };
-                buy_print_container.onmouseleave = function(e) {
-                    if (!dropdownVisible && !buy_print_container.contains(e.relatedTarget)) {
-                        buy_print_dropdown.style.transition = 'opacity 0.15s ease';
-                        buy_print_dropdown.style.opacity = '0';
-                        setTimeout(function() {
-                            if (!dropdownVisible) {
-                                buy_print_dropdown.style.display = 'none';
-                            }
-                        }, 150);
-                    }
+                buy_print_container.onmouseleave = function() {
+                    if (!dropdownPinned) buy_print_dropdown.classList.remove('visible');
                 };
-                buy_print_dropdown.onmouseenter = function() {
-                    if (dropdownVisible) {
-                        buy_print_dropdown.style.display = 'block';
-                        buy_print_dropdown.style.opacity = '1';
-                    }
+                buy_print_elem.onclick = function(e) {
+                    e.preventDefault();
+                    dropdownPinned = !dropdownPinned;
+                    buy_print_dropdown.classList.toggle('visible', dropdownPinned);
                 };
-                buy_print_dropdown.onmouseleave = function(e) {
-                    if (!dropdownVisible && !buy_print_container.contains(e.relatedTarget)) {
-                        buy_print_dropdown.style.transition = 'opacity 0.15s ease';
-                        buy_print_dropdown.style.opacity = '0';
-                        setTimeout(function() {
-                            if (!dropdownVisible) {
-                                buy_print_dropdown.style.display = 'none';
-                            }
-                        }, 150);
-                    }
-                };
-
-                var toggleDropdown = function(e) {
-                    if (e) {
-                        e.preventDefault();
-                    }
-                    dropdownVisible = !dropdownVisible;
-                    buy_print_dropdown.style.display = dropdownVisible ? 'block' : 'none';
-                    if (dropdownVisible) {
-                        buy_print_dropdown.style.opacity = '0';
-                        setTimeout(function() {
-                            buy_print_dropdown.style.transition = 'opacity 0.2s ease';
-                            buy_print_dropdown.style.opacity = '1';
-                        }, 10);
-                    } else {
-                        buy_print_dropdown.style.transition = 'opacity 0.15s ease';
-                        buy_print_dropdown.style.opacity = '0';
-                    }
-                    return false;
-                };
-
-                buy_print_elem.onclick = toggleDropdown;
             }
         }
     }
