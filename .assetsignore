@@ -1,0 +1,30 @@
+# Cloudflare Workers Static Assets ignore file (gitignore syntax).
+# Without this, wrangler ships .git/ and busts the 25 MiB asset limit.
+
+# git internals
+.git/
+.gitignore
+.gitmodules
+.htaccess
+
+# CI / repo metadata
+.github/
+
+# dev tooling (not served at runtime)
+Makefile
+imgproc.py
+requirements.txt
+
+# Stripe IaC source. payment_links.json is fetched at runtime — keep it.
+infra/stripe/main.tf
+infra/stripe/variants.json
+infra/stripe/.gitignore
+infra/stripe/.terraform.lock.hcl
+infra/stripe/README.md
+
+# mustache.js submodule (mustache.min.js at root is what's loaded)
+mustache.js/
+
+# editor / venv artifacts
+.idea/
+venv/

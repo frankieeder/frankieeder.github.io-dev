@@ -228,9 +228,20 @@ function disableRightClickAndDrag() {
     });
 }
 
+var STRIPE_PAYMENT_LINK_BASE_URL = 'https://buy.stripe.com/dRm4gz9BrfqS58N5KrdMI1b';
+var PAYMENT_LINKS = null;
+
+function loadPaymentLinks() {
+    fetch('infra/stripe/payment_links.json')
+        .then(r => r.json())
+        .then(d => PAYMENT_LINKS = d)
+        .catch(err => console.error('Failed to load payment links:', err));
+}
+
 function initializePage() {
     disableRightClickAndDrag();
     initializeNav();
+    loadPaymentLinks();
     renderBody();
 }
 
@@ -251,9 +262,64 @@ function openLightBox(img_elem, caption) {
 
     var url_parts = im_path.split('/');
     var image_id = url_parts[url_parts.length - 1];
-    var prefix = 'mailto:frankaeder@gmail.com?subject=';
-    var body = "&body=Hello there, I'd like a copy of image id " + image_id;
-    document.getElementById("lighbox-request-print").href = prefix + 'frankieeder.com Print Request' + body;
+
+    var artwork_id = image_id.replace(/\.[^/.]+$/, '');
+    var buy_print_elem = document.getElementById("lightbox-buy-print");
+    var buy_print_dropdown = document.getElementById("lightbox-buy-print-dropdown");
+
+    if (buy_print_elem) {
+        buy_print_elem.style.display = 'block';
+        if (PAYMENT_LINKS && Object.keys(PAYMENT_LINKS).length > 0) {
+            buy_print_elem.href = '#';
+        } else if (typeof STRIPE_PAYMENT_LINK_BASE_URL !== 'undefined' && STRIPE_PAYMENT_LINK_BASE_URL) {
+            var buy_link = STRIPE_PAYMENT_LINK_BASE_URL + '?client_reference_id=' + encodeURIComponent(artwork_id);
+            buy_print_elem.href = buy_link;
+            buy_print_elem.onclick = null;
+        } else {
+            buy_print_elem.style.display = 'none';
+        }
+    }
+
+    if (buy_print_dropdown) {
+        buy_print_dropdown.innerHTML = '';
+        buy_print_dropdown.classList.remove('visible');
+        if (PAYMENT_LINKS && Object.keys(PAYMENT_LINKS).length > 0) {
+            var sizeOrder = ['4_6', '6_9', '8_12', '12_18', '16_24', '24_36', '32_48'];
+            for (var i = 0; i < sizeOrder.length; i++) {
+                var sizeKey = sizeOrder[i];
+                if (PAYMENT_LINKS[sizeKey]) {
+                    var linkData = PAYMENT_LINKS[sizeKey];
+                    var priceDollars = (linkData.price_amount / 100).toFixed(2);
+                    var sizeLabel = sizeKey.replace('_', '×');
+                    var dropdownItem = document.createElement('a');
+                    dropdownItem.href = linkData.url + '?client_reference_id=' + encodeURIComponent(artwork_id);
+                    dropdownItem.target = '_blank';
+                    dropdownItem.className = 'buy-print-dropdown-item';
+                    dropdownItem.textContent = sizeLabel + ' - $' + priceDollars;
+                    buy_print_dropdown.appendChild(dropdownItem);
+                }
+            }
+
+            // Hover shows dropdown; click pins it open until clicked again.
+            // mouseleave on .buy-print-container fires only when leaving the
+            // whole subtree, so the dropdown (a DOM child) stays hovered.
+            var buy_print_container = buy_print_dropdown.parentElement;
+            if (buy_print_container && buy_print_container.classList.contains('buy-print-container')) {
+                var dropdownPinned = false;
+                buy_print_container.onmouseenter = function() {
+                    buy_print_dropdown.classList.add('visible');
+                };
+                buy_print_container.onmouseleave = function() {
+                    if (!dropdownPinned) buy_print_dropdown.classList.remove('visible');
+                };
+                buy_print_elem.onclick = function(e) {
+                    e.preventDefault();
+                    dropdownPinned = !dropdownPinned;
+                    buy_print_dropdown.classList.toggle('visible', dropdownPinned);
+                };
+            }
+        }
+    }
 
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.add('visible');
@@ -263,8 +329,9 @@ function openLightBox(img_elem, caption) {
 function closeLightBox() {
     playBackgroundVideo();
 
-    document.getElementById("lightbox-im").removeAttribute('src')
+    document.getElementById("lightbox-im").removeAttribute('src');
 
+    var lightbox = document.getElementById("lightbox");
     lightbox.classList.remove('visible');
     lightbox.classList.add('hidden');
 }
