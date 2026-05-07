@@ -356,7 +356,6 @@ var CONTENT = {
                 {html: "<h5><u>Awards</u></h5>"},
                 {html: "<h5><i>Official Selection</i> - Showcase of Shapes, Puppets, and Moving Things 2021</h5>"}
             ],
-
         },
         {
             tags: ['frankie_eder', 'film', 'shot_by', 'score_by', 'sound_by', 'portfolio'],
@@ -384,6 +383,7 @@ var CONTENT = {
                 {
                     type_vimeo: true,
                     vimeo: '697623576',
+                    aspect_ratio: '56.25%',
                 },
                 {credits: 'Director, Director of Photography, Editor, Colorist'},
             ],
@@ -457,22 +457,22 @@ var CONTENT = {
                 }
             ],
         },
-        {
-            tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'effects_by', 'colored_by', 'narrative', 'experimental', 'music', 'portfolio', 'amphos'],
-            rows: [
-                {title: "AMPHOS"},
-                {subtitle: "(an expirimental short film)"},
-                {subsubtitle: "cw: flashing lights"},
-                {
-                    type_vimeo: true,
-                    vimeo: '307996559',
-                },
-                {credits: 'Director, Director of Photography, Editor, Colorist'},
-                {html: "<h5><u>Awards</u></h5>"},
-                {html: "<h5><i>Best Editing</i> - Grizzly Film Festival 2018</h5>"},
-                {html: "<h5><i>Official Selection</i> - Frequency Film Festival 2021</h5>"}
-            ],
-        },
+        // {
+        //     tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'effects_by', 'colored_by', 'narrative', 'experimental', 'music', 'portfolio', 'amphos'],
+        //     rows: [
+        //         {title: "AMPHOS"},
+        //         {subtitle: "(an expirimental short film)"},
+        //         {subsubtitle: "cw: flashing lights"},
+        //         {
+        //             type_vimeo: true,
+        //             vimeo: '307996559',
+        //         },
+        //         {credits: 'Director, Director of Photography, Editor, Colorist'},
+        //         {html: "<h5><u>Awards</u></h5>"},
+        //         {html: "<h5><i>Best Editing</i> - Grizzly Film Festival 2018</h5>"},
+        //         {html: "<h5><i>Official Selection</i> - Frequency Film Festival 2021</h5>"}
+        //     ],
+        // },
         // PHOTOGRAPHY - HIGHLIGHTED
         {
             tags: ['frankie_eder', 'art', 'still', 'photography', 'architecture'],
@@ -1421,18 +1421,18 @@ var CONTENT = {
                 {credits: "Director, Director of Photography, Editor, Colorist"},
             ],
         },
-        {
-            tags: ['film', 'skateboarding'],
-            rows: [
-                {title: "MIKEY TAYLOR - UNSEEN VX FOOTAGE"},
-                {subsubtitle: "cw: flashing lights"},
-                {
-                    type_youtube: true,
-                    youtube: "WOb1MiGv8zY",
-                },
-                {credits: "Editor"},
-            ],
-        },
+        // {
+        //     tags: ['film', 'skateboarding'],
+        //     rows: [
+        //         {title: "MIKEY TAYLOR - UNSEEN VX FOOTAGE"},
+        //         {subsubtitle: "cw: flashing lights"},
+        //         {
+        //             type_youtube: true,
+        //             youtube: "WOb1MiGv8zY",
+        //         },
+        //         {credits: "Editor"},
+        //     ],
+        // },
         {
             tags: ['skateboarding'],
             rows: [
