@@ -148,12 +148,17 @@ resource "stripe_payment_link" "payment_links" {
 
   # Attributes below are explicit defaults the andrewbaxter/stripe provider
   # populates in state from Stripe's API. Without them in config, terraform
-  # plan reads "state -> null" as drift, and the three marked here force
-  # replacement of every payment link (= new buy.stripe.com URLs, breaks
-  # any committed/customer-bookmarked links). Pin them to current values.
+  # plan reads "state -> null" as drift. The first three force replacement
+  # (= new buy.stripe.com URLs); the rest are in-place updates but still
+  # show as plan noise on every run. Pin all to current values for a
+  # truly clean plan.
   consent_collection_terms_of_service = "none" # forces replacement
   currency                            = "usd"  # forces replacement
   submit_type                         = "auto" # forces replacement
+  after_completion_type               = "hosted_confirmation"
+  billing_address_collection          = "auto"
+  customer_creation                   = "if_required"
+  payment_method_collection           = "if_required"
 
   shipping_options {
     shipping_rate = stripe_shipping_rate.shipping_rates[each.value.shipping_rate_key].id
