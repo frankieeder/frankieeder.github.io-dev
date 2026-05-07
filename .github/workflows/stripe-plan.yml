@@ -1,0 +1,63 @@
+name: Stripe Plan
+
+on:
+  pull_request:
+    paths:
+      - 'infra/stripe/**'
+      - '.github/workflows/stripe-plan.yml'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra/stripe
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - run: terraform fmt -check
+
+      - run: terraform init
+        env:
+          TF_VAR_stripe_api_key: ${{ secrets.STRIPE_API_KEY }}
+
+      - run: terraform validate
+
+      - run: terraform plan -no-color | tee plan.txt
+        env:
+          TF_VAR_stripe_api_key: ${{ secrets.STRIPE_API_KEY }}
+
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const plan = fs.readFileSync('infra/stripe/plan.txt', 'utf8');
+            const truncated = plan.length > 60000
+              ? plan.slice(0, 60000) + '\n\n... (truncated, see job log for full output)'
+              : plan;
+            const body = [
+              '### Terraform plan for `infra/stripe/`',
+              '',
+              '<details>',
+              '<summary>Plan output (click to expand)</summary>',
+              '',
+              '```hcl',
+              truncated,
+              '```',
+              '',
+              '</details>',
+              '',
+              '> ⚠️ Without a remote state backend, this plan computes against an empty state on each run, so it always shows "create everything" rather than an incremental diff. Real plan-vs-state diffing requires the state-backend follow-up.',
+            ].join('\n');
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body,
+            });
