@@ -696,7 +696,12 @@ li.nav_inactive ul {
      viewports it caps at width and on wide ones it caps at height. */
   width: min(95vw, calc((100vh - 180px) * 16 / 9));
   aspect-ratio: 16 / 9;
-  margin: auto;
+  /* No margin: auto. Auto margins on a flex item absorb free space, which
+     would push the caption flush against the bottom of .lightbox-content
+     (~24px from viewport bottom) while leaving ~50px above the video —
+     asymmetric. Letting .lightbox-content's justify-content: center
+     handle vertical placement instead centers [video + caption] as a
+     block, so top whitespace == bottom whitespace. */
 }
 
 .lightbox-video-container iframe {
