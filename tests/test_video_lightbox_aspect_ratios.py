@@ -14,17 +14,15 @@ opens, it should:
 
 2. Keep the [video + caption] block vertically centered and the video
    horizontally centered — regardless of source aspect.  The vertical
-   invariant is currently broken on `frankieeder-com/new-layout` by
-   `margin: auto` on `.lightbox-video-container` (auto margins on a flex
-   item absorb free space asymmetrically).  PR #27 fixes that; once #27
-   is merged into the goal branch the `xfail` mark on the vertical-
-   centering test comes off.
+   invariant was previously broken by `margin: auto` on
+   `.lightbox-video-container` (auto margins on a flex item absorb free
+   space asymmetrically); fixed in PR #27.
 
 We pick a single representative viewport (1280×720) for the aspect-ratio
 matrix.  Viewport-scaling is orthogonal to source-aspect-handling, so a
 fuller (viewport × aspect) matrix would dilute signal without adding
-coverage — use `tests/test_video_lightbox.py` (PR #31) for the viewport
-matrix on the 16:9 path.
+coverage — use `tests/test_video_lightbox.py` for the viewport matrix on
+the 16:9 path.
 
 ### Selector strategy
 
@@ -140,13 +138,6 @@ def test_lightbox_matches_source_aspect_ratio(
 
 
 @pytest.mark.parametrize("src_fragment,_expected_aspect", SOURCES)
-@pytest.mark.xfail(
-    reason="`margin: auto` on `.lightbox-video-container` makes auto margins "
-           "absorb vertical free space and pushes the caption flush against "
-           "the bottom of `.lightbox-content` — fixed in PR #27.  Remove this "
-           "xfail once #27 merges into the goal branch.",
-    strict=False,
-)
 def test_lightbox_vertically_centered(
     open_lightbox_for, src_fragment, _expected_aspect
 ):
