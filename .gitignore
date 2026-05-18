@@ -3,3 +3,10 @@ venv/
 *.DS_Store
 .env
 .envrc
+
+# Python / pytest / Playwright
+__pycache__/
+*.pyc
+.pytest_cache/
+test-results/
+playwright-report/
