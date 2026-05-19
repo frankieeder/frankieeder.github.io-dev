@@ -18,8 +18,13 @@ from playwright.sync_api import Page
 def test_homepage_renders(page: Page, server_url: str):
     page.goto(server_url)
     # Mustache templates are fetched after page load, then content cards
-    # are interpolated into #contents.  Wait for at least one to appear.
-    # 30s is generous for cold-start on CI (Playwright launches Chromium,
-    # the http.server is still warming, network round-trips for the 10
-    # template partials accumulate).  Cuts flake without hiding real bugs.
-    page.wait_for_selector(".content", timeout=30_000)
+    # are interpolated into #contents.  Wait for at least one to appear
+    # in the DOM.
+    #
+    # Use state="attached" instead of the default "visible": the smoke
+    # test only cares that mustache rendered content cards, not that the
+    # `#contents_wrapper.fade-in-delayed` opacity animation has
+    # completed.  The fade-in keeps opacity at 0 for the first ~9s of
+    # its 10s lifetime, which makes visible-state checks flaky on cold-
+    # start runs.
+    page.wait_for_selector(".content", state="attached", timeout=10_000)
