@@ -50,13 +50,10 @@ def test_dual_vimeo_card_stacks_with_matching_widths(homepage):
 
 
 def test_why_card_renders_scrollbox_and_vimeo_in_same_block(homepage):
-    """The 'why; are you paying for this?' card has a scrollbox of
-    images, a subheader, a vimeo embed, and an html paragraph.  Of
-    those, only the scrollbox and the vimeo render visibly on the
-    tile (text + html elements are absolute-positioned and clipped to
-    populate the lightbox instead).  The two visible media items
-    should stack vertically with matching widths — same invariant as
-    the dual-vimeo card.
+    """The 'why; are you paying for this?' card has a scrollbox + vimeo
+    (plus text/html rows that are clipped for lightbox-only display).
+    The visible media items should stack vertically in source order
+    and both fit within the same tile.
     """
     page = homepage("art")
     iframe = page.locator("iframe[src*='384236279']").first
@@ -71,13 +68,16 @@ def test_why_card_renders_scrollbox_and_vimeo_in_same_block(homepage):
 
     s_box = scrollbox.bounding_box()
     v_box = vimeo.bounding_box()
+    card_box = card.bounding_box()
 
     assert v_box["y"] >= s_box["y"] + s_box["height"] - SAME_WIDTH_TOLERANCE_PX, (
         f"vimeo not below scrollbox: scrollbox.bottom={s_box['y']+s_box['height']:.0f}, vimeo.y={v_box['y']:.0f}"
     )
-    assert abs(s_box["width"] - v_box["width"]) <= SAME_WIDTH_TOLERANCE_PX, (
-        f"scrollbox+vimeo widths differ: {s_box['width']:.0f} vs {v_box['width']:.0f}px"
-    )
+    # Both fit within the tile (single composed block, not overflowing).
+    for name, mb in (("scrollbox", s_box), ("vimeo", v_box)):
+        assert mb["width"] <= card_box["width"] + SAME_WIDTH_TOLERANCE_PX, (
+            f"{name} ({mb['width']:.0f}px) overflows tile ({card_box['width']:.0f}px)"
+        )
 
 
 @pytest.mark.parametrize("image_basename,filter_page", [

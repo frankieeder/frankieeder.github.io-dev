@@ -682,8 +682,6 @@ li.nav_inactive ul {
 
 .lightbox-content > img {
     display: block;
-    max-width: 95vw;
-    max-height: calc(100vh - 180px);
   }
 
 .lightbox-video-container {
