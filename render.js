@@ -308,9 +308,11 @@ function openLightBox(img_elem, caption) {
     var lightboxVideo = document.getElementById("lightbox-video");
     if (videoContainer) {
         videoContainer.style.display = 'none';
-        // Drop any per-video aspect ratio set by a prior openVideoLightBox
-        // so it doesn't bleed into the next video open.
+        // Drop any per-video state set by a prior openVideoLightBox so it
+        // doesn't bleed into the next open.
         videoContainer.style.removeProperty('--video-aspect-ratio');
+        videoContainer.style.removeProperty('width');
+        videoContainer.style.removeProperty('height');
     }
     if (lightboxVideo) {
         lightboxVideo.removeAttribute('src');
@@ -600,7 +602,77 @@ function openVideoLightBox(embedUrl, sourceType, caption, event, aspectRatio) {
     var lightbox = document.getElementById("lightbox");
     lightbox.classList.remove('hidden');
     lightbox.classList.add('visible');
+
+    // After the caption is laid out, measure it and resize the video to
+    // fit the remaining vertical space.  Two rAFs so the second one
+    // observes the caption's final dimensions after the first paint.
+    requestAnimationFrame(function () {
+        requestAnimationFrame(fitVideoToLightbox);
+    });
 }
+
+// Size the lightbox video container to be the largest box of the source
+// video's aspect ratio that fits within the viewport AFTER reserving
+// space for the (variable-height) caption and a comfortable margin around
+// the video.  The static CSS calc can't see runtime caption height, so
+// for tall captions (square video with many credits / awards lines) it
+// would overflow — pinning the video to the top of .lightbox-content.
+// JS measures the caption every time so we always center symmetrically.
+function fitVideoToLightbox() {
+    var videoContainer = document.getElementById("lightbox-video-container");
+    var captionContainer = document.querySelector(".lightbox-caption-container");
+    if (!videoContainer || !captionContainer) {
+        return;
+    }
+    if (videoContainer.style.display === 'none') {
+        return;
+    }
+
+    var aspectStr = getComputedStyle(videoContainer).getPropertyValue('--video-aspect-ratio');
+    var aspectRatio = parseFloat(aspectStr);
+    if (!aspectRatio || !isFinite(aspectRatio) || aspectRatio <= 0) {
+        aspectRatio = 16 / 9;
+    }
+
+    // Reserve: lightbox padding (24px each side) + caption height +
+    // 24px margin between video and caption + 24px below caption.
+    var captionHeight = captionContainer.offsetHeight;
+    var lightboxPadding = 24;
+    var videoCaptionGap = 24;
+    var captionBottomMargin = 24;
+    var availableHeight = window.innerHeight
+        - 2 * lightboxPadding
+        - captionHeight
+        - videoCaptionGap
+        - captionBottomMargin;
+    var availableWidth = window.innerWidth * 0.95;
+
+    // Safety floors so we don't return zero/negative sizes on tiny viewports.
+    if (availableHeight < 80) availableHeight = 80;
+    if (availableWidth < 80) availableWidth = 80;
+
+    // Fit the largest aspect-correct box into the available rectangle.
+    var widthFromHeight = availableHeight * aspectRatio;
+    var heightFromWidth = availableWidth / aspectRatio;
+    var width, height;
+    if (widthFromHeight <= availableWidth) {
+        width = widthFromHeight;
+        height = availableHeight;
+    } else {
+        width = availableWidth;
+        height = heightFromWidth;
+    }
+
+    videoContainer.style.width = width + 'px';
+    videoContainer.style.height = height + 'px';
+}
+
+// Recompute the fit on window resize so the layout stays correct when
+// the user drags their browser window.  No-op when no video lightbox is
+// currently open (fitVideoToLightbox early-returns).
+window.addEventListener('resize', function () {
+    fitVideoToLightbox();
+});
 
 
 //------------
