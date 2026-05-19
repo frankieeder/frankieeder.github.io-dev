@@ -133,13 +133,14 @@ def open_lightbox_for(page: Page, server_url: str):
         overlay.click()
 
         page.wait_for_selector(".lightbox.visible", timeout=5_000)
-        page.wait_for_function(
-            "document.getElementById('lightbox-video-container').offsetHeight > 0",
-            timeout=5_000,
+        # Synchronize on render.js:fitVideoToLightbox() completion via
+        # the `data-fit-done` marker it sets at the end of its work.
+        # This is more deterministic than waiting for `offsetHeight > 0`
+        # (which fires the moment CSS gives the element a size, BEFORE
+        # the rAF-deferred JS fit has run).
+        page.wait_for_selector(
+            "#lightbox-video-container[data-fit-done='1']", timeout=5_000
         )
-        # Give one extra rAF tick so JS-driven sizing (fitVideoToLightbox)
-        # has run after caption is laid out.
-        page.evaluate("() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))")
         return page
 
     return _open

@@ -313,6 +313,7 @@ function openLightBox(img_elem, caption) {
         videoContainer.style.removeProperty('--video-aspect-ratio');
         videoContainer.style.removeProperty('width');
         videoContainer.style.removeProperty('height');
+        delete videoContainer.dataset.fitDone;
     }
     if (lightboxVideo) {
         lightboxVideo.removeAttribute('src');
@@ -678,6 +679,11 @@ function fitVideoToLightbox() {
 
     videoContainer.style.width = width + 'px';
     videoContainer.style.height = height + 'px';
+
+    // Marker for end-to-end tests so they can synchronize on "fit has
+    // applied" rather than racing the rAF-deferred resize.  Cleared on
+    // close + the next openVideoLightBox.
+    videoContainer.dataset.fitDone = '1';
 }
 
 // Recompute the fit on window resize so the layout stays correct when
