@@ -7,17 +7,9 @@ the image lightbox uses via `populateLightboxText()`.
 
 If this test ever turns red, look for someone removing the
 `populateLightboxText(contentCard)` call from `openVideoLightBox()`.
-The image lightbox path does the same walk-up-to-`.content` +
-populate dance — the video path mirrors it so both lightbox modes
-surface the same metadata.
 
-### Why one test, not a parametrize matrix
-
-The bug is binary: either `openVideoLightBox` calls
-`populateLightboxText` or it doesn't.  One test on the first eligible
-tile is enough signal.  The geometry matrix (source × viewport ×
-invariant) lives in `test_video_lightbox.py`.  This file is just for
-the caption contract.
+One test, not a matrix: the bug is binary (either the call exists or
+it doesn't).  The geometry matrix lives in `test_video_lightbox.py`.
 """
 import pytest
 from playwright.sync_api import Page

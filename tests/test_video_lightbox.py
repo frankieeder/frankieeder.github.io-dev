@@ -1,47 +1,20 @@
 """End-to-end geometry tests for the video lightbox.
 
-`content.js` attaches an `aspect_ratio` field to each video tile (a
-padding-top percentage — `'100%'` is square, `'75%'` is 4:3, `'41.43%'`
-is ~2.41:1 cinematic; default when omitted is 16:9).  When the lightbox
-opens, it should:
+Matrix: 4 source aspects (16:9, 82.85% portrait-ish, 1:1 square,
+2.41:1 cinematic) × 4 viewports (mobile, tablet, small desktop,
+standard desktop).  Individual tests document the invariant they
+enforce.
 
-1. **Match the source video's aspect ratio** so the video fills the
-   frame edge-to-edge with no letterboxing.
-2. **Maintain a consistent minimum margin** `M = max(24px, 5vmin)` on
-   all four sides — the standard padded-box pattern.  ONE axis is
-   binding (its margin equals `M`); the OTHER axis may have a larger
-   margin when the source aspect doesn't match the available
-   rectangle's aspect (e.g. square video in 16:9 viewport).  Equal
-   margins on all four sides isn't possible for arbitrary aspect
-   pairs; min-equal-on-all-sides is.
-3. **Center horizontally and vertically** (both implied by #2 in
-   well-behaved cases, but tested separately as regression guards).
-4. **Never overflow the viewport** in either direction.
+### Gotchas
 
-The matrix is SOURCES × VIEWPORTS:
-- 4 source aspect ratios — 16:9, portrait-ish 82.85%, square 1:1,
-  cinematic 2.41:1
-- 4 viewports — mobile portrait, tablet portrait, small desktop,
-  standard desktop
-
-### Selector strategy
-
-`render.js:constrainVideoHeights()` rewrites every `.iframe-container`'s
-inline `style="padding-top: X%"` to `padding-top: 0` post-render, so
-`[style*="padding-top: X%"]` selectors are unreliable.  Target by
-iframe `src` instead — the video ID is immutable.  If a pinned ID is
-removed from `content.js`, the test `skip()`s with a clear message
-rather than timing out on a missing element.
-
-### Pinning constraints
-
-Each pinned ID below must satisfy two constraints to be useful:
-1. The video has an explicit `aspect_ratio` field in `content.js` at
-   the targeted value (otherwise it defaults to 16:9 and the
-   aspect-ratio test trivially passes).
-2. The surrounding post is tagged `frankie_eder` (the default
-   `CURRENT_FILTER`), or `filteredContent()` excludes it from the
-   homepage and the test silently skips.
+- `render.js:constrainVideoHeights()` rewrites every `.iframe-container`'s
+  inline `style="padding-top: X%"` to `padding-top: 0` post-render, so
+  attribute selectors on padding-top are unreliable.  Target by iframe
+  `src` instead — video IDs are immutable.
+- Each pinned ID must (a) have an explicit `aspect_ratio` field at the
+  targeted value AND (b) belong to a post tagged `frankie_eder`, or
+  `filteredContent()` excludes it from the homepage and the test
+  silently skips.
 """
 import pytest
 from playwright.sync_api import Page
@@ -162,17 +135,11 @@ def test_lightbox_matches_source_aspect_ratio(
 def test_minimum_margin_consistent_on_all_sides(
     open_lightbox_for, src_fragment, _expected_aspect, vw, vh
 ):
-    """The minimum of the four margins around the video equals M.
+    """Min of (left, right, top, bottom) margins == M = max(24px, 5vmin).
 
-    M = max(24px, 5vmin) — the promised minimum on every side.  Other
-    margins may be larger when the source aspect doesn't match the
-    available rectangle (e.g. square video in a 16:9 viewport: sides
-    will be wider than top/bottom by geometric necessity), but the
-    smallest of the four is always M.
-
-    Catches both failure modes:
-    - any margin < M → video is too big, touches the viewport edge
-    - all margins > M → video is undersized
+    For non-matching aspects (e.g. square in 16:9) other margins exceed
+    M — geometric necessity.  Catches: any margin < M → video
+    oversized; all margins > M → video undersized.
     """
     page = open_lightbox_for(src_fragment, vw, vh)
     video = page.locator("#lightbox-video-container").bounding_box()
