@@ -236,6 +236,7 @@ function renderBody() {
                 document.getElementById('contents').innerHTML = rendered;
 
                 constrainVideoHeights();
+                constrainImageHeights();
                 prepVimeoThumbnails();
             }
         )
@@ -338,8 +339,16 @@ function openLightBox(img_elem, caption) {
     }
 
     var im_path = img_elem.firstElementChild.src.replace('_thumb', '');
-    document.getElementById("lightbox-im").src = im_path;
-    document.getElementById("lightbox-im").style.display = 'block';
+    var lightboxIm = document.getElementById("lightbox-im");
+    delete lightboxIm.dataset.fitDone;
+    lightboxIm.style.width = '';
+    lightboxIm.style.height = '';
+    lightboxIm.onload = fitImageToLightbox;
+    lightboxIm.src = im_path;
+    lightboxIm.style.display = 'block';
+    if (lightboxIm.complete && lightboxIm.naturalWidth > 0) {
+        fitImageToLightbox();
+    }
 
     var url_parts = im_path.split('/');
     var image_id = url_parts[url_parts.length - 1];
@@ -511,8 +520,13 @@ function populateLightboxText(contentCard) {
 function closeLightBox() {
     playBackgroundVideo();
 
-    document.getElementById("lightbox-im").removeAttribute('src');
-    document.getElementById("lightbox-im").style.display = 'block';
+    var lightboxIm = document.getElementById("lightbox-im");
+    lightboxIm.removeAttribute('src');
+    lightboxIm.style.display = 'block';
+    lightboxIm.style.width = '';
+    lightboxIm.style.height = '';
+    delete lightboxIm.dataset.fitDone;
+    lightboxIm.onload = null;
     var videoContainer = document.getElementById("lightbox-video-container");
     var lightboxVideo = document.getElementById("lightbox-video");
     if (videoContainer) {
@@ -579,6 +593,14 @@ function openVideoLightBox(embedUrl, sourceType, caption, event, aspectRatio) {
     requestAnimationFrame(function () { requestAnimationFrame(fitVideoToLightbox); });
 }
 
+function fitMediaToViewport(aspectRatio, captionHeight) {
+    var M = Math.max(24, Math.min(window.innerWidth, window.innerHeight) * 0.05);
+    var maxH = Math.max(80, window.innerHeight - 2 * M - captionHeight);
+    var maxW = Math.max(80, window.innerWidth - 2 * M);
+    var width = Math.min(maxH * aspectRatio, maxW);
+    return { width: width, height: width / aspectRatio };
+}
+
 function fitVideoToLightbox() {
     var container = document.getElementById("lightbox-video-container");
     var caption = document.querySelector(".lightbox-caption-container");
@@ -587,17 +609,28 @@ function fitVideoToLightbox() {
     var aspectRatio = parseFloat(getComputedStyle(container).getPropertyValue('--video-aspect-ratio'));
     if (!Number.isFinite(aspectRatio) || aspectRatio <= 0) aspectRatio = 16 / 9;
 
-    var M = Math.max(24, Math.min(window.innerWidth, window.innerHeight) * 0.05);
-    var maxH = Math.max(80, window.innerHeight - 2 * M - caption.offsetHeight);
-    var maxW = Math.max(80, window.innerWidth - 2 * M);
-
-    var width = Math.min(maxH * aspectRatio, maxW);
-    container.style.width = width + 'px';
-    container.style.height = (width / aspectRatio) + 'px';
+    var dims = fitMediaToViewport(aspectRatio, caption.offsetHeight);
+    container.style.width = dims.width + 'px';
+    container.style.height = dims.height + 'px';
     container.dataset.fitDone = '1';
 }
 
-window.addEventListener('resize', fitVideoToLightbox);
+function fitImageToLightbox() {
+    var img = document.getElementById("lightbox-im");
+    var caption = document.querySelector(".lightbox-caption-container");
+    if (!img || !caption || img.style.display === 'none') return;
+    if (!img.naturalWidth || !img.naturalHeight) return;
+
+    var dims = fitMediaToViewport(img.naturalWidth / img.naturalHeight, caption.offsetHeight);
+    img.style.width = dims.width + 'px';
+    img.style.height = dims.height + 'px';
+    img.dataset.fitDone = '1';
+}
+
+window.addEventListener('resize', function () {
+    fitVideoToLightbox();
+    fitImageToLightbox();
+});
 
 
 //------------
@@ -655,6 +688,26 @@ function constrainVideoHeights() {
         container.style.height = maxHeight + 'px';
         container.style.maxHeight = maxHeight + 'px';
         container.style.removeProperty('--video-aspect-ratio');
+    }
+}
+
+function constrainImageHeights() {
+    var maxHeight = 300;
+    var imgs = document.querySelectorAll('.content img');
+    for (var i = 0; i < imgs.length; i++) {
+        (function (img) {
+            if (img.closest('.scrollbox')) return;  // scrollbox thumbnails have their own sizing
+            var apply = function () {
+                if (!img.naturalWidth || !img.naturalHeight) return;
+                if (img.naturalHeight <= maxHeight) return;
+                var aspect = img.naturalWidth / img.naturalHeight;
+                img.style.height = maxHeight + 'px';
+                img.style.width = (maxHeight * aspect) + 'px';
+                img.removeAttribute('width');
+            };
+            if (img.complete) apply();
+            else img.addEventListener('load', apply, { once: true });
+        })(imgs[i]);
     }
 }
 

@@ -16,24 +16,21 @@ def homepage(page: Page, server_url: str):
         page.set_viewport_size({"width": VW, "height": VH})
         url = server_url + (f"?page={filter_arg}" if filter_arg else "")
         page.goto(url)
-        page.wait_for_selector(".content", timeout=10_000)
+        page.wait_for_selector(".content", state="attached", timeout=10_000)
         return page
 
     return _load
 
 
 def test_dual_vimeo_card_stacks_with_matching_widths(homepage):
-    """The 'MUTUAL TRANSGRESSION - RAY COREY & CARLOS MONTES' card has
-    two consecutive vimeo embeds.  They should render stacked vertically
-    with the same width — a unified block, not side-by-side or
-    misaligned.
+    """The card containing vimeo/242977518 has a second vimeo (242974620)
+    immediately after.  They should stack vertically at matching widths.
     """
     page = homepage()
-    card = page.locator(
-        ".content:has(h2.content-text-element:has-text('MUTUAL TRANSGRESSION - RAY COREY'))"
-    ).first
-    if card.count() == 0:
-        pytest.skip("dual-vimeo card not on default homepage filter")
+    iframe = page.locator("iframe[src*='242977518']").first
+    if iframe.count() == 0:
+        pytest.skip("vimeo/242977518 tile not on default homepage filter")
+    card = iframe.locator("xpath=ancestor::div[contains(@class,'content')][1]")
 
     iframes = card.locator(".iframe-container")
     assert iframes.count() == 2, (
@@ -47,40 +44,39 @@ def test_dual_vimeo_card_stacks_with_matching_widths(homepage):
         f"widths differ: {first['width']:.0f} vs {second['width']:.0f}px"
     )
     assert second["y"] >= first["y"] + first["height"] - SAME_WIDTH_TOLERANCE_PX, (
-        f"second iframe not stacked below first: "
-        f"first.y={first['y']:.0f}+{first['height']:.0f}, second.y={second['y']:.0f}"
+        f"second iframe not below first: "
+        f"first.bottom={first['y']+first['height']:.0f}, second.y={second['y']:.0f}"
     )
 
 
-def test_why_card_renders_scrollbox_subheader_and_vimeo(homepage):
-    """The 'why; are you paying for this?' card has a 3-image scrollbox,
-    a subheader, and a vimeo embed.  All three should render in source
-    order: scrollbox → subheader → vimeo.
+def test_why_card_renders_scrollbox_and_vimeo_in_same_block(homepage):
+    """The 'why; are you paying for this?' card has a scrollbox of
+    images, a subheader, a vimeo embed, and an html paragraph.  Of
+    those, only the scrollbox and the vimeo render visibly on the
+    tile (text + html elements are absolute-positioned and clipped to
+    populate the lightbox instead).  The two visible media items
+    should stack vertically with matching widths — same invariant as
+    the dual-vimeo card.
     """
     page = homepage("art")
-    card = page.locator(
-        ".content:has(h2.content-text-element:has-text('why; are you paying for this?'))"
-    ).first
-    if card.count() == 0:
-        pytest.skip("'why' card not visible under ?page=art")
+    iframe = page.locator("iframe[src*='384236279']").first
+    if iframe.count() == 0:
+        pytest.skip("'why' card (vimeo/384236279) not visible under ?page=art")
+    card = iframe.locator("xpath=ancestor::div[contains(@class,'content')][1]")
 
     scrollbox = card.locator(".scrollbox").first
-    subheader = card.locator("h4.content-text-element:has-text('360 Degree Installation View')").first
     vimeo = card.locator(".iframe-container").first
-
     assert scrollbox.count() >= 1, "scrollbox missing"
-    assert subheader.count() >= 1, "subheader missing"
     assert vimeo.count() >= 1, "vimeo iframe missing"
 
     s_box = scrollbox.bounding_box()
-    h_box = subheader.bounding_box()
     v_box = vimeo.bounding_box()
 
-    assert h_box["y"] >= s_box["y"] + s_box["height"] - SAME_WIDTH_TOLERANCE_PX, (
-        f"subheader not below scrollbox: scrollbox.bottom={s_box['y']+s_box['height']:.0f}, subheader.y={h_box['y']:.0f}"
+    assert v_box["y"] >= s_box["y"] + s_box["height"] - SAME_WIDTH_TOLERANCE_PX, (
+        f"vimeo not below scrollbox: scrollbox.bottom={s_box['y']+s_box['height']:.0f}, vimeo.y={v_box['y']:.0f}"
     )
-    assert v_box["y"] >= h_box["y"] + h_box["height"] - SAME_WIDTH_TOLERANCE_PX, (
-        f"vimeo not below subheader: subheader.bottom={h_box['y']+h_box['height']:.0f}, vimeo.y={v_box['y']:.0f}"
+    assert abs(s_box["width"] - v_box["width"]) <= SAME_WIDTH_TOLERANCE_PX, (
+        f"scrollbox+vimeo widths differ: {s_box['width']:.0f} vs {v_box['width']:.0f}px"
     )
 
 
