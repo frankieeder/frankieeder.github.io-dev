@@ -19,4 +19,7 @@ def test_homepage_renders(page: Page, server_url: str):
     page.goto(server_url)
     # Mustache templates are fetched after page load, then content cards
     # are interpolated into #contents.  Wait for at least one to appear.
-    page.wait_for_selector(".content", timeout=10_000)
+    # 30s is generous for cold-start on CI (Playwright launches Chromium,
+    # the http.server is still warming, network round-trips for the 10
+    # template partials accumulate).  Cuts flake without hiding real bugs.
+    page.wait_for_selector(".content", timeout=30_000)

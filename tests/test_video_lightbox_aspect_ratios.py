@@ -6,11 +6,11 @@ is ~2.41:1 cinematic; default when omitted is 16:9).  When the lightbox
 opens, it should:
 
 1. Size the container to match the SOURCE video's aspect ratio so the
-   video fills the frame edge-to-edge with no letterboxing.  Currently
-   `.lightbox-video-container { aspect-ratio: 16 / 9 }` is hard-coded in
-   stylesheet.css, so non-16:9 sources get letterboxed inside a 16:9
-   frame.  These tests document the expected behavior; non-16:9 cases
-   are marked `xfail` until the aspect-ratio plumbing lands.
+   video fills the frame edge-to-edge with no letterboxing.  The
+   mustache templates pass each tile's `aspect_ratio` as the 5th arg to
+   `openVideoLightBox()`, which sets a `--video-aspect-ratio` CSS
+   variable on `.lightbox-video-container`.  The CSS consumes the
+   variable for both `aspect-ratio` and the width-derived calc.
 
 2. Keep the [video + caption] block vertically centered and the video
    horizontally centered — regardless of source aspect.  The vertical
@@ -39,41 +39,30 @@ import pytest
 from playwright.sync_api import Page
 
 
-# One pinned tile per aspect ratio.  Update when content.js changes — or
-# leave alone and let the test skip.  The fragment matches inside the
-# iframe `src` attribute; for vimeo it's `vimeo.com/video/<id>`, for
-# youtube it's `youtube.com/embed/<id>`.
+# One pinned tile per aspect ratio.  Each ID is chosen to satisfy two
+# constraints: (a) the tile has an explicit `aspect_ratio` field in
+# content.js at the chosen value, and (b) the surrounding post is tagged
+# `frankie_eder` so `filteredContent()` keeps it on the default homepage
+# (otherwise the test silently skips for "tile not in DOM").
+#
+# The fragment matches inside the iframe `src` attribute; for vimeo it's
+# `vimeo.com/video/<id>`, for youtube it's `youtube.com/embed/<id>`.
 SOURCES = [
     pytest.param(
         "vimeo.com/video/697623576", 16 / 9,
         id="16-9-explicit",
     ),
     pytest.param(
-        "vimeo.com/video/501918925", 1.0,
+        "vimeo.com/video/408120845", 100 / 82.85,
+        id="portrait-ish-82-85pct",
+    ),
+    pytest.param(
+        "vimeo.com/video/486248111", 1.0,
         id="1-1-square",
-        marks=pytest.mark.xfail(
-            reason=".lightbox-video-container CSS hard-codes aspect-ratio: 16/9; "
-                   "needs per-video aspect plumbing",
-            strict=False,
-        ),
     ),
     pytest.param(
-        "vimeo.com/video/357292232", 4 / 3,
-        id="4-3-tv",
-        marks=pytest.mark.xfail(
-            reason=".lightbox-video-container CSS hard-codes aspect-ratio: 16/9; "
-                   "needs per-video aspect plumbing",
-            strict=False,
-        ),
-    ),
-    pytest.param(
-        "vimeo.com/video/209132295", 100 / 41.43,
+        "vimeo.com/video/244111603", 100 / 41.43,
         id="2-41-1-cinematic",
-        marks=pytest.mark.xfail(
-            reason=".lightbox-video-container CSS hard-codes aspect-ratio: 16/9; "
-                   "needs per-video aspect plumbing",
-            strict=False,
-        ),
     ),
 ]
 
@@ -121,12 +110,9 @@ def test_lightbox_matches_source_aspect_ratio(
     """Lightbox container should match the source video's aspect ratio
     so the video fills the frame edge-to-edge with no letterboxing.
 
-    Currently fails for non-16:9 — `.lightbox-video-container` hard-codes
-    `aspect-ratio: 16 / 9` in stylesheet.css.  The fix path: read the
-    source tile's aspect (from `padding-top` before constrainVideoHeights
-    mutates it, OR pass it explicitly into openVideoLightBox), set a
-    `--video-aspect-ratio` CSS variable on the lightbox container, have
-    the CSS consume the variable.
+    Fixed by plumbing the source tile's `aspect_ratio` as the 5th arg
+    of `openVideoLightBox()`, which sets a `--video-aspect-ratio` CSS
+    variable that the container's `aspect-ratio` and width-calc consume.
     """
     page = open_lightbox_for(src_fragment)
     box = page.locator("#lightbox-video-container").bounding_box()

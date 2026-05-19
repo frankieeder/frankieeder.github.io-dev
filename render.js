@@ -308,6 +308,9 @@ function openLightBox(img_elem, caption) {
     var lightboxVideo = document.getElementById("lightbox-video");
     if (videoContainer) {
         videoContainer.style.display = 'none';
+        // Drop any per-video aspect ratio set by a prior openVideoLightBox
+        // so it doesn't bleed into the next video open.
+        videoContainer.style.removeProperty('--video-aspect-ratio');
     }
     if (lightboxVideo) {
         lightboxVideo.removeAttribute('src');
@@ -543,7 +546,7 @@ function closeLightBox() {
     lightbox.classList.add('hidden');
 }
 
-function openVideoLightBox(embedUrl, sourceType, caption, event) {
+function openVideoLightBox(embedUrl, sourceType, caption, event, aspectRatio) {
     if (event) {
         event.stopPropagation();
     }
@@ -571,6 +574,20 @@ function openVideoLightBox(embedUrl, sourceType, caption, event) {
 
     var videoContainer = document.getElementById("lightbox-video-container");
     var lightboxVideo = document.getElementById("lightbox-video");
+
+    // Match the lightbox container to the source video's aspect ratio so
+    // non-16:9 videos (square, 4:3, cinematic) aren't letterboxed inside a
+    // 16:9 frame.  aspectRatio comes from content.js as a padding-top
+    // percentage ("100%" / "75%" / "41.43%"); width/height ratio = 100/X.
+    // Empty / missing → fall back to the CSS default (16:9).
+    if (aspectRatio) {
+        var paddingPct = parseFloat(aspectRatio);
+        if (paddingPct > 0 && isFinite(paddingPct)) {
+            videoContainer.style.setProperty('--video-aspect-ratio', 100 / paddingPct);
+        }
+    } else {
+        videoContainer.style.removeProperty('--video-aspect-ratio');
+    }
 
     var autoplayUrl = embedUrl.indexOf('?') >= 0 ? embedUrl + '&autoplay=1' : embedUrl + '?autoplay=1';
     lightboxVideo.src = autoplayUrl;
