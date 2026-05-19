@@ -702,6 +702,10 @@ function constrainVideoHeights() {
                     + (parseFloat(cs.paddingRight) || 0);
                 if (outer > 0) iframeOuterWidths.push(outer);
             } else if (item.classList.contains('scrollbox')) {
+                // Set explicit height (not just max-height) so the scrollbox
+                // fills its allocated budget regardless of thumbnail natural
+                // size — keeps composed tiles at exactly TILE_HEIGHT total.
+                item.style.height = perItemHeight + 'px';
                 item.style.maxHeight = perItemHeight + 'px';
                 item.querySelectorAll('img').forEach(function (img) {
                     img.style.maxHeight = perItemHeight + 'px';

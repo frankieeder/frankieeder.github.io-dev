@@ -127,10 +127,20 @@ def test_tile_heights_consistent_with_neighbors(homepage, filter_page):
     tile_heights.sort()
     median = tile_heights[len(tile_heights) // 2]
     max_h = max(tile_heights)
-    TILE_HEIGHT_TOLERANCE_PX = 50
+    min_h = min(tile_heights)
+    # Tight tolerance — every tile (composed or single-media) should be
+    # exactly TILE_HEIGHT (300px) tall.  Sub-pixel rounding + line-height
+    # baseline gives a few px of slop; 10 covers it without hiding real
+    # bugs.
+    TILE_HEIGHT_TOLERANCE_PX = 10
 
     assert max_h - median <= TILE_HEIGHT_TOLERANCE_PX, (
         f"tallest tile is {max_h:.0f}px vs median {median:.0f}px "
         f"on ?page={filter_page!r}.  Composed multi-media tiles need "
         f"to fit the same row height as single-media tiles."
+    )
+    assert median - min_h <= TILE_HEIGHT_TOLERANCE_PX, (
+        f"shortest tile is {min_h:.0f}px vs median {median:.0f}px "
+        f"on ?page={filter_page!r}.  Composed multi-media tiles need "
+        f"to fill the same row height as single-media tiles."
     )
