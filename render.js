@@ -688,9 +688,12 @@ function constrainVideoHeights() {
         // budget evenly so the card matches its single-media neighbors.
         var perItemHeight = Math.floor(TILE_HEIGHT / mediaItems.length);
 
+        var iframeWidths = [];
         mediaItems.forEach(function (item) {
             if (item.classList.contains('iframe-container')) {
                 resizeIframeContainer(item, perItemHeight);
+                var w = parseFloat(item.style.width);
+                if (w > 0) iframeWidths.push(w);
             } else if (item.classList.contains('scrollbox')) {
                 item.style.maxHeight = perItemHeight + 'px';
                 item.querySelectorAll('img').forEach(function (img) {
@@ -698,6 +701,22 @@ function constrainVideoHeights() {
                 });
             }
         });
+
+        // For composed tiles, force every sub-row to the same width as the
+        // (narrowest) aspect-locked iframe — iframes can't be stretched
+        // without distorting, scrollboxes can scroll horizontally to absorb
+        // the size difference.
+        if (mediaItems.length > 1 && iframeWidths.length > 0) {
+            var targetWidth = Math.min.apply(null, iframeWidths);
+            mediaItems.forEach(function (item) {
+                if (item.classList.contains('scrollbox')) {
+                    item.style.width = targetWidth + 'px';
+                    item.style.maxWidth = targetWidth + 'px';
+                    item.style.overflowX = 'auto';
+                    item.style.overflowY = 'hidden';
+                }
+            });
+        }
     });
 }
 

@@ -74,6 +74,12 @@ def test_why_card_composed_into_one_tile_with_two_subrows(homepage):
         f"vimeo sub-row not below scrollbox sub-row: "
         f"scrollbox.bottom={sb['y']+sb['height']:.0f}, vimeo.y={vi['y']:.0f}"
     )
+    # Sub-rows should be the same width so the tile looks like a unified
+    # block rather than two media items of different widths stacked.
+    assert abs(sb["width"] - vi["width"]) <= SAME_WIDTH_TOLERANCE_PX, (
+        f"scrollbox and vimeo sub-rows have different widths: "
+        f"scrollbox={sb['width']:.0f}, vimeo={vi['width']:.0f}"
+    )
 
 
 @pytest.mark.parametrize("image_basename,filter_page", [
