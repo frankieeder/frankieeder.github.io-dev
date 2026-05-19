@@ -27,22 +27,31 @@ function flattenMultiPhotoCards(contents) {
         var content = contents[i];
         var scrollboxRowIndex = -1;
         var scrollboxRow = null;
-        var mediaUnitIndexes = [];  // every media row is one "unit": scrollbox, image, vimeo, youtube
+        var sameTypeIndexes = null;  // indices of the duplicated type, if any
+        var typeCounts = { image: [], vimeo: [], youtube: [] };
 
         for (var j = 0; j < content.rows.length; j++) {
             var row = content.rows[j];
             if (row.type_photo_scrollbox && row.scrollcontent && row.scrollcontent.length > 1) {
                 scrollboxRowIndex = j;
                 scrollboxRow = row;
-                mediaUnitIndexes.push(j);
-            } else if (row.type_image || row.type_vimeo || row.type_youtube) {
-                mediaUnitIndexes.push(j);
+            } else if (row.type_image) typeCounts.image.push(j);
+            else if (row.type_vimeo) typeCounts.vimeo.push(j);
+            else if (row.type_youtube) typeCounts.youtube.push(j);
+        }
+
+        // Split into one tile per media item when MULTIPLE of the SAME type
+        // exist (e.g. two vimeos, two images).  Different-type combinations
+        // (scrollbox + vimeo) are thematically grouped — keep composed.
+        for (var t in typeCounts) {
+            if (typeCounts[t].length > 1) {
+                sameTypeIndexes = typeCounts[t];
+                break;
             }
         }
 
-        if (scrollboxRow && mediaUnitIndexes.length === 1) {
-            // Pure photo gallery (scrollbox is the only media unit) — split
-            // into one tile per scrollbox photo.
+        if (scrollboxRow && !sameTypeIndexes && typeCounts.image.length + typeCounts.vimeo.length + typeCounts.youtube.length === 0) {
+            // Pure photo gallery — split per scrollbox photo.
             for (var k = 0; k < scrollboxRow.scrollcontent.length; k++) {
                 var newContent = {
                     tags: content.tags.slice(),
@@ -62,31 +71,29 @@ function flattenMultiPhotoCards(contents) {
                 }
                 flattened.push(newContent);
             }
-        } else if (mediaUnitIndexes.length > 1) {
-            // Multi-media card (e.g. scrollbox + vimeo, or two vimeos) — split
-            // into one tile per media unit.  Scrollbox stays grouped (its
-            // internal photos are a thematic set); each other media row
-            // becomes its own tile.  All non-media rows go to every split so
-            // title/credits/html populate the lightbox consistently.
-            for (var k = 0; k < mediaUnitIndexes.length; k++) {
+        } else if (sameTypeIndexes) {
+            // Multiple of the same media type — split into one tile each.
+            for (var k = 0; k < sameTypeIndexes.length; k++) {
                 var newContent = {
                     tags: content.tags.slice(),
                     release_date: content.release_date,
                     rows: [],
                     is_multi_photo_group_item: true,
-                    is_last_in_multi_photo_group: (k === mediaUnitIndexes.length - 1)
+                    is_last_in_multi_photo_group: (k === sameTypeIndexes.length - 1)
                 };
                 for (var m = 0; m < content.rows.length; m++) {
                     var r = content.rows[m];
-                    var isMediaUnit = r.type_photo_scrollbox || r.type_image || r.type_vimeo || r.type_youtube;
-                    if (!isMediaUnit || m === mediaUnitIndexes[k]) {
+                    var isSplittable = (r.type_image && typeCounts.image.length > 1) ||
+                                       (r.type_vimeo && typeCounts.vimeo.length > 1) ||
+                                       (r.type_youtube && typeCounts.youtube.length > 1);
+                    if (!isSplittable || m === sameTypeIndexes[k]) {
                         newContent.rows.push(r);
                     }
                 }
                 flattened.push(newContent);
             }
         } else {
-            // Single media (or no media) — keep as one tile.
+            // Single media, mixed types, or text-only — keep as one tile.
             flattened.push(content);
         }
     }

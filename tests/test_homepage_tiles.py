@@ -44,32 +44,35 @@ def test_dual_vimeo_card_split_into_separate_tiles(homepage):
     assert sibling.count() >= 1, "second vimeo (242974620) missing from page"
 
 
-def test_why_card_split_into_scrollbox_tile_and_vimeo_tile(homepage):
-    """The 'why; are you paying for this?' card has a scrollbox + vimeo.
-    flattenMultiPhotoCards splits these into two separate tiles so
-    neither extends across multiple wrap rows.  The scrollbox photos
-    stay grouped in one tile (they're a thematic 3-channel set, not
-    individual gallery items); the vimeo gets its own tile.
+def test_why_card_composed_into_one_tile_with_two_subrows(homepage):
+    """The 'why; are you paying for this?' card has a scrollbox + vimeo
+    (different media types — thematically a 3-channel installation
+    view + a 360° installation video).  Different-type media stay
+    composed in one tile as two sub-rows: scrollbox above, vimeo below.
     """
     page = homepage("art")
     iframes = page.locator("iframe[src*='384236279']")
     if iframes.count() == 0:
         pytest.skip("'why' card (vimeo/384236279) not visible under ?page=art")
     assert iframes.count() == 1, (
-        f"vimeo/384236279 appears {iframes.count()} times — split should "
-        f"produce exactly one vimeo tile"
+        f"vimeo/384236279 appears {iframes.count()} times — should be 1"
     )
-    vimeo_card = iframes.first.locator("xpath=ancestor::div[contains(@class,'content')][1]")
-    assert vimeo_card.locator(".scrollbox").count() == 0, (
-        "vimeo tile also has a scrollbox — split didn't separate the media units"
+    card = iframes.first.locator("xpath=ancestor::div[contains(@class,'content')][1]")
+
+    # Composed: both scrollbox and vimeo live in the same tile.
+    assert card.locator(".scrollbox").count() == 1, (
+        "scrollbox missing from the why-card tile — was it split out?"
+    )
+    assert card.locator(".iframe-container").count() == 1, (
+        "iframe-container missing from the why-card tile — was it split out?"
     )
 
-    scrollbox_photo = page.locator("img[src*='why/sw5_cylindrical']").first
-    if scrollbox_photo.count() == 0:
-        pytest.skip("scrollbox photo not rendered under ?page=art")
-    sb_card = scrollbox_photo.locator("xpath=ancestor::div[contains(@class,'content')][1]")
-    assert sb_card.locator(".iframe-container").count() == 0, (
-        "scrollbox tile also has an iframe — split didn't separate the media units"
+    # Scrollbox sub-row sits above the vimeo sub-row.
+    sb = card.locator(".scrollbox").first.bounding_box()
+    vi = card.locator(".iframe-container").first.bounding_box()
+    assert vi["y"] >= sb["y"] + sb["height"] - SAME_WIDTH_TOLERANCE_PX, (
+        f"vimeo sub-row not below scrollbox sub-row: "
+        f"scrollbox.bottom={sb['y']+sb['height']:.0f}, vimeo.y={vi['y']:.0f}"
     )
 
 
