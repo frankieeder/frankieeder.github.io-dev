@@ -25,22 +25,26 @@ function flattenMultiPhotoCards(contents) {
     var flattened = [];
     for (var i = 0; i < contents.length; i++) {
         var content = contents[i];
+        var hasMultiPhotoScrollbox = false;
+        var hasOtherMedia = false;
         var scrollboxRowIndex = -1;
         var scrollboxRow = null;
-        var mediaRowIndexes = [];  // type_image/vimeo/youtube rows
 
         for (var j = 0; j < content.rows.length; j++) {
             var row = content.rows[j];
-            if (row.type_photo_scrollbox && row.scrollcontent && row.scrollcontent.length > 1) {
+            if (row.type_photo_scrollbox &&
+                row.scrollcontent &&
+                row.scrollcontent.length > 1) {
+                hasMultiPhotoScrollbox = true;
                 scrollboxRowIndex = j;
                 scrollboxRow = row;
-            } else if (row.type_image || row.type_vimeo || row.type_youtube) {
-                mediaRowIndexes.push(j);
+            } else if (row.type_image || row.type_vimeo || row.type_youtube ||
+                       row.type_soundcloud || row.type_bandcamp || row.type_table) {
+                hasOtherMedia = true;
             }
         }
 
-        if (scrollboxRow && mediaRowIndexes.length === 0) {
-            // Pure photo gallery — split into one tile per scrollbox photo.
+        if (hasMultiPhotoScrollbox && !hasOtherMedia) {
             for (var k = 0; k < scrollboxRow.scrollcontent.length; k++) {
                 var newContent = {
                     tags: content.tags.slice(),
@@ -49,39 +53,20 @@ function flattenMultiPhotoCards(contents) {
                     is_multi_photo_group_item: true,
                     is_last_in_multi_photo_group: (k === scrollboxRow.scrollcontent.length - 1)
                 };
+
                 for (var m = 0; m < content.rows.length; m++) {
                     if (m === scrollboxRowIndex) {
-                        var splitScrollbox = JSON.parse(JSON.stringify(scrollboxRow));
-                        splitScrollbox.scrollcontent = [scrollboxRow.scrollcontent[k]];
-                        newContent.rows.push(splitScrollbox);
+                        var newScrollboxRow = JSON.parse(JSON.stringify(scrollboxRow));
+                        newScrollboxRow.scrollcontent = [scrollboxRow.scrollcontent[k]];
+                        newContent.rows.push(newScrollboxRow);
                     } else {
                         newContent.rows.push(content.rows[m]);
                     }
                 }
-                flattened.push(newContent);
-            }
-        } else if (mediaRowIndexes.length > 1 && !scrollboxRow) {
-            // Multiple independent video/image rows — split into one tile per
-            // media item.  Each tile keeps all non-media rows (title/credits/
-            // html populate the lightbox the same way) plus one of the media.
-            for (var k = 0; k < mediaRowIndexes.length; k++) {
-                var newContent = {
-                    tags: content.tags.slice(),
-                    release_date: content.release_date,
-                    rows: [],
-                    is_multi_photo_group_item: true,
-                    is_last_in_multi_photo_group: (k === mediaRowIndexes.length - 1)
-                };
-                for (var m = 0; m < content.rows.length; m++) {
-                    var isMedia = content.rows[m].type_image || content.rows[m].type_vimeo || content.rows[m].type_youtube;
-                    if (!isMedia || m === mediaRowIndexes[k]) {
-                        newContent.rows.push(content.rows[m]);
-                    }
-                }
+
                 flattened.push(newContent);
             }
         } else {
-            // Mixed (scrollbox + other media), single media, or no media — keep.
             flattened.push(content);
         }
     }

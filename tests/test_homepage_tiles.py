@@ -22,26 +22,31 @@ def homepage(page: Page, server_url: str):
     return _load
 
 
-def test_dual_vimeo_card_split_into_separate_tiles(homepage):
-    """The source card with two consecutive type_vimeo rows (242977518 +
-    242974620) should be split by flattenMultiPhotoCards into two
-    .content tiles, each containing one of the videos.  Stacking two
-    iframes inside one tile produced a tall awkward block; splitting
-    matches the rest of the layout.
+def test_dual_vimeo_card_stacks_with_matching_widths(homepage):
+    """The card containing vimeo/242977518 has a second vimeo (242974620)
+    immediately after.  They should stack vertically at matching widths.
     """
     page = homepage()
     iframe = page.locator("iframe[src*='242977518']").first
     if iframe.count() == 0:
         pytest.skip("vimeo/242977518 tile not on default homepage filter")
     card = iframe.locator("xpath=ancestor::div[contains(@class,'content')][1]")
-    iframes_in_card = card.locator(".iframe-container")
-    assert iframes_in_card.count() == 1, (
-        f"expected each split tile to hold exactly 1 iframe, "
-        f"got {iframes_in_card.count()} — flatten regressed?"
+
+    iframes = card.locator(".iframe-container")
+    assert iframes.count() == 2, (
+        f"expected 2 iframe-container children, got {iframes.count()}"
     )
 
-    sibling = page.locator("iframe[src*='242974620']").first
-    assert sibling.count() >= 1, "second vimeo (242974620) missing from page"
+    first = iframes.nth(0).bounding_box()
+    second = iframes.nth(1).bounding_box()
+
+    assert abs(first["width"] - second["width"]) <= SAME_WIDTH_TOLERANCE_PX, (
+        f"widths differ: {first['width']:.0f} vs {second['width']:.0f}px"
+    )
+    assert second["y"] >= first["y"] + first["height"] - SAME_WIDTH_TOLERANCE_PX, (
+        f"second iframe not below first: "
+        f"first.bottom={first['y']+first['height']:.0f}, second.y={second['y']:.0f}"
+    )
 
 
 def test_why_card_renders_scrollbox_and_vimeo_in_same_block(homepage):
