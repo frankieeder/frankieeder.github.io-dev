@@ -707,8 +707,13 @@ function constrainVideoHeights() {
                 // size — keeps composed tiles at exactly TILE_HEIGHT total.
                 item.style.height = perItemHeight + 'px';
                 item.style.maxHeight = perItemHeight + 'px';
+                item.style.lineHeight = '0';  // suppress inline baseline padding
                 item.querySelectorAll('img').forEach(function (img) {
+                    // Force thumbs to fill the row vertically (no gap below).
+                    img.style.height = perItemHeight + 'px';
                     img.style.maxHeight = perItemHeight + 'px';
+                    img.style.width = 'auto';
+                    img.style.verticalAlign = 'top';
                 });
             }
         });

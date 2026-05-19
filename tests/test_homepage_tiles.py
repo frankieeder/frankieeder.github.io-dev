@@ -81,6 +81,16 @@ def test_why_card_composed_into_one_tile_with_two_subrows(homepage):
         f"scrollbox={sb['width']:.0f}, vimeo={vi['width']:.0f}"
     )
 
+    # Thumbnails should fill the scrollbox vertically — no visible gap
+    # between thumb bottom and scrollbox bottom.
+    thumb = card.locator(".scrollbox img").first.bounding_box()
+    gap = sb["height"] - thumb["height"]
+    assert gap <= SAME_WIDTH_TOLERANCE_PX, (
+        f"scrollbox is {sb['height']:.0f}px tall but its first thumbnail is "
+        f"only {thumb['height']:.0f}px tall — gap of {gap:.0f}px inside the "
+        f"sub-row"
+    )
+
 
 @pytest.mark.parametrize("image_basename,filter_page", [
     pytest.param("DSC01344_HaarD13", "still", id="DSC01344"),
