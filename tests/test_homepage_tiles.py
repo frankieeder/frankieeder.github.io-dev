@@ -91,3 +91,40 @@ def test_image_tile_width_capped(homepage, image_basename, filter_page):
         f"tile for {image_basename} is {box['width']:.0f}px wide, "
         f"should be ≤ {MAX_TILE_WIDTH_PX}px (viewport is {VW}px)"
     )
+
+
+@pytest.mark.parametrize("filter_page", ["", "art", "still"])
+def test_tile_heights_consistent_with_neighbors(homepage, filter_page):
+    """Every visible tile on a page should be roughly the same height as
+    its neighbors.  A composed multi-media tile (e.g. why-card scrollbox
+    + vimeo) must fit the same row height as single-media tiles around
+    it — otherwise the wrap layout leaves awkward empty gaps next to it.
+    Tolerance is generous (±50px) for natural variance in caption-block
+    or padding, but a 2× outlier is the bug we're catching.
+    """
+    page = homepage(filter_page)
+    # Wait for images + iframes to settle so heights are stable.
+    page.wait_for_function(
+        "() => Array.from(document.querySelectorAll('.content img'))"
+        ".every(i => i.complete || i.naturalWidth === undefined)",
+        timeout=10_000,
+    )
+    tile_heights = [
+        b["height"] for b in (
+            page.locator(".content").nth(i).bounding_box()
+            for i in range(page.locator(".content").count())
+        ) if b and b["height"] > 0
+    ]
+    if len(tile_heights) < 2:
+        pytest.skip(f"too few tiles on ?page={filter_page!r}")
+
+    tile_heights.sort()
+    median = tile_heights[len(tile_heights) // 2]
+    max_h = max(tile_heights)
+    TILE_HEIGHT_TOLERANCE_PX = 50
+
+    assert max_h - median <= TILE_HEIGHT_TOLERANCE_PX, (
+        f"tallest tile is {max_h:.0f}px vs median {median:.0f}px "
+        f"on ?page={filter_page!r}.  Composed multi-media tiles need "
+        f"to fit the same row height as single-media tiles."
+    )
