@@ -680,46 +680,54 @@ function playBackgroundVideo() {
 }
 
 function constrainVideoHeights() {
-    var iframeContainers = document.querySelectorAll('.content .iframe-container');
-    var maxHeight = 300;
+    var TILE_HEIGHT = 300;
+    document.querySelectorAll('.content').forEach(function (card) {
+        var mediaItems = card.querySelectorAll('.iframe-container, .scrollbox');
+        if (mediaItems.length === 0) return;
+        // Composed tiles (multiple media sub-rows) split the tile-height
+        // budget evenly so the card matches its single-media neighbors.
+        var perItemHeight = Math.floor(TILE_HEIGHT / mediaItems.length);
 
-    for (var i = 0; i < iframeContainers.length; i++) {
-        var container = iframeContainers[i];
-        var iframe = container.querySelector('iframe');
-        if (!iframe) {
-            continue;
-        }
-
-        var parent = container.parentElement;
-        var styleAttr = (container.getAttribute('style') || parent.getAttribute('style') || '');
-        var paddingTopMatch = styleAttr.match(/padding-top:\s*([\d.]+)%/);
-        var paddingTop = paddingTopMatch ? parseFloat(paddingTopMatch[1]) : null;
-
-        if (!paddingTop || isNaN(paddingTop)) {
-            var computedStyle = window.getComputedStyle(container);
-            var computedPadding = computedStyle.paddingTop;
-            var computedPaddingPx = parseFloat(computedPadding);
-            if (computedPaddingPx && !isNaN(computedPaddingPx)) {
-                var containerWidth = parseFloat(computedStyle.width);
-                if (containerWidth && !isNaN(containerWidth) && containerWidth > 0) {
-                    paddingTop = (computedPaddingPx / containerWidth) * 100;
-                }
+        mediaItems.forEach(function (item) {
+            if (item.classList.contains('iframe-container')) {
+                resizeIframeContainer(item, perItemHeight);
+            } else if (item.classList.contains('scrollbox')) {
+                item.style.maxHeight = perItemHeight + 'px';
+                item.querySelectorAll('img').forEach(function (img) {
+                    img.style.maxHeight = perItemHeight + 'px';
+                });
             }
-        }
+        });
+    });
+}
 
-        var calculatedWidth;
-        if (paddingTop && !isNaN(paddingTop) && paddingTop > 0) {
-            calculatedWidth = maxHeight / (paddingTop / 100);
-        } else {
-            calculatedWidth = maxHeight * (16 / 9);
-        }
+function resizeIframeContainer(container, maxHeight) {
+    var iframe = container.querySelector('iframe');
+    if (!iframe) return;
 
-        container.style.paddingTop = '0';
-        container.style.width = calculatedWidth + 'px';
-        container.style.height = maxHeight + 'px';
-        container.style.maxHeight = maxHeight + 'px';
-        container.style.removeProperty('--video-aspect-ratio');
+    var parent = container.parentElement;
+    var styleAttr = (container.getAttribute('style') || parent.getAttribute('style') || '');
+    var paddingTopMatch = styleAttr.match(/padding-top:\s*([\d.]+)%/);
+    var paddingTop = paddingTopMatch ? parseFloat(paddingTopMatch[1]) : null;
+
+    if (!paddingTop || isNaN(paddingTop)) {
+        var computedStyle = window.getComputedStyle(container);
+        var computedPaddingPx = parseFloat(computedStyle.paddingTop);
+        var containerWidth = parseFloat(computedStyle.width);
+        if (computedPaddingPx > 0 && containerWidth > 0) {
+            paddingTop = (computedPaddingPx / containerWidth) * 100;
+        }
     }
+
+    var calculatedWidth = paddingTop > 0
+        ? maxHeight / (paddingTop / 100)
+        : maxHeight * (16 / 9);
+
+    container.style.paddingTop = '0';
+    container.style.width = calculatedWidth + 'px';
+    container.style.height = maxHeight + 'px';
+    container.style.maxHeight = maxHeight + 'px';
+    container.style.removeProperty('--video-aspect-ratio');
 }
 
 function constrainImageHeights() {
