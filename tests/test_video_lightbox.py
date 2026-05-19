@@ -58,10 +58,12 @@ def open_first_video(page: Page, server_url: str):
         # `.visible` is added to #lightbox once the open animation starts.
         page.wait_for_selector(".lightbox.visible", timeout=5_000)
 
-        # And wait until the layout has settled (height becomes non-zero).
-        page.wait_for_function(
-            "document.getElementById('lightbox-video-container').offsetHeight > 0",
-            timeout=5_000,
+        # Wait until render.js:fitVideoToLightbox() has run.  It sets
+        # `data-fit-done="1"` at the end of its work.  Synchronizing on
+        # the marker rather than `offsetHeight > 0` avoids reading the
+        # CSS-fallback geometry mid-resize.
+        page.wait_for_selector(
+            "#lightbox-video-container[data-fit-done='1']", timeout=5_000
         )
         return page
 

@@ -99,6 +99,25 @@ The `stripe_payment_link` resource explicitly pins `consent_collection_terms_of_
 - **`content.js` shape**: every content card is a `.content` div with text fields (h2/h4/h6/h5 with `.content-text-element` class) followed by media (image/video/etc.). The lightbox's `populateLightboxText()` walks up from the click target to `.content` and reads those fields. Both image and video lightboxes use this pattern.
 - **Multi-PR dev cycle pattern**: complex changes use a goal branch (`frankieeder-com/<goal>`) with sub-PRs targeting the goal branch, then a single goal→main PR. Squash-merge each step.
 
+## Video lightbox internals
+
+A few non-obvious things future-you (or another agent) will trip on:
+
+- **`render.js:constrainVideoHeights()` mutates `.iframe-container` post-render.** It reads each tile's inline `style="padding-top: X%"` (the original `aspect_ratio` field from `content.js`), then *overwrites* the inline style with `padding-top: 0` plus explicit pixel `width`/`height`. So **the original aspect-ratio data is GONE from the DOM after page render.** Any code or test that wants the source aspect must either (a) read it before `constrainVideoHeights` runs, or (b) get it from a stable surface — the iframe `src` URL (video ID is immutable) is a good one.
+
+- **`render.js:fitVideoToLightbox()` JS-sizes the video lightbox container.** CSS `.lightbox-video-container { width: min(95vw, ...); aspect-ratio: ... }` is only a fallback before JS runs. The real sizing reads actual caption height (post-layout), computes a M = `max(24px, 5vmin)` margin reservation on all four sides, and sets explicit `width`/`height` to the largest aspect-correct box that fits. The invariant: **min margin around the video on all four sides equals M.** Other margins may be larger when source aspect doesn't match the available rectangle (e.g. square video in 16:9 viewport).
+
+- **`data-fit-done="1"` is the sync marker** set by `fitVideoToLightbox()` at the end of its work. Tests synchronize on this attribute (`page.wait_for_selector("#lightbox-video-container[data-fit-done='1']")`) rather than racing `offsetHeight > 0` — the latter fires the moment CSS gives the element a size, *before* the rAF-deferred JS fit has run.
+
+## E2E tests (Playwright + pytest)
+
+- **`make test`** runs `tests/` against headless Chromium. Workflow at `.github/workflows/lightbox-tests.yml` runs the same on PRs touching `render.js` / `stylesheet.css` / `content.js` / `static/templates/**` / `tests/**`.
+- **`tests/conftest.py`** spins up `python -m http.server` on a random free port serving the repo root. Tests hit localhost, no Cloudflare dependency.
+- **Pinned video IDs in tests must satisfy two constraints**:
+  1. The video exists in `content.js` with the `aspect_ratio` you're targeting.
+  2. The post containing it has `frankie_eder` in its `tags` array — otherwise `filteredContent()` (default filter is `frankie_eder`) silently filters it out of the rendered homepage and the test skips with "not found in DOM."
+  Both constraints are codebase-specific gotchas; verify both when changing pinned IDs.
+
 ## Where things live elsewhere
 
 - **Prod hosting**: `frankieeder/frankieeder.github.io` (do not push without explicit intent — production traffic goes here)

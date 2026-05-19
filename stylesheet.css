@@ -691,11 +691,15 @@ li.nav_inactive ul {
 
 .lightbox-video-container {
   display: none;
+  /* Per-video aspect ratio is set by openVideoLightBox() reading the
+     source tile's aspect_ratio field (padding-top percent → width/height
+     ratio).  Default to 16:9 (≈1.7778) when no per-video value is set. */
+  --video-aspect-ratio: 1.7778;
   /* Fill available space while reserving ~180px for the caption + close
-     button below. Width = min(95vw, vertical-budget * 16/9), so on tall
-     viewports it caps at width and on wide ones it caps at height. */
-  width: min(95vw, calc((100vh - 180px) * 16 / 9));
-  aspect-ratio: 16 / 9;
+     button below.  Width = min(95vw, vertical-budget * aspect), so on
+     tall viewports it caps at width and on wide ones it caps at height. */
+  width: min(95vw, calc((100vh - 180px) * var(--video-aspect-ratio)));
+  aspect-ratio: var(--video-aspect-ratio);
   /* No margin: auto. Auto margins on a flex item absorb free space, which
      would push the caption flush against the bottom of .lightbox-content
      (~24px from viewport bottom) while leaving ~50px above the video —
