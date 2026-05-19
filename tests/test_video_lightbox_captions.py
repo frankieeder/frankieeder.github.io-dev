@@ -1,16 +1,4 @@
-"""Regression test for caption population in the video lightbox.
-
-When a user clicks a video tile, the lightbox should pull title /
-subtitle / subheader / subsubtitle / credits from the surrounding
-`.content` card's `.content-text-element` children — the same pattern
-the image lightbox uses via `populateLightboxText()`.
-
-If this test ever turns red, look for someone removing the
-`populateLightboxText(contentCard)` call from `openVideoLightBox()`.
-
-One test, not a matrix: the bug is binary (either the call exists or
-it doesn't).  The geometry matrix lives in `test_video_lightbox.py`.
-"""
+"""Regression test: video lightbox caption populates from source tile."""
 import pytest
 from playwright.sync_api import Page
 
@@ -21,14 +9,7 @@ VIEWPORT = (1280, 720)
 def test_video_lightbox_populates_caption_from_source_tile(
     page: Page, server_url: str
 ):
-    """The lightbox caption block should reflect the source tile's text.
-
-    Picks the first `.content` card that has both a `.video-overlay`
-    (clickable, non-thumbnail video) and at least one
-    `.content-text-element` (title / subtitle / etc.).  Captures the
-    expected text from the DOM so the assertion stays correct as
-    `content.js` drifts.
-    """
+    """Lightbox caption reflects the source tile's `.content-text-element`s."""
     page.set_viewport_size({"width": VIEWPORT[0], "height": VIEWPORT[1]})
     page.goto(server_url)
     page.wait_for_selector(".video-overlay", timeout=10_000)
@@ -37,22 +18,15 @@ def test_video_lightbox_populates_caption_from_source_tile(
         ".content:has(.video-overlay):has(.content-text-element)"
     ).first
     if candidate.count() == 0:
-        pytest.skip(
-            "no .content card with both a .video-overlay and a "
-            ".content-text-element found — update content.js or this test"
-        )
+        pytest.skip("no .content card with both .video-overlay and .content-text-element")
 
-    # Snapshot the text fields on the source tile before clicking.
     expected_texts = [
         t.strip()
         for t in candidate.locator(".content-text-element").all_text_contents()
         if t.strip()
     ]
     if not expected_texts:
-        pytest.skip(
-            "first eligible video tile has no non-empty text elements; "
-            "can't verify caption population from this tile"
-        )
+        pytest.skip("first eligible tile has no non-empty text elements")
 
     candidate.locator(".video-overlay").first.click()
     page.wait_for_selector(".lightbox.visible", timeout=5_000)
@@ -62,22 +36,8 @@ def test_video_lightbox_populates_caption_from_source_tile(
     )
 
     caption_block = page.locator(".lightbox-caption-container").inner_text().strip()
-
-    # First-order check: caption block is non-empty.  Cheap, clear failure
-    # mode message.
-    assert caption_block, (
-        f"lightbox caption block is empty; "
-        f"expected at least one of these source texts to populate it: "
-        f"{expected_texts!r}"
-    )
-
-    # Stronger check: at least one source text actually appears in the
-    # caption.  Catches the case where the caption block is populated
-    # with the wrong content (e.g. a stale value from a previous tile).
+    assert caption_block, f"caption empty; expected one of: {expected_texts!r}"
     matched = [t for t in expected_texts if t in caption_block]
     assert matched, (
-        f"caption block is populated but none of the source tile's text "
-        f"elements appear in it.\n"
-        f"  source elements: {expected_texts!r}\n"
-        f"  lightbox caption: {caption_block!r}"
+        f"none of {expected_texts!r} appear in caption {caption_block!r}"
     )

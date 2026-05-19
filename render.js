@@ -308,7 +308,6 @@ function openLightBox(img_elem, caption) {
     var lightboxVideo = document.getElementById("lightbox-video");
     if (videoContainer) {
         videoContainer.style.display = 'none';
-        // Reset per-video state so stale dims don't flash on next open.
         videoContainer.style.removeProperty('--video-aspect-ratio');
         videoContainer.style.removeProperty('width');
         videoContainer.style.removeProperty('height');
@@ -577,14 +576,9 @@ function openVideoLightBox(embedUrl, sourceType, caption, event, aspectRatio) {
     lightbox.classList.remove('hidden');
     lightbox.classList.add('visible');
 
-    // Two rAFs so caption layout settles before we measure its height.
     requestAnimationFrame(function () { requestAnimationFrame(fitVideoToLightbox); });
 }
 
-// Sizes the lightbox video to the largest aspect-correct box that fits
-// the viewport with M = max(24px, 5vmin) margin on every side, minus
-// caption height.  Padded-box / object-fit: contain pattern.  One axis
-// is binding at M; the other has excess when aspects don't match.
 function fitVideoToLightbox() {
     var container = document.getElementById("lightbox-video-container");
     var caption = document.querySelector(".lightbox-caption-container");
@@ -600,7 +594,7 @@ function fitVideoToLightbox() {
     var width = Math.min(maxH * aspectRatio, maxW);
     container.style.width = width + 'px';
     container.style.height = (width / aspectRatio) + 'px';
-    container.dataset.fitDone = '1';  // end-to-end tests sync on this
+    container.dataset.fitDone = '1';
 }
 
 window.addEventListener('resize', fitVideoToLightbox);
