@@ -75,11 +75,29 @@ VIEWPORTS = [
 
 ASPECT_TOLERANCE = 0.02
 MARGIN_TOLERANCE_PX = 4
-# Minimum whitespace above the video.  If video.y is less than this, the
-# video is "squished to the top" — typically caused by total content
-# overflowing the viewport, which makes `justify-content: center` collapse
-# to top-align (no free space left to distribute).
-MIN_TOP_MARGIN_PX = 24
+
+
+def expected_min_margin(vw: int, vh: int) -> float:
+    """The minimum margin (M) we promise on all four sides around the
+    video.  Matches render.js:fitVideoToLightbox(): max(24px, 5vmin).
+    """
+    return max(24, 0.05 * min(vw, vh))
+
+
+def video_margins(video, caption, vw: int, vh: int):
+    """Return (left, right, top, bottom) margins around the video, in px.
+
+    `bottom` is measured from the BOTTOM OF THE CAPTION to the bottom of
+    the viewport — the caption sits in the bottom-margin area, so the
+    "bottom margin" of the lightbox composition is the gap from caption-
+    bottom to viewport-bottom, not video-bottom to viewport-bottom.
+    """
+    return (
+        video["x"],
+        vw - (video["x"] + video["width"]),
+        video["y"],
+        vh - (caption["y"] + caption["height"]),
+    )
 
 
 # Test matrix is sources × viewports.  Express as a cartesian product
@@ -144,12 +162,53 @@ def test_lightbox_matches_source_aspect_ratio(
 
 
 @pytest.mark.parametrize("src_fragment,_expected_aspect,vw,vh", MATRIX)
+def test_minimum_margin_consistent_on_all_sides(
+    open_lightbox_for, src_fragment, _expected_aspect, vw, vh
+):
+    """The minimum of the four margins around the video equals M.
+
+    M = max(24px, 5vmin) — the promised minimum on every side.  Other
+    margins may be larger when the source aspect doesn't match the
+    available rectangle (e.g. square video in a 16:9 viewport: sides
+    will be much wider than top/bottom by geometric necessity), but the
+    SMALLEST of the four is always M.
+
+    This is the test that captures "uneven spacing" complaints: if any
+    side dips below M, the video is too big (touching the edge); if
+    every side is much bigger than M, the video is smaller than it
+    needs to be.
+    """
+    page = open_lightbox_for(src_fragment, vw, vh)
+    video = page.locator("#lightbox-video-container").bounding_box()
+    caption = page.locator(".lightbox-caption-container").bounding_box()
+    left, right, top, bottom = video_margins(video, caption, vw, vh)
+    M = expected_min_margin(vw, vh)
+
+    margins = {"left": left, "right": right, "top": top, "bottom": bottom}
+
+    # No margin should dip below M.
+    for name, m in margins.items():
+        assert m >= M - MARGIN_TOLERANCE_PX, (
+            f"{name} margin = {m:.1f}px is below promised M = {M:.1f}px "
+            f"(all margins: {margins})"
+        )
+
+    # At least one margin should equal M (the binding constraint).  If
+    # all margins are much greater than M, the video is undersized.
+    min_observed = min(margins.values())
+    assert min_observed <= M + MARGIN_TOLERANCE_PX, (
+        f"smallest margin = {min_observed:.1f}px > M = {M:.1f}px — video "
+        f"is smaller than it could be (all margins: {margins})"
+    )
+
+
+@pytest.mark.parametrize("src_fragment,_expected_aspect,vw,vh", MATRIX)
 def test_video_and_caption_fit_in_viewport(
     open_lightbox_for, src_fragment, _expected_aspect, vw, vh
 ):
     """Neither the video nor the caption should overflow the viewport.
 
-    This is the test that catches "squished to the top": when total content
+    Catches the "squished to the top" failure mode: when total content
     > viewport, `justify-content: center` has no free space to distribute,
     so the video pins to the top of `.lightbox-content` and the caption
     overflows the bottom (clipped by `.lightbox { overflow: hidden }`).
@@ -159,10 +218,6 @@ def test_video_and_caption_fit_in_viewport(
     caption = page.locator(".lightbox-caption-container").bounding_box()
 
     assert video["y"] >= 0, f"video overflows top: y={video['y']:.1f}px"
-    assert video["y"] >= MIN_TOP_MARGIN_PX, (
-        f"video pinned to top (likely overflow): y={video['y']:.1f}px "
-        f"(should be ≥ {MIN_TOP_MARGIN_PX}px)"
-    )
     assert caption["y"] + caption["height"] <= vh + MARGIN_TOLERANCE_PX, (
         f"caption overflows bottom: caption_bottom={caption['y'] + caption['height']:.1f}px, "
         f"viewport_h={vh}px"

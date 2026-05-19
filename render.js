@@ -612,12 +612,24 @@ function openVideoLightBox(embedUrl, sourceType, caption, event, aspectRatio) {
 }
 
 // Size the lightbox video container to be the largest box of the source
-// video's aspect ratio that fits within the viewport AFTER reserving
-// space for the (variable-height) caption and a comfortable margin around
-// the video.  The static CSS calc can't see runtime caption height, so
-// for tall captions (square video with many credits / awards lines) it
-// would overflow — pinning the video to the top of .lightbox-content.
-// JS measures the caption every time so we always center symmetrically.
+// video's aspect ratio that fits within the viewport, with the SAME
+// minimum margin M on all four sides.  Standard "padded-box" / object-
+// fit: contain pattern.
+//
+// M = max(24px, 5vmin) — the minimum gap we promise between the video
+// edge and the viewport edge on every side.  24px is the floor (matches
+// the .lightbox padding); 5vmin scales gracefully with the smaller
+// viewport dimension above that.
+//
+// One axis is binding (margin = M exactly); the OTHER axis may have a
+// larger margin when the source aspect doesn't match the available
+// rectangle.  That excess just lives there — the MIN of the four
+// margins stays at M.  All-four-margins-equal is geometrically
+// impossible for arbitrary source ↔ viewport aspect pairs.
+//
+// JS reads the actual caption height every call, which makes the layout
+// robust to tall captions (square video with many credits/awards lines)
+// where the static CSS reservation can't predict the right value.
 function fitVideoToLightbox() {
     var videoContainer = document.getElementById("lightbox-video-container");
     var captionContainer = document.querySelector(".lightbox-caption-container");
@@ -634,18 +646,14 @@ function fitVideoToLightbox() {
         aspectRatio = 16 / 9;
     }
 
-    // Reserve: lightbox padding (24px each side) + caption height +
-    // 24px margin between video and caption + 24px below caption.
+    var M = Math.max(24, Math.min(window.innerWidth, window.innerHeight) * 0.05);
+    var videoCaptionGap = 16;
     var captionHeight = captionContainer.offsetHeight;
-    var lightboxPadding = 24;
-    var videoCaptionGap = 24;
-    var captionBottomMargin = 24;
-    var availableHeight = window.innerHeight
-        - 2 * lightboxPadding
-        - captionHeight
-        - videoCaptionGap
-        - captionBottomMargin;
-    var availableWidth = window.innerWidth * 0.95;
+
+    // Available rectangle for the video: viewport minus M on all sides,
+    // minus caption + gap below the video.
+    var availableHeight = window.innerHeight - 2 * M - videoCaptionGap - captionHeight;
+    var availableWidth = window.innerWidth - 2 * M;
 
     // Safety floors so we don't return zero/negative sizes on tiny viewports.
     if (availableHeight < 80) availableHeight = 80;
