@@ -688,12 +688,17 @@ function constrainVideoHeights() {
         // budget evenly so the card matches its single-media neighbors.
         var perItemHeight = Math.floor(TILE_HEIGHT / mediaItems.length);
 
-        var iframeWidths = [];
+        var iframeOuterWidths = [];
         mediaItems.forEach(function (item) {
             if (item.classList.contains('iframe-container')) {
                 resizeIframeContainer(item, perItemHeight);
-                var w = parseFloat(item.style.width);
-                if (w > 0) iframeWidths.push(w);
+                // `.content .iframe-container` has padding-left/right 10px
+                // each — outer (bounding-box) width = content width + 20.
+                var cs = window.getComputedStyle(item);
+                var outer = parseFloat(item.style.width)
+                    + (parseFloat(cs.paddingLeft) || 0)
+                    + (parseFloat(cs.paddingRight) || 0);
+                if (outer > 0) iframeOuterWidths.push(outer);
             } else if (item.classList.contains('scrollbox')) {
                 item.style.maxHeight = perItemHeight + 'px';
                 item.querySelectorAll('img').forEach(function (img) {
@@ -702,12 +707,12 @@ function constrainVideoHeights() {
             }
         });
 
-        // For composed tiles, force every sub-row to the same width as the
-        // (narrowest) aspect-locked iframe — iframes can't be stretched
-        // without distorting, scrollboxes can scroll horizontally to absorb
-        // the size difference.
-        if (mediaItems.length > 1 && iframeWidths.length > 0) {
-            var targetWidth = Math.min.apply(null, iframeWidths);
+        // For composed tiles, force every sub-row to the same OUTER width
+        // as the (narrowest) aspect-locked iframe — iframes can't be
+        // stretched without distorting, scrollboxes can scroll horizontally
+        // to absorb the size difference.
+        if (mediaItems.length > 1 && iframeOuterWidths.length > 0) {
+            var targetWidth = Math.min.apply(null, iframeOuterWidths);
             mediaItems.forEach(function (item) {
                 if (item.classList.contains('scrollbox')) {
                     item.style.width = targetWidth + 'px';
