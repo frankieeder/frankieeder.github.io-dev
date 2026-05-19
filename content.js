@@ -356,7 +356,6 @@ var CONTENT = {
                 {html: "<h5><u>Awards</u></h5>"},
                 {html: "<h5><i>Official Selection</i> - Showcase of Shapes, Puppets, and Moving Things 2021</h5>"}
             ],
-
         },
         {
             tags: ['frankie_eder', 'film', 'shot_by', 'score_by', 'sound_by', 'portfolio'],
@@ -384,6 +383,7 @@ var CONTENT = {
                 {
                     type_vimeo: true,
                     vimeo: '697623576',
+                    aspect_ratio: '56.25%',
                 },
                 {credits: 'Director, Director of Photography, Editor, Colorist'},
             ],
@@ -430,6 +430,7 @@ var CONTENT = {
         },
         {
             tags: ['art', 'installation', 'why'],
+            no_buy_print: true,
             rows: [
                 {title: "why; are you paying for this?"},
                 {subtitle: "(three-channel video installation)"},
@@ -1421,18 +1422,18 @@ var CONTENT = {
                 {credits: "Director, Director of Photography, Editor, Colorist"},
             ],
         },
-        {
-            tags: ['film', 'skateboarding'],
-            rows: [
-                {title: "MIKEY TAYLOR - UNSEEN VX FOOTAGE"},
-                {subsubtitle: "cw: flashing lights"},
-                {
-                    type_youtube: true,
-                    youtube: "WOb1MiGv8zY",
-                },
-                {credits: "Editor"},
-            ],
-        },
+        // {
+        //     tags: ['film', 'skateboarding'],
+        //     rows: [
+        //         {title: "MIKEY TAYLOR - UNSEEN VX FOOTAGE"},
+        //         {subsubtitle: "cw: flashing lights"},
+        //         {
+        //             type_youtube: true,
+        //             youtube: "WOb1MiGv8zY",
+        //         },
+        //         {credits: "Editor"},
+        //     ],
+        // },
         {
             tags: ['skateboarding'],
             rows: [

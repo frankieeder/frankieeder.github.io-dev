@@ -182,24 +182,30 @@ Background Video
 Contents / Posts
 */
 #contents_wrapper {
-    width: 80%;
-    min-width: 768px;
-    margin: auto;
+    width: 100%;
+    margin: 0;
     text-align: center;
     font-style: normal;
     text-decoration: none;
     color: white;
-    background: rgba(0, 0, 0, 0.7);
+    background: transparent;
     margin-bottom: 50px;
 }
 
-#contents {
-    width: 80%;
-    margin: auto;
+#contents_wrapper #contents {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
     text-align: center;
     color: white;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding: 25px 0;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    row-gap: 25px !important;
+    column-gap: 0 !important;
+    align-items: start;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 /*
@@ -381,38 +387,123 @@ li.nav_inactive ul {
 
 /* Content Modifiers */
 .content {
-    display: inline-block;
-    border-width: 0px 0px 5px 0px;
-    border-style: solid;
-    width: 100%;
+    display: flex !important;
+    flex-direction: column;
+    background: transparent;
     white-space: normal;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    float: center;
-    clear: both;
+    padding: 0;
+    margin: 0;
+    break-inside: avoid;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    border: none;
+    margin-right: 10px;
+    padding-right: 10px;
+    border-right: 15px solid rgba(255, 255, 255, 0.4);
 }
-.content:last-child{
-    border-width: 0px;
+
+.content.multi-photo-group-item:not(.multi-photo-group-last) {
+    border-right: none;
+    padding-right: 0;
+    margin-right: 0;
+}
+
+#contents_wrapper #contents .content:last-child {
+    border-right: none;
+    padding-right: 0;
+    margin-right: 0;
+}
+
+.content .vimeo_embed,
+.content .youtube_embed {
+    display: block;
 }
 
 .content a {
 	text-align: left;
 }
 
+.content-text-element {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.content a:hover img,
+.content .iframe-container:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.content .scrollbox img:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.content-html-content p {
+    margin: 5px 0;
+}
+
+.content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 2px;
+}
+
+.content .scrollbox {
+    max-height: 300px;
+}
+
 .iframe-container {
   overflow: hidden;
-  padding-top: 56.25%; /* Default is 16:9 -> 9/16 = 56.25*/
+  padding-top: 56.25%; /* Default is 16:9 -> 9/16 = 56.25% */
   position: relative;
+  width: 100%;
+}
+
+.content .iframe-container {
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    padding-top: 0 !important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.content .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
 }
 
 .scrollbox {
-    overflow: auto;
+    overflow: visible;
     white-space: nowrap;
-    overflow-y: hidden;
-    height: 300px;
+    max-height: 300px;
+    width: fit-content;
+    max-width: 100%;
+    scrollbar-width: none;        /* Firefox */
+    -ms-overflow-style: none;     /* IE / old Edge */
+}
+.scrollbox::-webkit-scrollbar {
+    display: none;                /* Chrome / Safari / new Edge */
 }
 .scrollbox img {
-    height: 100%;
+    max-height: 300px;
+    width: auto;
+    height: auto;
     padding: 0px 10px;
 }
 
@@ -451,15 +542,14 @@ li.nav_inactive ul {
 }
 
 .github-button {
-    margin-left: auto;
-    margin-right: auto;
     padding: 6px 75px;
     width: 300px;
     text-align: center;
     background-color: dimgrey;
     font-family: Avenir-Medium, courier;
-    text-align: center;
     transition: 0.3s;
+    display: block;
+    margin: 0;
 }
 .github-button:hover {
     background-color: lightgrey;
@@ -476,18 +566,8 @@ li.nav_inactive ul {
     width: 300px;
 }
 
-/* width 300px on .github-button + padding 6px 75px without border-box
-   would render at 450px and overflow .buy-print-container. Constrain
-   to the container width here without affecting other .github-button
-   uses (e.g. CONTACT ME on /about) that aren't in a fixed-width parent. */
-#lightbox-buy-print {
-    box-sizing: border-box;
-}
-
 #lightbox-buy-print-dropdown {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
+    display: none;
     position: absolute;
     bottom: 100%;
     left: 50%;
@@ -501,11 +581,6 @@ li.nav_inactive ul {
     overflow: hidden;
     flex-direction: column;
     padding-top: 4px;
-}
-
-#lightbox-buy-print-dropdown.visible {
-    visibility: visible;
-    opacity: 1;
 }
 
 #lightbox-buy-print-dropdown .buy-print-dropdown-item {
@@ -578,54 +653,81 @@ li.nav_inactive ul {
 
 /* The Lightbox (background) */
 .lightbox {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
-  overflow: auto;
-  /* https://stackoverflow.com/questions/11184117/transparent-css-background-color#11184126 */
+  height: 100vh;
+  max-height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
   background: rgba(50,50,50,0.95);
 }
 
 /* Modal Content */
 .lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  margin: auto;
+  flex: 1 1 0;
+  align-self: stretch;
+  min-height: 0;
   padding: 0;
-  width: 90%;
-  max-width: 1200px;
-  min-width: 600px;
-  min-height: 600px;
-  height: 90%;
+  width: 100%;
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 48px);
 }
 
 .lightbox-content > img {
-  /* https://stackoverflow.com/a/21176438 */
-  width: auto;  /* set to anything and aspect ratio is maintained - also corrects glitch in Internet Explorer */
-  height: 90%;  /* set to anything and aspect ratio is maintained */
-  max-width: 100%;
-  border: 0;  /* for older IE browsers that draw borders around images */
+    display: block;
+  }
 
-  /* https://code-boxx.com/keep-image-aspect-ratio/ */
-  object-fit: scale-down;
-
-  /* https://www.w3schools.com/howto/howto_css_image_center.asp */
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 5%;
+.lightbox-video-container {
+  display: none;
+  --video-aspect-ratio: 1.7778;
+  width: min(95vw, calc((100vh - 180px) * var(--video-aspect-ratio)));
+  aspect-ratio: var(--video-aspect-ratio);
 }
 
+.lightbox-video-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-clickable {
+  position: relative;
+  cursor: pointer;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.video-overlay:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
 
 /* The Close Button */
 .close {
-  color: white;
   position: absolute;
   top: 10px;
   right: 25px;
+  z-index: 10;
+  color: white;
   font-size: 35px;
   font-weight: bold;
 }
@@ -642,9 +744,62 @@ li.nav_inactive ul {
 }
 
 .lightbox-caption-container {
+  flex: 0 0 auto;
   text-align: center;
-  padding: 2px 16px;
+  padding: 15px 20px;
   color: white;
+  position: relative;
+}
+
+.lightbox-caption-container h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 16pt;
+}
+
+.lightbox-caption-container h4 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.lightbox-caption-container h6 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 9pt;
+}
+
+.lightbox-caption-container h5 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 9pt;
+}
+
+.lightbox-caption-container #lightbox-title:empty,
+.lightbox-caption-container #lightbox-subtitle:empty,
+.lightbox-caption-container #lightbox-subheader:empty,
+.lightbox-caption-container #lightbox-subsubtitle:empty,
+.lightbox-caption-container #lightbox-credits:empty {
+  display: none;
+}
+
+.lightbox-caption-container #lightbox-html {
+  margin-top: 5px;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lightbox-caption-container #lightbox-html .lightbox-html-content {
+  margin-top: 5px;
+}
+
+.lightbox-caption-container #lightbox-html .lightbox-html-content p {
+  margin: 5px 0;
+}
+
+.lightbox-caption-container #lightbox-html:empty {
+  display: none;
 }
 
 
@@ -713,4 +868,24 @@ li.nav_inactive ul {
     0% { opacity:0; }
     90% { opacity:0; }
     100% { opacity:1; }
+}
+
+@media (max-width: 768px) {
+    #contents_wrapper #contents {
+        flex-direction: column !important;
+        row-gap: 15px !important;
+        column-gap: 7.5px !important;
+        width: 100% !important;
+        padding: 15px 0;
+    }
+
+    #contents_wrapper {
+        width: 100%;
+    }
+
+    .content {
+        padding: 15px;
+        width: 100% !important;
+        max-width: 100%;
+    }
 }

@@ -30,7 +30,6 @@ make open   # open in browser
 | `.github/workflows/` | CI: `stripe-plan.yml` (every PR), `stripe-sync.yml` (manual) |
 | `wrangler.jsonc` | Cloudflare Workers Static Assets config |
 | `.assetsignore` | Files excluded from the deployed Worker bundle (most importantly `.git/` — 1.5 GiB pack file would bust the 25 MiB asset limit) |
-| `LAYOUT_REVIEW.md` | Layout architecture review with P0/P1/P2 follow-ups |
 | `TODOS.md` | Prioritized outstanding tasks |
 | `imgproc.py`, `requirements.txt` | Local dev tool for generating `_thumb` / `_lq` image variants — NOT deployed |
 
@@ -98,6 +97,29 @@ The `stripe_payment_link` resource explicitly pins `consent_collection_terms_of_
 - **Vimeo embed**: `background=1` only for thumbnails, normal mode for main embeds.
 - **`content.js` shape**: every content card is a `.content` div with text fields (h2/h4/h6/h5 with `.content-text-element` class) followed by media (image/video/etc.). The lightbox's `populateLightboxText()` walks up from the click target to `.content` and reads those fields. Both image and video lightboxes use this pattern.
 - **Multi-PR dev cycle pattern**: complex changes use a goal branch (`frankieeder-com/<goal>`) with sub-PRs targeting the goal branch, then a single goal→main PR. Squash-merge each step.
+
+## Video lightbox internals
+
+A few non-obvious things future-you (or another agent) will trip on:
+
+- **`render.js:constrainTileMedia()` mutates every `.iframe-container` and `.scrollbox` post-render.** Reads each tile's inline `style="padding-top: X%"` (the original `aspect_ratio` field), then overwrites with `padding-top: 0` plus explicit `width`/`height`. Original aspect-ratio data is GONE from the DOM after render. Code or tests that want source aspect must read the iframe `src` URL (video ID is immutable).
+
+- **Composed tiles split the 300px tile-height budget evenly** across sub-rows so they match single-media neighbors. `flattenMultiPhotoCards` decides which cards stay composed vs split: same-type duplicates (2+ vimeos / images / youtubes) split into one tile each; mixed types (scrollbox + vimeo) compose into one tile with sub-rows.
+
+- **`render.js:fitVideoToLightbox()` / `fitImageToLightbox()`** JS-size the lightbox media. CSS is only a fallback. Both compute `M = max(24px, 5vmin)` margin on all four sides and set explicit `width`/`height` to the largest aspect-correct box that fits. Invariant: **min margin on all four sides equals M.**
+
+- **`data-fit-done="1"` is the sync marker** set by both fit functions. Tests synchronize on this attribute rather than racing `offsetHeight > 0` (which fires the moment CSS gives the element a size, before the rAF-deferred JS fit has run).
+
+- **`no_buy_print: true` per-card flag** in `content.js` hides the BUY PRINT button in the photo lightbox. Mustache renders it as `data-no-buy-print="1"` on the `.content` div; `openLightBox` reads `contentCard.dataset.noBuyPrint` to hide the container. Video lightbox already hides BUY PRINT unconditionally.
+
+## E2E tests (Playwright + pytest)
+
+- **`make test`** runs `tests/` against headless Chromium. Workflow at `.github/workflows/lightbox-tests.yml` runs the same on PRs touching `render.js` / `stylesheet.css` / `content.js` / `static/templates/**` / `tests/**`.
+- **`tests/conftest.py`** spins up `python -m http.server` on a random free port serving the repo root. Tests hit localhost, no Cloudflare dependency.
+- **Pinned video IDs in tests must satisfy two constraints**:
+  1. The video exists in `content.js` with the `aspect_ratio` you're targeting.
+  2. The post containing it has `frankie_eder` in its `tags` array — otherwise `filteredContent()` (default filter is `frankie_eder`) silently filters it out of the rendered homepage and the test skips with "not found in DOM."
+  Both constraints are codebase-specific gotchas; verify both when changing pinned IDs.
 
 ## Where things live elsewhere
 

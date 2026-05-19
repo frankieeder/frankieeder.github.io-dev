@@ -1,6 +1,6 @@
 # TODOS
 
-Outstanding follow-ups from recent work. P0 = blocking / accessibility-breaking, P1 = should fix soon, P2 = nice-to-have. See `LAYOUT_REVIEW.md` for the underlying architectural assessment.
+Outstanding follow-ups from recent work. P0 = blocking / accessibility-breaking, P1 = should fix soon, P2 = nice-to-have.
 
 ## P0
 

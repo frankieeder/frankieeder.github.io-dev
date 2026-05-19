@@ -21,12 +21,61 @@ function getUrlVars() {
     return vars;
 }
 
+function flattenMultiPhotoCards(contents) {
+    var out = [];
+    contents.forEach(function (content) {
+        var scrollboxIdx = -1;
+        var counts = { image: [], vimeo: [], youtube: [] };
+        content.rows.forEach(function (row, j) {
+            if (row.type_photo_scrollbox && row.scrollcontent && row.scrollcontent.length > 1) {
+                scrollboxIdx = j;
+            } else if (row.type_image) counts.image.push(j);
+            else if (row.type_vimeo) counts.vimeo.push(j);
+            else if (row.type_youtube) counts.youtube.push(j);
+        });
+
+        var hasOther = counts.image.length + counts.vimeo.length + counts.youtube.length > 0;
+        var dupType = ['image', 'vimeo', 'youtube'].find(function (t) { return counts[t].length > 1; });
+
+        // Pure photo gallery → one tile per scrollbox photo.
+        // Same-type duplicates (2+ vimeos / images / youtubes) → one tile per item.
+        // Mixed types, single media, or text-only → keep composed.
+        var splits = null;
+        if (scrollboxIdx >= 0 && !hasOther) {
+            var scrollboxRow = content.rows[scrollboxIdx];
+            splits = scrollboxRow.scrollcontent.map(function (photo) {
+                return content.rows.map(function (r, m) {
+                    return m === scrollboxIdx ? Object.assign({}, r, { scrollcontent: [photo] }) : r;
+                });
+            });
+        } else if (dupType) {
+            splits = counts[dupType].map(function (keepIdx) {
+                return content.rows.filter(function (r, m) { return !r['type_' + dupType] || m === keepIdx; });
+            });
+        }
+
+        if (!splits) { out.push(content); return; }
+        splits.forEach(function (rows, k) {
+            out.push({
+                tags: content.tags.slice(),
+                release_date: content.release_date,
+                no_buy_print: content.no_buy_print,
+                rows: rows,
+                is_multi_photo_group_item: true,
+                is_last_in_multi_photo_group: k === splits.length - 1,
+            });
+        });
+    });
+    return out;
+}
+
 function filteredContent() {
     /*
     Returns the relevant content from our content JSON, but filtered as follows:
     - Only includes content containing CURRENT_FILTER in the tags
     - Only includes content with no release_date, or release_date < current datetime
     set by getUrlVars();
+    - Flattens multi-photo cards into individual cards
     */
     var context = {
         filter: CURRENT_FILTER
@@ -45,9 +94,10 @@ function filteredContent() {
         return post.tags.includes(this.filter) && released;
     };
     var filtered_contents = CONTENT.contents.filter(contentFilter, context);
+    var flattened_contents = flattenMultiPhotoCards(filtered_contents);
     var new_content = {};
     Object.assign(new_content, CONTENT);
-    new_content.contents = filtered_contents;
+    new_content.contents = flattened_contents;
     return new_content;
 }
 
@@ -185,7 +235,9 @@ function renderBody() {
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);
                 document.getElementById('contents').innerHTML = rendered;
 
-                prepVimeoThumbnails(); // TODO: is this the best place?
+                constrainTileMedia();
+                constrainImageHeights();
+                prepVimeoThumbnails();
             }
         )
       },
@@ -233,9 +285,10 @@ var PAYMENT_LINKS = null;
 
 function loadPaymentLinks() {
     fetch('infra/stripe/payment_links.json')
-        .then(r => r.json())
-        .then(d => PAYMENT_LINKS = d)
-        .catch(err => console.error('Failed to load payment links:', err));
+        .then(response => response.json())
+        .then(data => {
+            PAYMENT_LINKS = data;
+        });
 }
 
 function initializePage() {
@@ -252,16 +305,60 @@ function initializePage() {
 function openLightBox(img_elem, caption) {
     pauseBackgroundVideo();
 
-    if (caption === '') {
-        caption = img_elem.parentElement.parentElement.firstElementChild.textContent;
+    var videoContainer = document.getElementById("lightbox-video-container");
+    var lightboxVideo = document.getElementById("lightbox-video");
+    if (videoContainer) {
+        videoContainer.style.display = 'none';
+        videoContainer.style.removeProperty('--video-aspect-ratio');
+        videoContainer.style.removeProperty('width');
+        videoContainer.style.removeProperty('height');
+        delete videoContainer.dataset.fitDone;
     }
-    document.getElementById("lightbox-caption").textContent = caption;
+    if (lightboxVideo) {
+        lightboxVideo.removeAttribute('src');
+    }
+
+    var contentCard = img_elem ? img_elem.closest('.content') : null;
+    var buyPrintContainer = document.querySelector(".buy-print-container");
+    if (buyPrintContainer) {
+        buyPrintContainer.style.display = (contentCard && contentCard.dataset.noBuyPrint) ? 'none' : '';
+    }
+
+    populateLightboxText(contentCard);
+
+    if (caption === '') {
+        if (contentCard) {
+            var titleElement = contentCard.querySelector('h2.content-text-element');
+            if (titleElement) {
+                caption = titleElement.textContent;
+            }
+        }
+    }
+    if (caption) {
+        document.getElementById("lightbox-title").textContent = caption;
+    }
 
     var im_path = img_elem.firstElementChild.src.replace('_thumb', '');
-    document.getElementById("lightbox-im").src = im_path;
+    var lightboxIm = document.getElementById("lightbox-im");
+    delete lightboxIm.dataset.fitDone;
+    lightboxIm.style.width = '';
+    lightboxIm.style.height = '';
+    lightboxIm.onload = fitImageToLightbox;
+    lightboxIm.src = im_path;
+    lightboxIm.style.display = 'block';
+    if (lightboxIm.complete && lightboxIm.naturalWidth > 0) {
+        fitImageToLightbox();
+    }
 
     var url_parts = im_path.split('/');
     var image_id = url_parts[url_parts.length - 1];
+    var request_print_elem = document.getElementById("lighbox-request-print");
+    if (request_print_elem) {
+        var prefix = 'mailto:frankaeder@gmail.com?subject=';
+        var body = "&body=Hello there, I'd like a copy of image id " + image_id;
+        request_print_elem.href = prefix + 'frankieeder.com Print Request' + body;
+        request_print_elem.style.display = 'block';
+    }
 
     var artwork_id = image_id.replace(/\.[^/.]+$/, '');
     var buy_print_elem = document.getElementById("lightbox-buy-print");
@@ -282,7 +379,7 @@ function openLightBox(img_elem, caption) {
 
     if (buy_print_dropdown) {
         buy_print_dropdown.innerHTML = '';
-        buy_print_dropdown.classList.remove('visible');
+        buy_print_dropdown.style.display = 'none';
         if (PAYMENT_LINKS && Object.keys(PAYMENT_LINKS).length > 0) {
             var sizeOrder = ['4_6', '6_9', '8_12', '12_18', '16_24', '24_36', '32_48'];
             for (var i = 0; i < sizeOrder.length; i++) {
@@ -296,27 +393,75 @@ function openLightBox(img_elem, caption) {
                     dropdownItem.target = '_blank';
                     dropdownItem.className = 'buy-print-dropdown-item';
                     dropdownItem.textContent = sizeLabel + ' - $' + priceDollars;
+                    dropdownItem.style.display = 'block';
+                    dropdownItem.style.width = '100%';
                     buy_print_dropdown.appendChild(dropdownItem);
                 }
             }
 
-            // Hover shows dropdown; click pins it open until clicked again.
-            // mouseleave on .buy-print-container fires only when leaving the
-            // whole subtree, so the dropdown (a DOM child) stays hovered.
             var buy_print_container = buy_print_dropdown.parentElement;
             if (buy_print_container && buy_print_container.classList.contains('buy-print-container')) {
-                var dropdownPinned = false;
+                var dropdownVisible = false;
+
                 buy_print_container.onmouseenter = function() {
-                    buy_print_dropdown.classList.add('visible');
+                    if (!dropdownVisible) {
+                        buy_print_dropdown.style.display = 'block';
+                        buy_print_dropdown.style.opacity = '0';
+                        setTimeout(function() {
+                            buy_print_dropdown.style.transition = 'opacity 0.2s ease';
+                            buy_print_dropdown.style.opacity = '1';
+                        }, 10);
+                    }
                 };
-                buy_print_container.onmouseleave = function() {
-                    if (!dropdownPinned) buy_print_dropdown.classList.remove('visible');
+                buy_print_container.onmouseleave = function(e) {
+                    if (!dropdownVisible && !buy_print_container.contains(e.relatedTarget)) {
+                        buy_print_dropdown.style.transition = 'opacity 0.15s ease';
+                        buy_print_dropdown.style.opacity = '0';
+                        setTimeout(function() {
+                            if (!dropdownVisible) {
+                                buy_print_dropdown.style.display = 'none';
+                            }
+                        }, 150);
+                    }
                 };
-                buy_print_elem.onclick = function(e) {
-                    e.preventDefault();
-                    dropdownPinned = !dropdownPinned;
-                    buy_print_dropdown.classList.toggle('visible', dropdownPinned);
+                buy_print_dropdown.onmouseenter = function() {
+                    if (dropdownVisible) {
+                        buy_print_dropdown.style.display = 'block';
+                        buy_print_dropdown.style.opacity = '1';
+                    }
                 };
+                buy_print_dropdown.onmouseleave = function(e) {
+                    if (!dropdownVisible && !buy_print_container.contains(e.relatedTarget)) {
+                        buy_print_dropdown.style.transition = 'opacity 0.15s ease';
+                        buy_print_dropdown.style.opacity = '0';
+                        setTimeout(function() {
+                            if (!dropdownVisible) {
+                                buy_print_dropdown.style.display = 'none';
+                            }
+                        }, 150);
+                    }
+                };
+
+                var toggleDropdown = function(e) {
+                    if (e) {
+                        e.preventDefault();
+                    }
+                    dropdownVisible = !dropdownVisible;
+                    buy_print_dropdown.style.display = dropdownVisible ? 'block' : 'none';
+                    if (dropdownVisible) {
+                        buy_print_dropdown.style.opacity = '0';
+                        setTimeout(function() {
+                            buy_print_dropdown.style.transition = 'opacity 0.2s ease';
+                            buy_print_dropdown.style.opacity = '1';
+                        }, 10);
+                    } else {
+                        buy_print_dropdown.style.transition = 'opacity 0.15s ease';
+                        buy_print_dropdown.style.opacity = '0';
+                    }
+                    return false;
+                };
+
+                buy_print_elem.onclick = toggleDropdown;
             }
         }
     }
@@ -326,15 +471,160 @@ function openLightBox(img_elem, caption) {
     lightbox.classList.remove('hidden');
 }
 
+function populateLightboxText(contentCard) {
+    if (!contentCard) {
+        return;
+    }
+
+    var allElements = contentCard.querySelectorAll('.content-text-element, .content-html-element');
+    var titleElement = null;
+    var subtitleElement = null;
+    var subheaderElement = null;
+    var subsubtitleElement = null;
+    var creditsElement = null;
+    var htmlElements = [];
+
+    for (var i = 0; i < allElements.length; i++) {
+        var elem = allElements[i];
+        if (elem.tagName === 'H2' && elem.classList.contains('content-text-element') && !titleElement) {
+            titleElement = elem;
+        } else if (elem.tagName === 'H4' && elem.classList.contains('content-text-element') && !subtitleElement) {
+            subtitleElement = elem;
+        } else if (elem.tagName === 'H4' && elem.classList.contains('content-text-element') && subtitleElement && !subheaderElement) {
+            subheaderElement = elem;
+        } else if (elem.tagName === 'H6' && elem.classList.contains('content-text-element') && !subsubtitleElement) {
+            subsubtitleElement = elem;
+        } else if (elem.tagName === 'H5' && elem.classList.contains('content-text-element') && !creditsElement) {
+            creditsElement = elem;
+        } else if (elem.classList.contains('content-html-element')) {
+            htmlElements.push(elem);
+        }
+    }
+
+    document.getElementById("lightbox-title").textContent = titleElement ? titleElement.textContent : '';
+    document.getElementById("lightbox-subtitle").textContent = subtitleElement ? subtitleElement.textContent : '';
+    document.getElementById("lightbox-subheader").textContent = subheaderElement ? subheaderElement.textContent : '';
+    document.getElementById("lightbox-subsubtitle").textContent = subsubtitleElement ? subsubtitleElement.textContent : '';
+    document.getElementById("lightbox-credits").textContent = creditsElement ? creditsElement.textContent : '';
+
+    var htmlContainer = document.getElementById("lightbox-html");
+    htmlContainer.innerHTML = '';
+    for (var j = 0; j < htmlElements.length; j++) {
+        var htmlContent = htmlElements[j].cloneNode(true);
+        htmlContent.classList.remove('content-text-element', 'content-html-element');
+        htmlContent.classList.add('lightbox-html-content');
+        htmlContainer.appendChild(htmlContent);
+    }
+}
+
 function closeLightBox() {
     playBackgroundVideo();
 
-    document.getElementById("lightbox-im").removeAttribute('src');
+    var img = document.getElementById("lightbox-im");
+    img.removeAttribute('src');
+    img.style.display = 'block';
+    img.style.width = '';
+    img.style.height = '';
+    delete img.dataset.fitDone;
+    img.onload = null;
 
-    var lightbox = document.getElementById("lightbox");
+    var videoContainer = document.getElementById("lightbox-video-container");
+    var video = document.getElementById("lightbox-video");
+    if (videoContainer) videoContainer.style.display = 'none';
+    if (video) video.removeAttribute('src');
+
+    ['title', 'subtitle', 'subheader', 'subsubtitle', 'credits'].forEach(function (k) {
+        document.getElementById('lightbox-' + k).textContent = '';
+    });
+    document.getElementById('lightbox-html').innerHTML = '';
+
+    var dropdown = document.getElementById('lightbox-buy-print-dropdown');
+    if (dropdown) dropdown.innerHTML = '';
+
+    var lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('visible');
     lightbox.classList.add('hidden');
 }
+
+function openVideoLightBox(embedUrl, sourceType, caption, event, aspectRatio) {
+    if (event) {
+        event.stopPropagation();
+    }
+    pauseBackgroundVideo();
+
+    document.getElementById("lightbox-im").style.display = 'none';
+
+    var buyPrintContainer = document.querySelector(".buy-print-container");
+    if (buyPrintContainer) {
+        buyPrintContainer.style.display = 'none';
+    }
+
+    var contentCard = event && event.target ? event.target.closest('.content') : null;
+    populateLightboxText(contentCard);
+
+    var videoContainer = document.getElementById("lightbox-video-container");
+    var lightboxVideo = document.getElementById("lightbox-video");
+
+    var paddingPct = parseFloat(aspectRatio);
+    if (Number.isFinite(paddingPct) && paddingPct > 0) {
+        videoContainer.style.setProperty('--video-aspect-ratio', 100 / paddingPct);
+    } else {
+        videoContainer.style.removeProperty('--video-aspect-ratio');
+    }
+
+    var autoplayUrl = embedUrl.indexOf('?') >= 0 ? embedUrl + '&autoplay=1' : embedUrl + '?autoplay=1';
+    lightboxVideo.src = autoplayUrl;
+    videoContainer.style.display = 'flex';
+
+    if (caption && !contentCard) {
+        document.getElementById("lightbox-title").textContent = caption;
+    }
+
+    var lightbox = document.getElementById("lightbox");
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('visible');
+
+    requestAnimationFrame(function () { requestAnimationFrame(fitVideoToLightbox); });
+}
+
+function fitMediaToViewport(aspectRatio, captionHeight) {
+    var M = Math.max(24, Math.min(window.innerWidth, window.innerHeight) * 0.05);
+    var maxH = Math.max(80, window.innerHeight - 2 * M - captionHeight);
+    var maxW = Math.max(80, window.innerWidth - 2 * M);
+    var width = Math.min(maxH * aspectRatio, maxW);
+    return { width: width, height: width / aspectRatio };
+}
+
+function fitVideoToLightbox() {
+    var container = document.getElementById("lightbox-video-container");
+    var caption = document.querySelector(".lightbox-caption-container");
+    if (!container || !caption || container.style.display === 'none') return;
+
+    var aspectRatio = parseFloat(getComputedStyle(container).getPropertyValue('--video-aspect-ratio'));
+    if (!Number.isFinite(aspectRatio) || aspectRatio <= 0) aspectRatio = 16 / 9;
+
+    var dims = fitMediaToViewport(aspectRatio, caption.offsetHeight);
+    container.style.width = dims.width + 'px';
+    container.style.height = dims.height + 'px';
+    container.dataset.fitDone = '1';
+}
+
+function fitImageToLightbox() {
+    var img = document.getElementById("lightbox-im");
+    var caption = document.querySelector(".lightbox-caption-container");
+    if (!img || !caption || img.style.display === 'none') return;
+    if (!img.naturalWidth || !img.naturalHeight) return;
+
+    var dims = fitMediaToViewport(img.naturalWidth / img.naturalHeight, caption.offsetHeight);
+    img.style.width = dims.width + 'px';
+    img.style.height = dims.height + 'px';
+    img.dataset.fitDone = '1';
+}
+
+window.addEventListener('resize', function () {
+    fitVideoToLightbox();
+    fitImageToLightbox();
+});
 
 
 //------------
@@ -350,6 +640,108 @@ function playBackgroundVideo() {
     var iframe = document.getElementById('fullscreen-bg__video');
     var player = new Vimeo.Player(iframe);
     player.play();
+}
+
+// Cap each .content tile's media at TILE_HEIGHT px tall.  Composed
+// tiles (multiple media sub-rows) split the budget evenly so they match
+// single-media neighbors, then snap scrollboxes to the narrowest iframe
+// outer width so sub-rows line up.
+function constrainTileMedia() {
+    var TILE_HEIGHT = 300;
+    document.querySelectorAll('.content').forEach(function (card) {
+        var media = card.querySelectorAll('.iframe-container, .scrollbox');
+        if (media.length === 0) return;
+        var perItemHeight = Math.floor(TILE_HEIGHT / media.length);
+
+        var iframeOuterWidths = [];
+        media.forEach(function (item) {
+            if (item.classList.contains('iframe-container')) {
+                resizeIframeContainer(item, perItemHeight);
+                iframeOuterWidths.push(outerWidth(item));
+            } else {
+                sizeScrollboxRow(item, perItemHeight);
+            }
+        });
+
+        if (media.length > 1 && iframeOuterWidths.length > 0) {
+            var w = Math.min.apply(null, iframeOuterWidths) + 'px';
+            media.forEach(function (item) {
+                if (!item.classList.contains('scrollbox')) return;
+                item.style.width = w;
+                item.style.maxWidth = w;
+                item.style.overflowX = 'auto';
+                item.style.overflowY = 'hidden';
+            });
+        }
+    });
+}
+
+function outerWidth(el) {
+    var cs = window.getComputedStyle(el);
+    return (parseFloat(el.style.width) || 0)
+        + (parseFloat(cs.paddingLeft) || 0)
+        + (parseFloat(cs.paddingRight) || 0);
+}
+
+function sizeScrollboxRow(scrollbox, height) {
+    scrollbox.style.height = height + 'px';
+    scrollbox.style.maxHeight = height + 'px';
+    scrollbox.style.lineHeight = '0';  // suppress inline baseline padding
+    scrollbox.querySelectorAll('img').forEach(function (img) {
+        img.style.height = height + 'px';
+        img.style.maxHeight = height + 'px';
+        img.style.width = 'auto';
+        img.style.verticalAlign = 'top';
+    });
+}
+
+function resizeIframeContainer(container, maxHeight) {
+    var iframe = container.querySelector('iframe');
+    if (!iframe) return;
+
+    var parent = container.parentElement;
+    var styleAttr = (container.getAttribute('style') || parent.getAttribute('style') || '');
+    var paddingTopMatch = styleAttr.match(/padding-top:\s*([\d.]+)%/);
+    var paddingTop = paddingTopMatch ? parseFloat(paddingTopMatch[1]) : null;
+
+    if (!paddingTop || isNaN(paddingTop)) {
+        var computedStyle = window.getComputedStyle(container);
+        var computedPaddingPx = parseFloat(computedStyle.paddingTop);
+        var containerWidth = parseFloat(computedStyle.width);
+        if (computedPaddingPx > 0 && containerWidth > 0) {
+            paddingTop = (computedPaddingPx / containerWidth) * 100;
+        }
+    }
+
+    var calculatedWidth = paddingTop > 0
+        ? maxHeight / (paddingTop / 100)
+        : maxHeight * (16 / 9);
+
+    container.style.paddingTop = '0';
+    container.style.width = calculatedWidth + 'px';
+    container.style.height = maxHeight + 'px';
+    container.style.maxHeight = maxHeight + 'px';
+    container.style.removeProperty('--video-aspect-ratio');
+}
+
+function constrainImageHeights() {
+    var maxHeight = 300;
+    var imgs = document.querySelectorAll('.content img');
+    for (var i = 0; i < imgs.length; i++) {
+        (function (img) {
+            if (img.closest('.scrollbox')) return;  // scrollbox thumbnails have their own sizing
+            var apply = function () {
+                if (!img.naturalWidth || !img.naturalHeight) return;
+                if (img.naturalHeight <= maxHeight) return;
+                var aspect = img.naturalWidth / img.naturalHeight;
+                img.style.height = maxHeight + 'px';
+                img.style.width = (maxHeight * aspect) + 'px';
+                img.removeAttribute('width');
+            };
+            if (img.complete) apply();
+            else img.addEventListener('load', apply, { once: true });
+        })(imgs[i]);
+    }
 }
 
 function prepVimeoThumbnails() {
@@ -401,37 +793,6 @@ function prepVimeoThumbnails() {
             var setTimePromise = player.setCurrentTime(init);
             var pausePromise = player.pause();
             //console.log("Promises:", setTimePromise, pausePromise);
-//            var player = new Vimeo.Player(vimeos[i]);
-//            console.log("Vimeo Player", i, player, vimeos[i]);
-//            var start = parseFloat(vimeos[i].getAttribute("loopstart"));
-//            var init = parseFloat(vimeos[i].getAttribute("loopthumb") ?? start);
-//            var interval = parseFloat(vimeos[i].getAttribute("loopend"));
-//            var end = parseFloat(start) + parseFloat(interval / 1000);
-//
-//            var setTimePromise = player.setCurrentTime(init);
-//            var pausePromise = player.pause();
-//
-//            // Enable Looping
-//            player.on('timeupdate', function(update) {
-//                console.log("time1", update['seconds'], end, interval, (interval / 1000), start, update['seconds'] > end, player);
-//                if (update['seconds'] > end) {
-//                    player.setCurrentTime(start);
-//                }
-//            });
-//            console.log("Promises:", setTimePromise, pausePromise);
-//            // Start playing when start hover
-//            vimeos[i].onmouseenter = function() {
-//                console.log("Attempting to play.", player);
-//                console.log("Promises:", setTimePromise, pausePromise);
-//                player.play();
-//            }
-//            // Stop playing when stop hover
-//            vimeos[i].onmouseout = function() {
-//                console.log("Attempting to pause.", player);
-//                console.log("Promises:", setTimePromise, pausePromise);
-//                player.pause();
-//                player.setCurrentTime(init);
-//            }
         })();
     }
 }
@@ -441,7 +802,6 @@ function setVideoTime(player, seconds) {
 		return player.play();
 	});
 }
-
 
 //function styleVimeoEmbeds(element) {
 //    /*
