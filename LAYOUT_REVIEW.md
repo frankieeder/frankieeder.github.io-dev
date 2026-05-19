@@ -2,6 +2,13 @@
 
 Branch: `new-layout` → `frankieeder-com/new-layout`
 
+> **Status update (2026-05-19):** This is a frozen-in-time snapshot from the start of the goal branch.  Items resolved by sub-PRs since this was written:
+> - **P0.1 — Video lightbox crashes on open**: `lightbox-video-container` uncommented in #25, lightbox open path completed.  Aspect-ratio plumbing added in #32 (`fitVideoToLightbox()`) so non-16:9 videos render edge-to-edge.
+> - **P1 — `margin: auto` asymmetric spacing**: fixed in #27.
+> - **Open Q: Video lightbox centering**: resolved by `fitVideoToLightbox()` with the `M = max(24px, 5vmin)` minimum-margin invariant on all four sides.
+>
+> Everything else still applies — see `TODOS.md` for the live state.
+
 ---
 
 ## Summary

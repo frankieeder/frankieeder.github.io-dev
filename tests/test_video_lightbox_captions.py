@@ -5,23 +5,19 @@ subtitle / subheader / subsubtitle / credits from the surrounding
 `.content` card's `.content-text-element` children — the same pattern
 the image lightbox uses via `populateLightboxText()`.
 
-History: the original `openVideoLightBox()` only set `#lightbox-title`
-if its `caption` argument was truthy, but every mustache template
-passed `''`, so video captions never populated.  Photo captions still
-worked because the image path did the walk-up-to-`.content` +
-`populateLightboxText` dance itself.  Fixed by PR #27 mirroring that
-dance into the video path.
-
-If this test ever turns red again, look for someone removing the
+If this test ever turns red, look for someone removing the
 `populateLightboxText(contentCard)` call from `openVideoLightBox()`.
+The image lightbox path does the same walk-up-to-`.content` +
+populate dance — the video path mirrors it so both lightbox modes
+surface the same metadata.
 
 ### Why one test, not a parametrize matrix
 
-The bug is binary: either openVideoLightBox calls populateLightboxText
-or it doesn't.  One test on the first eligible tile is enough signal.
-The aspect-ratio matrix lives in `test_video_lightbox_aspect_ratios.py`;
-the viewport matrix lives in `test_video_lightbox.py`.  This file is
-just for the caption contract.
+The bug is binary: either `openVideoLightBox` calls
+`populateLightboxText` or it doesn't.  One test on the first eligible
+tile is enough signal.  The geometry matrix (source × viewport ×
+invariant) lives in `test_video_lightbox.py`.  This file is just for
+the caption contract.
 """
 import pytest
 from playwright.sync_api import Page

@@ -691,21 +691,15 @@ li.nav_inactive ul {
 
 .lightbox-video-container {
   display: none;
-  /* Per-video aspect ratio is set by openVideoLightBox() reading the
-     source tile's aspect_ratio field (padding-top percent → width/height
-     ratio).  Default to 16:9 (≈1.7778) when no per-video value is set. */
+  /* render.js:fitVideoToLightbox() drives the real sizing: per-open it
+     measures the caption, computes M = max(24px, 5vmin), and sets
+     explicit width/height to the largest aspect-correct box that fits
+     viewport minus 2M minus caption.  These CSS values are a fallback
+     so the element has a sensible initial size during the rAFs JS
+     takes to run; they are overwritten on every openVideoLightBox(). */
   --video-aspect-ratio: 1.7778;
-  /* Fill available space while reserving ~180px for the caption + close
-     button below.  Width = min(95vw, vertical-budget * aspect), so on
-     tall viewports it caps at width and on wide ones it caps at height. */
   width: min(95vw, calc((100vh - 180px) * var(--video-aspect-ratio)));
   aspect-ratio: var(--video-aspect-ratio);
-  /* No margin: auto. Auto margins on a flex item absorb free space, which
-     would push the caption flush against the bottom of .lightbox-content
-     (~24px from viewport bottom) while leaving ~50px above the video —
-     asymmetric. Letting .lightbox-content's justify-content: center
-     handle vertical placement instead centers [video + caption] as a
-     block, so top whitespace == bottom whitespace. */
 }
 
 .lightbox-video-container iframe {
