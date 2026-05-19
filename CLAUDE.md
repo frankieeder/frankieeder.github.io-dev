@@ -30,7 +30,6 @@ make open   # open in browser
 | `.github/workflows/` | CI: `stripe-plan.yml` (every PR), `stripe-sync.yml` (manual) |
 | `wrangler.jsonc` | Cloudflare Workers Static Assets config |
 | `.assetsignore` | Files excluded from the deployed Worker bundle (most importantly `.git/` — 1.5 GiB pack file would bust the 25 MiB asset limit) |
-| `LAYOUT_REVIEW.md` | Layout architecture review with P0/P1/P2 follow-ups |
 | `TODOS.md` | Prioritized outstanding tasks |
 | `imgproc.py`, `requirements.txt` | Local dev tool for generating `_thumb` / `_lq` image variants — NOT deployed |
 

@@ -457,22 +457,22 @@ var CONTENT = {
                 }
             ],
         },
-        // {
-        //     tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'effects_by', 'colored_by', 'narrative', 'experimental', 'music', 'portfolio', 'amphos'],
-        //     rows: [
-        //         {title: "AMPHOS"},
-        //         {subtitle: "(an expirimental short film)"},
-        //         {subsubtitle: "cw: flashing lights"},
-        //         {
-        //             type_vimeo: true,
-        //             vimeo: '307996559',
-        //         },
-        //         {credits: 'Director, Director of Photography, Editor, Colorist'},
-        //         {html: "<h5><u>Awards</u></h5>"},
-        //         {html: "<h5><i>Best Editing</i> - Grizzly Film Festival 2018</h5>"},
-        //         {html: "<h5><i>Official Selection</i> - Frequency Film Festival 2021</h5>"}
-        //     ],
-        // },
+        {
+            tags: ['frankie_eder', 'art', 'film', 'directed_by', 'shot_by', 'edited_by', 'effects_by', 'colored_by', 'narrative', 'experimental', 'music', 'portfolio', 'amphos'],
+            rows: [
+                {title: "AMPHOS"},
+                {subtitle: "(an expirimental short film)"},
+                {subsubtitle: "cw: flashing lights"},
+                {
+                    type_vimeo: true,
+                    vimeo: '307996559',
+                },
+                {credits: 'Director, Director of Photography, Editor, Colorist'},
+                {html: "<h5><u>Awards</u></h5>"},
+                {html: "<h5><i>Best Editing</i> - Grizzly Film Festival 2018</h5>"},
+                {html: "<h5><i>Official Selection</i> - Frequency Film Festival 2021</h5>"}
+            ],
+        },
         // PHOTOGRAPHY - HIGHLIGHTED
         {
             tags: ['frankie_eder', 'art', 'still', 'photography', 'architecture'],
