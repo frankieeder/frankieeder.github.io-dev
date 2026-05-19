@@ -56,6 +56,7 @@ function flattenMultiPhotoCards(contents) {
                 var newContent = {
                     tags: content.tags.slice(),
                     release_date: content.release_date,
+                    no_buy_print: content.no_buy_print,
                     rows: [],
                     is_multi_photo_group_item: true,
                     is_last_in_multi_photo_group: (k === scrollboxRow.scrollcontent.length - 1)
@@ -77,6 +78,7 @@ function flattenMultiPhotoCards(contents) {
                 var newContent = {
                     tags: content.tags.slice(),
                     release_date: content.release_date,
+                    no_buy_print: content.no_buy_print,
                     rows: [],
                     is_multi_photo_group_item: true,
                     is_last_in_multi_photo_group: (k === sameTypeIndexes.length - 1)
@@ -349,12 +351,12 @@ function openLightBox(img_elem, caption) {
         lightboxVideo.removeAttribute('src');
     }
 
+    var contentCard = img_elem ? img_elem.closest('.content') : null;
     var buyPrintContainer = document.querySelector(".buy-print-container");
     if (buyPrintContainer) {
-        buyPrintContainer.style.display = '';
+        buyPrintContainer.style.display = (contentCard && contentCard.dataset.noBuyPrint) ? 'none' : '';
     }
 
-    var contentCard = img_elem ? img_elem.closest('.content') : null;
     populateLightboxText(contentCard);
 
     if (caption === '') {

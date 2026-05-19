@@ -90,3 +90,25 @@ def test_image_and_caption_fit_in_viewport(open_first_photo, vw, vh):
     assert caption["y"] + caption["height"] <= vh + MARGIN_TOLERANCE_PX, (
         f"caption overflows bottom"
     )
+
+
+def test_buy_print_hidden_for_no_buy_print_card(page, server_url):
+    """Cards flagged `no_buy_print: true` in content.js (e.g. the 'why;
+    are you paying for this?' installation) must not show the BUY PRINT
+    button in the photo lightbox.  Default behavior unchanged for
+    everything else.
+    """
+    page.set_viewport_size({"width": 1280, "height": 720})
+    page.goto(server_url + "?page=art")
+    page.wait_for_selector(".content", state="attached", timeout=10_000)
+
+    photo = page.locator(".content[data-no-buy-print] img").first
+    if photo.count() == 0:
+        pytest.skip("no card with data-no-buy-print under ?page=art")
+    photo.locator("xpath=ancestor::a[1]").click()
+    page.wait_for_selector(".lightbox.visible", timeout=5_000)
+
+    container = page.locator(".buy-print-container").first
+    assert container.is_hidden(), (
+        "BUY PRINT container is visible on a no-buy-print card"
+    )

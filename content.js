@@ -430,6 +430,7 @@ var CONTENT = {
         },
         {
             tags: ['art', 'installation', 'why'],
+            no_buy_print: true,
             rows: [
                 {title: "why; are you paying for this?"},
                 {subtitle: "(three-channel video installation)"},
