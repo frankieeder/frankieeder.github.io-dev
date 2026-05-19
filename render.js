@@ -647,12 +647,17 @@ function fitVideoToLightbox() {
     }
 
     var M = Math.max(24, Math.min(window.innerWidth, window.innerHeight) * 0.05);
-    var videoCaptionGap = 16;
     var captionHeight = captionContainer.offsetHeight;
 
     // Available rectangle for the video: viewport minus M on all sides,
-    // minus caption + gap below the video.
-    var availableHeight = window.innerHeight - 2 * M - videoCaptionGap - captionHeight;
+    // minus the caption below.  Video and caption sit flush against each
+    // other (no flex `gap` between them) — the caption's own internal
+    // `padding: 15px 20px` provides 15px of visual breathing room above
+    // the text.  If we reserved an additional `videoCaptionGap` here it
+    // wouldn't translate to actual layout space and would instead get
+    // distributed as extra top/bottom margin, pushing the top margin
+    // above M.
+    var availableHeight = window.innerHeight - 2 * M - captionHeight;
     var availableWidth = window.innerWidth - 2 * M;
 
     // Safety floors so we don't return zero/negative sizes on tiny viewports.
