@@ -56,10 +56,16 @@ def test_why_card_renders_scrollbox_and_vimeo_in_same_block(homepage):
     and both fit within the same tile.
     """
     page = homepage("art")
-    iframe = page.locator("iframe[src*='384236279']").first
-    if iframe.count() == 0:
+    iframes = page.locator("iframe[src*='384236279']")
+    if iframes.count() == 0:
         pytest.skip("'why' card (vimeo/384236279) not visible under ?page=art")
-    card = iframe.locator("xpath=ancestor::div[contains(@class,'content')][1]")
+    # Card with non-scrollbox media (vimeo) must not be flattened into
+    # one tile per photo — otherwise the vimeo iframe is duplicated.
+    assert iframes.count() == 1, (
+        f"'why' card was flattened into {iframes.count()} tiles "
+        f"(should be 1 — the card has a vimeo alongside the scrollbox)"
+    )
+    card = iframes.first.locator("xpath=ancestor::div[contains(@class,'content')][1]")
 
     scrollbox = card.locator(".scrollbox").first
     vimeo = card.locator(".iframe-container").first

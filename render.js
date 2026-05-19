@@ -26,21 +26,25 @@ function flattenMultiPhotoCards(contents) {
     for (var i = 0; i < contents.length; i++) {
         var content = contents[i];
         var hasMultiPhotoScrollbox = false;
+        var hasOtherMedia = false;
         var scrollboxRowIndex = -1;
         var scrollboxRow = null;
 
         for (var j = 0; j < content.rows.length; j++) {
-            if (content.rows[j].type_photo_scrollbox &&
-                content.rows[j].scrollcontent &&
-                content.rows[j].scrollcontent.length > 1) {
+            var row = content.rows[j];
+            if (row.type_photo_scrollbox &&
+                row.scrollcontent &&
+                row.scrollcontent.length > 1) {
                 hasMultiPhotoScrollbox = true;
                 scrollboxRowIndex = j;
-                scrollboxRow = content.rows[j];
-                break;
+                scrollboxRow = row;
+            } else if (row.type_image || row.type_vimeo || row.type_youtube ||
+                       row.type_soundcloud || row.type_bandcamp || row.type_table) {
+                hasOtherMedia = true;
             }
         }
 
-        if (hasMultiPhotoScrollbox) {
+        if (hasMultiPhotoScrollbox && !hasOtherMedia) {
             for (var k = 0; k < scrollboxRow.scrollcontent.length; k++) {
                 var newContent = {
                     tags: content.tags.slice(),
