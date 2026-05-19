@@ -102,11 +102,15 @@ The `stripe_payment_link` resource explicitly pins `consent_collection_terms_of_
 
 A few non-obvious things future-you (or another agent) will trip on:
 
-- **`render.js:constrainVideoHeights()` mutates `.iframe-container` post-render.** It reads each tile's inline `style="padding-top: X%"` (the original `aspect_ratio` field from `content.js`), then *overwrites* the inline style with `padding-top: 0` plus explicit pixel `width`/`height`. So **the original aspect-ratio data is GONE from the DOM after page render.** Any code or test that wants the source aspect must either (a) read it before `constrainVideoHeights` runs, or (b) get it from a stable surface — the iframe `src` URL (video ID is immutable) is a good one.
+- **`render.js:constrainTileMedia()` mutates every `.iframe-container` and `.scrollbox` post-render.** Reads each tile's inline `style="padding-top: X%"` (the original `aspect_ratio` field), then overwrites with `padding-top: 0` plus explicit `width`/`height`. Original aspect-ratio data is GONE from the DOM after render. Code or tests that want source aspect must read the iframe `src` URL (video ID is immutable).
 
-- **`render.js:fitVideoToLightbox()` JS-sizes the video lightbox container.** CSS `.lightbox-video-container { width: min(95vw, ...); aspect-ratio: ... }` is only a fallback before JS runs. The real sizing reads actual caption height (post-layout), computes a M = `max(24px, 5vmin)` margin reservation on all four sides, and sets explicit `width`/`height` to the largest aspect-correct box that fits. The invariant: **min margin around the video on all four sides equals M.** Other margins may be larger when source aspect doesn't match the available rectangle (e.g. square video in 16:9 viewport).
+- **Composed tiles split the 300px tile-height budget evenly** across sub-rows so they match single-media neighbors. `flattenMultiPhotoCards` decides which cards stay composed vs split: same-type duplicates (2+ vimeos / images / youtubes) split into one tile each; mixed types (scrollbox + vimeo) compose into one tile with sub-rows.
 
-- **`data-fit-done="1"` is the sync marker** set by `fitVideoToLightbox()` at the end of its work. Tests synchronize on this attribute (`page.wait_for_selector("#lightbox-video-container[data-fit-done='1']")`) rather than racing `offsetHeight > 0` — the latter fires the moment CSS gives the element a size, *before* the rAF-deferred JS fit has run.
+- **`render.js:fitVideoToLightbox()` / `fitImageToLightbox()`** JS-size the lightbox media. CSS is only a fallback. Both compute `M = max(24px, 5vmin)` margin on all four sides and set explicit `width`/`height` to the largest aspect-correct box that fits. Invariant: **min margin on all four sides equals M.**
+
+- **`data-fit-done="1"` is the sync marker** set by both fit functions. Tests synchronize on this attribute rather than racing `offsetHeight > 0` (which fires the moment CSS gives the element a size, before the rAF-deferred JS fit has run).
+
+- **`no_buy_print: true` per-card flag** in `content.js` hides the BUY PRINT button in the photo lightbox. Mustache renders it as `data-no-buy-print="1"` on the `.content` div; `openLightBox` reads `contentCard.dataset.noBuyPrint` to hide the container. Video lightbox already hides BUY PRINT unconditionally.
 
 ## E2E tests (Playwright + pytest)
 

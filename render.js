@@ -22,84 +22,51 @@ function getUrlVars() {
 }
 
 function flattenMultiPhotoCards(contents) {
-    var flattened = [];
-    for (var i = 0; i < contents.length; i++) {
-        var content = contents[i];
-        var scrollboxRowIndex = -1;
-        var scrollboxRow = null;
-        var sameTypeIndexes = null;  // indices of the duplicated type, if any
-        var typeCounts = { image: [], vimeo: [], youtube: [] };
-
-        for (var j = 0; j < content.rows.length; j++) {
-            var row = content.rows[j];
+    var out = [];
+    contents.forEach(function (content) {
+        var scrollboxIdx = -1;
+        var counts = { image: [], vimeo: [], youtube: [] };
+        content.rows.forEach(function (row, j) {
             if (row.type_photo_scrollbox && row.scrollcontent && row.scrollcontent.length > 1) {
-                scrollboxRowIndex = j;
-                scrollboxRow = row;
-            } else if (row.type_image) typeCounts.image.push(j);
-            else if (row.type_vimeo) typeCounts.vimeo.push(j);
-            else if (row.type_youtube) typeCounts.youtube.push(j);
+                scrollboxIdx = j;
+            } else if (row.type_image) counts.image.push(j);
+            else if (row.type_vimeo) counts.vimeo.push(j);
+            else if (row.type_youtube) counts.youtube.push(j);
+        });
+
+        var hasOther = counts.image.length + counts.vimeo.length + counts.youtube.length > 0;
+        var dupType = ['image', 'vimeo', 'youtube'].find(function (t) { return counts[t].length > 1; });
+
+        // Pure photo gallery → one tile per scrollbox photo.
+        // Same-type duplicates (2+ vimeos / images / youtubes) → one tile per item.
+        // Mixed types, single media, or text-only → keep composed.
+        var splits = null;
+        if (scrollboxIdx >= 0 && !hasOther) {
+            var scrollboxRow = content.rows[scrollboxIdx];
+            splits = scrollboxRow.scrollcontent.map(function (photo) {
+                return content.rows.map(function (r, m) {
+                    return m === scrollboxIdx ? Object.assign({}, r, { scrollcontent: [photo] }) : r;
+                });
+            });
+        } else if (dupType) {
+            splits = counts[dupType].map(function (keepIdx) {
+                return content.rows.filter(function (r, m) { return !r['type_' + dupType] || m === keepIdx; });
+            });
         }
 
-        // Split into one tile per media item when MULTIPLE of the SAME type
-        // exist (e.g. two vimeos, two images).  Different-type combinations
-        // (scrollbox + vimeo) are thematically grouped — keep composed.
-        for (var t in typeCounts) {
-            if (typeCounts[t].length > 1) {
-                sameTypeIndexes = typeCounts[t];
-                break;
-            }
-        }
-
-        if (scrollboxRow && !sameTypeIndexes && typeCounts.image.length + typeCounts.vimeo.length + typeCounts.youtube.length === 0) {
-            // Pure photo gallery — split per scrollbox photo.
-            for (var k = 0; k < scrollboxRow.scrollcontent.length; k++) {
-                var newContent = {
-                    tags: content.tags.slice(),
-                    release_date: content.release_date,
-                    no_buy_print: content.no_buy_print,
-                    rows: [],
-                    is_multi_photo_group_item: true,
-                    is_last_in_multi_photo_group: (k === scrollboxRow.scrollcontent.length - 1)
-                };
-                for (var m = 0; m < content.rows.length; m++) {
-                    if (m === scrollboxRowIndex) {
-                        var splitScrollbox = JSON.parse(JSON.stringify(scrollboxRow));
-                        splitScrollbox.scrollcontent = [scrollboxRow.scrollcontent[k]];
-                        newContent.rows.push(splitScrollbox);
-                    } else {
-                        newContent.rows.push(content.rows[m]);
-                    }
-                }
-                flattened.push(newContent);
-            }
-        } else if (sameTypeIndexes) {
-            // Multiple of the same media type — split into one tile each.
-            for (var k = 0; k < sameTypeIndexes.length; k++) {
-                var newContent = {
-                    tags: content.tags.slice(),
-                    release_date: content.release_date,
-                    no_buy_print: content.no_buy_print,
-                    rows: [],
-                    is_multi_photo_group_item: true,
-                    is_last_in_multi_photo_group: (k === sameTypeIndexes.length - 1)
-                };
-                for (var m = 0; m < content.rows.length; m++) {
-                    var r = content.rows[m];
-                    var isSplittable = (r.type_image && typeCounts.image.length > 1) ||
-                                       (r.type_vimeo && typeCounts.vimeo.length > 1) ||
-                                       (r.type_youtube && typeCounts.youtube.length > 1);
-                    if (!isSplittable || m === sameTypeIndexes[k]) {
-                        newContent.rows.push(r);
-                    }
-                }
-                flattened.push(newContent);
-            }
-        } else {
-            // Single media, mixed types, or text-only — keep as one tile.
-            flattened.push(content);
-        }
-    }
-    return flattened;
+        if (!splits) { out.push(content); return; }
+        splits.forEach(function (rows, k) {
+            out.push({
+                tags: content.tags.slice(),
+                release_date: content.release_date,
+                no_buy_print: content.no_buy_print,
+                rows: rows,
+                is_multi_photo_group_item: true,
+                is_last_in_multi_photo_group: k === splits.length - 1,
+            });
+        });
+    });
+    return out;
 }
 
 function filteredContent() {
@@ -268,7 +235,7 @@ function renderBody() {
                 var rendered = Mustache.render(templates[0], filteredContent(), partials);
                 document.getElementById('contents').innerHTML = rendered;
 
-                constrainVideoHeights();
+                constrainTileMedia();
                 constrainImageHeights();
                 prepVimeoThumbnails();
             }
@@ -553,34 +520,28 @@ function populateLightboxText(contentCard) {
 function closeLightBox() {
     playBackgroundVideo();
 
-    var lightboxIm = document.getElementById("lightbox-im");
-    lightboxIm.removeAttribute('src');
-    lightboxIm.style.display = 'block';
-    lightboxIm.style.width = '';
-    lightboxIm.style.height = '';
-    delete lightboxIm.dataset.fitDone;
-    lightboxIm.onload = null;
+    var img = document.getElementById("lightbox-im");
+    img.removeAttribute('src');
+    img.style.display = 'block';
+    img.style.width = '';
+    img.style.height = '';
+    delete img.dataset.fitDone;
+    img.onload = null;
+
     var videoContainer = document.getElementById("lightbox-video-container");
-    var lightboxVideo = document.getElementById("lightbox-video");
-    if (videoContainer) {
-        videoContainer.style.display = 'none';
-    }
-    if (lightboxVideo) {
-        lightboxVideo.removeAttribute('src');
-    }
-    document.getElementById("lightbox-title").textContent = '';
-    document.getElementById("lightbox-subtitle").textContent = '';
-    document.getElementById("lightbox-subheader").textContent = '';
-    document.getElementById("lightbox-subsubtitle").textContent = '';
-    document.getElementById("lightbox-credits").textContent = '';
-    document.getElementById("lightbox-html").innerHTML = '';
+    var video = document.getElementById("lightbox-video");
+    if (videoContainer) videoContainer.style.display = 'none';
+    if (video) video.removeAttribute('src');
 
-    var buy_print_dropdown = document.getElementById("lightbox-buy-print-dropdown");
-    if (buy_print_dropdown) {
-        buy_print_dropdown.innerHTML = '';
-    }
+    ['title', 'subtitle', 'subheader', 'subsubtitle', 'credits'].forEach(function (k) {
+        document.getElementById('lightbox-' + k).textContent = '';
+    });
+    document.getElementById('lightbox-html').innerHTML = '';
 
-    var lightbox = document.getElementById("lightbox");
+    var dropdown = document.getElementById('lightbox-buy-print-dropdown');
+    if (dropdown) dropdown.innerHTML = '';
+
+    var lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('visible');
     lightbox.classList.add('hidden');
 }
@@ -681,58 +642,56 @@ function playBackgroundVideo() {
     player.play();
 }
 
-function constrainVideoHeights() {
+// Cap each .content tile's media at TILE_HEIGHT px tall.  Composed
+// tiles (multiple media sub-rows) split the budget evenly so they match
+// single-media neighbors, then snap scrollboxes to the narrowest iframe
+// outer width so sub-rows line up.
+function constrainTileMedia() {
     var TILE_HEIGHT = 300;
     document.querySelectorAll('.content').forEach(function (card) {
-        var mediaItems = card.querySelectorAll('.iframe-container, .scrollbox');
-        if (mediaItems.length === 0) return;
-        // Composed tiles (multiple media sub-rows) split the tile-height
-        // budget evenly so the card matches its single-media neighbors.
-        var perItemHeight = Math.floor(TILE_HEIGHT / mediaItems.length);
+        var media = card.querySelectorAll('.iframe-container, .scrollbox');
+        if (media.length === 0) return;
+        var perItemHeight = Math.floor(TILE_HEIGHT / media.length);
 
         var iframeOuterWidths = [];
-        mediaItems.forEach(function (item) {
+        media.forEach(function (item) {
             if (item.classList.contains('iframe-container')) {
                 resizeIframeContainer(item, perItemHeight);
-                // `.content .iframe-container` has padding-left/right 10px
-                // each — outer (bounding-box) width = content width + 20.
-                var cs = window.getComputedStyle(item);
-                var outer = parseFloat(item.style.width)
-                    + (parseFloat(cs.paddingLeft) || 0)
-                    + (parseFloat(cs.paddingRight) || 0);
-                if (outer > 0) iframeOuterWidths.push(outer);
-            } else if (item.classList.contains('scrollbox')) {
-                // Set explicit height (not just max-height) so the scrollbox
-                // fills its allocated budget regardless of thumbnail natural
-                // size — keeps composed tiles at exactly TILE_HEIGHT total.
-                item.style.height = perItemHeight + 'px';
-                item.style.maxHeight = perItemHeight + 'px';
-                item.style.lineHeight = '0';  // suppress inline baseline padding
-                item.querySelectorAll('img').forEach(function (img) {
-                    // Force thumbs to fill the row vertically (no gap below).
-                    img.style.height = perItemHeight + 'px';
-                    img.style.maxHeight = perItemHeight + 'px';
-                    img.style.width = 'auto';
-                    img.style.verticalAlign = 'top';
-                });
+                iframeOuterWidths.push(outerWidth(item));
+            } else {
+                sizeScrollboxRow(item, perItemHeight);
             }
         });
 
-        // For composed tiles, force every sub-row to the same OUTER width
-        // as the (narrowest) aspect-locked iframe — iframes can't be
-        // stretched without distorting, scrollboxes can scroll horizontally
-        // to absorb the size difference.
-        if (mediaItems.length > 1 && iframeOuterWidths.length > 0) {
-            var targetWidth = Math.min.apply(null, iframeOuterWidths);
-            mediaItems.forEach(function (item) {
-                if (item.classList.contains('scrollbox')) {
-                    item.style.width = targetWidth + 'px';
-                    item.style.maxWidth = targetWidth + 'px';
-                    item.style.overflowX = 'auto';
-                    item.style.overflowY = 'hidden';
-                }
+        if (media.length > 1 && iframeOuterWidths.length > 0) {
+            var w = Math.min.apply(null, iframeOuterWidths) + 'px';
+            media.forEach(function (item) {
+                if (!item.classList.contains('scrollbox')) return;
+                item.style.width = w;
+                item.style.maxWidth = w;
+                item.style.overflowX = 'auto';
+                item.style.overflowY = 'hidden';
             });
         }
+    });
+}
+
+function outerWidth(el) {
+    var cs = window.getComputedStyle(el);
+    return (parseFloat(el.style.width) || 0)
+        + (parseFloat(cs.paddingLeft) || 0)
+        + (parseFloat(cs.paddingRight) || 0);
+}
+
+function sizeScrollboxRow(scrollbox, height) {
+    scrollbox.style.height = height + 'px';
+    scrollbox.style.maxHeight = height + 'px';
+    scrollbox.style.lineHeight = '0';  // suppress inline baseline padding
+    scrollbox.querySelectorAll('img').forEach(function (img) {
+        img.style.height = height + 'px';
+        img.style.maxHeight = height + 'px';
+        img.style.width = 'auto';
+        img.style.verticalAlign = 'top';
     });
 }
 
