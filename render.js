@@ -27,20 +27,22 @@ function flattenMultiPhotoCards(contents) {
         var content = contents[i];
         var scrollboxRowIndex = -1;
         var scrollboxRow = null;
-        var mediaRowIndexes = [];  // type_image/vimeo/youtube rows
+        var mediaUnitIndexes = [];  // every media row is one "unit": scrollbox, image, vimeo, youtube
 
         for (var j = 0; j < content.rows.length; j++) {
             var row = content.rows[j];
             if (row.type_photo_scrollbox && row.scrollcontent && row.scrollcontent.length > 1) {
                 scrollboxRowIndex = j;
                 scrollboxRow = row;
+                mediaUnitIndexes.push(j);
             } else if (row.type_image || row.type_vimeo || row.type_youtube) {
-                mediaRowIndexes.push(j);
+                mediaUnitIndexes.push(j);
             }
         }
 
-        if (scrollboxRow && mediaRowIndexes.length === 0) {
-            // Pure photo gallery — split into one tile per scrollbox photo.
+        if (scrollboxRow && mediaUnitIndexes.length === 1) {
+            // Pure photo gallery (scrollbox is the only media unit) — split
+            // into one tile per scrollbox photo.
             for (var k = 0; k < scrollboxRow.scrollcontent.length; k++) {
                 var newContent = {
                     tags: content.tags.slice(),
@@ -60,28 +62,31 @@ function flattenMultiPhotoCards(contents) {
                 }
                 flattened.push(newContent);
             }
-        } else if (mediaRowIndexes.length > 1 && !scrollboxRow) {
-            // Multiple independent video/image rows — split into one tile per
-            // media item.  Each tile keeps all non-media rows (title/credits/
-            // html populate the lightbox the same way) plus one of the media.
-            for (var k = 0; k < mediaRowIndexes.length; k++) {
+        } else if (mediaUnitIndexes.length > 1) {
+            // Multi-media card (e.g. scrollbox + vimeo, or two vimeos) — split
+            // into one tile per media unit.  Scrollbox stays grouped (its
+            // internal photos are a thematic set); each other media row
+            // becomes its own tile.  All non-media rows go to every split so
+            // title/credits/html populate the lightbox consistently.
+            for (var k = 0; k < mediaUnitIndexes.length; k++) {
                 var newContent = {
                     tags: content.tags.slice(),
                     release_date: content.release_date,
                     rows: [],
                     is_multi_photo_group_item: true,
-                    is_last_in_multi_photo_group: (k === mediaRowIndexes.length - 1)
+                    is_last_in_multi_photo_group: (k === mediaUnitIndexes.length - 1)
                 };
                 for (var m = 0; m < content.rows.length; m++) {
-                    var isMedia = content.rows[m].type_image || content.rows[m].type_vimeo || content.rows[m].type_youtube;
-                    if (!isMedia || m === mediaRowIndexes[k]) {
-                        newContent.rows.push(content.rows[m]);
+                    var r = content.rows[m];
+                    var isMediaUnit = r.type_photo_scrollbox || r.type_image || r.type_vimeo || r.type_youtube;
+                    if (!isMediaUnit || m === mediaUnitIndexes[k]) {
+                        newContent.rows.push(r);
                     }
                 }
                 flattened.push(newContent);
             }
         } else {
-            // Mixed (scrollbox + other media), single media, or no media — keep.
+            // Single media (or no media) — keep as one tile.
             flattened.push(content);
         }
     }
