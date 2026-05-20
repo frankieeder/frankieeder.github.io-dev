@@ -9,11 +9,13 @@ var CONTENT = {
             rows: [
                 {html: "<p>My name is <a href='/about'><u>Frankie Eder and I make things</u></a>, usually at the intersection of <a href='/film'><u>film</u></a>, <a href='/art'><u>art</u></a>, and <a href='/science'><u>science</u></a>.</p>"},
                 {html: "<p>Please sign up for my <a href='/newsletter'><u>newsletter</u></a> to stay up to date on my work.</p>"},
-                {html: "<p>Photos available for purchase by clicking on any thumbnail.</p>"}
+                // {html: "<p>Photos available for purchase by clicking on any thumbnail.</p>"}
+                // Removed: redundant with the new VIEW + BUY PRINT hover overlay on photo tiles.
             ],
         },
         {
             tags: ['newsletter'],
+            visible_text: true,
             rows: {
                 html:
                 `
@@ -66,6 +68,7 @@ var CONTENT = {
         {
             tags: ['about'],
             no_buy_print: true,
+            visible_text: true,
             rows: [
                 {title: "ABOUT"},
                 {

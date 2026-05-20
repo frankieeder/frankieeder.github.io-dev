@@ -437,6 +437,29 @@ li.nav_inactive ul {
     border: 0;
 }
 
+/* Page-style cards (about, newsletter) opt in via `visible_text: true` in
+   content.js. Their text rows render as visible body copy instead of being
+   collapsed to SR-only metadata. The card itself becomes a full-width block
+   to escape the photo-tile flex grid. */
+.content.visible-text {
+    display: block !important;   /* override .content's `display: flex !important` */
+    width: 100%;
+    max-width: 960px;
+    border-right: none;
+    padding: 25px 0;
+    margin: 0 auto;
+}
+
+.content.visible-text .content-text-element {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
 .content a:hover img,
 .content .iframe-container:hover {
     opacity: 0.8;
