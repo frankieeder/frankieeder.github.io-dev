@@ -38,10 +38,16 @@ def test_about_card_has_visible_text_class(about_page):
 
 
 def test_bio_paragraphs_render_visibly(about_page):
-    """The about_blurb's <p> tags must have non-zero height (not SR-only)."""
+    """The about_blurb's <p> tags must have non-zero height (not SR-only).
+
+    Pins the .visible-text CSS override, not any specific bio content — the
+    blurb is now a one-line link to inkfreeread.com, but as long as
+    SR-only collapsing doesn't reapply, the assertion holds for any future
+    copy too.
+    """
     paras = about_page.locator(".about_blurb p")
     count = paras.count()
-    assert count >= 3, f"expected >=3 bio paragraphs, got {count}"
+    assert count >= 1, f"expected >=1 bio paragraph, got {count}"
     for i in range(count):
         box = paras.nth(i).bounding_box()
         assert box is not None, f"para {i} has no bounding box (display:none?)"
@@ -49,6 +55,12 @@ def test_bio_paragraphs_render_visibly(about_page):
             f"para {i} height={box['height']:.1f}px — looks SR-only-collapsed "
             f"(.content-text-element wasn't unset by .visible-text override)"
         )
+
+
+def test_about_links_to_inkfreeread(about_page):
+    """Bio should point to inkfreeread.com."""
+    link = about_page.locator('.about_blurb a[href*="inkfreeread.com"]')
+    assert link.count() >= 1, "no link to inkfreeread.com in about_blurb"
 
 
 def test_no_headshot_image(about_page):
