@@ -1,9 +1,10 @@
 {{!
 TODO: Add thumb or lq depending on if it's a scrollbox or not?
 }}
-<a onclick="openLightBox(this, '{{caption}}');", style="cursor: pointer;">
+<a class="photo-tile-link" onclick="openLightBox(this, '{{caption}}');", style="cursor: pointer;">
     {{! If is a thumbnal in a scrollbox}}
     {{#type_photo_scrollbox}}<img src="img/{{dir_prefix}}{{img}}_thumb.{{ext}}{{^ext}}jpeg{{/ext}}" alt="pic" border="0">{{/type_photo_scrollbox}}
     {{! If standalone image (width parameter included)}}
     {{^type_photo_scrollbox}}<img src="img/{{dir_prefix}}{{img}}_lq.{{ext}}{{^ext}}jpeg{{/ext}}" alt="pic" width="{{width}}{{^width}}100%{{/width}}" border="0">{{/type_photo_scrollbox}}
+    <span class="photo-tile-hover-label">VIEW + BUY PRINT</span>
 </a>
