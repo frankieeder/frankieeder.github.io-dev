@@ -73,8 +73,7 @@ var CONTENT = {
                 {title: "ABOUT"},
                 {
                     html:
-                        `<div class="about_blurb" style="padding-bottom: 30px; height=100%">
-                            <a style="float: left;"><img src="img/headshot_thumb.jpeg" alt="pic" width="300px" border="0"></a>
+                        `<div class="about_blurb" style="padding-bottom: 30px;">
                             <p>I have been a multi-media artist for over a decade, inspired heavily by my passion for technology. My artistic practice is focused primarily on film, photography, sculpture, and audio - exploring themes of digitization as process, media representation, (wasted) space, LGBT issues, mental health, and societal inequity.</p>
                             <p>Inspired by my work as an artist, in my professional tech work, I have primarily helped renowned film and entertainment companies optimize operational efficiency, alleviate technological debt, and expand artistic possibilities using machine learning, advanced graphics and vision theory, and forward-thinking engineering and architecture best practices.</p>
                             <p>Please reach out to me if you are interested in working together in either an artistic or technological capacity. I'm currently available on a consulting / freelance basis for both small and large projects, and occasionally available for pro-bono work on certain small arts projects.</p>

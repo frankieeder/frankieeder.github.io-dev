@@ -447,7 +447,11 @@ li.nav_inactive ul {
     max-width: 960px;
     border-right: none;
     padding: 25px 0;
+    /* override .content's `margin-right: 10px` / `padding-right: 10px` so the
+       card centers symmetrically rather than shifting ~20px to the right */
     margin: 0 auto;
+    padding-right: 0;
+    margin-right: auto;
 }
 
 .content.visible-text .content-text-element {
@@ -458,6 +462,13 @@ li.nav_inactive ul {
     overflow: visible;
     clip: auto;
     white-space: normal;
+}
+
+/* Center the standalone CONTACT ME button (and any future buttons) inside
+   visible-text cards. .github-button defaults to margin: 0 which left-pins
+   its fixed 300px width — fine inside the lightbox container, broken here. */
+.content.visible-text .github-button {
+    margin: 0 auto;
 }
 
 .content a:hover img,
