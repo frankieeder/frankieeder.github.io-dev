@@ -74,7 +74,10 @@ var CONTENT = {
                 {
                     html:
                         `<div class="about_blurb" style="padding-bottom: 30px;">
-                            <p>More at <a href="https://inkfreeread.com/" target="_blank" rel="noopener"><u>inkfreeread.com</u></a>.</p>
+                            <p>I have been a multi-media artist for over a decade, inspired heavily by my passion for technology. My artistic practice is focused primarily on film, photography, sculpture, and audio - exploring themes of digitization as process, media representation, (wasted) space, LGBT issues, mental health, and societal inequity.</p>
+                            <p>For my professional tech work, see <a href="https://inkfreeread.com/" target="_blank" rel="noopener"><u>inkfreeread.com</u></a>.</p>
+                            <p>Please reach out to me if you are interested in working together in either an artistic or technological capacity. I'm currently available on a consulting / freelance basis for both small and large projects, and occasionally available for pro-bono work on certain small arts projects.</p>
+                            <p>I also love to connect with new folks interested in art, technology, or both, so don't hesitate to reach out for a simple coffee chat or call!</p>
                         </div>`
                 },
 
