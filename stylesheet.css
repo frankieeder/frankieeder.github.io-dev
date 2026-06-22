@@ -516,10 +516,12 @@ li.nav_inactive ul {
     display: none;
 }
 
-/* Touch devices have no hover — keep the label visible but subtler */
+/* Touch devices have no hover — drop the hint entirely so it doesn't
+   sit as a permanent strip across every tile.  Tapping the image still
+   opens the lightbox where BUY PRINT lives. */
 @media (hover: none) {
     .photo-tile-hover-label {
-        opacity: 0.85;
+        display: none;
     }
 }
 
