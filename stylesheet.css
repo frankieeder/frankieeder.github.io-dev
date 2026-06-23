@@ -437,6 +437,42 @@ li.nav_inactive ul {
     border: 0;
 }
 
+/* Page-style cards (about, newsletter) opt in via `visible_text: true` in
+   content.js. Their text rows render as visible body copy instead of being
+   collapsed to SR-only metadata. The card itself becomes a full-width block
+   to escape the photo-tile flex grid. */
+.content.visible-text {
+    /* Don't fight the parent flex container. `width: 100%` made flex allocate
+       full-viewport space to this item, leaving max-width: 960px stranded in
+       the right half. Use a fixed cap + `max-width: 100%` for shrink-to-fit
+       on narrow viewports, and let the parent's `justify-content: center`
+       handle horizontal centering. */
+    display: block !important;   /* override .content's `display: flex !important` */
+    width: 960px;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;                   /* override .content's margin-right: 10px */
+    padding: 25px 0;             /* override .content's padding-right: 10px */
+    border-right: none;          /* override .content's tile separator */
+}
+
+.content.visible-text .content-text-element {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+/* Center the standalone CONTACT ME button (and any future buttons) inside
+   visible-text cards. .github-button defaults to margin: 0 which left-pins
+   its fixed 300px width — fine inside the lightbox container, broken here. */
+.content.visible-text .github-button {
+    margin: 0 auto;
+}
+
 .content a:hover img,
 .content .iframe-container:hover {
     opacity: 0.8;
@@ -446,6 +482,47 @@ li.nav_inactive ul {
 .content .scrollbox img:hover {
     opacity: 0.8;
     transition: opacity 0.3s ease;
+}
+
+/* BUY PRINT hover affordance on photo tiles. Placeholder copy. */
+.photo-tile-link {
+    position: relative;
+    display: inline-block;  /* contain absolute child without breaking scrollbox inline flow */
+}
+
+.photo-tile-hover-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.65);
+    color: white;
+    font-family: Avenir-Medium, courier;
+    font-size: 0.75em;
+    letter-spacing: 0.12em;
+    text-align: center;
+    padding: 8px 4px;
+    pointer-events: none;       /* clicks pass through to the <a> */
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.photo-tile-link:hover .photo-tile-hover-label {
+    opacity: 1;
+}
+
+/* Suppress on cards opted out of BUY PRINT */
+.content[data-no-buy-print="1"] .photo-tile-hover-label {
+    display: none;
+}
+
+/* Touch devices have no hover — drop the hint entirely so it doesn't
+   sit as a permanent strip across every tile.  Tapping the image still
+   opens the lightbox where BUY PRINT lives. */
+@media (hover: none) {
+    .photo-tile-hover-label {
+        display: none;
+    }
 }
 
 .content-html-content p {
@@ -567,7 +644,9 @@ li.nav_inactive ul {
 }
 
 #lightbox-buy-print-dropdown {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
     position: absolute;
     bottom: 100%;
     left: 50%;
@@ -581,6 +660,11 @@ li.nav_inactive ul {
     overflow: hidden;
     flex-direction: column;
     padding-top: 4px;
+}
+
+#lightbox-buy-print-dropdown.visible {
+    visibility: visible;
+    opacity: 1;
 }
 
 #lightbox-buy-print-dropdown .buy-print-dropdown-item {
