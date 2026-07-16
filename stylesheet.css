@@ -437,6 +437,42 @@ li.nav_inactive ul {
     border: 0;
 }
 
+/* Page-style cards (about, newsletter) opt in via `visible_text: true` in
+   content.js. Their text rows render as visible body copy instead of being
+   collapsed to SR-only metadata. The card itself becomes a full-width block
+   to escape the photo-tile flex grid. */
+.content.visible-text {
+    /* Don't fight the parent flex container. `width: 100%` made flex allocate
+       full-viewport space to this item, leaving max-width: 960px stranded in
+       the right half. Use a fixed cap + `max-width: 100%` for shrink-to-fit
+       on narrow viewports, and let the parent's `justify-content: center`
+       handle horizontal centering. */
+    display: block !important;   /* override .content's `display: flex !important` */
+    width: 960px;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;                   /* override .content's margin-right: 10px */
+    padding: 25px 0;             /* override .content's padding-right: 10px */
+    border-right: none;          /* override .content's tile separator */
+}
+
+.content.visible-text .content-text-element {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+/* Center the standalone CONTACT ME button (and any future buttons) inside
+   visible-text cards. .github-button defaults to margin: 0 which left-pins
+   its fixed 300px width — fine inside the lightbox container, broken here. */
+.content.visible-text .github-button {
+    margin: 0 auto;
+}
+
 .content a:hover img,
 .content .iframe-container:hover {
     opacity: 0.8;
