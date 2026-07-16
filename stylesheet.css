@@ -567,7 +567,9 @@ li.nav_inactive ul {
 }
 
 #lightbox-buy-print-dropdown {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
     position: absolute;
     bottom: 100%;
     left: 50%;
@@ -581,6 +583,11 @@ li.nav_inactive ul {
     overflow: hidden;
     flex-direction: column;
     padding-top: 4px;
+}
+
+#lightbox-buy-print-dropdown.visible {
+    visibility: visible;
+    opacity: 1;
 }
 
 #lightbox-buy-print-dropdown .buy-print-dropdown-item {
